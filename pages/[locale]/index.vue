@@ -1,0 +1,24 @@
+<template>
+  <div>
+    <NuxtWelcome />
+    <h1>{{homepage?.data.titre}}</h1>
+  </div>
+</template>
+<script lang="ts" setup>
+
+const prismic = usePrismic();
+const route = useRoute();
+
+const {data: homepage } = useAsyncData("[home]", () => prismic.client.getSingle('home'))
+console.log(homepage)
+
+useHead({
+  title: homepage.value?.data.meta_title,
+  meta: [
+    {
+      name: "description",
+      content: homepage.value?.data.meta_description,
+    },
+  ],
+});
+</script>
