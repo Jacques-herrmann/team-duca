@@ -24,3 +24,8 @@ useHead({
   ],
 });
 </script>
+
+<style scoped lang="sass">
+  h1
+    color: red
+</style>

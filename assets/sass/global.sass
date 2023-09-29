@@ -1,0 +1,23 @@
+@import './reset.sass'
+@import './variables.sass'
+@import './breakpoints.sass'
+@import './font.sass'
+@import './transition.sass'
+
+
+html
+  font-size: clamp($font-size-min, $font-size-desktop, $font-size-max)
+  @include xl
+    font-size: clamp($font-size-min, $font-size-mobile, $font-size-max)
+
+html, body
+  height: 100vh
+  height: calc(var(--vh, 1vh) * 100)
+  width: 100vw
+  margin: 0
+  padding: 0
+  overflow: hidden
+
+p, h1, h2, h3, h4, h5, h6, a, li, span, div
+  white-space: pre-line
+  color: inherit
