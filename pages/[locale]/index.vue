@@ -1,6 +1,8 @@
 <template>
   <div>
     <NuxtWelcome />
+    <NuxtWelcome />
+    <NuxtWelcome />
     <h1>{{homepage?.data.titre}}</h1>
   </div>
 </template>

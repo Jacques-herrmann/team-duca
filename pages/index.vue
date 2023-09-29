@@ -1,10 +1,12 @@
 <template>
-  <div></div>
 </template>
 <script lang="ts" setup>
 
 import {navigateTo} from "#app";
 import {onMounted} from "vue";
+
+
+definePageMeta({ layout: 'default' })
 
 const fallbackLocale = 'fr'
 const locales = ['fr']

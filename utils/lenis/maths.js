@@ -1,0 +1,19 @@
+export function clamp (min, input, max) {
+  return Math.max(min, Math.min(input, max))
+}
+
+export function mapRange (inMin, inMax, input, outMin, outMax) {
+  return ((input - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin
+}
+
+export function lerp (start, end, amt) {
+  return (1 - amt) * start + amt * end
+}
+
+export function truncate (value, decimals) {
+  return parseFloat(value.toFixed(decimals))
+}
+
+export function castToNumber (value, defaultValue = 0) {
+  return isNaN(value) ? defaultValue : value
+}
