@@ -1,8 +1,6 @@
 <template>
   <div>
     <NuxtWelcome />
-    <NuxtWelcome />
-    <NuxtWelcome />
     <h1>{{homepage?.data.titre}}</h1>
   </div>
 </template>
@@ -26,6 +24,6 @@ useHead({
 </script>
 
 <style scoped lang="sass">
-  h1
-    color: red
+h1
+  color: red
 </style>

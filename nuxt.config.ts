@@ -5,4 +5,15 @@ export default defineNuxtConfig({
   prismic: {
     endpoint: "team-duca",
   },
+  css: ["@/assets/sass/global.sass"],
+  vite: {
+        css: {
+            preprocessorOptions: {
+                sass: {
+                    additionalData: `@import "@/assets/sass/main.sass"
+`,
+                },
+            },
+        },
+    },
 })

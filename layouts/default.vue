@@ -1,5 +1,6 @@
 <template>
   <div id="app-layout">
+    <Header />
     <main>
       <slot />
     </main>
@@ -7,6 +8,7 @@
 </template>
 
 <script setup lang="ts">
+import Header from "@/components/Header/index.vue"
 import Lenis from "@/utils/lenis/lenis"
 
 const scroll: Ref<Lenis | null> = ref(null)

@@ -1,0 +1,41 @@
+{
+  "id": "header",
+  "label": "Header",
+  "format": "custom",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "logo": {
+        "type": "Image",
+        "config": {
+          "label": "logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "pages": {
+        "type": "Group",
+        "config": {
+          "label": "pages",
+          "fields": {
+            "url": {
+              "type": "Text",
+              "config": {
+                "label": "url",
+                "placeholder": ""
+              }
+            },
+            "titre": {
+              "type": "Text",
+              "config": {
+                "label": "titre",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

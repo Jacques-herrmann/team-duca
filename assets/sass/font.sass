@@ -41,20 +41,8 @@ $font-size-max: 16px
   line-height: $line-height
   font-weight: 700
   letter-spacing: 0.03em
-  color: $violet-title
+  color: $text-c
   margin: 0
-
-@mixin popin-title($font-size: 16px, $line-height: 19px)
-  font-family: Interstate, Arial, sans-serif
-  font-size: $font-size
-  line-height: $line-height
-  font-weight: 900
-  color: $text-light
-  text-align: center
-  text-transform: uppercase
-  @include md
-    font-size: 27px
-    line-height: 32px
 
 
 @mixin h1($font-size: 5rem, $line-height: 100%)
@@ -65,41 +53,6 @@ $font-size-max: 16px
 
 @mixin h3($font-size: 2.6rem, $line-height: 100%)
   @include title($font-size, $line-height)
-
-
-.text-bold
-  font-weight: bold
-
-.text-italic
-  font-style: italic
-
-.text-underline
-  text-decoration: underline
-
-.text-orange
-  color: $orange
-
-.text-uppercase
-  text-transform: uppercase
-
-.text-sup
-  vertical-align: super
-  font-size: 0.5em
-
-.text-sub
-  vertical-align: sub
-  font-size: 0.5em
-
-.text-align-center
-  text-align: center
-
-.text-align-right
-  display: block
-  text-align: right
-
-.text-align-left
-  display: block
-  text-align: left
 
 //@font-face
 //  font-family: 'Interstate Black Comp'
