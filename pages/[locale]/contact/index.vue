@@ -5,7 +5,6 @@
      ref="form"
      class="contact-page__form"
      name="contact"
-     method="POST"
      netlify
     >
       <p>
