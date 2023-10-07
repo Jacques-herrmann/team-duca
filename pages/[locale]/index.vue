@@ -1,7 +1,7 @@
 <template>
   <div>
-    <NuxtWelcome />
     <h1>{{homepage?.data.titre}}</h1>
+    <blocks-list :blocks="homepage?.data.slices"></blocks-list>
   </div>
 </template>
 <script lang="ts" setup>

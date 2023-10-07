@@ -24,4 +24,7 @@ onMounted(() => {
   console.log('layout/default.vue')
   onUpdate()
 })
+onUnmounted(() => {
+  scroll.value?.destroy()
+})
 </script>
