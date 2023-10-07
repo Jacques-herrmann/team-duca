@@ -1,7 +1,7 @@
 <template>
   <div class="contact-page">
     <h1>Contact</h1>
-    <form class="contact-page__form" name="contact" netlify>
+    <form class="contact-page__form" name="contact" netlify ref="form">
       <p>
         <label>Name <input type="text" name="name" /></label>
       </p>
@@ -9,7 +9,7 @@
         <label>Email <input type="email" name="email" /></label>
       </p>
       <p>
-        <button type="submit" @submit="onSubmit">Send</button>
+        <button @click.prevent="onSubmit">Send</button>
       </p>
     </form>
   </div>
@@ -19,6 +19,8 @@ import { useReCaptcha } from "vue-recaptcha-v3";
 
 const prismic = usePrismic();
 const route = useRoute();
+
+const form = ref<HTMLFormElement | null>(null);
 
 const {data: page } = useAsyncData("[contact]", () => prismic.client.getSingle('contact'))
 console.log(page)
@@ -43,18 +45,18 @@ const recaptcha = async () => {
 };
 
 const onSubmit = async (e: Event) => {
+  if(!form.value) return;
   e.preventDefault();
   const token = await recaptcha();
   console.log(token);
-  const form = e.target as HTMLFormElement;
-  const formData = new FormData(form);
+  const formData = new FormData(form.value);
   const data = Object.fromEntries(formData.entries());
   console.log(data);
   const response = await fetch("/", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams({
-      "form-name": form.getAttribute("name"),
+      "form-name": form.value.getAttribute("name"),
       "g-recaptcha-response": token,
       ...data,
     }).toString(),
