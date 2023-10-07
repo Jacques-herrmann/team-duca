@@ -6,6 +6,20 @@
   "status": true,
   "json": {
     "Main": {
+      "titre": {
+        "type": "Text",
+        "config": {
+          "label": "Titre",
+          "placeholder": ""
+        }
+      },
+      "sous_titre": {
+        "type": "Text",
+        "config": {
+          "label": "Sous Titre",
+          "placeholder": ""
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
