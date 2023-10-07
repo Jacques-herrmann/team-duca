@@ -1,16 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: true },
-  modules: ["@nuxtjs/prismic", '@vueuse/nuxt'],
-  prismic: {
-    endpoint: "team-duca",
-  },
+    devtools: { enabled: true },
+    modules: ["@nuxtjs/prismic", '@vueuse/nuxt'],
+    prismic: {
+        endpoint: "team-duca",
+    },
     components: {
-      global: true,
+        global: true,
         dirs: ['@/components']
     },
-  css: ["@/assets/sass/global.sass"],
-  vite: {
+    css: ["@/assets/sass/global.sass"],
+    vite: {
         css: {
             preprocessorOptions: {
                 sass: {
@@ -20,4 +20,9 @@ export default defineNuxtConfig({
             },
         },
     },
+    runtimeConfig: {
+        public: {
+            CAPTCHA_KEY:  process.env.CAPTCHA_KEY,
+        }
+    }
 })
