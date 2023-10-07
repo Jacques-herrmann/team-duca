@@ -1,7 +1,18 @@
 <template>
   <div class="contact-page">
     <h1>Contact</h1>
-    <form class="contact-page__form" name="contact" netlify ref="form">
+    <form
+     ref="form"
+     class="contact-page__form"
+     name="contact"
+     netlify
+     netlify-honeypot="bot-field"
+    >
+      <p class="hidden">
+        <label>
+          Don’t fill this out if you’re human: <input name="bot-field" />
+        </label>
+      </p>
       <p>
         <label>Name <input type="text" name="name" /></label>
       </p>
@@ -86,4 +97,7 @@ const onSubmit = async (e: Event) => {
       cursor: pointer
 h1
   color: red
+
+.hidden
+  display: none
 </style>
