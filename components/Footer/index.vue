@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
-    <span class="footer__title">{{footer.data.titre}}</span>
-    <span class="footer__text">{{footer.data.email}}</span>
+    <span class="footer__title">{{footer?.data.titre}}</span>
+    <span class="footer__text">{{footer?.data.email}}</span>
   </footer>
 </template>
 <script lang="ts" setup>
