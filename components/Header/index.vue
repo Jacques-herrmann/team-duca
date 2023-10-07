@@ -12,6 +12,7 @@
 
 const prismic = usePrismic();
 const route = useRoute();
+console.log(route)
 const locale = route.params.locale;
 
 const {data: header } = useAsyncData("[header]", () => prismic.client.getSingle('header'))
