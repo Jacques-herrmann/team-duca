@@ -11,12 +11,12 @@ const props = defineProps<{
 }>()
 
 const components = {
-  'hero': resolveComponent('BlocksHero')
+  'hero': resolveComponent('BlocksHero'),
+  'gallery': resolveComponent('BlocksGallery'),
 }
 </script>
 
 <style scoped lang="sass">
 .block
   position: relative
-  padding: 40px 0
 </style>

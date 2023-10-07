@@ -13,7 +13,12 @@ const calcCrow = (lat1, lon1, lat2, lon2) => {
     return R * c;
 }
 
+const lerp = (p1, p2, t) => {
+    return p1 + (p2 - p1) * t
+}
+
 export {
-  toRad,
-  calcCrow
+    toRad,
+    lerp,
+    calcCrow
 }

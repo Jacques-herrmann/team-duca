@@ -29,7 +29,7 @@ const toHome = () => {
   top: 0
   left: 0
   z-index: 100
-  height: 80px
+  height: $header-height
   width: 100%
   background-color: $primary
   display: flex
@@ -38,8 +38,7 @@ const toHome = () => {
   padding: 0 40px
 
   &__logo
-    height: 80px
-    width: 80px
+    height: 100%
     display: block
     object-fit: contain
     cursor: pointer

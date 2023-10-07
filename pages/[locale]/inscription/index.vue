@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="inscription-page">
     <h1>Inscription</h1>
   </div>
 </template>
@@ -23,6 +23,10 @@ useHead({
 </script>
 
 <style scoped lang="sass">
+.inscription-page
+  min-height: 100vh
+  width: 100%
+
 h1
   color: red
 </style>

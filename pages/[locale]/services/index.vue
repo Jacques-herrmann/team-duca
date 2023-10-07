@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="service-page">
     <h1>Services</h1>
   </div>
 </template>
@@ -23,6 +23,10 @@ useHead({
 </script>
 
 <style scoped lang="sass">
+.service-page
+  min-height: 100vh
+  width: 100%
+
 h1
   color: red
 </style>

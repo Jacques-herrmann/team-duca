@@ -70,7 +70,50 @@ export type ContactDocument<Lang extends string = string> =
     Lang
   >;
 
-type GalerieDocumentDataSlicesSlice = never;
+/**
+ * Content for Footer documents
+ */
+interface FooterDocumentData {
+  /**
+   * titre field in *Footer*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.titre
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  titre: prismic.KeyTextField;
+
+  /**
+   * email field in *Footer*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.email
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  email: prismic.KeyTextField;
+}
+
+/**
+ * Footer document from Prismic
+ *
+ * - **API ID**: `footer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FooterDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<FooterDocumentData>,
+    "footer",
+    Lang
+  >;
+
+type GalerieDocumentDataSlicesSlice = GallerySlice;
 
 /**
  * Content for Galerie documents
@@ -411,11 +454,122 @@ export type ServicesDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | ContactDocument
+  | FooterDocument
   | GalerieDocument
   | HeaderDocument
   | HomeDocument
   | InscriptionDocument
   | ServicesDocument;
+
+/**
+ * Primary content in *Gallery → Primary*
+ */
+export interface GallerySliceDefaultPrimary {
+  /**
+   * hauteur field in *Gallery → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.primary.hauteur
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  hauteur: prismic.NumberField;
+
+  /**
+   * largeur field in *Gallery → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.primary.largeur
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  largeur: prismic.NumberField;
+}
+
+/**
+ * Primary content in *Gallery → Items*
+ */
+export interface GallerySliceDefaultItem {
+  /**
+   * media field in *Gallery → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.items[].media
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  media: prismic.ImageField<never>;
+
+  /**
+   * posX field in *Gallery → Items*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.items[].posx
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  posx: prismic.NumberField;
+
+  /**
+   * posY field in *Gallery → Items*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.items[].posy
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  posy: prismic.NumberField;
+
+  /**
+   * hauteur field in *Gallery → Items*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.items[].hauteur
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  hauteur: prismic.NumberField;
+
+  /**
+   * largeur field in *Gallery → Items*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: gallery.items[].largeur
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  largeur: prismic.NumberField;
+}
+
+/**
+ * Default variation for Gallery Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GallerySliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<GallerySliceDefaultPrimary>,
+  Simplify<GallerySliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Gallery*
+ */
+type GallerySliceVariation = GallerySliceDefault;
+
+/**
+ * Gallery Shared Slice
+ *
+ * - **API ID**: `gallery`
+ * - **Description**: Gallery
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type GallerySlice = prismic.SharedSlice<
+  "gallery",
+  GallerySliceVariation
+>;
 
 /**
  * Primary content in *Hero → Primary*
@@ -492,6 +646,8 @@ declare module "@prismicio/client" {
       ContactDocument,
       ContactDocumentData,
       ContactDocumentDataSlicesSlice,
+      FooterDocument,
+      FooterDocumentData,
       GalerieDocument,
       GalerieDocumentData,
       GalerieDocumentDataSlicesSlice,
@@ -508,6 +664,11 @@ declare module "@prismicio/client" {
       ServicesDocumentData,
       ServicesDocumentDataSlicesSlice,
       AllDocumentTypes,
+      GallerySlice,
+      GallerySliceDefaultPrimary,
+      GallerySliceDefaultItem,
+      GallerySliceVariation,
+      GallerySliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>Galerie</h1>
+  <div class="galerie-page">
+    <blocks-list :blocks="page?.data.slices" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -23,6 +23,7 @@ useHead({
 </script>
 
 <style scoped lang="sass">
-h1
-  color: red
+.galerie-page
+  min-height: 100vh
+  width: 100%
 </style>
