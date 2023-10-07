@@ -24,7 +24,7 @@
 const prismic = usePrismic();
 const route = useRoute();
 
-const form = ref<HTMLFormElement | null>(null);
+// const form = ref<HTMLFormElement | null>(null);
 
 const {data: page } = useAsyncData("[contact]", () => prismic.client.getSingle('contact'))
 console.log(page)
