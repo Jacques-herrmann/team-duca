@@ -5,7 +5,7 @@
      ref="form"
      class="contact-page__form"
      name="contact"
-     netlify
+    data-netlify="true"
      netlify-honeypot="bot-field"
     >
       <p class="hidden">
