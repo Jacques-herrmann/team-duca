@@ -4,7 +4,6 @@
 		"variation": "default",
 		"primary": {
 			"hero": {
-				"__TYPE__": "ImageContent",
 				"origin": {
 					"id": "main",
 					"url": "https://images.unsplash.com/photo-1579931794097-0ad001e51edb",
@@ -22,14 +21,20 @@
 					},
 					"background": "transparent"
 				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
 				"thumbnails": {}
 			},
-			"cta": {
-				"__TYPE__": "LinkContent",
-				"value": {
-					"__TYPE__": "ExternalLink",
-					"url": "https://slicemachine.dev"
-				}
+			"cta_text": {
+				"__TYPE__": "FieldContent",
+				"value": "remove",
+				"type": "Text"
+			},
+			"cta_url": {
+				"__TYPE__": "FieldContent",
+				"value": "pass",
+				"type": "Text"
 			}
 		},
 		"items": []

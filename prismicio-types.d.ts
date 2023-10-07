@@ -432,14 +432,24 @@ export interface HeroSliceDefaultPrimary {
   hero: prismic.ImageField<never>;
 
   /**
-   * cta field in *Hero → Primary*
+   * cta_text field in *Hero → Primary*
    *
-   * - **Field Type**: Link
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: hero.primary.cta
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **API ID Path**: hero.primary.cta_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  cta: prismic.LinkField;
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * cta_url field in *Hero → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.primary.cta_url
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_url: prismic.KeyTextField;
 }
 
 /**
