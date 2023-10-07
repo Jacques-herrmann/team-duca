@@ -20,9 +20,4 @@ export default defineNuxtConfig({
             },
         },
     },
-    runtimeConfig: {
-        public: {
-            CAPTCHA_KEY:  process.env.CAPTCHA_KEY,
-        }
-    }
 })

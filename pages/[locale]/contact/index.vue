@@ -20,13 +20,12 @@
         <label>Email <input type="email" name="email" /></label>
       </p>
       <p>
-        <button @click.prevent="onSubmit">Send</button>
+        <button type="submit">Send</button>
       </p>
     </form>
   </div>
 </template>
 <script lang="ts" setup>
-import { useReCaptcha } from "vue-recaptcha-v3";
 
 const prismic = usePrismic();
 const route = useRoute();
@@ -45,35 +44,6 @@ useHead({
     },
   ],
 });
-
-const recaptchaInstance = useReCaptcha();
-const recaptcha = async () => {
-    // optional you can await for the reCaptcha load
-    await recaptchaInstance?.recaptchaLoaded();
-
-    // get the token, a custom action could be added as argument to the method
-    return recaptchaInstance?.executeRecaptcha('contact');
-};
-
-const onSubmit = async (e: Event) => {
-  if(!form.value) return;
-  e.preventDefault();
-  const token = await recaptcha();
-  console.log(token);
-  const formData = new FormData(form.value);
-  const data = Object.fromEntries(formData.entries());
-  console.log(data);
-  const response = await fetch("/", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      "form-name": form.value.getAttribute("name"),
-      "g-recaptcha-response": token,
-      ...data,
-    }).toString(),
-  });
-  console.log(response);
-};
 
 </script>
 
