@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <img class="header__logo" :src="header?.data.logo.url" :alt="header?.data.logo.alt" @click="toHome">
+    <Logo class="header__logo" @click="toHome" />
     <div class="header__menu">
       <div class="header__menu-item" v-for="item in header?.data.pages" :key="item.id">
         <nuxt-link :to="`/${locale}${item.url ?`/${item.url}`: ''}`">{{ item.titre }}</nuxt-link>
@@ -30,37 +30,39 @@ const toHome = () => {
   position: fixed
   top: 0
   left: 0
-  z-index: 100
+  z-index: $z-header
   height: $header-height
   width: 100%
-  background-color: $primary
-  display: flex
-  align-items: center
-  justify-content: space-between
-  padding: 0 40px
+  //background-color: $black
+  padding: 0 90px
 
   &__logo
-    height: 100%
-    display: block
-    object-fit: contain
+    position: absolute
+    left: 40px
+    top: 40px
+    height: 100px
+    width: 100px
     cursor: pointer
     pointer-events: all
 
   &__menu
+    position: absolute
+    top: 0
+    right: 40px
     display: flex
     align-items: center
     height: 100%
-    margin-left: 20px
+    margin-right: 20px
 
     &-item
-      margin-left: 20px
-      font-size: 1.5rem
-      font-weight: 600
-      color: $text
+      @include text()
+      text-transform: uppercase
+      margin-left: 60px
+      color: $white
       text-decoration: none
       cursor: pointer
       transition: color 0.2s ease-in-out
 
       &:hover
-        color: $text-hover
+        color: $red
 </style>

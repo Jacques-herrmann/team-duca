@@ -1,9 +1,15 @@
+@import './font.sass'
 
 body
   min-height: 100vh
   text-rendering: optimizeLegibility
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
+
+html
+  font-size: clamp($font-size-min, $font-size-desktop, $font-size-max)
+  @include xl
+    font-size: clamp($font-size-min, $font-size-mobile, $font-size-max)
 
 img
   user-select: none

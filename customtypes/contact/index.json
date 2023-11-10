@@ -20,6 +20,21 @@
           "placeholder": ""
         }
       },
+      "image": {
+        "type": "Image",
+        "config": {
+          "label": "image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "cta": {
+        "type": "Text",
+        "config": {
+          "label": "cta",
+          "placeholder": ""
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

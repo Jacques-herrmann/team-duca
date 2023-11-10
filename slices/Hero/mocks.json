@@ -35,6 +35,21 @@
 				"__TYPE__": "FieldContent",
 				"value": "pass",
 				"type": "Text"
+			},
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "ring",
+				"type": "Text"
+			},
+			"text_left": {
+				"__TYPE__": "FieldContent",
+				"value": "without",
+				"type": "Text"
+			},
+			"text_right": {
+				"__TYPE__": "FieldContent",
+				"value": "hunt",
+				"type": "Text"
 			}
 		},
 		"items": []

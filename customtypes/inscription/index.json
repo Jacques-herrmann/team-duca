@@ -6,11 +6,32 @@
   "status": true,
   "json": {
     "Main": {
+      "titre": {
+        "type": "Text",
+        "config": {
+          "label": "Titre",
+          "placeholder": ""
+        }
+      },
+      "texte": {
+        "type": "Text",
+        "config": {
+          "label": "Texte",
+          "placeholder": ""
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {}
+          "choices": {
+            "document": {
+              "type": "SharedSlice"
+            },
+            "abonnement": {
+              "type": "SharedSlice"
+            }
+          }
         }
       }
     },

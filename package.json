@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxtjs/google-fonts": "^3.0.2",
     "@nuxtjs/prismic": "^3.0.3",
     "@slicemachine/adapter-nuxt": "^0.3.18",
     "nuxt": "^3.7.4",

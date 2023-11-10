@@ -33,6 +33,28 @@ interface ContactDocumentData {
   sous_titre: prismic.KeyTextField;
 
   /**
+   * image field in *Contact*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * cta field in *Contact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.cta
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta: prismic.KeyTextField;
+
+  /**
    * Slice Zone field in *Contact*
    *
    * - **Field Type**: Slice Zone
@@ -342,12 +364,34 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-type InscriptionDocumentDataSlicesSlice = never;
+type InscriptionDocumentDataSlicesSlice = DocumentSlice | AbonnementSlice;
 
 /**
  * Content for Inscription documents
  */
 interface InscriptionDocumentData {
+  /**
+   * Titre field in *Inscription*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: inscription.titre
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  titre: prismic.KeyTextField;
+
+  /**
+   * Texte field in *Inscription*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: inscription.texte
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  texte: prismic.KeyTextField;
+
   /**
    * Slice Zone field in *Inscription*
    *
@@ -482,6 +526,161 @@ export type AllDocumentTypes =
   | HomeDocument
   | InscriptionDocument
   | ServicesDocument;
+
+/**
+ * Primary content in *Abonnement → Primary*
+ */
+export interface AbonnementSliceDefaultPrimary {
+  /**
+   * Titre field in *Abonnement → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: abonnement.primary.titre
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  titre: prismic.KeyTextField;
+
+  /**
+   * Sous-titre field in *Abonnement → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: abonnement.primary.soutitre
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  soutitre: prismic.KeyTextField;
+
+  /**
+   * Texte field in *Abonnement → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: abonnement.primary.texte
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  texte: prismic.KeyTextField;
+
+  /**
+   * Prix field in *Abonnement → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: abonnement.primary.prix
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  prix: prismic.KeyTextField;
+
+  /**
+   * media field in *Abonnement → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: abonnement.primary.media
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  media: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Abonnement Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AbonnementSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<AbonnementSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Abonnement*
+ */
+type AbonnementSliceVariation = AbonnementSliceDefault;
+
+/**
+ * Abonnement Shared Slice
+ *
+ * - **API ID**: `abonnement`
+ * - **Description**: Abonnement
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AbonnementSlice = prismic.SharedSlice<
+  "abonnement",
+  AbonnementSliceVariation
+>;
+
+/**
+ * Primary content in *Document → Primary*
+ */
+export interface DocumentSliceDefaultPrimary {
+  /**
+   * Titre field in *Document → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: document.primary.titre
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  titre: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *Document → Items*
+ */
+export interface DocumentSliceDefaultItem {
+  /**
+   * Titre field in *Document → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: document.items[].titre
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  titre: prismic.KeyTextField;
+
+  /**
+   * Document field in *Document → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: document.items[].document
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  document: prismic.LinkField;
+}
+
+/**
+ * Default variation for Document Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type DocumentSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<DocumentSliceDefaultPrimary>,
+  Simplify<DocumentSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Document*
+ */
+type DocumentSliceVariation = DocumentSliceDefault;
+
+/**
+ * Document Shared Slice
+ *
+ * - **API ID**: `document`
+ * - **Description**: Document
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type DocumentSlice = prismic.SharedSlice<
+  "document",
+  DocumentSliceVariation
+>;
 
 /**
  * Primary content in *Gallery → Primary*
@@ -626,6 +825,36 @@ export interface HeroSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   cta_url: prismic.KeyTextField;
+
+  /**
+   * title field in *Hero → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Text Left field in *Hero → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.primary.text_left
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text_left: prismic.KeyTextField;
+
+  /**
+   * Text Right field in *Hero → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero.primary.text_right
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text_right: prismic.KeyTextField;
 }
 
 /**
@@ -686,6 +915,15 @@ declare module "@prismicio/client" {
       ServicesDocumentData,
       ServicesDocumentDataSlicesSlice,
       AllDocumentTypes,
+      AbonnementSlice,
+      AbonnementSliceDefaultPrimary,
+      AbonnementSliceVariation,
+      AbonnementSliceDefault,
+      DocumentSlice,
+      DocumentSliceDefaultPrimary,
+      DocumentSliceDefaultItem,
+      DocumentSliceVariation,
+      DocumentSliceDefault,
       GallerySlice,
       GallerySliceDefaultPrimary,
       GallerySliceDefaultItem,

@@ -23,7 +23,7 @@ const locale = route.params.locale
 </script>
 <style scoped lang="sass">
 .cta
-  background-color: $primary
+  background-color: $white
   height: 30px
   width: 120px
   &__link

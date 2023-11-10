@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <h1>{{homepage?.data.titre}}</h1>
+  <div class="home-page">
     <blocks-list :blocks="homepage?.data.slices"></blocks-list>
   </div>
 </template>

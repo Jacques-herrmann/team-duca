@@ -1,32 +1,13 @@
-$font-size-desktop: calc(10 / 1080 * 100vh)
-$font-size-mobile: calc(10 / 1080 * 100vh)
+$font-size-desktop: calc(10 / 1920 * 100vh)
+$font-size-mobile: calc(10 / 1920 * 100vh)
 $font-size-min: 8px
-$font-size-max: 16px
+$font-size-max: 14px
 
 
-@mixin text($font-size: 16px, $line-height: 19px)
-  font-family: Interstate, Arial, sans-serif
+@mixin text($font-size: 1.8rem, $line-height: 100%)
+  font-family: Overpass, Arial, sans-serif
   font-size: $font-size
   line-height: $line-height
-  font-weight: 500
-
-@mixin text-light($font-size: 16px, $line-height: 19px)
-  font-family: Interstate, Arial, sans-serif
-  font-size: $font-size
-  line-height: $line-height
-  font-weight: 300
-
-@mixin text-bold($font-size: 16px, $line-height: 19px)
-  font-family: Interstate, Arial, sans-serif
-  font-size: $font-size
-  line-height: $line-height
-  font-weight: bold
-
-@mixin text-black($font-size: 16px, $line-height: 19px)
-  font-family: Interstate, Arial, sans-serif
-  font-size: $font-size
-  line-height: $line-height
-  font-weight: 900
 
 @mixin cta($font-size: 20px, $line-height: 24px)
   font-family: Interstate, Arial, sans-serif
@@ -35,81 +16,29 @@ $font-size-max: 16px
   font-weight: bold
   text-transform: uppercase
 
-@mixin title($font-size: 18px, $line-height: 100%)
-  font-family: Interstate, Arial, sans-serif
+@mixin sub($font-size: 2.4rem, $line-height: 100%)
+  font-family: Overpass, Arial, sans-serif
   font-size: $font-size
   line-height: $line-height
-  font-weight: 700
-  letter-spacing: 0.03em
-  color: $text-c
+  font-weight: bold
+  font-style: italic
+  color: $red
+
+@mixin title($font-size: 1rem, $line-height: 100%)
+  font-family: Rubik, Arial, sans-serif
+  font-size: $font-size
+  line-height: $line-height
+  font-weight: 900
+  letter-spacing: -0.05rem
+  text-transform: uppercase
   margin: 0
 
 
-@mixin h1($font-size: 5rem, $line-height: 100%)
+@mixin h1($font-size: 6.1rem, $line-height: 100%)
   @include title($font-size, $line-height)
 
-@mixin h2($font-size: 3.6rem, $line-height: 100%)
+@mixin h2($font-size: 4rem, $line-height: 100%)
   @include title($font-size, $line-height)
 
-@mixin h3($font-size: 2.6rem, $line-height: 100%)
+@mixin h3($font-size: 3.6rem, $line-height: 100%)
   @include title($font-size, $line-height)
-
-//@font-face
-//  font-family: 'Interstate Black Comp'
-//  font-style: normaL
-//  font-weight: normal
-//  src: local('Interstate Black Comp'), url('/fonts/interstate-black-comp-58b64117a2ad9.woff') format('woff')
-//
-//@font-face
-//  font-family: 'Interstate Black Cond'
-//  font-style: normal
-//  font-weight: normal
-//  src: local('Interstate Black Cond'), url('/fonts/interstate-black-cond-58b642507872b.woff') format('woff')
-//
-//@font-face
-//  font-family: 'Interstate Light Cond'
-//  font-style: normal
-//  font-weight: normal
-//  src: local('Interstate Light Cond'), url('/fonts/interstate-light-cond-58b64220b1490.woff') format('woff')
-//
-//@font-face
-//  font-family: 'Interstate'
-//  font-style: normal
-//  font-weight: normal
-//  src: local('Interstate Regular Comp'), url('/fonts/interstate-regular-comp-58b641cc0aca1.woff') format('woff')
-//
-//@font-face
-//  font-family: 'Interstate Regular Italic'
-//  font-style: normal
-//  font-weight: normal
-//  src: local('Interstate Regular Italic'), url('/fonts/interstate-regular-italic-58b641ecad88f.woff') format('woff')
-//
-//@font-face
-//  font-family: 'Interstate UltraBlack Comp'
-//  font-style: normal
-//  font-weight: normal
-//  src: local('Interstate UltraBlack Comp'), url('/fonts/interstate-ultrablack-comp-58b64130a8cbf.woff') format('woff')
-//
-//@font-face
-//  font-family: 'Interstate Bold Cond'
-//  font-style: normal
-//  font-weight: normal
-//  src: local('Interstate Bold Cond'), url('/fonts/interstate-bold-cond-58b64162258ca.woff') format('woff')
-//
-//@font-face
-//  font-family: 'Interstate ExtraLight Italic'
-//  font-style: normal
-//  font-weight: normal
-//  src: local('Interstate ExtraLight Italic'), url('/fonts/interstate-extralight-italic-58b642045546b.woff') format('woff')
-//
-//@font-face
-//  font-family: 'Interstate Light Italic'
-//  font-style: normal
-//  font-weight: normal
-//  src: local('Interstate Light Italic'), url('/fonts/interstate-light-italic-58b64147957e5.woff') format('woff')
-//
-//@font-face
-//  font-family: 'Interstate Thin Italic'
-//  font-style: normal
-//  font-weight: normal
-//  src: local('Interstate Thin Italic'), url('/fonts/interstate-thin-italic-58b641b2d5a92.woff') format('woff')

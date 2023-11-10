@@ -1,28 +1,32 @@
 <template>
   <div class="contact-page">
-    <h1>Contact</h1>
-    <form
-     ref="form"
-     class="contact-page__form"
-     name="contact"
-     netlify
-     netlify-honeypot="bot-field"
-    >
-      <p class="hidden">
-        <label>
-          Don’t fill this out if you’re human: <input name="bot-field" />
-        </label>
-      </p>
-      <p>
-        <label>Name <input type="text" name="name" /></label>
-      </p>
-      <p>
-        <label>Email <input type="email" name="email" /></label>
-      </p>
-      <p>
-        <button type="submit">Send</button>
-      </p>
-    </form>
+    <img :src="page?.data.image.url" alt="page?.data.image.url">
+    <div class="contact-page__form">
+      <h1 class="contact-page__title">{{ page?.data.titre }}</h1>
+      <p  class="contact-page__sub">{{ page?.data.sous_titre }}</p>
+      <form
+       ref="form"
+       class="contact-page__form"
+       name="contact"
+       netlify
+       netlify-honeypot="bot-field"
+      >
+        <p class="hidden">
+          <label>
+            Don’t fill this out if you’re human: <input name="bot-field" />
+          </label>
+        </p>
+        <p>
+          <label>Name <input type="text" name="name" /></label>
+        </p>
+        <p>
+          <label>Email <input type="email" name="email" /></label>
+        </p>
+        <p>
+          <button type="submit">Send</button>
+        </p>
+      </form>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -49,14 +53,24 @@ useHead({
 
 <style scoped lang="sass">
 .contact-page
-  min-height: 100vh
   width: 100%
+  margin-top: $header-height
+  padding: 90px
+  display: flex
+  align-items: center
+  gap: 90px
+
+  & > img
+    width: calc(100% / 6 * 3)
+    object-fit: cover
 
   &__form
     display: flex
+    height: 100%
     flex-direction: column
-    align-items: center
-    justify-content: center
+    gap: 1rem
+    color: $white
+
 
     & button
       margin-top: 1rem
@@ -65,8 +79,14 @@ useHead({
       border-radius: 0.5rem
       background-color: white
       cursor: pointer
-h1
-  color: red
+
+  &__title
+    @include h1()
+    color: $white
+
+  &__sub
+    @include sub()
+    color: $red
 
 .hidden
   display: none

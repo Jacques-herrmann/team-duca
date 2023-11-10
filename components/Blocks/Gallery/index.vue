@@ -46,7 +46,6 @@ onMounted(() => {
   position: relative
   top: 0
   left: 0
-  background-color: black
 
   &__base
     position: relative
