@@ -291,7 +291,10 @@ export type HeaderDocument<Lang extends string = string> =
     Lang
   >;
 
-type HomeDocumentDataSlicesSlice = PresentationClubSlice | HeroSlice;
+type HomeDocumentDataSlicesSlice =
+  | KeysFactsSlice
+  | PresentationClubSlice
+  | HeroSlice;
 
 /**
  * Content for Home documents
@@ -885,6 +888,101 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Primary content in *KeysFacts → Primary*
+ */
+export interface KeysFactsSliceDefaultPrimary {
+  /**
+   * Number 1 field in *KeysFacts → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: keys_facts.primary.number_1
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  number_1: prismic.KeyTextField;
+
+  /**
+   * Text 1 field in *KeysFacts → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: keys_facts.primary.text_1
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text_1: prismic.KeyTextField;
+
+  /**
+   * Number 2 field in *KeysFacts → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: keys_facts.primary.number_2
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  number_2: prismic.KeyTextField;
+
+  /**
+   * Text 2 field in *KeysFacts → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: keys_facts.primary.text_2
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text_2: prismic.KeyTextField;
+
+  /**
+   * Number 3 field in *KeysFacts → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: keys_facts.primary.number_3
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  number_3: prismic.KeyTextField;
+
+  /**
+   * Text 3 field in *KeysFacts → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: keys_facts.primary.text_3
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  text_3: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for KeysFacts Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type KeysFactsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<KeysFactsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *KeysFacts*
+ */
+type KeysFactsSliceVariation = KeysFactsSliceDefault;
+
+/**
+ * KeysFacts Shared Slice
+ *
+ * - **API ID**: `keys_facts`
+ * - **Description**: KeysFacts
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type KeysFactsSlice = prismic.SharedSlice<
+  "keys_facts",
+  KeysFactsSliceVariation
+>;
+
+/**
  * Primary content in *PresentationClub → Primary*
  */
 export interface PresentationClubSliceDefaultPrimary {
@@ -988,6 +1086,10 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      KeysFactsSlice,
+      KeysFactsSliceDefaultPrimary,
+      KeysFactsSliceVariation,
+      KeysFactsSliceDefault,
       PresentationClubSlice,
       PresentationClubSliceDefaultPrimary,
       PresentationClubSliceVariation,

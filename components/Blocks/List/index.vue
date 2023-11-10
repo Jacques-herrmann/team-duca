@@ -14,6 +14,7 @@ const components = {
   'hero': resolveComponent('BlocksHero'),
   'gallery': resolveComponent('BlocksGallery'),
   'presentation_club': resolveComponent('BlocksPresentationClub'),
+  'keys_facts': resolveComponent('BlocksKeyFacts'),
 }
 </script>
 

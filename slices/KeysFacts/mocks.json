@@ -1,0 +1,39 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"number_1": {
+				"__TYPE__": "FieldContent",
+				"value": "stepped",
+				"type": "Text"
+			},
+			"text_1": {
+				"__TYPE__": "FieldContent",
+				"value": "meet",
+				"type": "Text"
+			},
+			"number_2": {
+				"__TYPE__": "FieldContent",
+				"value": "fruit",
+				"type": "Text"
+			},
+			"text_2": {
+				"__TYPE__": "FieldContent",
+				"value": "highest",
+				"type": "Text"
+			},
+			"number_3": {
+				"__TYPE__": "FieldContent",
+				"value": "press",
+				"type": "Text"
+			},
+			"text_3": {
+				"__TYPE__": "FieldContent",
+				"value": "basis",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]
