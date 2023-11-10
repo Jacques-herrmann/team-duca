@@ -16,6 +16,7 @@ const components = {
   'presentation_club': resolveComponent('BlocksPresentationClub'),
   'keys_facts': resolveComponent('BlocksKeyFacts'),
   'sponsors': resolveComponent('BlocksSponsors'),
+  'join_us': resolveComponent('BlocksJoinUs'),
 }
 </script>
 

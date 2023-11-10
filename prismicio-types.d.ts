@@ -292,6 +292,7 @@ export type HeaderDocument<Lang extends string = string> =
   >;
 
 type HomeDocumentDataSlicesSlice =
+  | JoinUsSlice
   | SponsorsSlice
   | KeysFactsSlice
   | PresentationClubSlice
@@ -889,6 +890,78 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Primary content in *JoinUs → Primary*
+ */
+export interface JoinUsSliceDefaultPrimary {
+  /**
+   * cover field in *JoinUs → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: join_us.primary.cover
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  cover: prismic.ImageField<never>;
+
+  /**
+   * title field in *JoinUs → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: join_us.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * CTA Text field in *JoinUs → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: join_us.primary.cta_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * CTA Link field in *JoinUs → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: join_us.primary.cta_link
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_link: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for JoinUs Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type JoinUsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<JoinUsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *JoinUs*
+ */
+type JoinUsSliceVariation = JoinUsSliceDefault;
+
+/**
+ * JoinUs Shared Slice
+ *
+ * - **API ID**: `join_us`
+ * - **Description**: JoinUs
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type JoinUsSlice = prismic.SharedSlice<"join_us", JoinUsSliceVariation>;
+
+/**
  * Primary content in *KeysFacts → Primary*
  */
 export interface KeysFactsSliceDefaultPrimary {
@@ -1167,6 +1240,10 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      JoinUsSlice,
+      JoinUsSliceDefaultPrimary,
+      JoinUsSliceVariation,
+      JoinUsSliceDefault,
       KeysFactsSlice,
       KeysFactsSliceDefaultPrimary,
       KeysFactsSliceVariation,
