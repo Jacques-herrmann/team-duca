@@ -30,24 +30,24 @@ const props = defineProps<{
   &__number
     position: relative
     width: 100%
-    height: 140px
+    height: 8vw
 
     & span
-      @include title(10rem)
+      @include title(4.5vw)
+      display: block
       position: absolute
       top: 50%
       left: 50%
       transform: translate(-50%, -50%)
       color: $red
       &:first-child
-        @include title(16rem)
+        @include title(7.5vw)
         color: $white
         opacity: 0.04
 
   &__text
     @include text(2rem)
     color: $white
-    flex-grow: 1
     text-align: center
     max-width: 150px
 

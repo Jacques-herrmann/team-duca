@@ -15,6 +15,7 @@ const components = {
   'gallery': resolveComponent('BlocksGallery'),
   'presentation_club': resolveComponent('BlocksPresentationClub'),
   'keys_facts': resolveComponent('BlocksKeyFacts'),
+  'sponsors': resolveComponent('BlocksSponsors'),
 }
 </script>
 

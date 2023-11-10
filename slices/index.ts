@@ -12,4 +12,5 @@ export const components = defineSliceZoneComponents({
   presentation_club: defineAsyncComponent(
     () => import("./PresentationClub/index.vue")
   ),
+  sponsors: defineAsyncComponent(() => import("./Sponsors/index.vue")),
 });

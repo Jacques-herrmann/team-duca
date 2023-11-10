@@ -292,6 +292,7 @@ export type HeaderDocument<Lang extends string = string> =
   >;
 
 type HomeDocumentDataSlicesSlice =
+  | SponsorsSlice
   | KeysFactsSlice
   | PresentationClubSlice
   | HeroSlice;
@@ -1037,6 +1038,86 @@ export type PresentationClubSlice = prismic.SharedSlice<
   PresentationClubSliceVariation
 >;
 
+/**
+ * Primary content in *Sponsors → Primary*
+ */
+export interface SponsorsSliceDefaultPrimary {
+  /**
+   * Title field in *Sponsors → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sponsors.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * CTA Text field in *Sponsors → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sponsors.primary.cta_text
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * CTA Link field in *Sponsors → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sponsors.primary.cta_link
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_link: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *Sponsors → Items*
+ */
+export interface SponsorsSliceDefaultItem {
+  /**
+   * Logo field in *Sponsors → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: sponsors.items[].logo
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  logo: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Sponsors Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SponsorsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SponsorsSliceDefaultPrimary>,
+  Simplify<SponsorsSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Sponsors*
+ */
+type SponsorsSliceVariation = SponsorsSliceDefault;
+
+/**
+ * Sponsors Shared Slice
+ *
+ * - **API ID**: `sponsors`
+ * - **Description**: Sponsors
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SponsorsSlice = prismic.SharedSlice<
+  "sponsors",
+  SponsorsSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -1094,6 +1175,11 @@ declare module "@prismicio/client" {
       PresentationClubSliceDefaultPrimary,
       PresentationClubSliceVariation,
       PresentationClubSliceDefault,
+      SponsorsSlice,
+      SponsorsSliceDefaultPrimary,
+      SponsorsSliceDefaultItem,
+      SponsorsSliceVariation,
+      SponsorsSliceDefault,
     };
   }
 }

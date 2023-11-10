@@ -23,5 +23,5 @@ const props = defineProps<{
   align-items: center
 
   & div
-    width: 33.33%
+    width: calc((100% - 180px) / 3)
 </style>
