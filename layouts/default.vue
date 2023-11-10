@@ -35,7 +35,7 @@ const onTransitionEnd = () => {
 }
 
 onMounted(() => {
-  gsap.to(noiseOpacity, { value: 0.06, duration: 1, ease: 'linear'})
+  gsap.to(noiseOpacity, { value: 0.04, duration: 1, ease: 'linear'})
   scroll.value = new Lenis()
   onUpdate()
 })

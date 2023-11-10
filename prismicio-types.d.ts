@@ -291,7 +291,7 @@ export type HeaderDocument<Lang extends string = string> =
     Lang
   >;
 
-type HomeDocumentDataSlicesSlice = HeroSlice;
+type HomeDocumentDataSlicesSlice = PresentationClubSlice | HeroSlice;
 
 /**
  * Content for Home documents
@@ -884,6 +884,61 @@ type HeroSliceVariation = HeroSliceDefault;
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
+/**
+ * Primary content in *PresentationClub → Primary*
+ */
+export interface PresentationClubSliceDefaultPrimary {
+  /**
+   * title field in *PresentationClub → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: presentation_club.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * text field in *PresentationClub → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: presentation_club.primary.text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+}
+
+/**
+ * Default variation for PresentationClub Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PresentationClubSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PresentationClubSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *PresentationClub*
+ */
+type PresentationClubSliceVariation = PresentationClubSliceDefault;
+
+/**
+ * PresentationClub Shared Slice
+ *
+ * - **API ID**: `presentation_club`
+ * - **Description**: PresentationClub
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PresentationClubSlice = prismic.SharedSlice<
+  "presentation_club",
+  PresentationClubSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -933,6 +988,10 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      PresentationClubSlice,
+      PresentationClubSliceDefaultPrimary,
+      PresentationClubSliceVariation,
+      PresentationClubSliceDefault,
     };
   }
 }

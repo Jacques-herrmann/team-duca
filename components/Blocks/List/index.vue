@@ -13,6 +13,7 @@ const props = defineProps<{
 const components = {
   'hero': resolveComponent('BlocksHero'),
   'gallery': resolveComponent('BlocksGallery'),
+  'presentation_club': resolveComponent('BlocksPresentationClub'),
 }
 </script>
 

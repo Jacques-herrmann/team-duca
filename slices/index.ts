@@ -8,4 +8,7 @@ export const components = defineSliceZoneComponents({
   document: defineAsyncComponent(() => import("./Document/index.vue")),
   gallery: defineAsyncComponent(() => import("./Gallery/index.vue")),
   hero: defineAsyncComponent(() => import("./Hero/index.vue")),
+  presentation_club: defineAsyncComponent(
+    () => import("./PresentationClub/index.vue")
+  ),
 });
