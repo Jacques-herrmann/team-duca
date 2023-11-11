@@ -1,5 +1,7 @@
 <template>
   <div class="cta">
+    <div class="cta__background"/>
+    <div class="cta__background"/>
     <NuxtLink v-if="isNuxtLink" :to="`/${locale}${url}`" class="cta__link">
       {{ text }}
     </NuxtLink>
@@ -23,12 +25,40 @@ const locale = route.params.locale
 </script>
 <style scoped lang="sass">
 .cta
-  background-color: $white
-  height: 30px
-  width: 120px
+  background-color: transparent
+  height: 60px
+  min-width: 180px
+  width: max-content
+  overflow: hidden
+  border: 2px solid $red
+  border-radius: 4px
+  display: flex
+  align-items: center
+  justify-content: center
+  cursor: pointer
   &__link
-    color: red
-    text-decoration: none
-    &:hover
-      text-decoration: underline
+    @include cta()
+    color: $white
+    padding: 0 40px
+
+  &__background
+    position: absolute
+    top: 0
+    left: 0
+    height: 100%
+    width: 120%
+    background-color:  $white
+    border-radius: 4px
+    transform: translateX(-120%)
+    transition: transform 0.3s ease
+    clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%)
+    z-index: -1
+    &:nth-child(2)
+      background-color: $red
+      transition: transform 0.3s ease 0.02s
+
+  &:hover
+    .cta__background
+      transform: translateX(-1%)
+
 </style>
