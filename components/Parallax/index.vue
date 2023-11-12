@@ -135,11 +135,11 @@ export default {
   }
 }
 </script>
-<style scoped lang="stylus">
+<style scoped lang="sass">
 .parallax--is-absolute
-  position absolute
-  width 100%
-  height 75%
-  top 50%
+  position: absolute
+  width: 100%
+  height: 75%
+  top: 50%
 
 </style>

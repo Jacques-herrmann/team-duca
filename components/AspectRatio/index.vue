@@ -83,47 +83,27 @@ export default {
 }
 </script>
 
-<style scoped lang="stylus">
+<style scoped lang="sass">
 .aspect-ratio
-  position: relative;
+  position: relative
 
   &__inner
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow hidden
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    overflow: hidden
 
 .full-width
   & :deep(.figure-element) > img
-    width 100%
+    width: 100%
     //
-    height 100%
+    height: 100%
 
 .full-height
   & :deep(.figure-element) > img
-    height 100%
-    //
-    height 100%
+    height: 100%
 
-
-</style>
-
-<style lang="stylus">
-
-.media-columns .media-columns__inner .aspect-ratio
-
-  .aspect-ratio__inner
-    width 100%
-    height 100%
-    padding-bottom 0px !important
-
-  .media-columns__left,
-  .media-columns__left img,
-  .media-columns__right,
-  .media-columns__right img
-    width 100%
-    height 100%
 
 </style>
