@@ -139,6 +139,39 @@ interface FooterDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   email: prismic.KeyTextField;
+
+  /**
+   * subtitle field in *Footer*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.subtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
+   * address field in *Footer*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.address
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  address: prismic.RichTextField;
+
+  /**
+   * instagram field in *Footer*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.instagram
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  instagram: prismic.KeyTextField;
 }
 
 /**
@@ -292,6 +325,8 @@ export type HeaderDocument<Lang extends string = string> =
   >;
 
 type HomeDocumentDataSlicesSlice =
+  | HistoriqueSlice
+  | CarouselSlice
   | JoinUsSlice
   | SponsorsSlice
   | KeysFactsSlice
@@ -369,7 +404,7 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-type InscriptionDocumentDataSlicesSlice = DocumentSlice | AbonnementSlice;
+type InscriptionDocumentDataSlicesSlice = AbonnementSlice;
 
 /**
  * Content for Inscription documents
@@ -464,6 +499,61 @@ type ServicesDocumentDataSlicesSlice = never;
  */
 interface ServicesDocumentData {
   /**
+   * title field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * content field in *Services*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.content
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * cover field in *Services*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.cover
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  cover: prismic.ImageField<never>;
+
+  /**
+   * CTA Text field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.cta_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * CTA Link field in *Services*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.cta_link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_link: prismic.KeyTextField;
+
+  /**
    * Slice Zone field in *Services*
    *
    * - **Field Type**: Slice Zone
@@ -555,36 +645,51 @@ export interface AbonnementSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   soutitre: prismic.KeyTextField;
+}
 
+/**
+ * Primary content in *Abonnement → Items*
+ */
+export interface AbonnementSliceDefaultItem {
   /**
-   * Texte field in *Abonnement → Primary*
+   * title field in *Abonnement → Items*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: abonnement.primary.texte
+   * - **API ID Path**: abonnement.items[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * texte field in *Abonnement → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: abonnement.items[].texte
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   texte: prismic.KeyTextField;
 
   /**
-   * Prix field in *Abonnement → Primary*
+   * price field in *Abonnement → Items*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: abonnement.primary.prix
+   * - **API ID Path**: abonnement.items[].price
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  prix: prismic.KeyTextField;
+  price: prismic.KeyTextField;
 
   /**
-   * media field in *Abonnement → Primary*
+   * cover field in *Abonnement → Items*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: abonnement.primary.media
+   * - **API ID Path**: abonnement.items[].cover
    * - **Documentation**: https://prismic.io/docs/field#image
    */
-  media: prismic.ImageField<never>;
+  cover: prismic.ImageField<never>;
 }
 
 /**
@@ -597,7 +702,7 @@ export interface AbonnementSliceDefaultPrimary {
 export type AbonnementSliceDefault = prismic.SharedSliceVariation<
   "default",
   Simplify<AbonnementSliceDefaultPrimary>,
-  never
+  Simplify<AbonnementSliceDefaultItem>
 >;
 
 /**
@@ -618,73 +723,207 @@ export type AbonnementSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *Document → Primary*
+ * Primary content in *Calendar → Primary*
  */
-export interface DocumentSliceDefaultPrimary {
+export interface CalendarSliceDefaultPrimary {
   /**
-   * Titre field in *Document → Primary*
+   * title field in *Calendar → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: document.primary.titre
+   * - **API ID Path**: calendar.primary.title
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  titre: prismic.KeyTextField;
+  title: prismic.KeyTextField;
+
+  /**
+   * content field in *Calendar → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: calendar.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
 }
 
 /**
- * Primary content in *Document → Items*
+ * Primary content in *Calendar → Items*
  */
-export interface DocumentSliceDefaultItem {
+export interface CalendarSliceDefaultItem {
   /**
-   * Titre field in *Document → Items*
+   * day field in *Calendar → Items*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Select
    * - **Placeholder**: *None*
-   * - **API ID Path**: document.items[].titre
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **API ID Path**: calendar.items[].day
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
-  titre: prismic.KeyTextField;
+  day: prismic.SelectField<
+    "Lundi" | "Mardi" | "Mercredi" | "Jeudi" | "Vendredi" | "Samedi"
+  >;
 
   /**
-   * Document field in *Document → Items*
+   * time field in *Calendar → Items*
    *
-   * - **Field Type**: Link
+   * - **Field Type**: Select
    * - **Placeholder**: *None*
-   * - **API ID Path**: document.items[].document
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **API ID Path**: calendar.items[].time
+   * - **Documentation**: https://prismic.io/docs/field#select
    */
-  document: prismic.LinkField;
+  time: prismic.SelectField<
+    | "10h30"
+    | "11h00"
+    | "11h30"
+    | "12h00"
+    | "12h30"
+    | "13h00"
+    | "13h30"
+    | "14h00"
+    | "14h30"
+    | "15h00"
+    | "15h30"
+    | "16h00"
+    | "16h30"
+    | "17h00"
+    | "17h30"
+    | "18h00"
+    | "18h30"
+    | "19h00"
+  >;
+
+  /**
+   * duration field in *Calendar → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: calendar.items[].duration
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  duration: prismic.SelectField<"1h00" | "1h30" | "2h00" | "2h30">;
+
+  /**
+   * sport field in *Calendar → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: calendar.items[].sport
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  sport: prismic.SelectField<
+    | "MMA Tout public"
+    | "MMA Compétiteurs"
+    | "Grappling Tout public"
+    | "Grappling Compétiteurs"
+    | "JJB Tout public"
+    | "JJB Compétiteurs"
+    | "Kick Boxing"
+  >;
 }
 
 /**
- * Default variation for Document Slice
+ * Default variation for Calendar Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type DocumentSliceDefault = prismic.SharedSliceVariation<
+export type CalendarSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<DocumentSliceDefaultPrimary>,
-  Simplify<DocumentSliceDefaultItem>
+  Simplify<CalendarSliceDefaultPrimary>,
+  Simplify<CalendarSliceDefaultItem>
 >;
 
 /**
- * Slice variation for *Document*
+ * Slice variation for *Calendar*
  */
-type DocumentSliceVariation = DocumentSliceDefault;
+type CalendarSliceVariation = CalendarSliceDefault;
 
 /**
- * Document Shared Slice
+ * Calendar Shared Slice
  *
- * - **API ID**: `document`
- * - **Description**: Document
+ * - **API ID**: `calendar`
+ * - **Description**: Calendar
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type DocumentSlice = prismic.SharedSlice<
-  "document",
-  DocumentSliceVariation
+export type CalendarSlice = prismic.SharedSlice<
+  "calendar",
+  CalendarSliceVariation
+>;
+
+/**
+ * Primary content in *Carousel → Items*
+ */
+export interface CarouselSliceDefaultItem {
+  /**
+   * title field in *Carousel → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: carousel.items[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * subtitle field in *Carousel → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: carousel.items[].subtitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
+   * media field in *Carousel → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: carousel.items[].media
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  media: prismic.ImageField<never>;
+
+  /**
+   * content field in *Carousel → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: carousel.items[].content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Carousel Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CarouselSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  Simplify<CarouselSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Carousel*
+ */
+type CarouselSliceVariation = CarouselSliceDefault;
+
+/**
+ * Carousel Shared Slice
+ *
+ * - **API ID**: `carousel`
+ * - **Description**: Carousel
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CarouselSlice = prismic.SharedSlice<
+  "carousel",
+  CarouselSliceVariation
 >;
 
 /**
@@ -888,6 +1127,86 @@ type HeroSliceVariation = HeroSliceDefault;
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
+
+/**
+ * Primary content in *Historique → Primary*
+ */
+export interface HistoriqueSliceDefaultPrimary {
+  /**
+   * cover field in *Historique → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: historique.primary.cover
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  cover: prismic.ImageField<never>;
+}
+
+/**
+ * Primary content in *Historique → Items*
+ */
+export interface HistoriqueSliceDefaultItem {
+  /**
+   * media field in *Historique → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: historique.items[].media
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  media: prismic.ImageField<never>;
+
+  /**
+   * title field in *Historique → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: historique.items[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * content field in *Historique → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: historique.items[].content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Historique Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HistoriqueSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HistoriqueSliceDefaultPrimary>,
+  Simplify<HistoriqueSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Historique*
+ */
+type HistoriqueSliceVariation = HistoriqueSliceDefault;
+
+/**
+ * Historique Shared Slice
+ *
+ * - **API ID**: `historique`
+ * - **Description**: Historique
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HistoriqueSlice = prismic.SharedSlice<
+  "historique",
+  HistoriqueSliceVariation
+>;
 
 /**
  * Primary content in *JoinUs → Primary*
@@ -1224,13 +1543,18 @@ declare module "@prismicio/client" {
       AllDocumentTypes,
       AbonnementSlice,
       AbonnementSliceDefaultPrimary,
+      AbonnementSliceDefaultItem,
       AbonnementSliceVariation,
       AbonnementSliceDefault,
-      DocumentSlice,
-      DocumentSliceDefaultPrimary,
-      DocumentSliceDefaultItem,
-      DocumentSliceVariation,
-      DocumentSliceDefault,
+      CalendarSlice,
+      CalendarSliceDefaultPrimary,
+      CalendarSliceDefaultItem,
+      CalendarSliceVariation,
+      CalendarSliceDefault,
+      CarouselSlice,
+      CarouselSliceDefaultItem,
+      CarouselSliceVariation,
+      CarouselSliceDefault,
       GallerySlice,
       GallerySliceDefaultPrimary,
       GallerySliceDefaultItem,
@@ -1240,6 +1564,11 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      HistoriqueSlice,
+      HistoriqueSliceDefaultPrimary,
+      HistoriqueSliceDefaultItem,
+      HistoriqueSliceVariation,
+      HistoriqueSliceDefault,
       JoinUsSlice,
       JoinUsSliceDefaultPrimary,
       JoinUsSliceVariation,

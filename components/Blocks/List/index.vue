@@ -17,6 +17,8 @@ const components = {
   'keys_facts': resolveComponent('BlocksKeyFacts'),
   'sponsors': resolveComponent('BlocksSponsors'),
   'join_us': resolveComponent('BlocksJoinUs'),
+  'carousel': resolveComponent('BlocksSlider'),
+  'historique': resolveComponent('BlocksHistorique'),
 }
 </script>
 

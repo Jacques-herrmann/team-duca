@@ -1,0 +1,63 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "FieldContent",
+				"value": "machinery",
+				"type": "Text"
+			},
+			"content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Consectetur cillum ea minim sunt ipsum voluptate commodo commodo excepteur do incididunt voluptate veniam eiusmod."
+						}
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"day",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "Samedi",
+							"type": "Select"
+						}
+					],
+					[
+						"time",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "14h30",
+							"type": "Select"
+						}
+					],
+					[
+						"duration",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "1h30",
+							"type": "Select"
+						}
+					],
+					[
+						"sport",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "JJB Tout public",
+							"type": "Select"
+						}
+					]
+				]
+			}
+		]
+	}
+]

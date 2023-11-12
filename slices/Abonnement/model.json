@@ -25,31 +25,39 @@
             "label": "Sous-titre",
             "placeholder": ""
           }
+        }
+      },
+      "items": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "title",
+            "placeholder": ""
+          }
         },
         "texte": {
           "type": "Text",
           "config": {
-            "label": "Texte",
+            "label": "texte",
             "placeholder": ""
           }
         },
-        "prix": {
+        "price": {
           "type": "Text",
           "config": {
-            "label": "Prix",
+            "label": "price",
             "placeholder": ""
           }
         },
-        "media": {
+        "cover": {
           "type": "Image",
           "config": {
-            "label": "media",
+            "label": "cover",
             "constraint": {},
             "thumbnails": []
           }
         }
-      },
-      "items": {}
+      }
     }
   ]
 }

@@ -1,0 +1,107 @@
+{
+  "id": "calendar",
+  "type": "SharedSlice",
+  "name": "Calendar",
+  "description": "Calendar",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "title",
+            "placeholder": ""
+          }
+        },
+        "content": {
+          "type": "StructuredText",
+          "config": {
+            "label": "content",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        }
+      },
+      "items": {
+        "day": {
+          "type": "Select",
+          "config": {
+            "label": "day",
+            "placeholder": "",
+            "options": [
+              "Lundi",
+              "Mardi",
+              "Mercredi",
+              "Jeudi",
+              "Vendredi",
+              "Samedi"
+            ]
+          }
+        },
+        "time": {
+          "type": "Select",
+          "config": {
+            "label": "time",
+            "placeholder": "",
+            "options": [
+              "10h30",
+              "11h00",
+              "11h30",
+              "12h00",
+              "12h30",
+              "13h00",
+              "13h30",
+              "14h00",
+              "14h30",
+              "15h00",
+              "15h30",
+              "16h00",
+              "16h30",
+              "17h00",
+              "17h30",
+              "18h00",
+              "18h30",
+              "19h00"
+            ]
+          }
+        },
+        "duration": {
+          "type": "Select",
+          "config": {
+            "label": "duration",
+            "placeholder": "",
+            "options": [
+              "1h00",
+              "1h30",
+              "2h00",
+              "2h30"
+            ]
+          }
+        },
+        "sport": {
+          "type": "Select",
+          "config": {
+            "label": "sport",
+            "placeholder": "",
+            "options": [
+              "MMA Tout public",
+              "MMA Compétiteurs",
+              "Grappling Tout public",
+              "Grappling Compétiteurs",
+              "JJB Tout public",
+              "JJB Compétiteurs",
+              "Kick Boxing"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

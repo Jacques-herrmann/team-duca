@@ -18,6 +18,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "historique": {
+              "type": "SharedSlice"
+            },
+            "carousel": {
+              "type": "SharedSlice"
+            },
             "join_us": {
               "type": "SharedSlice"
             },

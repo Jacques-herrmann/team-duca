@@ -12,39 +12,62 @@
 				"__TYPE__": "FieldContent",
 				"value": "movement",
 				"type": "Text"
-			},
-			"texte": {
-				"__TYPE__": "FieldContent",
-				"value": "recall",
-				"type": "Text"
-			},
-			"prix": {
-				"__TYPE__": "FieldContent",
-				"value": "memory",
-				"type": "Text"
-			},
-			"media": {
-				"__TYPE__": "ImageContent",
-				"origin": {
-					"id": "main",
-					"url": "https://images.unsplash.com/photo-1560762484-813fc97650a0",
-					"width": 3344,
-					"height": 2509
-				},
-				"url": "https://images.unsplash.com/photo-1560762484-813fc97650a0",
-				"width": 3344,
-				"height": 2509,
-				"edit": {
-					"zoom": 1,
-					"crop": {
-						"x": 0,
-						"y": 0
-					},
-					"background": "transparent"
-				},
-				"thumbnails": {}
 			}
 		},
-		"items": []
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": [
+					[
+						"title",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "vegetable",
+							"type": "Text"
+						}
+					],
+					[
+						"texte",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "airplane",
+							"type": "Text"
+						}
+					],
+					[
+						"price",
+						{
+							"__TYPE__": "FieldContent",
+							"value": "am",
+							"type": "Text"
+						}
+					],
+					[
+						"cover",
+						{
+							"__TYPE__": "ImageContent",
+							"origin": {
+								"id": "main",
+								"url": "https://images.unsplash.com/photo-1531771686035-25f47595c87a",
+								"width": 3024,
+								"height": 3778
+							},
+							"url": "https://images.unsplash.com/photo-1531771686035-25f47595c87a",
+							"width": 3024,
+							"height": 3778,
+							"edit": {
+								"zoom": 1,
+								"crop": {
+									"x": 0,
+									"y": 0
+								},
+								"background": "transparent"
+							},
+							"thumbnails": {}
+						}
+					]
+				]
+			}
+		]
 	}
 ]

@@ -19,6 +19,29 @@
           "label": "email",
           "placeholder": ""
         }
+      },
+      "subtitle": {
+        "type": "Text",
+        "config": {
+          "label": "subtitle",
+          "placeholder": ""
+        }
+      },
+      "address": {
+        "type": "StructuredText",
+        "config": {
+          "label": "address",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "instagram": {
+        "type": "Text",
+        "config": {
+          "label": "instagram",
+          "placeholder": ""
+        }
       }
     }
   }

@@ -6,6 +6,44 @@
   "status": true,
   "json": {
     "Main": {
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "title",
+          "placeholder": ""
+        }
+      },
+      "content": {
+        "type": "StructuredText",
+        "config": {
+          "label": "content",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "cover": {
+        "type": "Image",
+        "config": {
+          "label": "cover",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "cta_text": {
+        "type": "Text",
+        "config": {
+          "label": "CTA Text",
+          "placeholder": ""
+        }
+      },
+      "cta_link": {
+        "type": "Text",
+        "config": {
+          "label": "CTA Link",
+          "placeholder": ""
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

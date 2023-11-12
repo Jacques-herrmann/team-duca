@@ -1,5 +1,6 @@
 <template>
   <div class="join-us">
+    <figure-element class="join-us__image" :image="block.primary.cover" caption="" />
     <h2 class="join-us__title">{{ block.primary.title }}</h2>
     <CTA class="join-us__cta" :url="block.primary.cta_link" :text="block.primary.cta_text" :is-nuxt-link="true"/>
   </div>
