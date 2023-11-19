@@ -25,6 +25,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "calendar": {
+              "type": "SharedSlice"
+            },
             "abonnement": {
               "type": "SharedSlice"
             }

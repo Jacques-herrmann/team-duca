@@ -404,7 +404,7 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-type InscriptionDocumentDataSlicesSlice = AbonnementSlice;
+type InscriptionDocumentDataSlicesSlice = CalendarSlice | AbonnementSlice;
 
 /**
  * Content for Inscription documents

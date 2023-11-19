@@ -1,6 +1,6 @@
 <template>
   <div class="inscription-page">
-    <h1>Inscription</h1>
+    <blocks-list :blocks="page?.data.slices"></blocks-list>
   </div>
 </template>
 <script lang="ts" setup>

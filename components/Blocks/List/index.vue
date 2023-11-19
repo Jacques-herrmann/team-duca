@@ -19,6 +19,8 @@ const components = {
   'join_us': resolveComponent('BlocksJoinUs'),
   'carousel': resolveComponent('BlocksSlider'),
   'historique': resolveComponent('BlocksHistorique'),
+  'abonnement': resolveComponent('BlocksAbonnement'),
+  'calendar': resolveComponent('BlocksCalendar'),
 }
 </script>
 

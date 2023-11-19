@@ -1,6 +1,6 @@
 <template>
   <div class="slider">
-    {{  block  }}
+    <figure-element class="slider__image" v-for="element in block.items" :image="element.media" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -16,5 +16,11 @@ const props = defineProps<{
   position: relative
   width: 100%
   height: 100vh
-  height: calc(var(--vh, 1vh) * 100)
+
+  &__image
+    position: absolute
+    width: 100%
+    height: 100%
+
+
 </style>
