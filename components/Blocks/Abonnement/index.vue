@@ -2,11 +2,12 @@
   <div class="abonnement">
     <h1 class="abonnement__title">{{ block.primary.titre }}</h1>
     <p class="abonnement__subtitle">{{block.primary.soutitre}}</p>
-    <prismic-rich-text :field="block.primary.soustitre" v-if="false" /><!-- prismic fiels is not of this type -->
+    <prismic-rich-text :field="block.primary.soutitre" v-if="false" /><!-- prismic fiels is not of this type -->
     <div class="abonnement__item" v-for="elt in block.items">
       <figure-element :image="elt.cover" class="abonnement__item__cover"/>
       <div class="abonnement__item__top ">
-        <h3 class="abonnement__item__top__title"> {{ elt.title }} </h3>
+        <h3 class="abonnement__item__top__title" v-html="splitedText(elt.title)">
+        </h3>
         <p class="abonnement__item__top__subtitle">{{ elt.texte }}</p>
       </div>
       <span class="abonnement__item__price">{{ elt.price }}</span>
@@ -21,8 +22,12 @@ const props = defineProps<{
 }>()
 
 onMounted(() => {
-  console.log(props.block)
+  console.log(props.block.items[0])
 })
+
+const splitedText = (text: string) => { // may be utils everywhere
+  return text.replaceAll('\n', '<br>')
+}
 
 </script>
 <style scoped lang="sass">
@@ -66,9 +71,12 @@ onMounted(() => {
     &__top
       &__title
         @include h3()
+        font-size: 6rem
 
       &__subtitle
         @include text()
+        font-style: italic
+        max-width: 400px
         margin-top: .7rem
 
     &__price
