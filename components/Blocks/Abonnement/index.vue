@@ -21,9 +21,6 @@ const props = defineProps<{
   block: any
 }>()
 
-onMounted(() => {
-  console.log(props.block.items[0])
-})
 
 const splitedText = (text: string) => { // may be utils everywhere
   return text.replaceAll('\n', '<br>')
