@@ -70,8 +70,7 @@ const splitedText = (text: string) => { // may be utils everywhere
 
     &__top
       &__title
-        @include h3()
-        font-size: 6rem
+        @include h3(6rem)
 
       &__subtitle
         @include text()
@@ -80,7 +79,7 @@ const splitedText = (text: string) => { // may be utils everywhere
         margin-top: .7rem
 
     &__price
-      @include title(4rem)
+      @include title(5rem)
       color: $red
       float: right
       text-align: right
