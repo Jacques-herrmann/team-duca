@@ -65,4 +65,6 @@ const toHome = () => {
 
       &:hover
         color: $red
+      .router-link-active
+          color: $red
 </style>
