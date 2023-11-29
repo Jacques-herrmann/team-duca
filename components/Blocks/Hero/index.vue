@@ -1,7 +1,10 @@
 <template>
   <div class="b-hero">
-    <img class="b-hero__background" :src="block.primary.hero.url" :alt="block.primary.hero.alt">
-    <h1 class="b-hero__title">{{ block.primary.title }}</h1>
+    <WebglImage class="b-hero__background" :image="block.primary.hero"/>
+    <!--    <img class="b-hero__background" :src="block.primary.hero.url" :alt="block.primary.hero.alt">-->
+    <h1 class="b-hero__title">
+      <span class="b-hero__title--letter" v-for="l in block.primary.title">{{ l }}</span>
+    </h1>
     <div class="b-hero__footer">
       <h2 class="b-hero__sub">{{ block.primary.text_left}}</h2>
       <h2 class="b-hero__sub">{{ block.primary.text_right}}</h2>
@@ -11,10 +14,28 @@
 </template>
 <script lang="ts" setup>
 import { defineProps } from 'vue'
+import gsap from 'gsap'
 
 const props = defineProps<{
   block: any
 }>()
+
+const tl = gsap.timeline()
+
+onMounted(() => {
+  tl.from('.b-hero__title--letter', {
+    duration: 0.3,
+    y: '100%',
+    stagger: 0.022,
+    ease: 'power2.out'
+  }, 3.4)
+  tl.from('.b-hero__footer h2', {
+    opacity: 0,
+    duration: 0.6,
+    ease: 'linear'
+  }, 4)
+})
+
 
 </script>
 <style scoped lang="sass">
@@ -33,18 +54,24 @@ const props = defineProps<{
     opacity: 0.8
     object-fit: cover
     object-position: center
-    z-index: -1
+    z-index: 0
 
   &__title
-    @include h1(12vw)
+    @include h1(20vw)
     position: absolute
-    bottom: 160px
+    bottom: 5vw
     left: 50%
     width: 100%
     z-index: 1
     transform: translateX(-50%)
     text-align: center
     color: $white
+    overflow: hidden
+    pointer-events: none
+    & span
+      display: inline-block
+      white-space: pre
+      will-change: transform
 
   &__footer
     position: absolute
@@ -56,10 +83,11 @@ const props = defineProps<{
     display: flex
     justify-content: space-between
     align-items: flex-end
-    padding: 3.2vw
+    padding: 2.2vw 8.4vw
+    pointer-events: none
   &__sub
-    @include h2(2.6rem)
-    width: 400px
+    @include h2(1.8vw)
+    width: 20vw
     color: $white
     &:first-child
       text-align: left

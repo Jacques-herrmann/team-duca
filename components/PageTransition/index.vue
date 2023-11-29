@@ -57,6 +57,7 @@ onMounted(() => {
   align-items: flex-start
   justify-content: space-between
   overflow: hidden
+  pointer-events: none
 
   & > .column
     position: relative
