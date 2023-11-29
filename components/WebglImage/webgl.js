@@ -7,6 +7,7 @@ let canvas, renderer, gl, program, mesh, cursor
 let ratio = 1
 let resolution = new Vec4()
 let loaded = 0
+let target = new Vec2()
 
 const webgl = () => {
 	const init = (_canvas, url, _cursor) => {
@@ -85,13 +86,13 @@ const webgl = () => {
 	const onUpdate = (t) => {
 		requestAnimationFrame(onUpdate)
 		const p = cursor.getPosition('unit')
-		program.uniforms.uMouse.value.x = p.x
-		program.uniforms.uMouse.value.y = p.y
+		target.lerp(p, 0.05)
+		program.uniforms.uMouse.value.x = target.x
+		program.uniforms.uMouse.value.y = target.y
 		program.uniforms.uTime.value += 0.001
 
 		renderer.render({ scene: mesh })
 	}
-
 	return {
 		init,
 		onUpdate
