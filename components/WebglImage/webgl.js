@@ -56,6 +56,7 @@ const webgl = () => {
 				uTexture: { value: texture },
 				uDMap: { value: dmap },
 				uMouse: { value: new Vec2() },
+				uVelo: { value: 0 },
 				uResolution: { value: resolution },
 				uStrength: { value: 0.01 },
 				uEdgesExagerationFactor: { value: 50 }
@@ -89,6 +90,8 @@ const webgl = () => {
 		target.lerp(p, 0.05)
 		program.uniforms.uMouse.value.x = target.x
 		program.uniforms.uMouse.value.y = target.y
+		program.uniforms.uVelo.value = Math.min(cursor.velocity.len() * 0.1, 0.05)
+
 		program.uniforms.uTime.value += 0.001
 
 		renderer.render({ scene: mesh })
