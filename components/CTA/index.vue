@@ -25,6 +25,7 @@ const locale = route.params.locale
 </script>
 <style scoped lang="sass">
 .cta
+  position: relative
   background-color: transparent
   height: 60px
   min-width: 180px

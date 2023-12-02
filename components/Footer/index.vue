@@ -2,7 +2,7 @@
   <footer class="footer">
     <span class="footer__title">{{footer?.data.titre}}</span>
     <span class="footer__text">{{footer?.data.email}}</span>
-    <span class="footer__background">DUCA</span>
+    <span class="footer__background">MARTIAL ARTS</span>
   </footer>
 </template>
 <script lang="ts" setup>
@@ -36,10 +36,15 @@ const {data: footer } = useAsyncData("[footer]", () => prismic.client.getSingle(
     font-weight: bold
 
   &__background
-    @include h1(30vw)
+    @include h1(28vw)
+    font-weight: 800
+    width: 200vw
     position: absolute
     left: 50%
     bottom: -50%
     transform: translateX(-50%)
-    color: rgba(255, 255, 255, 0.02)
+    text-align: center
+    word-break: keep-all
+    user-select: none
+    color: rgba(255, 255, 255, 0.01)
 </style>

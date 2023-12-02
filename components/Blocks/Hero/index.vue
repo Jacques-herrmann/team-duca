@@ -63,6 +63,7 @@ onMounted(() => {
 
   &__title
     @include h1(20vw)
+    font-weight: 800 !important
     position: absolute
     bottom: 5vw
     left: 50%
@@ -92,6 +93,7 @@ onMounted(() => {
     pointer-events: none
   &__sub
     @include h2(1.8vw)
+    font-weight: 800 !important
     width: 20vw
     color: $white
     &:first-child

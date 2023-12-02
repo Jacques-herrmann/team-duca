@@ -1,11 +1,11 @@
 <template>
-  <div class="b-club">
-    <LogoRight class="b-club__logo-l"/>
-    <div class="b-club__content">
-      <h2 class="b-club__title">{{ block.primary.title}}</h2>
-      <prismic-rich-text class="b-club__text" :field="block.primary.text"/>
+  <div class="club">
+    <LogoRight class="club__logo-l"/>
+    <div class="club__content">
+      <h2 class="club__title">{{ block.primary.title}}</h2>
+      <prismic-rich-text class="club__text" :field="block.primary.text"/>
     </div>
-    <LogoLeft class="b-club__logo-r"/>
+    <LogoLeft class="club__logo-r"/>
   </div>
 </template>
 <script lang="ts" setup>
@@ -18,7 +18,7 @@ const props = defineProps<{
 
 </script>
 <style scoped lang="sass">
-.b-club
+.club
   position: relative
   width: 100%
   height: 100vh

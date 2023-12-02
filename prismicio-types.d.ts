@@ -172,6 +172,17 @@ interface FooterDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   instagram: prismic.KeyTextField;
+
+  /**
+   * facebook field in *Footer*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.facebook
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  facebook: prismic.KeyTextField;
 }
 
 /**

@@ -46,7 +46,7 @@ const props = defineProps<{
         opacity: 0.04
 
   &__text
-    @include text(2rem)
+    @include text(1.2rem)
     color: $white
     text-align: center
     max-width: 150px
