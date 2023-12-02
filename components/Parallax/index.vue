@@ -6,7 +6,7 @@
 
 <script>
 import {computed, onBeforeUnmount, onMounted, ref} from "vue";
-import {useUtilsStore} from "/store/utils";
+import {useIndexStore} from "~/stores/index.js";
 
 export default {
   name: 'Parallax',
@@ -43,9 +43,9 @@ export default {
     const bottom = ref(0)
     const lastTransform = ref('')
 
-    const utilsStore = useUtilsStore()
-    const isMobile = computed(() => utilsStore.isMobile)
-    const scroll = computed(() => utilsStore.getScroll.scroll)
+    const store = useIndexStore()
+    const isMobile = computed(() => store.isMobile)
+    const scroll = computed(() => store.scroll)
 
     let hasVideo = ref(0)
 
@@ -65,8 +65,7 @@ export default {
         }
       }
 
-      if (hasVideo) style.height = '100%'
-
+      console.log(props.active)
       if (props.active) {
 
         const viewportOffsetTop = window.innerHeight - (top.value - scroll.value);
@@ -112,7 +111,6 @@ export default {
     }
 
     onMounted(() => {
-      hasVideo = !!parallax.value.querySelector('.media--video')
       onResize();
       window.addEventListener('resize', onResize);
     });

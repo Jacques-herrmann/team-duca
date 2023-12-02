@@ -15,7 +15,7 @@ const defaultOptions = {
 }
 const useIntersect = (target, options = {}) => {
     options = {...defaultOptions, ...options}
-    const intersect = ref(null)
+    const active = ref(false)
     const revealed = ref(false)
 
     const observer = ref(null);
@@ -24,14 +24,14 @@ const useIntersect = (target, options = {}) => {
         if (observer.value) return;
         observer.value = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
-                intersect.value = true
+                active.value = true
                 options.onEnter(entries[0])
                 if (!revealed.value) {
                     revealed.value = true
                     options.onReveal(entries[0])
                 }
             } else {
-                intersect.value = false
+                active.value = false
                 options.onLeave(entries[0])
             }
             options.onChange(entries[0])
@@ -60,7 +60,7 @@ const useIntersect = (target, options = {}) => {
     })
 
     return {
-        intersect,
+        active,
         revealed,
         initObserver,
     }

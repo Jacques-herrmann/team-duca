@@ -17,7 +17,9 @@ import Footer from "@/components/Footer/index.vue"
 import PageTransition from "@/components/PageTransition/index.vue"
 import Lenis from "@/utils/lenis/lenis"
 import gsap from "gsap"
+import {useIndexStore} from "~/stores";
 
+const store = useIndexStore()
 const scroll: Ref<Lenis | null> = ref(null)
 const transitionVisible = ref(true)
 const route = useRoute()
@@ -37,6 +39,7 @@ const onTransitionEnd = () => {
 onMounted(() => {
   gsap.to(noiseOpacity, { value: 0.04, duration: 1, ease: 'linear'})
   scroll.value = new Lenis()
+  store.setScroll(scroll.value)
   onUpdate()
 })
 

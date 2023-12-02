@@ -1,6 +1,8 @@
 <template>
-  <div class="b-hero">
-    <WebglImage class="b-hero__background" :image="block.primary.hero"/>
+  <div class="b-hero" ref="root">
+    <Parallax :active="intersect.active.value">
+      <WebglImage class="b-hero__background" :image="block.primary.hero"/>
+    </Parallax>
     <!--    <img class="b-hero__background" :src="block.primary.hero.url" :alt="block.primary.hero.alt">-->
     <h1 class="b-hero__title">
       <span class="b-hero__title--letter" v-for="l in block.primary.title">{{ l }}</span>
@@ -20,7 +22,10 @@ const props = defineProps<{
   block: any
 }>()
 
+const root = ref<HTMLElement | null>(null)
 const tl = gsap.timeline()
+
+const intersect = useIntersect(root)
 
 onMounted(() => {
   tl.from('.b-hero__title--letter', {

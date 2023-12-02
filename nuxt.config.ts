@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: { enabled: true },
-    modules: ["@nuxtjs/prismic", '@vueuse/nuxt', '@nuxtjs/google-fonts'],
+    modules: ["@nuxtjs/prismic", '@vueuse/nuxt', '@nuxtjs/google-fonts', '@pinia/nuxt'],
     prismic: {
         endpoint: "team-duca",
     },
