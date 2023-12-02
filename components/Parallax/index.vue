@@ -15,6 +15,14 @@ export default {
       type: Object,
       default: null,
     },
+    speed: {
+      type: Number,
+      default: 1,
+    },
+    speedMobile: {
+      type: Number,
+      default: 1,
+    },
     active: {
       type: Boolean,
       default: false,
@@ -45,7 +53,7 @@ export default {
 
     const store = useIndexStore()
     const isMobile = computed(() => store.isMobile)
-    const scroll = computed(() => store.scroll)
+    const scroll = computed(() => store.scroll?.scroll || 0)
 
     let hasVideo = ref(0)
 
@@ -65,7 +73,6 @@ export default {
         }
       }
 
-      console.log(props.active)
       if (props.active) {
 
         const viewportOffsetTop = window.innerHeight - (top.value - scroll.value);
@@ -73,10 +80,10 @@ export default {
 
         let offset, scrollFactor, speed;
         if (isMobile.value) {
-          speed = props.position?.speedMobile || props.position?.speedMobile || 1;
+          speed = props.speedMobile || 1;
           speed = 0.2
         } else {
-          speed = props.position?.speed || 1;
+          speed = props.speed || 1;
         }
 
         switch (props.align) {
@@ -93,7 +100,7 @@ export default {
 
         offset = Math.max(props.min, Math.min(props.max, offset));
 
-        lastTransform.value = hasVideo ? `translate3d(0, ${props.isAbsolute ? '-50' : '0'}%, 0)` : `translate3d(0, calc(${props.isAbsolute ? '-50' : '0'}% + ${offset}px), 0)`;
+        lastTransform.value =`translate3d(0, calc(${props.isAbsolute ? '-50' : '0'}% + ${offset}px), 0)`;
         // }
 
         if (lastTransform.value) {

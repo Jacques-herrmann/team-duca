@@ -1,22 +1,27 @@
 <template>
   <div class="b-hero" ref="root">
-    <Parallax :active="intersect.active.value">
+<!--    <Parallax :active="intersect.active.value" :speed="1">-->
       <WebglImage class="b-hero__background" :image="block.primary.hero"/>
-    </Parallax>
+<!--    </Parallax>-->
     <!--    <img class="b-hero__background" :src="block.primary.hero.url" :alt="block.primary.hero.alt">-->
-    <h1 class="b-hero__title">
-      <span class="b-hero__title--letter" v-for="l in block.primary.title">{{ l }}</span>
-    </h1>
-    <div class="b-hero__footer">
-      <h2 class="b-hero__sub">{{ block.primary.text_left}}</h2>
-      <h2 class="b-hero__sub">{{ block.primary.text_right}}</h2>
-    </div>
+    <Parallax class="b-hero__content" :active="intersect.active.value" :speed="2" >
+      <div>
+        <h1 class="b-hero__title">
+          <span class="b-hero__title--letter" v-for="l in block.primary.title">{{ l }}</span>
+        </h1>
+        <div class="b-hero__footer">
+          <h2 class="b-hero__sub">{{ block.primary.text_left}}</h2>
+          <h2 class="b-hero__sub">{{ block.primary.text_right}}</h2>
+        </div>
+      </div>
+    </Parallax>
     <!--    <CTA class="b-hero__cta" :text="block.primary.cta_text" :url="block.primary.cta_url" :is-nuxt-link="true"/>-->
   </div>
 </template>
 <script lang="ts" setup>
 import { defineProps } from 'vue'
 import gsap from 'gsap'
+import A from '@/assets/animations'
 
 const props = defineProps<{
   block: any
@@ -28,12 +33,7 @@ const tl = gsap.timeline()
 const intersect = useIntersect(root)
 
 onMounted(() => {
-  tl.from('.b-hero__title--letter', {
-    duration: 0.3,
-    y: '100%',
-    stagger: 0.022,
-    ease: 'power2.out'
-  }, 3.4)
+  tl.from('.b-hero__title--letter', A.title, 3.4)
   tl.from('.b-hero__footer h2', {
     opacity: 0,
     duration: 0.6,
@@ -61,15 +61,17 @@ onMounted(() => {
     object-position: center
     z-index: 0
 
+  &__content
+    position: absolute
+    bottom: 2.3vw
+    //left: 50%
+    width: 100%
+    //transform: translateX(-50%)
+    z-index: 1
+
   &__title
     @include h1(20vw)
     font-weight: 800 !important
-    position: absolute
-    bottom: 5vw
-    left: 50%
-    width: 100%
-    z-index: 1
-    transform: translateX(-50%)
     text-align: center
     color: $white
     overflow: hidden
@@ -80,16 +82,11 @@ onMounted(() => {
       will-change: transform
 
   &__footer
-    position: absolute
-    bottom: 0
-    left: 50%
-    z-index: 1
-    transform: translateX(-50%)
     width: 100%
     display: flex
     justify-content: space-between
     align-items: flex-end
-    padding: 2.2vw 8.4vw
+    padding: 0 8.4vw
     pointer-events: none
   &__sub
     @include h2(1.8vw)

@@ -53,20 +53,19 @@ void main() {
 
 
     // ---- depthmap effect
-    float displacement = (depthMap.r - 0.5) * uStrength;
-    vec2 displacedUv = newUV + mouse * displacement;
-
-    vec4 displacedMap = texture2D(uTexture, mirrored(displacedUv));
-
-    // now detect where the edges are going to "bleed"
-    // ie where the difference between normal depthmap and displaced depthmap is the biggest
-    vec4 displacedHeighuTexture = texture2D(uDMap, mirrored(displacedUv));
-
-    float edgesDiff = abs(displacedHeighuTexture.r - depthMap.r);
-    edgesDiff = smoothstep(0.0, 1.0, edgesDiff);
-
-    vec4 color = mix(displacedMap, originalMap, smoothstep(0.0, 0.15, displacedHeighuTexture.r) * edgesDiff);
-
+//    float displacement = (depthMap.r - 0.5) * uStrength;
+//    vec2 displacedUv = newUV + mouse * displacement;
+//
+//    vec4 displacedMap = texture2D(uTexture, mirrored(displacedUv));
+//
+//    // now detect where the edges are going to "bleed"
+//    // ie where the difference between normal depthmap and displaced depthmap is the biggest
+//    vec4 displacedHeighuTexture = texture2D(uDMap, mirrored(displacedUv));
+//
+//    float edgesDiff = abs(displacedHeighuTexture.r - depthMap.r);
+//    edgesDiff = smoothstep(0.0, 1.0, edgesDiff);
+//
+//    vec4 color = mix(displacedMap, originalMap, smoothstep(0.0, 0.15, displacedHeighuTexture.r) * edgesDiff);
 
     gl_FragColor = originalMap;
 

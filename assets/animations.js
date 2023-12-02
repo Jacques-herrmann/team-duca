@@ -1,0 +1,1 @@
+const A = {	title: {		duration: 0.4,    y: '100%',    rotateZ: '10deg',    stagger: 0.022,    ease: 'power2.out'	}}export default A
