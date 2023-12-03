@@ -1,5 +1,5 @@
 <template>
-<svg width="308" height="650" viewBox="0 0 308 650" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="308" height="650" viewBox="0 0 308 650" fill="none" xmlns="http://www.w3.org/2000/svg" ref="root">
 <g clip-path="url(#clip0_422_166)">
 <path d="M121.977 567.977L121.975 567.978L121.975 567.981L121.977 567.977Z" fill="#F9F9F9" fill-opacity="0.1"/>
 <path d="M97.1392 595.236L96.9544 595.062L96.9473 595.069L96.9468 595.071L97.1392 595.236Z" fill="#F9F9F9" fill-opacity="0.1"/>
@@ -72,3 +72,50 @@
 </defs>
 </svg>
 </template>
+<script lang="ts" setup>
+import gsap from 'gsap'
+
+const root = ref<HTMLElement | null>(null)
+const tl = gsap.timeline({paused: true})
+
+const draw = () => {
+  tl.play()
+}
+
+onMounted(() => {
+  const paths = Array.from(root.value?.querySelectorAll('path') as NodeList)
+  gsap.set(paths, {
+    fillOpacity: 0,
+    stroke: '#f9f9f9',
+    strokeWidth: 1,
+    strokeOpacity: 0.05,
+    strokeDasharray: 1500,
+    strokeDashoffset: 1500,
+  })
+
+  paths.forEach((path) => {
+    const length = path.getTotalLength()
+
+    gsap.set(path, {
+      strokeDasharray: length,
+      strokeDashoffset: length,
+    })
+    tl.to(path, {
+      duration: 0.001 * length,
+      strokeDashoffset: 0,
+      ease: 'linear'
+    }, 0)
+  })
+
+  tl.to(paths, {
+    duration: 1,
+    fillOpacity: 0.1,
+    strokeOpacity: 0,
+    ease: 'linear'
+  }, 3)
+})
+
+defineExpose({
+  draw
+})
+</script>
