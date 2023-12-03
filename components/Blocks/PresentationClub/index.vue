@@ -26,7 +26,7 @@ const left = ref<HTMLElement | null>(null)
 const right = ref<HTMLElement | null>(null)
 const tl = gsap.timeline({paused: true})
 const intersect = useIntersect(root, {
-  threshold: 0.5,
+  threshold: 0,
   onReveal: () => {
     tl.play()
     left.value?.draw()
@@ -37,10 +37,10 @@ const intersect = useIntersect(root, {
 const title = computed(() => props.block.primary.title.split('\n'))
 
 onMounted(() => {
-  tl.from(root.value?.querySelectorAll('.club__title span') as NodeList, A.h2, 0)
-  tl.from(root.value?.querySelectorAll('.club__title span') as NodeList, A.opacity, 0)
-  tl.from(root.value?.querySelectorAll('.club__text p') as NodeList, A.text, 0.2)
-  tl.from(root.value?.querySelectorAll('.club__text p') as NodeList,  A.opacity, 0.2)
+  tl.from(root.value?.querySelectorAll('.club__title span') as NodeList, A.h2, 0.2)
+  tl.from(root.value?.querySelectorAll('.club__title span') as NodeList, A.opacity, 0.2)
+  tl.from(root.value?.querySelectorAll('.club__text p') as NodeList, A.text, 0.4)
+  tl.from(root.value?.querySelectorAll('.club__text p') as NodeList,  A.opacity, 0.4)
 
 })
 

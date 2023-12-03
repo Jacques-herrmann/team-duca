@@ -21,6 +21,7 @@ const props = defineProps<{
   display: flex
   justify-content: center
   align-items: center
+  margin-bottom: 80px
 
   & div
     width: calc((100% - 180px) / 3)

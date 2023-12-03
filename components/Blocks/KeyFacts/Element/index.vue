@@ -30,10 +30,11 @@ const props = defineProps<{
   &__number
     position: relative
     width: 100%
-    height: 8vw
+    height: 12vw
 
     & span
-      @include title(4.5vw)
+      @include title(7.5vw)
+      font-weight: 800
       display: block
       position: absolute
       top: 50%
@@ -41,7 +42,8 @@ const props = defineProps<{
       transform: translate(-50%, -50%)
       color: $red
       &:first-child
-        @include title(7.5vw)
+        @include title(12vw)
+        font-weight: 800
         color: $white
         opacity: 0.04
 
@@ -49,7 +51,7 @@ const props = defineProps<{
     @include text(1.2rem)
     color: $white
     text-align: center
-    max-width: 150px
+    max-width: 220px
 
 
 </style>
