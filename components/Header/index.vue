@@ -55,7 +55,7 @@ const toHome = () => {
     margin-right: 20px
 
     &-item
-      @include text()
+      @include text(0.8rem)
       text-transform: uppercase
       margin-left: 60px
       color: $white
