@@ -1,23 +1,26 @@
 <template>
-  <div class="slider-title" ref="root">
-    <h3 class="slider-title__item" >{{titles[current]}}</h3>
-    <h3 class="slider-title__item" >{{titles[next]}}</h3>
+  <div class="slider-title" ref="rootT">
+    <h3 class="slider-title__item"><span v-for="l in title">{{l}}</span></h3>
+    <h3 class="slider-title__item"><span v-for="l in nextTitle">{{l}}</span></h3>
   </div>
-  <div class="slider-subtitle" ref="root">
+  <div class="slider-subtitle" ref="rootS">
     <h4 class="slider-subtitle__item" >{{subtitles[current]}}</h4>
-    <h4 class="slider-subtitle__item" >{{subtitles[next]}}</h4>
+<!--    <h4 class="slider-subtitle__item" >{{subtitles[next]}}</h4>-->
   </div>
 </template>
 <script lang="ts" setup>
 import { defineProps } from 'vue'
+import gsap from 'gsap'
 
 const props = defineProps<{
   list: Array<Object>,
   current: Number,
-  next: Number
 }>()
 
-const root = ref(null)
+const rootT = ref<null |HTMLElement>(null)
+const title = ref("")
+const nextTitle = ref("")
+
 const titles = computed(() => {
   return props.list.map((i: any) => i.title)
 })
@@ -25,12 +28,46 @@ const subtitles = computed(() => {
   return props.list.map((i: any) => i.subtitle)
 })
 
+const changeTo = (next: number) => {
+  nextTitle.value = titles.value[next]
+  const t = rootT.value?.querySelectorAll('.slider-title__item')
+  if(!t) return
+  const tl = gsap.timeline({
+    onComplete: () => {
+      title.value = titles.value[next]
+      nextTitle.value = ""
+    }
+  })
+
+  tl.set(t[1].querySelectorAll('span'), {
+    opacity: 0
+  })
+
+  tl.to(t[0].querySelectorAll('span'), {
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.05,
+    ease: 'linear'
+  }, 0)
+  tl.to(t[1].querySelectorAll('span'), {
+    opacity: 1,
+    duration: 0.6,
+    stagger: 0.05,
+    ease: 'linear'
+  }, 0.1)
+}
+
+defineExpose({
+  changeTo
+})
+
 </script>
 <style scoped lang="sass">
 .slider
 
   &-title
-    //height: 60px
+    position: relative
+    height: 5rem
     overflow: hidden
 
     &__item
@@ -38,8 +75,11 @@ const subtitles = computed(() => {
       font-weight: 800
       color: $red
       display: block
+      position: absolute
+      z-index: 1
 
   &-subtitle
+    height: 1.4rem
     overflow: hidden
 
     &__item

@@ -49,7 +49,7 @@ export default class Slider extends EventEmitter2{
     this.mesh = new Mesh(this.gl, {geometry: this.geometry, program: this.program});
 
     window.addEventListener('resize', this.onResize.bind(this), false);
-    window.addEventListener('click', this.onClick.bind(this), false);
+    // window.addEventListener('click', this.onClick.bind(this), false);
     requestAnimationFrame(this.onUpdate.bind(this));
     this.onResize();
   }

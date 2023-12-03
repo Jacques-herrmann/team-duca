@@ -9,7 +9,7 @@
   >
     <figure-element class="history-element__img" :image="media" />
 
-    <Parallax :active="intersect.active.value" speed="3">
+    <Parallax :active="intersect.active.value" :speed="3">
     <div class="history-element__content">
       <h3 class="history-element__title">{{title}}</h3>
       <prismic-rich-text class="history-element__text" :field="content" />

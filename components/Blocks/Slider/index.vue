@@ -1,13 +1,13 @@
 <template>
   <div class="slider" ref="root">
-    <div class="slider__btn slider__btn--previous">
+    <div class="slider__btn slider__btn--previous" @click="onPrevious">
       <IconArrow/>
     </div>
     <div class="slider__inner">
-      <BlocksSliderTitle class="slider__title" :list="block.items" :current="current" :next="current + 1" />
+      <BlocksSliderTitle ref="title" class="slider__title" :list="block.items" :current="current" />
       <prismic-rich-text :field="description" class="slider__description"/>
     </div>
-    <div class="slider__btn slider__btn--next">
+    <div class="slider__btn slider__btn--next" @click="onNext">
       <IconArrow/>
     </div>
   </div>
@@ -21,6 +21,7 @@ const props = defineProps<{
 }>()
 
 const root = ref(null)
+const title = ref(null)
 const slider: Ref<null | Slider> = ref(null)
 
 const current = ref(0)
@@ -30,6 +31,9 @@ const description = computed(() => {
 
 const onNext = () => {
   slider.value?.onNext()
+  const next = (current.value + 1) % 3;
+  title.value?.changeTo(next)
+  current.value = next
 }
 
 const onPrevious = () => {
@@ -38,9 +42,9 @@ const onPrevious = () => {
 
 onMounted(() => {
   slider.value = new Slider(root.value, props.block.items)
-  slider.value.on('change', (i: number) => {
-    current.value = i
-  })
+  // slider.value.on('change', (i: number) => {
+  //   current.value = i
+  // })
   console.log(props.block)
 })
 
@@ -59,8 +63,8 @@ onMounted(() => {
     width: calc(100% - 180px)
     display: flex
     flex-direction: column
-    justify-content: center
     padding: 90px
+    padding-top: 50vh
     pointer-events: none
     z-index: 1
 
