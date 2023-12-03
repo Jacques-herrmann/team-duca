@@ -1187,6 +1187,16 @@ export interface HistoriqueSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   content: prismic.RichTextField;
+
+  /**
+   * orientation field in *Historique → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: historique.items[].orientation
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  orientation: prismic.SelectField<"portrait" | "landscape">;
 }
 
 /**

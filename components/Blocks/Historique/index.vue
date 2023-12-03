@@ -1,20 +1,17 @@
 <template>
   <div class="history">
     <figure-element class="history__cover" :image="block.primary.cover" />
-    <div
+    <BlocksHistoriqueElement
      class="history__element"
-     v-for="element in block.items"
-      :key="element.id"
-     :style="{
-        height: element?.media.dimensions.height + 'px'
-     }"
-    >
-      <figure-element class="history__img" :image="element.media" />
-      <div class="history__content">
-        <h3 class="history__title">{{element.title}}</h3>
-        <prismic-rich-text class="history__text" :field="element.content"/>
-      </div>
-    </div>
+     v-for="(element, e) in block.items"
+     :key="e"
+     :index="e + 1"
+     :media="element.media"
+     :title="element.title"
+     :content="element.content"
+      :orientation="element.orientation"
+    />
+
   </div>
 </template>
 <script lang="ts" setup>
@@ -46,44 +43,5 @@ $margin: 90px
   &__cover
     object-fit: cover
     object-position: center
-
-  &__element
-    position: relative
-    width: 100%
-    margin: 10rem 0
-
-    &:nth-child(3)
-      & > .history__img
-        @include grid(5, 11)
-
-      & > .history__content
-        @include grid(1, 6)
-        text-align: right
-
-    &:nth-child(4)
-      & > .history__img
-        @include grid(2, 6)
-
-      & > .history__content
-        @include grid(5, 12)
-
-  &__img
-    @include grid(1, 7)
-    object-fit: cover
-    object-position: center
-
-
-  &__content
-    @include grid(6, 12)
-    color: white
-    padding: 0 0 0 5rem
-
-
-  &__title
-    @include h2()
-
-  &__text
-    @include text()
-
 
 </style>

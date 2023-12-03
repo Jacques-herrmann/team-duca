@@ -9,11 +9,21 @@
 </template>
 <script lang="ts" setup>
 import { defineProps } from 'vue'
+import gsap from 'gsap'
 
 const props = defineProps<{
   number: String,
   text: String
 }>()
+const tl = gsap.timeline({paused: true})
+
+const draw = () => {
+  tl.play()
+}
+
+onMounted(() => {
+
+})
 
 
 </script>
