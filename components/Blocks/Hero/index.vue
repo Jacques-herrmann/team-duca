@@ -91,7 +91,8 @@ onMounted(() => {
   &__sub
     @include h2(1.8vw)
     font-weight: 800 !important
-    width: 20vw
+    letter-spacing: 0.08rem
+    width: 21.5vw
     color: $white
     &:first-child
       text-align: left

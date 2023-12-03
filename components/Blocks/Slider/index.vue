@@ -59,6 +59,7 @@ onMounted(() => {
     width: calc(100% - 180px)
     display: flex
     flex-direction: column
+    justify-content: center
     padding: 90px
     pointer-events: none
     z-index: 1
@@ -66,6 +67,8 @@ onMounted(() => {
   &__description
     @include text()
     color: $white
+    max-width: 700px
+    margin-top: 40px
 
   &__btn
     height: 100%
@@ -80,7 +83,6 @@ onMounted(() => {
     & svg
       transition: transform .3s ease-out
     &:hover
-      background: rgba(0,0,0,.4)
       & svg
         transform: translateX(-2px)
 

@@ -30,20 +30,22 @@ const subtitles = computed(() => {
 .slider
 
   &-title
-    height: 60px
+    //height: 60px
     overflow: hidden
 
     &__item
-      @include h3()
+      @include h3(5rem, 100%)
+      font-weight: 800
       color: $red
       display: block
 
   &-subtitle
-    height: 20px
     overflow: hidden
 
     &__item
-      @include title(1rem)
+      @include title(1.4rem)
+      font-weight: 800
+      letter-spacing: 0.1rem
       color: $white
       display: block
 
