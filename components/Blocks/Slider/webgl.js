@@ -81,7 +81,10 @@ export default class Slider extends EventEmitter2{
     this.onChange(next)
   }
   onPrevious() {
-    const previous = (this.current - 1) % this.textures.length;
+    let previous = (this.current - 1) % this.textures.length;
+    if(previous < 0) {
+      previous = this.textures.length - 1
+    }
     this.onChange(previous)
   }
 

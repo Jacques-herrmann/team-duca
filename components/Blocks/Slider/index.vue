@@ -4,8 +4,11 @@
       <IconArrow/>
     </div>
     <div class="slider__inner">
-      <BlocksSliderTitle ref="title" class="slider__title" :list="block.items" :current="current" />
-      <prismic-rich-text :field="description" class="slider__description"/>
+      <BlocksSliderElement ref="title" class="slider__title" :list="block.items" :current="current" key="title">
+        <h3 class="slider-title__item" />
+      </BlocksSliderElement>
+
+      <prismic-rich-text :field="description" class="slider__description" />
     </div>
     <div class="slider__btn slider__btn--next" @click="onNext">
       <IconArrow/>
@@ -25,27 +28,44 @@ const title = ref(null)
 const slider: Ref<null | Slider> = ref(null)
 
 const current = ref(0)
+const active = ref(false)
 const description = computed(() => {
   return props.block.items[current.value].content
 })
 
+const setActive = () => {
+  active.value = true
+  setTimeout(() => {
+    active.value = false
+  }, 1000)
+}
+
 const onNext = () => {
-  slider.value?.onNext()
-  const next = (current.value + 1) % 3;
-  title.value?.changeTo(next)
+  if(active.value) return
+  setActive()
+  const next = (current.value + 1) % 3
   current.value = next
+
+  slider.value?.onNext()
+  title.value?.changeTo(next)
 }
 
 const onPrevious = () => {
+  if(active.value) return
+  setActive()
+  let previous = (current.value - 1) % 3;
+  if (previous < 0) {
+    previous = 2;
+  }
+  current.value = previous
+
+  title.value?.changeTo(previous)
   slider.value?.onPrevious()
 }
 
 onMounted(() => {
   slider.value = new Slider(root.value, props.block.items)
-  // slider.value.on('change', (i: number) => {
-  //   current.value = i
-  // })
-  console.log(props.block)
+  title.value?.changeTo(0)
 })
 
 </script>
