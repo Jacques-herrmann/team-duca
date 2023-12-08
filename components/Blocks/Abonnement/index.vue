@@ -1,8 +1,5 @@
 <template>
   <div class="abonnement">
-    <h1 class="abonnement__title">{{ block.primary.titre }}</h1>
-    <p class="abonnement__subtitle">{{block.primary.soutitre}}</p>
-    <prismic-rich-text :field="block.primary.soutitre" v-if="false" /><!-- prismic fiels is not of this type -->
     <div class="abonnement__item" v-for="elt in block.items">
       <figure-element :image="elt.cover" class="abonnement__item__cover"/>
       <div class="abonnement__item__top ">
@@ -31,28 +28,13 @@ const splitedText = (text: string) => { // may be utils everywhere
 .abonnement
   position: relative
   width: 100%
-  padding-top: 30rem
-
-  // The heading styles may be defined in a global file
-  // because they are used in many places
-  &__title
-    @include h1()
-    color: white
-    text-align: center
-  &__subtitle
-    @include text()
-    color: $white
-    text-align: center
-    margin: 10px auto 100px auto
-    max-width: 500px
-
 
   &__item
     width: 100%
     padding: 3rem 3rem 3rem 40px // TODO: Real spacing -  based footer's padding
     position: relative
     color: $white
-    height: 300px
+    height: 350px
     display: flex
     flex-direction: column
     justify-content: space-between
@@ -67,7 +49,7 @@ const splitedText = (text: string) => { // may be utils everywhere
 
     &__top
       &__title
-        @include h3(6rem)
+        @include h3(5rem, 100%)
 
       &__subtitle
         @include text()
@@ -77,6 +59,7 @@ const splitedText = (text: string) => { // may be utils everywhere
 
     &__price
       @include title(5rem)
+      font-weight: 900
       color: $red
       float: right
       text-align: right

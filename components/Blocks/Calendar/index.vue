@@ -3,7 +3,7 @@
     <h2>PLANNING</h2>
     <ul class="planning__filter">
       <li class="planning__filter__item" @click="filterEvents('clear')">Tout les cours</li>
-      <li class="planning__filter__item" @click="filterEvents(sport.replaceAll(' ','-'))"  v-for="sport of getAllSports()">{{sport}}</li>
+      <li class="planning__filter__item" @click="filterEvents(sport.split(' ')[0])"  v-for="sport of getAllSports()">{{sport}}</li>
     </ul>
     <div class="planning__container" >
       <div class="planning__container__single" v-for="event of formatPlanning()">
@@ -12,6 +12,8 @@
           <BlocksCalendarElement v-for="event of event" :eventData="event" />
         </div>
       </div>
+      <IconDownload class="download" />
+      <span class="asterix">* club partenaire</span>
     </div>
   </div>
 </template>
@@ -35,8 +37,9 @@ const formatPlanning = () => {
 const getAllSports = () => {
   // get sports to filter
   return props.block.items.reduce((acc: any, event: any) => {
-    if (!acc.includes(event.sport)) {
-      acc.push(event.sport)
+    const sport = event.sport.split(' ')[0]
+    if (!acc.includes(sport)) {
+      acc.push(sport)
     }
     return acc
   }, [])
@@ -50,27 +53,24 @@ const filterEvents = (sport: string) => {
     el.style.opacity = "1"
   })
   if (sport !== 'clear') {
-    const toHide = document.querySelectorAll(`.event:not(.${sport})`)
+    const s = sport.replace('*','')
+    const toHide = document.querySelectorAll(`.event:not(.${s})`)
     toHide.forEach((el: any) => {
       el.style.opacity = "0"
     })
   }
 }
 
-
-
-
 </script>
 <style scoped lang="sass">
+
 .planning
   position: relative
   width: 100%
   display: flex
   flex-direction: column
   align-items: center
-  height: 100vh
-  height: calc(var(--vh, 1vh) * 100)
-
+  padding: 4rem 0
   & h2
     @include h1()
     color: white
@@ -78,24 +78,32 @@ const filterEvents = (sport: string) => {
     margin-top: 200px
 
   &__filter
+    width: calc(4/6 * (100vw - 180px))
     display: flex
     justify-content: center
     align-items: center
     margin-top: 50px
+    gap: 10px
     &__item
+      @include text()
       color: white
-      font-size: 15px
-      margin: 0 10px
+      font-weight: bold
+      margin: 10px
       cursor: pointer
       &:hover
         text-decoration: underline
+
   &__container
+    position: relative
     background-color: #2E2E2E
+    border-radius: 4px
     display: flex
     margin: 0 auto
     &__single
+      width: calc((4/6 * (100vw - 180px)) / 6)
       &__day
-        font-size: 20px
+        @include text()
+        text-transform: uppercase
         color: white
         text-align: center
         padding: 20px
@@ -103,7 +111,23 @@ const filterEvents = (sport: string) => {
         display: grid
         grid-template-columns: 1fr
         $v: calc( calc(((21 * 60) + 30) / 15) - calc(((10 * 60) + 30) / 15) ) // start at 10h30 // End at 21h30
-        grid-template-rows: repeat($v, 10px)
+        grid-template-rows: repeat($v, 0.8rem)
+
+    & .download
+      position: absolute
+      bottom: 1rem
+      right: 1rem
+      width: 1.2rem
+      height: 1.2rem
+      cursor: pointer
+
+    & .asterix
+      position: absolute
+      bottom: -1.5rem
+      right: 0
+      @include text(0.8rem)
+      color: rgba(255, 255, 255, 0.4)
+
 
 
 

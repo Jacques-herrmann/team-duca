@@ -1,5 +1,7 @@
 <template>
   <div class="inscription-page">
+    <h1 class="inscription-page__title">{{ page?.data.titre }}</h1>
+    <prismic-rich-text class="inscription-page__subtitle" :field="page?.data.texte"/>
     <blocks-list :blocks="page?.data.slices"></blocks-list>
   </div>
 </template>
@@ -27,6 +29,19 @@ useHead({
   min-height: 100vh
   width: 100%
 
-h1
-  color: red
+  &__title
+    @include h1()
+    font-weight: 900
+    letter-spacing: 0.1rem
+    padding-top: 12rem
+    color: white
+    text-align: center
+
+  &__subtitle
+    @include text()
+    color: $white
+    text-align: center
+    margin: 2rem auto 8rem auto
+    max-width: 700px
+
 </style>

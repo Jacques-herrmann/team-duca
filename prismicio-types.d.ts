@@ -433,15 +433,15 @@ interface InscriptionDocumentData {
   titre: prismic.KeyTextField;
 
   /**
-   * Texte field in *Inscription*
+   * texte field in *Inscription*
    *
-   * - **Field Type**: Text
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: inscription.texte
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  texte: prismic.KeyTextField;
+  texte: prismic.RichTextField;
 
   /**
    * Slice Zone field in *Inscription*
@@ -634,31 +634,6 @@ export type AllDocumentTypes =
   | ServicesDocument;
 
 /**
- * Primary content in *Abonnement → Primary*
- */
-export interface AbonnementSliceDefaultPrimary {
-  /**
-   * Titre field in *Abonnement → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: abonnement.primary.titre
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  titre: prismic.KeyTextField;
-
-  /**
-   * Sous-titre field in *Abonnement → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: abonnement.primary.soutitre
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  soutitre: prismic.KeyTextField;
-}
-
-/**
  * Primary content in *Abonnement → Items*
  */
 export interface AbonnementSliceDefaultItem {
@@ -712,7 +687,7 @@ export interface AbonnementSliceDefaultItem {
  */
 export type AbonnementSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<AbonnementSliceDefaultPrimary>,
+  Record<string, never>,
   Simplify<AbonnementSliceDefaultItem>
 >;
 
@@ -828,7 +803,7 @@ export interface CalendarSliceDefaultItem {
     | "Grappling Compétiteurs"
     | "JJB Tout public"
     | "JJB Compétiteurs"
-    | "Kick Boxing"
+    | "Kick-boxing*"
   >;
 }
 
@@ -1563,7 +1538,6 @@ declare module "@prismicio/client" {
       ServicesDocumentDataSlicesSlice,
       AllDocumentTypes,
       AbonnementSlice,
-      AbonnementSliceDefaultPrimary,
       AbonnementSliceDefaultItem,
       AbonnementSliceVariation,
       AbonnementSliceDefault,

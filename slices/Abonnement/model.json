@@ -11,22 +11,7 @@
       "version": "initial",
       "description": "Default",
       "imageUrl": "",
-      "primary": {
-        "titre": {
-          "type": "Text",
-          "config": {
-            "label": "Titre",
-            "placeholder": ""
-          }
-        },
-        "soutitre": {
-          "type": "Text",
-          "config": {
-            "label": "Sous-titre",
-            "placeholder": ""
-          }
-        }
-      },
+      "primary": {},
       "items": {
         "title": {
           "type": "Text",
