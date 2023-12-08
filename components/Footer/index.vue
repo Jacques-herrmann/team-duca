@@ -1,7 +1,16 @@
 <template>
   <footer class="footer">
-    <span class="footer__title">{{footer?.data.titre}}</span>
-    <span class="footer__text">{{footer?.data.email}}</span>
+    <div class="footer__left">
+      <span class="footer__title">{{footer?.data.titre}}</span>
+      <span class="footer__subtitle">{{footer?.data.subtitle}}</span>
+    </div>
+    <div class="footer__right">
+      <prismic-rich-text class="footer__address" :field="footer?.data.address"></prismic-rich-text>
+      <div class="footer__socials">
+        <IconFacebook class="footer__icon" />
+        <IconInstagram class="footer__icon" />
+      </div>
+    </div>
     <span class="footer__background">TEAM DUCA</span>
   </footer>
 </template>
@@ -25,11 +34,42 @@ const {data: footer } = useAsyncData("[footer]", () => prismic.client.getSingle(
   display: flex
   align-items: center
   justify-content: space-between
-  padding: 0 40px
+  padding: 0 4rem
+  &__left, &__right
+    display: flex
+    flex-direction: column
+    justify-content: center
   &__title
+    @include h3()
+    font-weight: 900
+    letter-spacing: 0.1rem
     color: $white
-    font-size: 20px
-    font-weight: bold
+
+  &__subtitle
+    @include text()
+    font-weight: 900
+    letter-spacing: 0.1rem
+    color: $red
+
+  &__address
+    @include text()
+    color: $white
+    text-align: right
+
+  &__socials
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    gap: 0.5rem
+    margin-top: 0.5rem
+
+  &__icon
+    width: 1.5rem
+    height: 1.5rem
+    fill: $white
+    cursor: pointer
+
+
   &__text
     color: $white
     font-size: 14px
@@ -46,5 +86,6 @@ const {data: footer } = useAsyncData("[footer]", () => prismic.client.getSingle(
     text-align: center
     word-break: keep-all
     user-select: none
+    pointer-events: none
     color: rgba(255, 255, 255, 0.01)
 </style>

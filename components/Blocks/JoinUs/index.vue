@@ -18,19 +18,22 @@ const props = defineProps<{
 .join-us
   position: relative
   width: 100%
-  padding: 10rem 0
+  display: flex
+  flex-direction: column
+  align-items: center
 
   &__title
     @include h1()
+    font-weight: 900
+    letter-spacing: 0.1rem
+    margin-top: 10rem
     width: 100%
+    max-width: 700px
     text-align: center
     color: $white
-    margin-bottom: 10rem
 
   &__cta
     position: relative
-    left: 50%
-    transform: translateX(-50%)
     margin: 8rem 0
 
 </style>

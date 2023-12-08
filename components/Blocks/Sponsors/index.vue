@@ -22,10 +22,12 @@ const props = defineProps<{
 .sponsors
   position: relative
   width: 100%
-  padding: 10rem 0
+  padding-top: 10rem
 
   &__title
     @include h1()
+    font-weight: 900
+    letter-spacing: 0.1rem
     width: 100%
     text-align: center
     color: $white
