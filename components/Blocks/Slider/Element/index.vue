@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <div class="slider-element" ref="root">
-      <slot />
-      <slot />
-    </div>
+  <div class="slider-element" ref="root">
+    <p>{{current}}</p>
+    <p>{{next}}</p>
   </div>
 </template>
 <script lang="ts" setup>
@@ -13,7 +11,7 @@ import gsap from 'gsap'
 const props = defineProps<{
   list: Array<Object>,
   current: Number,
-  key: String,
+  tkey: String,
 }>()
 
 const root = ref<null |HTMLElement>(null)
@@ -21,7 +19,7 @@ const current = ref("")
 const next = ref("")
 
 const list = computed(() => {
-  return props.list.map((i: any) => i[props.key])
+  return props.list.map((i: any) => i[props.tkey])
 })
 
 const changeTo = (index: number) => {
@@ -69,5 +67,15 @@ defineExpose({
 
 </script>
 <style scoped lang="sass">
+.slider-element
+  position: relative
+  & > p
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    margin: 0
+    padding: 0
 
 </style>
