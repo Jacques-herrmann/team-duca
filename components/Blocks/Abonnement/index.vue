@@ -5,7 +5,7 @@
       <div class="abonnement__item__top ">
         <h3 class="abonnement__item__top__title" v-html="splitedText(elt.title)">
         </h3>
-        <p class="abonnement__item__top__subtitle">{{ elt.texte }}</p>
+      <prismic-rich-text class="abonnement__item__top__subtitle" :field="elt.texte"></prismic-rich-text>
       </div>
       <span class="abonnement__item__price">{{ elt.price }}</span>
     </div>
@@ -49,17 +49,19 @@ const splitedText = (text: string) => { // may be utils everywhere
 
     &__top
       &__title
-        @include h3(5rem, 100%)
+        @include h3(4.2rem, 100%)
 
       &__subtitle
         @include text()
         font-style: italic
-        max-width: 400px
+        max-width: 600px
         margin-top: .7rem
 
     &__price
-      @include title(5rem)
-      font-weight: 900
+      @include title(4rem)
+      position: absolute
+      bottom: 1rem
+      right: 2rem
       color: $red
       float: right
       text-align: right

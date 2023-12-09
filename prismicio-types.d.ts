@@ -648,16 +648,6 @@ export interface AbonnementSliceDefaultItem {
   title: prismic.KeyTextField;
 
   /**
-   * texte field in *Abonnement → Items*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: abonnement.items[].texte
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  texte: prismic.KeyTextField;
-
-  /**
    * price field in *Abonnement → Items*
    *
    * - **Field Type**: Text
@@ -676,6 +666,16 @@ export interface AbonnementSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#image
    */
   cover: prismic.ImageField<never>;
+
+  /**
+   * texte field in *Abonnement → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: abonnement.items[].texte
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  texte: prismic.RichTextField;
 }
 
 /**

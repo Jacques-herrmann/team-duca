@@ -1,6 +1,7 @@
 <template>
   <div class="planning">
-    <h2>PLANNING</h2>
+    <h2 class="planning__title">{{ block.primary.title }}</h2>
+    <prismic-rich-text class="planning__content" :field="block.primary.content" />
     <ul class="planning__filter">
       <li class="planning__filter__item" @click="filterEvents('clear')">Tout les cours</li>
       <li class="planning__filter__item" @click="filterEvents(sport.split(' ')[0])"  v-for="sport of getAllSports()">{{sport}}</li>
@@ -71,14 +72,22 @@ const filterEvents = (sport: string) => {
   flex-direction: column
   align-items: center
   padding: 4rem 0
-  & h2
+  &__title
     @include h1()
     color: white
     text-align: center
     margin-top: 200px
 
+  &__content
+    @include text()
+    color: white
+    text-align: center
+    margin-top: 50px
+    max-width: 800px
+    margin-bottom: 50px
+
   &__filter
-    width: calc(4/6 * (100vw - 180px))
+    width: calc(5/6 * (100vw - 180px))
     display: flex
     justify-content: center
     align-items: center
@@ -100,7 +109,7 @@ const filterEvents = (sport: string) => {
     display: flex
     margin: 0 auto
     &__single
-      width: calc((4/6 * (100vw - 180px)) / 6)
+      width: calc((5/6 * (100vw - 180px)) / 6)
       &__day
         @include text()
         text-transform: uppercase

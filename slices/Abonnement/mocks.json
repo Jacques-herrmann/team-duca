@@ -18,9 +18,15 @@
 					[
 						"texte",
 						{
-							"__TYPE__": "FieldContent",
-							"value": "airplane",
-							"type": "Text"
+							"__TYPE__": "StructuredTextContent",
+							"value": [
+								{
+									"type": "paragraph",
+									"content": {
+										"text": "Pariatur culpa duis tempor mollit ullamco sit nulla labore cupidatat nisi ad adipisicing. Aliquip ullamco eiusmod cupidatat cupidatat deserunt reprehenderit adipisicing nulla exercitation reprehenderit cupidatat est aliquip et irure."
+									}
+								}
+							]
 						}
 					],
 					[
