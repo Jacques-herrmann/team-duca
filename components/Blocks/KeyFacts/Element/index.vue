@@ -40,22 +40,23 @@ onMounted(() => {
   &__number
     position: relative
     width: 100%
-    height: 12vw
+    display: grid
+    place-items: center
+
 
     & span
       @include title(7.5vw)
+      font-size: clamp(80px, 7.5vw, 200px)
       font-weight: 800
       display: block
-      position: absolute
-      top: 50%
-      left: 50%
-      transform: translate(-50%, -50%)
       color: $red
       &:first-child
         @include title(12vw)
+        font-size: clamp(125px, 12vw, 400px)
         font-weight: 800
         color: $white
         opacity: 0.04
+        position: absolute
 
   &__text
     @include text(1.2rem)

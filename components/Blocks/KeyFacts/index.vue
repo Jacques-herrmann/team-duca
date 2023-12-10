@@ -19,10 +19,21 @@ const props = defineProps<{
   position: relative
   width: 100%
   display: flex
+  flex-direction: column
   justify-content: center
   align-items: center
   margin-bottom: 80px
+  @include md
+    flex-direction: row
 
   & div
-    width: calc((100% - 180px) / 3)
+    width: 100%
+    @include md
+      margin-bottom: 0
+      width: calc((100% - 180px) / 3)
+    &:not(:last-child)
+      margin-bottom: 60px
+      @include md
+        margin-bottom: 0
+
 </style>
