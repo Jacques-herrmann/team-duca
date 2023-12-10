@@ -102,8 +102,8 @@ const toggleNav = () => {
       margin-left: 60px
       &:not(:last-child)
         margin-bottom: 40px
-      @include md
-        margin-bottom: 0
+        @include md
+          margin-bottom: 0
 
 
       &:hover
