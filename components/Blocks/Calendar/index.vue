@@ -110,6 +110,7 @@ const filterEvents = (sport: string) => {
     margin: 0 auto
     &__single
       width: calc((5/6 * (100vw - 180px)) / 6)
+      min-width: 110px
       &__day
         @include text()
         text-transform: uppercase
