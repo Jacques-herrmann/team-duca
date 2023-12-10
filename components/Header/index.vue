@@ -32,6 +32,8 @@ const toHome = () => {
 }
 
 const toggleNav = () => {
+  // TODO: Better than this
+  // resolve resize issue
   if(window.innerWidth > 768) return
   document.body.style.display = document.body.style.overflow === 'hidden' ? 'auto' : 'hidden'
   menu.value.style.display = menu.value.style.display === 'flex' ? 'none' : 'flex'
