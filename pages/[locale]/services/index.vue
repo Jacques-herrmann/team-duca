@@ -4,7 +4,7 @@
     <h1 class="service-page__title">{{page?.data.title}}</h1>
     <div class="service-page__right">
       <prismic-rich-text class="service-page__content" :field="page?.data.content"></prismic-rich-text>
-      <CTA class="service-page__cta" :text="page?.data.cta_text" :url="page?.data.cta_link" :is-nuxt-link="true"/>
+      <CTA class="service-page__right__cta" :text="page?.data.cta_text" :url="page?.data.cta_link" :is-nuxt-link="true"/>
     </div>
   </div>
 </template>
@@ -46,8 +46,16 @@ useHead({
 
   &__right
     width: 45%
+    margin: 0 auto
+    max-width: 400px
+    background-color: rgba(255, 0, 0, 0.27)
     display: flex
     flex-direction: column
+    @include text()
+    &__cta
+      margin-top: 100px
+      align-self: flex-end
+
 
   &__cover
     width: 55%
@@ -58,6 +66,13 @@ useHead({
 
   &__content
     color: $white
+    ::v-deep(ul)
+      list-style: disc
+      margin-top: 40px
+      li
+        margin-left: 1rem
+
+
 
 
 </style>
