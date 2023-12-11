@@ -13,7 +13,7 @@
           <BlocksCalendarElement v-for="event of event" :eventData="event" />
         </div>
       </div>
-      <IconDownload class="download" />
+      <IconDownload class="download" @click="downloadCalendar"/>
       <span class="asterix">* club partenaire</span>
     </div>
   </div>
@@ -24,6 +24,10 @@ import { defineProps } from 'vue'
 const props = defineProps<{
   block: any
 }>()
+
+const downloadCalendar = () => {
+  window.open('/team-duca-planning.pdf', '_blank')
+}
 
 const formatPlanning = () => {
   return props.block.items.reduce((acc: any, event: any) => {
