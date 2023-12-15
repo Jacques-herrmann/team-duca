@@ -4,8 +4,9 @@
       <IconArrow/>
     </div>
     <div class="slider__inner">
-      <BlocksSliderElement ref="title" class="slider__title" :list="block.items" :current="current" tkey="title"/>
-      <BlocksSliderElement ref="subtitle" class="slider__subtitle" :list="block.items" :current="current" tkey="subtitle"/>
+      <BlocksSliderElement ref="title" class="slider__title" :list="block.items" :current="current" l-key="title">
+        <h3 class="slider-title__item" />
+      </BlocksSliderElement>
 
       <prismic-rich-text :field="description" class="slider__description" />
     </div>
@@ -24,7 +25,6 @@ const props = defineProps<{
 
 const root = ref(null)
 const title = ref(null)
-const subtitle = ref(null)
 const slider: Ref<null | Slider> = ref(null)
 
 const current = ref(0)
@@ -48,7 +48,6 @@ const onNext = () => {
 
   slider.value?.onNext()
   title.value?.changeTo(next)
-  subtitle.value?.changeTo(next)
 }
 
 const onPrevious = () => {
@@ -61,14 +60,12 @@ const onPrevious = () => {
   current.value = previous
 
   title.value?.changeTo(previous)
-  subtitle.value?.changeTo(previous)
   slider.value?.onPrevious()
 }
 
 onMounted(() => {
   slider.value = new Slider(root.value, props.block.items)
   title.value?.changeTo(0)
-  subtitle.value?.changeTo(0)
 })
 
 </script>
@@ -116,18 +113,6 @@ onMounted(() => {
     &--next
       transform: rotate(180deg)
 
-  &__title
-    @include h1()
-    color: $red
-    height: 6rem
-    pointer-events: none
-
-  &__subtitle
-    @include title(1.5rem)
-    height: 1.5rem
-    font-weight: 700
-    color: $white
-    pointer-events: none
 
 </style>
 <style lang="sass">

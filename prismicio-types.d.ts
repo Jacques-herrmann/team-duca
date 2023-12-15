@@ -22,17 +22,6 @@ interface ContactDocumentData {
   titre: prismic.KeyTextField;
 
   /**
-   * Sous Titre field in *Contact*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: contact.sous_titre
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  sous_titre: prismic.KeyTextField;
-
-  /**
    * image field in *Contact*
    *
    * - **Field Type**: Image
@@ -53,6 +42,17 @@ interface ContactDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   cta: prismic.KeyTextField;
+
+  /**
+   * subtitle field in *Contact*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: contact.subtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  subtitle: prismic.RichTextField;
 
   /**
    * Slice Zone field in *Contact*

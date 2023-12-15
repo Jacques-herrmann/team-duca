@@ -1,31 +1,31 @@
 <template>
   <div class="contact-page">
-    <img :src="page?.data.image.url" alt="page?.data.image.url">
-    <div class="contact-page__form">
-      <h1 class="contact-page__title">{{ page?.data.titre }}</h1>
-      <p  class="contact-page__sub">{{ page?.data.sous_titre }}</p>
-      <form
-       ref="form"
-       class="contact-page__form"
-       name="contact"
-       netlify
-       netlify-honeypot="bot-field"
-      >
-        <p class="hidden">
-          <label>
-            Don’t fill this out if you’re human: <input name="bot-field" />
-          </label>
-        </p>
-        <p>
-          <label>Name <input type="text" name="name" /></label>
-        </p>
-        <p>
-          <label>Email <input type="email" name="email" /></label>
-        </p>
-        <p>
-          <button type="submit">Send</button>
-        </p>
-      </form>
+    <figure-element class="contact-page__cover" :image="page?.data.image"/>
+    <h1 class="contact-page__title">{{page?.data.titre}}</h1>
+    <div class="contact-page__right">
+      <prismic-rich-text class="contact-page__content" :field="page?.data.subtitle" />
+      <div class="contact-page__form">
+        <form
+         ref="form"
+         class="contact-page__form"
+         name="contact"
+         netlify
+         netlify-honeypot="bot-field"
+        >
+          <p class="hidden">
+            <label>
+              Don’t fill this out if you’re human: <input name="bot-field" />
+            </label>
+          </p>
+          <p>
+            <input type="email" name="email" placeholder="EMAIL"/>
+          </p>
+          <p>
+            <textarea type="text" name="message" rows="10" placeholder="VOTRE MESSAGE" />
+          </p>
+          <CTA class="contact-page__cta" text="send"  :is-nuxt-link="true"/>
+        </form>
+      </div>
     </div>
   </div>
 </template>
@@ -53,40 +53,63 @@ useHead({
 
 <style scoped lang="sass">
 .contact-page
+  position: relative
+  min-height: 100vh
   width: 100%
-  margin-top: $header-height
-  padding: 90px
   display: flex
   align-items: center
-  gap: 90px
+  justify-content: center
 
-  & > img
-    width: calc(100% / 6 * 3)
-    object-fit: cover
+  &__title
+    @include h1()
+    position: absolute
+    top: 160px
+    left: 45%
+    font-weight: 800
+    color: $white
+
+  &__right
+    width: 45%
+    margin-top: 14rem
+    padding: 0 45px
+    display: flex
+    flex-direction: column
+    justify-content: flex-end
+    @include text()
+  &__cta
+    align-self: end
 
   &__form
     display: flex
     height: 100%
     flex-direction: column
-    gap: 1rem
+    gap: 2rem
     color: $white
 
+    & input, textarea
+      @include text(0.8rem)
+      background: rgba(255, 255, 255, 0.03)
+      border: none
+      border-bottom: 1px solid $white
+      color: $white
+      padding: 0.8rem
+      outline: none
+      width: 100%
+      &::placeholder
+        color: $white
+        opacity: 0.8
 
-    & button
-      margin-top: 1rem
-      padding: 0.5rem 1rem
-      border: 1px solid black
-      border-radius: 0.5rem
-      background-color: white
-      cursor: pointer
+  &__cover
+    width: 55%
+    height: 100vh
+    object-fit: cover
+    object-position: center
+    margin-bottom: 2rem
 
-  &__title
-    @include h1()
+  &__content
+    @include text()
     color: $white
-
-  &__sub
-    @include sub()
-    color: $red
+    margin-bottom: 1.5rem
 
 .hidden
   display: none
