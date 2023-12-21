@@ -1,6 +1,6 @@
 <template>
   <div id="app-layout">
-    <PageTransition v-if="transitionVisible" @end="onTransitionEnd"/>
+    <PageTransition />
     <Cursor />
     <Header />
     <main>
@@ -21,7 +21,6 @@ import {useIndexStore} from "~/stores";
 
 const store = useIndexStore()
 const scroll: Ref<Lenis | null> = ref(null)
-const transitionVisible = ref(true)
 const route = useRoute()
 const isGalleryPage = computed(() => route.name === 'locale-galerie')
 
@@ -29,17 +28,17 @@ const noiseOpacity = ref(0)
 
 const onUpdate = () => {
   requestAnimationFrame(onUpdate)
-
   scroll.value?.raf()
-}
-const onTransitionEnd = () => {
-  transitionVisible.value = false
 }
 
 onMounted(() => {
   gsap.to(noiseOpacity, { value: 0.04, duration: 1, ease: 'linear'})
   scroll.value = new Lenis()
   store.setScroll(scroll.value)
+  store.setTransition(true)
+  setTimeout(() => {
+    store.setTransition(false)
+  }, 3000)
   onUpdate()
 })
 

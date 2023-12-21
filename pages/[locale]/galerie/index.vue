@@ -1,22 +1,23 @@
 <template>
   <div class="galerie-page">
-    <blocks-list :blocks="page?.data.slices" />
+    <blocks-list :blocks="galeriePage?.data.slices" />
   </div>
 </template>
 <script lang="ts" setup>
 
 const prismic = usePrismic();
 const route = useRoute();
+const page = usePage();
 
-const {data: page } = useAsyncData("[galerie]", () => prismic.client.getSingle('galerie'))
-console.log(page)
+const {data: galeriePage } = useAsyncData("[galerie]", () => prismic.client.getSingle('galerie'))
+console.log(galeriePage)
 
 useHead({
-  title: page.value?.data.meta_title,
+  title: galeriePage.value?.data.meta_title,
   meta: [
     {
       name: "description",
-      content: page.value?.data.meta_description,
+      content: galeriePage.value?.data.meta_description,
     },
   ],
 });

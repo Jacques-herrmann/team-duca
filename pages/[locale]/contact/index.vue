@@ -1,9 +1,9 @@
 <template>
   <div class="contact-page">
-    <figure-element class="contact-page__cover" :image="page?.data.image"/>
-    <h1 class="contact-page__title">{{page?.data.titre}}</h1>
+    <figure-element class="contact-page__cover" :image="contactPage?.data.image"/>
+    <h1 class="contact-page__title">{{contactPage?.data.titre}}</h1>
     <div class="contact-page__right">
-      <prismic-rich-text class="contact-page__content" :field="page?.data.subtitle" />
+      <prismic-rich-text class="contact-page__content" :field="contactPage?.data.subtitle" />
       <div class="contact-page__form">
         <form
          ref="form"
@@ -33,18 +33,19 @@
 
 const prismic = usePrismic();
 const route = useRoute();
+const page = usePage();
 
 // const form = ref<HTMLFormElement | null>(null);
 
-const {data: page } = useAsyncData("[contact]", () => prismic.client.getSingle('contact'))
-console.log(page)
+const {data: contactPage } = useAsyncData("[contact]", () => prismic.client.getSingle('contact'))
+console.log(contactPage)
 
 useHead({
-  title: page.value?.data.meta_title,
+  title: contactPage.value?.data.meta_title,
   meta: [
     {
       name: "description",
-      content: page.value?.data.meta_description,
+      content: contactPage.value?.data.meta_description,
     },
   ],
 });

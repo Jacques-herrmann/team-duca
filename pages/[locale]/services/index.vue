@@ -1,10 +1,10 @@
 <template>
   <div class="service-page">
-    <figure-element class="service-page__cover" :image="page?.data.cover"></figure-element>
-    <h1 class="service-page__title">{{page?.data.title}}</h1>
+    <figure-element class="service-page__cover" :image="servicePage?.data.cover"></figure-element>
+    <h1 class="service-page__title">{{servicePage?.data.title}}</h1>
     <div class="service-page__right">
-      <prismic-rich-text class="service-page__content" :field="page?.data.content"></prismic-rich-text>
-      <CTA class="service-page__right__cta" :text="page?.data.cta_text" :url="page?.data.cta_link" :is-nuxt-link="true"/>
+      <prismic-rich-text class="service-page__content" :field="servicePage?.data.content"></prismic-rich-text>
+      <CTA class="service-page__right__cta" :text="servicePage?.data.cta_text" :url="servicePage?.data.cta_link" :is-nuxt-link="true"/>
     </div>
   </div>
 </template>
@@ -12,16 +12,17 @@
 
 const prismic = usePrismic();
 const route = useRoute();
+const page = usePage();
 
-const {data: page } = useAsyncData("[services]", () => prismic.client.getSingle('services'))
-console.log(page)
+const {data: servicePage } = useAsyncData("[services]", () => prismic.client.getSingle('services'))
+console.log(servicePage)
 
 useHead({
-  title: page.value?.data.meta_title,
+  title: servicePage.value?.data.meta_title,
   meta: [
     {
       name: "description",
-      content: page.value?.data.meta_description,
+      content: servicePage.value?.data.meta_description,
     },
   ],
 });

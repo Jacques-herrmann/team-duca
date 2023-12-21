@@ -1,7 +1,7 @@
 <template>
   <div class="transition" ref="root">
     <div class="column" v-for="c in 8" :key="c" />
-    <Logo class="logo"/>
+    <Logo class="logo" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -9,37 +9,44 @@ import gsap from "gsap";
 const emit = defineEmits(['end'])
 
 const props = defineProps({})
+const store = useIndexStore()
 const root = ref<HTMLElement | null>(null)
 
-const onClose = () => {
+const onClose = (cb=() => {}) => {
   const tl = gsap.timeline({
     onComplete: () => {
       emit('end')
+      gsap.set(root.value, { background: 'transparent', autoAlpha: 0 })
+      cb()
     }
   })
-  tl.set(root.value, { background: 'transparent' })
+  tl.set(root.value, { background: 'transparent'})
   tl.to(root.value?.querySelector('.logo') as HTMLElement, {opacity: 0, duration: 0.4, ease: 'linear'},0)
   tl.to(root.value?.querySelectorAll('.column') as NodeList, {height: '0', duration: 0.3, ease: 'power2.inOut', stagger: 0.06}, 0)
 }
 
-const onEnter = () => {
-  const tl = gsap.timeline({onComplete: () => {gsap.set(root.value, { background: 'transparent' })}})
+const onEnter = (cb=() => {}) => {
+  const tl = gsap.timeline({onComplete: () => {
+    gsap.set(root.value, { background: 'transparent' })
+    cb()
+  }})
 
-  tl.set(root.value, { background: '#171717' })
   tl.set(root.value?.querySelectorAll('.column') as NodeList, { height: '0' })
+  tl.set(root.value, { autoAlpha: 1 })
 
-  tl.to(root.value?.querySelector('.logo') as HTMLElement, { opacity: 1, duration: 1, ease: 'linear' }, 0)
+  tl.to(root.value?.querySelector('.logo') as HTMLElement, { opacity: 1, duration: 0.4, ease: 'linear' }, 0.6)
   tl.to(root.value?.querySelectorAll('.column') as NodeList, { height: '100%', duration: 0.6, ease: 'power2.inOut', stagger: 0.1 }, 0)
-
 
 }
 
-onMounted(() => {
-  onEnter()
-  setTimeout(() => {
+watch(() => store.isTransitionVisible, (value) => {
+  if(value) {
+    onEnter()
+  } else {
     onClose()
-  }, 3000)
+  }
 })
+
 
 </script>
 

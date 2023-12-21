@@ -3,8 +3,9 @@ import { defineStore } from 'pinia'
 export const useIndexStore = defineStore('index', {
   state: () => {
     return {
-        isMobile: false,
-        scroll: null
+      isTransitionVisible: false,
+      isMobile: false,
+      scroll: null
     }
   },
   actions: {
@@ -13,6 +14,9 @@ export const useIndexStore = defineStore('index', {
     },
     setIsMobile(isMobile) {
       this.isMobile = isMobile
+    },
+    setTransition(transition) {
+      this.isTransitionVisible = transition
     }
   },
 })

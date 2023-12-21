@@ -7,6 +7,7 @@
 
 const prismic = usePrismic();
 const route = useRoute();
+const page = usePage();
 
 const {data: homepage } = useAsyncData("[home]", () => prismic.client.getSingle('home'))
 console.log(homepage)
