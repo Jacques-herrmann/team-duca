@@ -1,9 +1,7 @@
 <template>
-  <div>
     <div class="slider-element" ref="root">
-      <slot>{{ currentT }}</slot>
-      <slot>{{ nextT }}</slot>
-    </div>
+      <span>{{ currentT }}</span>
+      <span>{{ nextT }}</span>
   </div>
 </template>
 <script lang="ts" setup>
