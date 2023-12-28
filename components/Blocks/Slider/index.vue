@@ -6,6 +6,7 @@
     <div class="slider__inner">
       <BlocksSliderElement ref="title" class="slider__title" :list="block.items" :current="current" l-key="title" />
       <BlocksSliderElement ref="subtitle" class="slider__subtitle" :list="block.items" :current="current" l-key="subtitle" />
+
       <prismic-rich-text :field="description" class="slider__description" />
     </div>
     <div class="slider__btn slider__btn--next" @click="onNext">
