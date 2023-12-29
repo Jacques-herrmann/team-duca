@@ -60,7 +60,7 @@ onMounted(() => {
     left: 50%
     transform: translate(-50%, -50%)
     width: 100%
-    max-width: 700px
+    max-width: 800px
     padding: 0 40px
     color: $white
     z-index: 1
@@ -74,6 +74,7 @@ onMounted(() => {
       display: block
   &__text
     @include text()
+
   &__logo-l
     position: absolute
     top: 0

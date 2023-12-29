@@ -50,7 +50,7 @@ const toggleNav = () => {
   z-index: $z-header
   height: $header-height
   width: 100%
-  //background-color: $black
+  background: $gradient
   padding: 0 90px
   &__burger
     position: absolute

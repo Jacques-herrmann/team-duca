@@ -47,15 +47,15 @@ useHead({
 
   &__right
     width: 45%
-    margin: 0 auto
-    max-width: 400px
-    background-color: rgba(255, 0, 0, 0.27)
+    margin-top: 14rem
+    padding: 0 45px
     display: flex
     flex-direction: column
+    justify-content: flex-end
     @include text()
     &__cta
       margin-top: 100px
-      align-self: flex-end
+      align-self: end
 
 
   &__cover

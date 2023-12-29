@@ -2,7 +2,7 @@ import {ref, onMounted, onBeforeMount} from "vue";
 
 const defaultOptions = {
     root: null,
-    rootMargin: '0px 0px 0px 0px',
+    rootMargin: '100px 0px -100px 0px',
     threshold: [0],
     onReveal: (entry) => {
     },

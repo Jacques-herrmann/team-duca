@@ -10,7 +10,6 @@ const route = useRoute();
 const page = usePage();
 
 const {data: galeriePage } = useAsyncData("[galerie]", () => prismic.client.getSingle('galerie'))
-console.log(galeriePage)
 
 useHead({
   title: galeriePage.value?.data.meta_title,
