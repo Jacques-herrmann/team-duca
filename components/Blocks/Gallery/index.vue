@@ -15,7 +15,7 @@
 </template>
 <script lang="ts" setup>
 import { defineProps } from 'vue'
-import Slider from "@/utils/slider/webgl";
+import Slider from "@/utils/slider/webgl"
 
 const props = defineProps<{
   block: any

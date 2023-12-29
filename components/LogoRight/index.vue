@@ -86,33 +86,33 @@ onMounted(() => {
   const paths = Array.from(root.value?.querySelectorAll('path') as NodeList)
   gsap.set(paths, {
     fillOpacity: 0,
-    stroke: '#f9f9f9',
-    strokeWidth: 1,
-    strokeOpacity: 0.05,
-    strokeDasharray: 1500,
-    strokeDashoffset: 1500,
+    // stroke: '#f9f9f9',
+    // strokeWidth: 1,
+    // strokeOpacity: 0.05,
+    // strokeDasharray: 1500,
+    // strokeDashoffset: 1500,
   })
-
-  paths.forEach((path) => {
-    const length = path.getTotalLength()
-
-    gsap.set(path, {
-      strokeDasharray: length,
-      strokeDashoffset: length,
-    })
-    tl.to(path, {
-      duration: 0.001 * length,
-      strokeDashoffset: 0,
-      ease: 'linear'
-    }, 0)
-  })
+  //
+  // paths.forEach((path) => {
+  //   const length = path.getTotalLength()
+  //
+  //   gsap.set(path, {
+  //     strokeDasharray: length,
+  //     strokeDashoffset: length,
+  //   })
+  //   tl.to(path, {
+  //     duration: 0.001 * length,
+  //     strokeDashoffset: 0,
+  //     ease: 'linear'
+  //   }, 0)
+  // })
 
   tl.to(paths, {
     duration: 1,
     fillOpacity: 0.1,
     strokeOpacity: 0,
     ease: 'linear'
-  }, 3)
+  }, 0.4)
 })
 
 defineExpose({

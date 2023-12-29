@@ -1,8 +1,8 @@
 <template>
-  <div class="b-keyfacts">
-    <BlocksKeyFactsElement :number="block.primary.number_1" :text="block.primary.text_1" />
-    <BlocksKeyFactsElement :number="block.primary.number_2" :text="block.primary.text_2" />
-    <BlocksKeyFactsElement :number="block.primary.number_3" :text="block.primary.text_3" />
+  <div class="keyfacts">
+    <BlocksKeyFactsElement :number="block.primary.number_1" :text="block.primary.text_1" :delay="0"/>
+    <BlocksKeyFactsElement :number="block.primary.number_2" :text="block.primary.text_2" :delay="0.1"/>
+    <BlocksKeyFactsElement :number="block.primary.number_3" :text="block.primary.text_3" :delay="0.2"/>
   </div>
 </template>
 <script lang="ts" setup>
@@ -15,7 +15,7 @@ const props = defineProps<{
 
 </script>
 <style scoped lang="sass">
-.b-keyfacts
+.keyfacts
   position: relative
   width: 100%
   display: flex

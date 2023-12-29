@@ -13,7 +13,7 @@ const store = useIndexStore()
 const root = ref<HTMLElement | null>(null)
 
 const onClose = (cb=() => {}) => {
-  const tl = gsap.timeline({
+  const tl = gsap.timeline({delay: 0.2,
     onComplete: () => {
       emit('end')
       gsap.set(root.value, { background: 'transparent', autoAlpha: 0 })

@@ -28,7 +28,7 @@ const props = defineProps<{
     letter-spacing: 0.1rem
     margin-top: 10rem
     width: 100%
-    max-width: 700px
+    max-width: 800px
     text-align: center
     color: $white
 
