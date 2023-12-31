@@ -1,6 +1,8 @@
 <template>
-  <div class="planning">
-    <h2 class="planning__title">{{ block.primary.title }}</h2>
+  <div class="planning" ref="root">
+    <h2 class="planning__title">
+      <span class="planning__title--letter" v-for="l in block.primary.title">{{ l }}</span>
+    </h2>
     <prismic-rich-text class="planning__content" :field="block.primary.content" />
     <ul class="planning__filter">
       <li class="planning__filter__item" @click="filterEvents('clear')">Tout les cours</li>
@@ -20,15 +22,26 @@
 </template>
 <script lang="ts" setup>
 import { defineProps } from 'vue'
+import gsap from "gsap";
+import A from "@/assets/animations";
 
 const props = defineProps<{
   block: any
 }>()
 
+const root = ref<HTMLElement | null>(null)
+const intersect = useIntersect(root, {
+  threshold: 0.4,
+  rootMargin: '100px 0px 0px 0px',
+  onReveal: () => {
+    draw()
+  },
+})
+const tl = gsap.timeline({ paused: true })
+
 const downloadCalendar = () => {
   window.open('/team-duca-planning.pdf', '_blank')
 }
-
 const formatPlanning = () => {
   return props.block.items.reduce((acc: any, event: any) => {
     const day = event.day
@@ -49,7 +62,6 @@ const getAllSports = () => {
     return acc
   }, [])
 }
-
 const filterEvents = (sport: string) => {
   console.log(sport)
   // filter events by sport
@@ -66,6 +78,15 @@ const filterEvents = (sport: string) => {
   }
 }
 
+const draw = () => {
+  tl.play()
+}
+
+onMounted(() => {
+  tl.from(root.value?.querySelectorAll('.planning__title--letter') as NodeListOf<HTMLElement>, A.title)
+  tl.from(root.value?.querySelectorAll('.planning__content') as NodeListOf<HTMLElement>, A.opacity, 0.2)
+})
+
 </script>
 <style scoped lang="sass">
 
@@ -75,12 +96,17 @@ const filterEvents = (sport: string) => {
   display: flex
   flex-direction: column
   align-items: center
-  padding: 4rem 0
+  padding: 4rem 0 10rem 0
   &__title
     @include h1()
     color: white
     text-align: center
     margin-top: 200px
+    overflow: hidden
+    & span
+      display: inline-block
+      white-space: pre
+      will-change: transform
 
   &__content
     @include text()

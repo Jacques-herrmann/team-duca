@@ -71,7 +71,7 @@ onMounted(() => {
     & > div
       overflow: hidden
     & span
-      display: block
+      display: inline-block
   &__text
     @include text()
 

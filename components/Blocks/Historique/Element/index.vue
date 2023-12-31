@@ -8,10 +8,11 @@
    }"
   >
     <figure-element class="history-element__img" :image="media" />
-
     <Parallax :active="intersect.active.value" :speed="3">
     <div class="history-element__content">
-      <h3 class="history-element__title">{{title}}</h3>
+      <h3 class="history-element__title">
+        <div v-for="t in sTitle"><span>{{t}}</span></div>
+      </h3>
       <prismic-rich-text class="history-element__text" :field="content" />
     </div>
     </Parallax>
@@ -19,6 +20,8 @@
 </template>
 <script lang="ts" setup>
 import { defineProps } from 'vue'
+import { gsap } from 'gsap'
+import A  from '@/assets/animations'
 
 const props = defineProps<{
   index: Number,
@@ -30,8 +33,20 @@ const props = defineProps<{
 
 const root = ref<HTMLElement | null>(null)
 const intersect = useIntersect(root, {
-  threshold: 0.2
+  threshold: 0.2,
+  rootMargin: '100px 0px 0px 0px',
+  onReveal: () => {
+    draw()
+  },
 })
+
+const sTitle = computed(() => props.title.split('\n'))
+
+const draw = () => {
+  const tl = gsap.timeline()
+  tl.from(root.value?.querySelectorAll('.history-element__title span') as NodeListOf<HTMLElement>, A.h2)
+  tl.from(root.value?.querySelectorAll('.history-element__text') as NodeListOf<HTMLElement>, A.opacity)
+}
 
 </script>
 <style scoped lang="sass">
@@ -80,6 +95,11 @@ $margin: 90px
 
   &__title
     @include h2()
+    & > div
+      overflow: hidden
+    & span
+      display: block
+      height: 4.5rem
 
   &__text
     @include text()
