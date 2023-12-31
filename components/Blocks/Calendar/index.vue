@@ -63,7 +63,7 @@ const getAllSports = () => {
   }, [])
 }
 const filterEvents = (sport: string) => {
-  console.log(sport)
+  // console.log(sport)
   // filter events by sport
   const all = document.querySelectorAll(".event")
   all.forEach((el: any) => {
