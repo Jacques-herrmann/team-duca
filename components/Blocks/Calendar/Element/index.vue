@@ -65,6 +65,7 @@ const splitSport = computed(() => {
   margin: 1px
   padding: 10px
   gap: 5px
+  overflow: hidden
   &__title
     @include title(20px, 100%)
     white-space: pre-line
@@ -74,12 +75,14 @@ const splitSport = computed(() => {
     color: white
     display: grid
     place-items: center
+    transition: transform 0.2s ease-in-out
   &__time
     @include text()
     display: flex
     color: white
     font-size: 12px
     gap: 2px
+    transition: transform 0.2s ease-in-out
 
   &.MMA
     background-color: #C93D3D
@@ -92,6 +95,12 @@ const splitSport = computed(() => {
 
   &.Kick-boxing
     background-color: #3DC9AF
+
+  &:hover
+    & .event__title
+      transform: scale(1.05)
+    //& .event__time
+    //  transform: scale(1.05)
 
 
 </style>

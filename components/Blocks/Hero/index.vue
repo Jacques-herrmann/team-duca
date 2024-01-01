@@ -27,18 +27,30 @@ const props = defineProps<{
   block: any
 }>()
 
+const store = useIndexStore();
 const root = ref<HTMLElement | null>(null)
-const tl = gsap.timeline()
-
 const intersect = useIntersect(root)
+const tl = gsap.timeline({paused: true})
+
+watch(() => store.isTransitionVisible, (value) => {
+  if(!value) {
+    setTimeout(() => {
+      draw()
+    }, 1000)
+  }
+})
+
+const draw = () => {
+  tl.play()
+}
 
 onMounted(() => {
-  tl.from('.b-hero__title--letter', A.title, 3.4)
+  tl.from('.b-hero__title--letter', A.title)
   tl.from('.b-hero__footer h2', {
     opacity: 0,
     duration: 0.6,
     ease: 'linear'
-  }, 4)
+  }, 0.6)
 })
 
 

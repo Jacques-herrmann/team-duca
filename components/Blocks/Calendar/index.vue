@@ -24,6 +24,8 @@
 import { defineProps } from 'vue'
 import gsap from "gsap";
 import A from "@/assets/animations";
+import {shuffle} from "~/utils/math";
+import { jsPDF } from "jspdf"
 
 const props = defineProps<{
   block: any
@@ -40,7 +42,20 @@ const intersect = useIntersect(root, {
 const tl = gsap.timeline({ paused: true })
 
 const downloadCalendar = () => {
-  window.open('/team-duca-planning.pdf', '_blank')
+  const doc = new jsPDF()
+  const calendar = document.querySelector('.planning__container') as HTMLElement
+  doc.html(calendar,  {
+    x: 3,
+    y: 3,
+    html2canvas: {
+      scale: 0.14,
+      windowWidth: 1920,
+      windowHeight: 1080,
+    },
+    callback: function (doc) {
+      doc.save('team-duca-planning.pdf')
+    },
+  })
 }
 const formatPlanning = () => {
   return props.block.items.reduce((acc: any, event: any) => {
@@ -85,6 +100,25 @@ const draw = () => {
 onMounted(() => {
   tl.from(root.value?.querySelectorAll('.planning__title--letter') as NodeListOf<HTMLElement>, A.title)
   tl.from(root.value?.querySelectorAll('.planning__content') as NodeListOf<HTMLElement>, A.opacity, 0.2)
+  tl.from(root.value?.querySelectorAll('.planning__container') as NodeListOf<HTMLElement>, {
+    height: 0,
+    duration: 0.6,
+    ease: 'power3.out',
+  }, 0.6)
+  tl.from(root.value?.querySelectorAll('.planning__filter') as NodeListOf<HTMLElement>, A.opacity, 0.6)
+  tl.from(root.value?.querySelectorAll('.download') as NodeListOf<HTMLElement>, A.opacity, 0.8)
+  tl.from(root.value?.querySelectorAll('.asterix') as NodeListOf<HTMLElement>, A.opacity, 0.8)
+
+  let elements = root.value?.querySelectorAll('.planning__container .event') as NodeListOf<HTMLElement>
+  elements = shuffle(Array.from(elements))
+  tl.from(elements, {
+    height: 0,
+    padding: 0,
+    duration: 0.6,
+    stagger: 0.02,
+    ease: 'power3.out',
+  }, 1.2)
+
 })
 
 </script>
