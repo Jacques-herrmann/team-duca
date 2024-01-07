@@ -4,6 +4,7 @@ export const useIndexStore = defineStore('index', {
   state: () => {
     return {
       isTransitionVisible: false,
+      isFullscreenVisible: false,
       isMobile: false,
       scroll: null
     }
@@ -17,6 +18,9 @@ export const useIndexStore = defineStore('index', {
     },
     setTransition(transition) {
       this.isTransitionVisible = transition
-    }
+    },
+    setFullscreen(fullscreen) {
+      this.isFullscreenVisible = fullscreen
+    },
   },
 })

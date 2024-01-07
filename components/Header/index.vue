@@ -99,6 +99,7 @@ const toggleNav = () => {
       text-transform: uppercase
       color: $white
       text-decoration: none
+      user-select: none
       cursor: pointer
       transition: color 0.2s ease-in-out
       margin-left: 60px

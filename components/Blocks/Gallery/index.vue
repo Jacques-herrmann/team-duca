@@ -84,6 +84,10 @@ onMounted(() => {
       & img
         opacity: 1 !important
 
+    &:hover
+      width: 75px
+      height: 75px
+
     & img
       width: 100%
       height: 100%

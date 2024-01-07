@@ -1,6 +1,10 @@
 <template>
   <div class="service-page">
-    <figure-element class="service-page__cover" :image="servicePage?.data.cover"></figure-element>
+    <div class="service-page__cover" @click="onVideoClick">
+      <figure-element class="service-page__img" :image="servicePage?.data.cover"/>
+      <IconPlay class="service-page__icon" />
+    </div>
+    <video-fullscreen v-if="visible" :video="servicePage?.data.video"/>
     <h1 class="service-page__title">{{servicePage?.data.title}}</h1>
     <div class="service-page__right">
       <prismic-rich-text class="service-page__content" :field="servicePage?.data.content"></prismic-rich-text>
@@ -13,6 +17,7 @@
 const prismic = usePrismic();
 const route = useRoute();
 const page = usePage();
+const store = useIndexStore()
 
 const {data: servicePage } = useAsyncData("[services]", () => prismic.client.getSingle('services'))
 console.log(servicePage)
@@ -26,6 +31,13 @@ useHead({
     },
   ],
 });
+
+const visible = computed(() => store.isFullscreenVisible)
+
+
+const onVideoClick = () => {
+  store.isFullscreenVisible = true
+}
 </script>
 
 <style scoped lang="sass">
@@ -57,13 +69,35 @@ useHead({
       margin-top: 100px
       align-self: end
 
-
   &__cover
+    position: relative
     width: 55%
     height: 100vh
+    margin-bottom: 2rem
+    cursor: pointer
+    overflow: hidden
+    &:hover
+      & .service-page__icon
+        opacity: 1
+
+      & .service-page__img
+        transform: scale(1.02)
+
+  &__img
+    width: 100%
+    height: 100%
     object-fit: cover
     object-position: center
-    margin-bottom: 2rem
+    transition: transform 0.6s ease-out
+
+  &__icon
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    height: 70px
+    width: 70px
+    opacity: 0.8
 
   &__content
     color: $white

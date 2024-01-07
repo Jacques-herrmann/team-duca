@@ -565,6 +565,17 @@ interface ServicesDocumentData {
   cta_link: prismic.KeyTextField;
 
   /**
+   * video field in *Services*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: services.video
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  video: prismic.LinkToMediaField;
+
+  /**
    * Slice Zone field in *Services*
    *
    * - **Field Type**: Slice Zone
