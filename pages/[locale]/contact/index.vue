@@ -1,7 +1,9 @@
 <template>
-  <div class="contact-page">
+  <div class="contact-page" ref="root">
     <figure-element class="contact-page__cover" :image="contactPage?.data.image"/>
-    <h1 class="contact-page__title">{{contactPage?.data.titre}}</h1>
+    <h1 class="contact-page__title">
+      <div v-for="t in title"><span>{{t}}</span></div>
+    </h1>
     <div class="contact-page__right">
       <prismic-rich-text class="contact-page__content" :field="contactPage?.data.subtitle" />
       <div class="contact-page__form">
@@ -31,8 +33,11 @@
 </template>
 <script lang="ts" setup>
 
+import gsap from "gsap";
+import A from "assets/animations";
+
 const prismic = usePrismic();
-const route = useRoute();
+const store = useIndexStore();
 const page = usePage();
 
 // const form = ref<HTMLFormElement | null>(null);
@@ -50,6 +55,27 @@ useHead({
   ],
 });
 
+const root = ref<HTMLElement | null>(null)
+const title = computed(() => contactPage.value?.data.titre.split('\n'))
+const tl = gsap.timeline({paused: true})
+
+watch(() => store.isTransitionVisible, (value) => {
+  if(!value) {
+    setTimeout(() => {
+      tl.play()
+    }, 280)
+  }
+})
+
+
+onMounted(() => {
+  tl.from(root.value?.querySelectorAll(".contact-page__cover") as NodeList, A.imageWidth, 0)
+  tl.from(root.value?.querySelectorAll(".contact-page__title span") as NodeList, A.h2, 0.4)
+  tl.from(root.value?.querySelectorAll(".contact-page__content") as NodeList, A.opacity, 0.4)
+  tl.from(root.value?.querySelectorAll(".contact-page__form") as NodeList, A.opacity, 0.5)
+  tl.from(root.value?.querySelectorAll(".contact-page__cta") as NodeList, A.opacity, 0.6)
+
+})
 </script>
 
 <style scoped lang="sass">
@@ -68,6 +94,10 @@ useHead({
     left: 45%
     font-weight: 800
     color: $white
+    & > div
+      overflow: hidden
+    & span
+      display: inline-block
 
   &__right
     width: 45%
