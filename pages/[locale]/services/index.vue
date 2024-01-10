@@ -126,6 +126,7 @@ onMounted(() => {
     height: 70px
     width: 70px
     opacity: 0.8
+    transition: opacity 0.6s ease-out
 
   &__content
     color: $white

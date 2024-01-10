@@ -2,7 +2,7 @@
   <div class="cta">
     <div class="cta__background"/>
     <div class="cta__background"/>
-    <NuxtLink v-if="isNuxtLink" :to="`/${locale}${url}`" class="cta__link">
+    <NuxtLink v-if="isNuxtLink" :to="`${url}`" class="cta__link">
       {{ text }}
     </NuxtLink>
     <a v-else :href="text" class="cta__link">
