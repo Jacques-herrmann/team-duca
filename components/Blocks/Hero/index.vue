@@ -1,21 +1,20 @@
 <template>
-  <div class="b-hero" ref="root">
-<!--    <Parallax :active="intersect.active.value" :speed="1">-->
-      <WebglImage class="b-hero__background" :image="block.primary.hero"/>
-<!--    </Parallax>-->
-    <!--    <img class="b-hero__background" :src="block.primary.hero.url" :alt="block.primary.hero.alt">-->
-    <Parallax class="b-hero__content" :active="intersect.active.value" :speed="2" >
+  <div class="hero" ref="root">
+    <WebglImage class="hero__background" :image="block.primary.hero"/>
+<!--    <Logo class="hero__logo" @click="toHome" />-->
+    <Parallax class="hero__content" :active="intersect.active.value" :speed="2" >
       <div>
-        <h1 class="b-hero__title">
-          <span class="b-hero__title--letter" v-for="l in block.primary.title">{{ l }}</span>
+        <h1 class="hero__title">
+          <span class="hero__title--word" v-for="s in splitTitle">
+            <span class="hero__title--letter" v-for="l in s">{{ l }}</span>
+          </span>
         </h1>
-        <div class="b-hero__footer">
-          <h2 class="b-hero__sub">{{ block.primary.text_left}}</h2>
-          <h2 class="b-hero__sub">{{ block.primary.text_right}}</h2>
+        <div class="hero__footer">
+          <h2 class="hero__sub">{{ block.primary.text_left}}</h2>
+          <h2 class="hero__sub">{{ block.primary.text_right}}</h2>
         </div>
       </div>
     </Parallax>
-    <!--    <CTA class="b-hero__cta" :text="block.primary.cta_text" :url="block.primary.cta_url" :is-nuxt-link="true"/>-->
   </div>
 </template>
 <script lang="ts" setup>
@@ -28,9 +27,12 @@ const props = defineProps<{
 }>()
 
 const store = useIndexStore();
+const locale = 'fr';
 const root = ref<HTMLElement | null>(null)
 const intersect = useIntersect(root)
 const tl = gsap.timeline({paused: true})
+
+const splitTitle = computed(() => props.block.primary.title.split(' '))
 
 watch(() => store.isTransitionVisible, (value) => {
   if(!value) {
@@ -40,13 +42,17 @@ watch(() => store.isTransitionVisible, (value) => {
   }
 })
 
+const toHome = () => {
+ navigateTo(`/${locale}`)
+}
+
 const draw = () => {
   tl.play()
 }
 
 onMounted(() => {
-  tl.from('.b-hero__title--letter', A.title)
-  tl.from('.b-hero__footer h2', {
+  tl.from('.hero__title--letter', A.title)
+  tl.from('.hero__footer h2', {
     opacity: 0,
     duration: 0.6,
     ease: 'linear'
@@ -56,12 +62,21 @@ onMounted(() => {
 
 </script>
 <style scoped lang="sass">
-.b-hero
+.hero
   position: relative
   width: 100%
   height: 100vh
   height: calc(var(--vh, 1vh) * 100)
   overflow: hidden
+  &__logo
+    position: absolute
+    top: 40vw
+    left: 68vw
+    height: 100px
+    width: 100px
+    pointer-events: all
+    z-index: 1
+    cursor: pointer
   &__background
     position: absolute
     top: 0
@@ -75,41 +90,69 @@ onMounted(() => {
 
   &__content
     position: absolute
-    bottom: 2.3vw
-    //left: 50%
+    padding: 4vw 6vw
     width: 100%
-    //transform: translateX(-50%)
+    height: 100%
     z-index: 1
+    @include lg
+      bottom: 2.3vw
+      left: unset
+      padding: 0
+      height: unset
 
   &__title
-    @include h1(20vw)
+    @include h1(35vw)
     font-weight: 800 !important
-    text-align: center
+    text-align: left
     color: $white
-    overflow: hidden
     pointer-events: none
-    & span
+    &--word
+      overflow: hidden
+      display: block
+      @include lg
+        display: inline-block
+        white-space: pre
+        will-change: transform
+        &:first-child
+          margin-right: 2vw
+    &--letter
       display: inline-block
       white-space: pre
       will-change: transform
 
+    @include lg
+      @include h1(20vw)
+      text-align: center
+
   &__footer
+    position: absolute
+    bottom: 4vh
+    left: 50%
+    transform: translateX(-50%)
     width: 100%
     display: flex
     justify-content: space-between
     align-items: flex-end
     padding: 0 8.4vw
     pointer-events: none
+    @include lg
+      position: unset
+      transform: none
+
   &__sub
-    @include h2(1.8vw)
+    @include h2(3.2vw)
     font-weight: 800 !important
     letter-spacing: 0.08rem
-    width: 21.5vw
+    width: 50%
     color: $white
     &:first-child
       text-align: left
     &:last-child
       text-align: right
+
+    @include lg
+      @include h2(1.8vw)
+      width: 21.5vw
 
   &__cta
     position: absolute

@@ -57,8 +57,8 @@ watch(() => store.isTransitionVisible, (value) => {
   top: 0
   left: 0
   z-index: $z-transition
-  height: 100%
-  width: 100%
+  height: 100vh
+  width: 100vw
   background: $black
   display: flex
   align-items: flex-start

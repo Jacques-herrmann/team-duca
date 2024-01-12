@@ -47,11 +47,12 @@ const toggleNav = () => {
   position: fixed
   top: 0
   left: 0
-  z-index: $z-header
   height: $header-height
-  width: 100%
+  width: 100vw
   background: $gradient
   padding: 0 90px
+  @include lg
+    z-index: $z-header
   &__burger
     position: absolute
     right: 40px
