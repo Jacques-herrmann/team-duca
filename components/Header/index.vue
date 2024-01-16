@@ -49,26 +49,29 @@ const toggleNav = () => {
   left: 0
   height: $header-height
   width: 100vw
-  background: $gradient
   padding: 0 90px
+  z-index: $z-header
   @include lg
-    z-index: $z-header
+    background: $gradient
   &__burger
     position: absolute
-    right: 40px
-    top: calc( 40px + (50px / 2))
+    right: 20px
+    top: 20px
     z-index: 2
     @include md
       display: none
 
   &__logo
     position: absolute
-    left: 40px
-    top: 40px
-    height: 100px
-    width: 100px
+    left: 14px
+    top: 10px
+    height: 60px
+    width: 60px
     cursor: pointer
     pointer-events: all
+    opacity: 0
+    @include lg
+      opacity: 1
 
 
   &__menu

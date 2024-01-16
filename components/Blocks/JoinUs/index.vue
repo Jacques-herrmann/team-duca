@@ -54,7 +54,7 @@ onMounted(() => {
   align-items: center
 
   &__title
-    @include h1()
+    @include h1(12vw)
     font-weight: 900
     letter-spacing: 0.1rem
     margin-top: 10rem
@@ -69,6 +69,10 @@ onMounted(() => {
       display: inline-block
       white-space: pre
       will-change: transform
+
+    @include lg
+      @include h1()
+      margin-bottom: 10rem
 
   &__cta
     position: relative

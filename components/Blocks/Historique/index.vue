@@ -1,7 +1,7 @@
 <template>
   <div class="history" ref="root">
     <div class="history__cover">
-      <parallax :active="intersect.active.value" :speed="3" :is-absolute="true">
+      <parallax :active="intersect.active.value" :speed="3" :speed-mobile="1.2" :is-absolute="true">
         <figure-element class="history__cover-image" :image="block.primary.cover" />
       </parallax>
     </div>

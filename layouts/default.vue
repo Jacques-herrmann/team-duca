@@ -31,6 +31,10 @@ const onUpdate = () => {
   scroll.value?.raf()
 }
 
+const onResize = () => {
+  store.setIsMobile(window.innerWidth < 1024)
+}
+
 onMounted(() => {
   gsap.to(noiseOpacity, { value: 0.04, duration: 1, ease: 'linear'})
   scroll.value = new Lenis()
@@ -39,11 +43,15 @@ onMounted(() => {
   setTimeout(() => {
     store.setTransition(false)
   }, 3000)
+  onResize()
   onUpdate()
+
+  window.addEventListener('resize', onResize)
 })
 
 onUnmounted(() => {
   scroll.value?.destroy()
+  window.removeEventListener('resize', onResize)
 })
 
 </script>

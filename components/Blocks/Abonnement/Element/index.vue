@@ -72,18 +72,21 @@ onMounted(() => {
   justify-content: space-between
   overflow: hidden
 
+
   &__parallax
     left: 0
 
   &__cover
-    width: 100%
-    //height: 100%
+    //width: 100%
+    height: 100%
     position: absolute
     top: 50%
     left: 50%
     transform: translate(-50%, -50%)
     z-index: -1
-
+    @include lg
+      width: 100%
+      height: unset
   &__top
     &__title
       @include h3(4.2rem, 100%)

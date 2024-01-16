@@ -1,6 +1,6 @@
 <template>
   <div class="transition" ref="root">
-    <div class="column" v-for="c in 8" :key="c" />
+    <div class="column" v-for="c in columns" :key="c" />
     <Logo class="logo" />
   </div>
 </template>
@@ -10,7 +10,12 @@ const emit = defineEmits(['end'])
 
 const props = defineProps({})
 const store = useIndexStore()
+const isMobile = computed(() => store.isMobile)
 const root = ref<HTMLElement | null>(null)
+
+const columns = computed(() => {
+  return isMobile.value ? 6 : 8
+})
 
 const onClose = (cb=() => {}) => {
   const tl = gsap.timeline({delay: 0.2,

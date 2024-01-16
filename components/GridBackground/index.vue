@@ -7,6 +7,9 @@
 </template>
 <script lang="ts" setup>
 
+import {useIndexStore} from "~/stores";
+import {computed} from "vue";
+
 const props = defineProps({
   columns: {
     type: Number,
@@ -16,6 +19,13 @@ const props = defineProps({
     type: String,
     default: '90px'
   }
+})
+
+const store = useIndexStore()
+const isMobile = computed(() => store.isMobile)
+
+const m = computed(() => {
+  return isMobile.value ? '0' : props.margin
 })
 </script>
 
@@ -29,7 +39,7 @@ const props = defineProps({
   height: 100%
   width: 100%
   background-color: $black
-  padding: 0 v-bind(margin)
+  padding: 0 v-bind(m)
   display: flex
   align-items: center
   justify-content: center

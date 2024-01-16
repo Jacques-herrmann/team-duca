@@ -56,30 +56,41 @@ onMounted(() => {
   padding-top: 10rem
 
   &__title
-    @include h1()
+    @include h1(14vw)
     font-weight: 900
     letter-spacing: 0.1rem
     width: 100%
     text-align: center
     color: $white
-    margin-bottom: 10rem
+    margin-bottom: 6rem
     overflow: hidden
     & span
       display: inline-block
       white-space: pre
       will-change: transform
 
+    @include lg
+      @include h1()
+      margin-bottom: 10rem
+
   &__list
     width: 100%
     display: flex
     align-items: center
     justify-content: center
-    gap: 40px
+    flex-direction: column
+    gap: 100px
+    @include lg
+      flex-direction: row
+      gap: 40px
 
   &__item
-    height: 60px
+    height: 40px
     max-width: 200px
     margin: 0 1rem
+
+    @include lg
+      height: 60px
 
     img
       height: 100%

@@ -61,7 +61,7 @@ onMounted(() => {
   width: 100%
 
   &__title
-    @include h1()
+    @include h1(16vw)
     font-weight: 900
     letter-spacing: 0.1rem
     padding-top: 12rem
@@ -73,11 +73,20 @@ onMounted(() => {
       white-space: pre
       will-change: transform
 
+    @include lg
+      @include h1()
+      padding-top: 20rem
+
   &__subtitle
-    @include text()
+    @include text(4vw)
     color: $white
     text-align: center
-    margin: 2rem auto 8rem auto
+    margin: 2rem auto 4rem auto
     max-width: 700px
+    padding: 0 20px
+    @include lg
+      @include text()
+      padding: 0
+      margin: 2rem auto 8rem auto
 
 </style>

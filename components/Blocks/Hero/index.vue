@@ -91,6 +91,7 @@ onMounted(() => {
   &__content
     position: absolute
     padding: 4vw 6vw
+    padding-top: 60px
     width: 100%
     height: 100%
     z-index: 1

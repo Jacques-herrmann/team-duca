@@ -6,7 +6,6 @@
     <div class="slider__inner">
       <BlocksSliderElement ref="title" class="slider__title" :list="block.items" :current="current" l-key="title" />
       <BlocksSliderElement ref="subtitle" class="slider__subtitle" :list="block.items" :current="current" l-key="subtitle" />
-
       <prismic-rich-text :field="description" class="slider__description" />
     </div>
     <div class="slider__btn slider__btn--next" @click="onNext">
@@ -83,54 +82,73 @@ onMounted(() => {
 
   &__inner
     height: 100%
-    width: calc(100% - 180px)
+    width: calc(100% - 60px)
     display: flex
     flex-direction: column
-    padding: 90px
-    padding-top: 40vh
+    padding: 90px 20px
     pointer-events: none
     z-index: 1
+    @include lg
+      width: calc(100% - 180px)
+      padding: 90px
+      padding-top: 40vh
 
   &__description
-    @include text()
+    @include text(3.5vw)
     color: $white
     max-width: 700px
     margin-top: 40px
+    @include lg
+      @include text()
 
   &__btn
     height: 100%
-    width: 90px
+    width: 30px
     z-index: 1
     display: flex
     align-items: center
     justify-content: center
     background: transparent
     cursor: pointer
+    @include lg
+      width: 90px
 
     & svg
       transition: transform .3s ease-out
+      transform: scale(0.5)
+      @include lg
+        transform: scale(1)
+
     &:hover
       & svg
-        transform: translateX(-2px)
+        transform: translateX(-2px) scale(0.5)
+        @include lg
+          transform: translateX(-2px) scale(1)
 
     &--next
       transform: rotate(180deg)
 
   &__title
-    @include h1()
+    @include h1(20vw)
     position: relative
-    height: 6.1rem
+    height: 18vw
     z-index: 1
     color: $red
     pointer-events: none
+    @include lg
+      @include h1()
+      height: 6.1rem
 
   &__subtitle
-    @include title(1.5rem)
-    height: 1.5rem
+    @include title(5vw)
+    height: 5vw
     position: relative
     z-index: 1
     color: $white
     pointer-events: none
+    @include lg
+      @include title(1.5rem)
+      height: 1.5rem
 
 
 </style>

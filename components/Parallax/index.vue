@@ -81,7 +81,7 @@ export default {
         let offset, scrollFactor, speed;
         if (isMobile.value) {
           speed = props.speedMobile || 1;
-          speed = 0.2
+          //speed = 0.2
         } else {
           speed = props.speed || 1;
         }
@@ -135,7 +135,8 @@ export default {
       getStyle,
       lastTransform,
       bottom,
-      scroll
+      scroll,
+      isMobile
     }
   }
 }

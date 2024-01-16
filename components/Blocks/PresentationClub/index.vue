@@ -72,21 +72,33 @@ onMounted(() => {
       overflow: hidden
     & span
       display: inline-block
+
+
   &__text
     @include text()
 
   &__logo-l
     position: absolute
-    top: 0
+    top: 50%
     left: 0
-    height: 100%
+    height: 50%
     z-index: -1
+    transform: translate(-25%, -50%)
+    @include lg
+      height: 100%
+      top: 0
+      transform: translate(0, 0)
   &__logo-r
     position: absolute
-    top: 0
+    top: 50%
     right: 0
-    height: 100%
+    height: 50%
     z-index: -1
+    transform: translate(25%, -50%)
+    @include lg
+      height: 100%
+      top: 0
+      transform: translate(0, 0)
 </style>
 
 <style lang="sass">
