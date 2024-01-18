@@ -23,7 +23,7 @@
             <input type="email" name="email" placeholder="EMAIL"/>
           </p>
           <p>
-            <textarea type="text" name="message" rows="10" placeholder="VOTRE MESSAGE" />
+            <textarea type="text" name="message" :rows="isMobile ? 6: 10" placeholder="VOTRE MESSAGE" />
           </p>
           <CTA class="contact-page__cta" text="send"  :is-nuxt-link="true"/>
         </form>
@@ -58,6 +58,7 @@ useHead({
 const root = ref<HTMLElement | null>(null)
 const title = computed(() => contactPage.value?.data.titre.split('\n'))
 const tl = gsap.timeline({paused: true})
+const isMobile = computed(() => store.isMobile)
 
 watch(() => store.isTransitionVisible, (value) => {
   if(!value) {
@@ -86,12 +87,15 @@ onMounted(() => {
   display: flex
   align-items: center
   justify-content: center
+  flex-direction: column
+  @include lg
+    flex-direction: row
 
   &__title
-    @include h1()
+    @include h1(16vw)
     position: absolute
-    top: 160px
-    left: 45%
+    top: 60px
+    left: 55px
     font-weight: 800
     color: $white
     & > div
@@ -99,14 +103,26 @@ onMounted(() => {
     & span
       display: inline-block
 
+    @include lg
+      top: 160px
+      left: 45%
+      @include h1()
+
+
   &__right
-    width: 45%
-    margin-top: 14rem
-    padding: 0 45px
+    width: 100%
+    height: 60vh
+    padding: 35px
     display: flex
     flex-direction: column
-    justify-content: flex-end
     @include text()
+
+    @include lg
+      padding: 0 45px
+      margin-top: 18rem
+      width: 45%
+      justify-content: flex-end
+
   &__cta
     align-self: end
 
@@ -131,11 +147,16 @@ onMounted(() => {
         opacity: 0.8
 
   &__cover
-    width: 55%
-    height: 100vh
+    width: 100%
+    height: 40vh
     object-fit: cover
     object-position: center
-    margin-bottom: 2rem
+
+    @include lg
+      width: 55%
+      height: 100vh
+      margin-bottom: 2rem
+
 
   &__content
     @include text()

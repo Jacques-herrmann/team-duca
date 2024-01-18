@@ -67,7 +67,7 @@ const splitSport = computed(() => {
   gap: 5px
   overflow: hidden
   &__title
-    @include title(20px, 100%)
+    @include title(2.8vw)
     white-space: pre-line
     text-align: center
     font-weight: 700
@@ -76,13 +76,17 @@ const splitSport = computed(() => {
     display: grid
     place-items: center
     transition: transform 0.2s ease-in-out
+    @include lg
+      @include title(20px, 100%)
+      font-weight: 700
   &__time
-    @include text()
+    @include text(2vw)
     display: flex
     color: white
-    font-size: 12px
     gap: 2px
     transition: transform 0.2s ease-in-out
+    @include lg
+      @include text()
 
   &.MMA
     background-color: #C93D3D

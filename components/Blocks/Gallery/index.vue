@@ -62,6 +62,7 @@ onMounted(() => {
     left: 50%
     transform: translateX(-50%)
     height: 75px
+    max-width: 100vw
     margin: 1rem auto 0
     padding: 0
     display: flex

@@ -5,7 +5,7 @@
     </h2>
     <prismic-rich-text class="planning__content" :field="block.primary.content" />
     <ul class="planning__filter">
-      <li class="planning__filter__item" @click="filterEvents('clear')">Tout les cours</li>
+      <li class="planning__filter__item" @click="filterEvents('clear')">Tous les cours</li>
       <li class="planning__filter__item" @click="filterEvents(sport.split(' ')[0])"  v-for="sport of getAllSports()">{{sport}}</li>
     </ul>
     <div class="planning__container" >
@@ -132,39 +132,53 @@ onMounted(() => {
   align-items: center
   padding: 4rem 0 10rem 0
   &__title
-    @include h1()
+    @include h1(16vw)
+    margin-top: 80px
     color: white
     text-align: center
-    margin-top: 200px
     overflow: hidden
     & span
       display: inline-block
       white-space: pre
       will-change: transform
 
+    @include lg
+      @include h1()
+      margin-top: 200px
+
   &__content
-    @include text()
+    @include text(4vw)
     color: white
     text-align: center
     margin-top: 50px
     max-width: 800px
     margin-bottom: 50px
+    padding: 0 20px
+    @include lg
+      @include text()
+      padding: 0
 
   &__filter
-    width: calc(5/6 * (100vw - 180px))
+    width: 100vw
     display: flex
     justify-content: center
     align-items: center
     margin-top: 50px
     gap: 10px
+    @include lg
+      width: calc(5/6 * (100vw - 180px))
+
     &__item
-      @include text()
+      @include text(2.8vw)
       color: white
       font-weight: bold
       margin: 10px
       cursor: pointer
       &:hover
         text-decoration: underline
+
+      @include lg
+        @include text()
 
   &__container
     position: relative
@@ -173,14 +187,19 @@ onMounted(() => {
     display: flex
     margin: 0 auto
     &__single
-      width: calc((5/6 * (100vw - 180px)) / 6)
-      min-width: 110px
+      width: calc((100vw - 20px) / 6)
+      @include lg
+        width: calc(5/6 * (100vw - 180px))
+        min-width: 110px
       &__day
-        @include text()
+        @include text(2.6vw)
         text-transform: uppercase
         color: white
         text-align: center
-        padding: 20px
+        padding: 10px 5px
+        @include lg
+          @include text()
+          padding: 20px
       &__events
         display: grid
         grid-template-columns: 1fr

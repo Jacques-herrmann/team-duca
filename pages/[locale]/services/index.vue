@@ -71,13 +71,16 @@ onMounted(() => {
   display: flex
   align-items: center
   justify-content: center
+  flex-direction: column
+  @include lg
+    flex-direction: row
 
   &__title
-    @include h1()
+    @include h1(16vw)
     height: 6.1rem
     position: absolute
-    top: 100px
-    left: 45%
+    top: 60px
+    left: 45px
     font-weight: 800
     color: $white
     & > div
@@ -85,25 +88,44 @@ onMounted(() => {
     & span
       display: inline-block
 
+    @include lg
+      top: 100px
+      left: 45%
+      @include h1()
+
+
   &__right
-    width: 45%
-    margin-top: 18rem
-    padding: 0 45px
+    width: 100%
+    height: 50vh
+    padding: 35px
     display: flex
     flex-direction: column
-    justify-content: flex-end
+
     @include text()
+
+    @include lg
+      padding: 0 45px
+      margin-top: 18rem
+      width: 45%
+      justify-content: flex-end
+
     &__cta
-      margin-top: 60px
+      margin-top: 30px
       align-self: end
+      @include lg
+        margin-top: 60px
 
   &__cover
     position: relative
-    width: 55%
-    height: 100vh
-    margin-bottom: 2rem
+    width: 100%
+    height: 50vh
     cursor: pointer
     overflow: hidden
+    @include lg
+      width: 55%
+      height: 100vh
+      margin-bottom: 2rem
+
     &:hover
       & .service-page__icon
         opacity: 1

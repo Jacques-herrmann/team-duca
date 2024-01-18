@@ -1,6 +1,6 @@
 <template>
   <div class="abonnement-element" ref="root" @mouseenter="onHoverEnter" @mouseleave="onHoverLeave">
-    <parallax class="abonnement-element__parallax" :active="intersect.active.value" :speed="2" :is-absolute="true">
+    <parallax class="abonnement-element__parallax" :active="intersect.active.value" :speed="2" :speed-mobile="1.2" :is-absolute="true">
       <figure-element :image="cover" class="abonnement-element__cover"/>
     </parallax>
     <div class="abonnement-element__top ">
@@ -63,22 +63,23 @@ onMounted(() => {
 <style scoped lang="sass">
 .abonnement-element
   width: 100%
-  padding: 3rem 3rem 3rem 40px // TODO: Real spacing -  based footer's padding
+  padding: 2rem 2rem 2rem 40px
   position: relative
   color: $white
-  height: 350px
+  height: 300px
   display: flex
   flex-direction: column
   justify-content: space-between
   overflow: hidden
-
+  @include lg
+    padding: 3rem 3rem 3rem 40px
 
   &__parallax
     left: 0
 
   &__cover
     //width: 100%
-    height: 100%
+    height: 160%
     position: absolute
     top: 50%
     left: 50%
@@ -106,11 +107,13 @@ onMounted(() => {
   &__price
     @include title(4rem)
     position: absolute
-    bottom: 1rem
+    bottom: 0
     right: 2rem
     color: $red
     float: right
     text-align: right
+    @include lg
+      bottom: 1rem
     & > div
       overflow: hidden
       display: inline-block
