@@ -25,8 +25,7 @@ export default class Lenis extends EventEmitter2 {
             firefoxMultiplier: 50,
             mouseMultiplier: platform.includes('Win') ? 1 : 0.2,
             useKeyboard: false,
-            useTouch: false,
-            passive: false
+            useTouch: true,
         })
 
         this.virtualScroll.on(this.onVirtualScroll)

@@ -18,6 +18,7 @@ import PageTransition from "@/components/PageTransition/index.vue"
 import Lenis from "@/utils/lenis/lenis"
 import gsap from "gsap"
 import {useIndexStore} from "~/stores";
+import {body} from "slice-machine-ui/src/components/Table/Table.css";
 
 const store = useIndexStore()
 const scroll: Ref<Lenis | null> = ref(null)
@@ -32,6 +33,8 @@ const onUpdate = () => {
 }
 
 const onResize = () => {
+  const vh = window.innerHeight * 0.01
+  document.documentElement.style.setProperty('--vh', `${vh}px`)
   store.setIsMobile(window.innerWidth < 1024)
 }
 
