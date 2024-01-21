@@ -159,6 +159,9 @@ onMounted(() => {
       @include md
         @include text(1.5rem)
 
+      @include lg
+        @include text()
+
   &__cover
     width: 100%
     height: 40vh

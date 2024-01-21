@@ -88,7 +88,8 @@ $margin: 90px
       @include grid-mobile(1, 9)
       text-align: right
       @include lg
-        @include grid(1, 6)
+        @include grid(0.1, 6)
+        padding: 0
 
   &__img
     @include grid-mobile(1, 9)
@@ -106,7 +107,7 @@ $margin: 90px
     & .history-element__content
       @include grid-mobile(3, 11)
       @include lg
-        @include grid(5, 11)
+        @include grid(5, 12)
 
 
   &__content
@@ -114,7 +115,7 @@ $margin: 90px
     bottom: 0
     color: white
     @include lg
-      @include grid(5, 11)
+      @include grid(5, 12)
       padding: 0 0 0 5rem
 
 

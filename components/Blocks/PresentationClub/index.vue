@@ -75,9 +75,15 @@ onMounted(() => {
     & span
       display: inline-block
 
+    @include lg
+      @include h2()
+      margin-bottom: 60px !important
+
 
   &__text
     @include text(2.8vw)
+    @include lg
+      @include text()
 
   &__logo-l
     position: absolute

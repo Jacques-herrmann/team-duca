@@ -8,18 +8,16 @@
         <path d="M36 27L2 27" stroke="#F9F9F9" stroke-width="4" stroke-linecap="round"/>
       </svg>
     </div>
-    <div class="header__menu" ref="menu">
-      <ul>
-        <li class="header__menu-item" v-for="item in header?.data.pages" :key="item.id">
-          <nuxt-link
-           @click.native="onClose(`/${locale}${item.url ?`/${item.url}`: ''}`)"
-           :to="`/${locale}${item.url ?`/${item.url}`: ''}`"
-          >
-            <span class="header__menu-item--letter" v-for="l in item.titre">{{ l }}</span>
-          </nuxt-link>
-        </li>
-      </ul>
-    </div>
+    <ul class="header__menu" ref="menu">
+      <li class="header__menu-item" v-for="item in header?.data.pages" :key="item.id">
+        <nuxt-link
+         @click.native="onClose(`/${locale}${item.url ?`/${item.url}`: ''}`)"
+         :to="`/${locale}${item.url ?`/${item.url}`: ''}`"
+        >
+          <span class="header__menu-item--letter" v-for="l in item.titre">{{ l }}</span>
+        </nuxt-link>
+      </li>
+    </ul>
   </header>
 </template>
 <script lang="ts" setup>
@@ -28,14 +26,16 @@ import A from '@/assets/animations'
 
 const prismic = usePrismic();
 const route = useRoute();
+const store = useIndexStore();
 console.log(route)
 const locale = 'fr';
 
 const {data: header } = useAsyncData("[header]", () => prismic.client.getSingle('header'))
 console.log(header)
 
+const isMobile = computed(() => store.isMobile)
 const menu = ref(null)
-const tl = gsap.timeline({paused: true})
+let tl = gsap.timeline({paused: true})
 
 const toHome = () => {
  navigateTo(`/${locale}`)
@@ -52,20 +52,31 @@ const onClose = (path) => {
   }
   setTimeout(() => {
     tl.timeScale(2).reverse()
-    }, d)
+  }, d)
+}
+
+const onResize = () => {
+  tl = gsap.timeline({paused: true})
+  console.log(isMobile.value)
+  if(isMobile.value) {
+    tl.from(menu.value, {
+      height: '0',
+      duration: 0.4,
+      ease: 'power2.out'
+    })
+    // tl.set(menu.value.querySelector('div'), {opacity: 1}, 0.1)
+    const listeElement = menu.value.querySelectorAll('.header__menu-item')
+    listeElement.forEach((element, index) => {
+        tl.from(element.querySelectorAll('.header__menu-item--letter'), A.h2,  0.1 + index * 0.05)
+    })
+  }
 }
 
 onMounted(() => {
-  tl.from(menu.value, {
-    height: '0',
-    duration: 0.4,
-    ease: 'power2.out'
+  nextTick(() => {
+    onResize()
   })
-  // tl.set(menu.value.querySelector('div'), {opacity: 1}, 0.1)
-  const listeElement = menu.value.querySelectorAll('.header__menu-item')
-  listeElement.forEach((element, index) => {
-      tl.from(element.querySelectorAll('.header__menu-item--letter'), A.h2,  0.1 + index * 0.05)
-  })
+  window.addEventListener('resize', onResize)
 })
 
 </script>
@@ -111,13 +122,12 @@ onMounted(() => {
     height: 100vh
     height: calc(var(--vh, 1vh) * 100)
     background-color: $black
-    display: flex
     flex-direction: column
     justify-content: center
+    display: flex
     overflow: hidden
 
     @include lg
-      display: flex
       position: absolute
       background-color: transparent
       top: 0
@@ -154,6 +164,14 @@ onMounted(() => {
         display: inline-block
         white-space: pre
         will-change: transform
+
+      @include lg
+        @include text(1rem)
+        letter-spacing: unset
+        margin-left: 30px
+        &:not(:last-child)
+          margin-bottom: 0
+          margin-right: 30px
 
 
 </style>

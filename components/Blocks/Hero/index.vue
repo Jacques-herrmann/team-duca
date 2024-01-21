@@ -124,6 +124,7 @@ onMounted(() => {
     @include lg
       @include h1(20vw)
       text-align: center
+      line-height: 80% !important
 
   &__footer
     position: absolute
@@ -153,6 +154,9 @@ onMounted(() => {
 
     @include lg
       @include h2(1.8vw)
+      width: 26vw
+
+    @include xl
       width: 21.5vw
 
   &__cta

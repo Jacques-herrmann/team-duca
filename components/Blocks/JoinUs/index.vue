@@ -73,6 +73,7 @@ onMounted(() => {
     @include lg
       @include h1()
       margin-bottom: 10rem
+      margin-top: 10rem
 
   &__cta
     position: relative

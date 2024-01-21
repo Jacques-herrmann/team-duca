@@ -165,7 +165,7 @@ onMounted(() => {
     align-items: center
     margin-top: 50px
     gap: 10px
-    @include lg
+    @include xl
       width: calc(5/6 * (100vw - 180px))
 
     &__item
@@ -188,7 +188,7 @@ onMounted(() => {
     margin: 0 auto
     &__single
       width: calc((100vw - 20px) / 6)
-      @include lg
+      @include xl
         width: calc(5/6 * (100vw - 180px))
         min-width: 110px
       &__day
@@ -205,6 +205,8 @@ onMounted(() => {
         grid-template-columns: 1fr
         $v: calc( calc(((21 * 60) + 30) / 15) - calc(((10 * 60) + 30) / 15) ) // start at 10h30 // End at 21h30
         grid-template-rows: repeat($v, 0.8rem)
+        @include md
+          grid-template-rows: repeat($v, 1rem)
 
     & .download
       position: absolute
