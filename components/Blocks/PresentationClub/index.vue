@@ -65,8 +65,10 @@ onMounted(() => {
     color: $white
     z-index: 1
     text-align: center
+    @include md
+      padding: 0 60px
   &__title
-    @include h2()
+    @include h2(8vw)
     margin-bottom: 60px
     & > div
       overflow: hidden
@@ -75,7 +77,7 @@ onMounted(() => {
 
 
   &__text
-    @include text()
+    @include text(2.8vw)
 
   &__logo-l
     position: absolute

@@ -54,6 +54,7 @@ onMounted(() => {
     flex-direction: column
     justify-content: center
     align-items: center
+    gap: 10px
 
   &__number
     position: relative
@@ -82,6 +83,7 @@ onMounted(() => {
 
   &__text
     @include text(1.2rem)
+    height: 3.5rem
     color: $white
     text-align: center
     max-width: 220px

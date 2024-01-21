@@ -87,7 +87,7 @@ onMounted(() => {
     right: 20px
     top: 20px
     z-index: 2
-    @include md
+    @include lg
       display: none
 
   &__logo
@@ -116,7 +116,7 @@ onMounted(() => {
     justify-content: center
     overflow: hidden
 
-    @include md
+    @include lg
       display: flex
       position: absolute
       background-color: transparent
@@ -130,7 +130,7 @@ onMounted(() => {
 
 
     &-item
-      @include title(2.5rem)
+      @include title(8vw)
       text-transform: uppercase
       color: $white
       text-decoration: none
@@ -138,12 +138,15 @@ onMounted(() => {
       cursor: pointer
       transition: color 0.2s ease-in-out
       margin-left: 60px
+
       &:not(:last-child)
         margin-bottom: 30px
-        @include md
+        @include lg
           margin-bottom: 0
+
       &:hover
         color: $red
+
       .router-link-active
           color: $red
 
