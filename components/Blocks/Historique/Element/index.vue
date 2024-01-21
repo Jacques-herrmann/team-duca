@@ -70,7 +70,7 @@ $margin: 90px
   position: relative
   width: 100%
   height: 75vw
-  margin: 4rem 0
+  margin: 8rem 0
   @include lg
     margin: 10rem 0
     height: 36vw

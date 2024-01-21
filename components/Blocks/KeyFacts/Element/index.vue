@@ -37,7 +37,6 @@ const draw = () => {
 onMounted(() => {
  const reds = root.value?.querySelectorAll('.keyfact__red span')
   if (reds) {
-    console.log(reds)
     tl.from(reds, A.h2, 0)
     tl.from(root.value?.querySelector('.keyfact__grey') as HTMLElement, A.opacity, 0.2)
     tl.from(root.value?.querySelector('.keyfact__text') as HTMLElement, A.opacity, 0.4)

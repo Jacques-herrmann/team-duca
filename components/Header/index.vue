@@ -10,12 +10,14 @@
     </div>
     <div class="header__menu" ref="menu">
       <ul>
-      <li class="header__menu-item" v-for="item in header?.data.pages" :key="item.id">
-        <nuxt-link @click.native="onClose" :to="`/${locale}${item.url ?`/${item.url}`: ''}`">
-          <span class="header__menu-item--letter" v-for="l in item.titre">{{ l }}</span>
-        </nuxt-link>
-      </li>
-
+        <li class="header__menu-item" v-for="item in header?.data.pages" :key="item.id">
+          <nuxt-link
+           @click.native="onClose(`/${locale}${item.url ?`/${item.url}`: ''}`)"
+           :to="`/${locale}${item.url ?`/${item.url}`: ''}`"
+          >
+            <span class="header__menu-item--letter" v-for="l in item.titre">{{ l }}</span>
+          </nuxt-link>
+        </li>
       </ul>
     </div>
   </header>
@@ -39,20 +41,18 @@ const toHome = () => {
  navigateTo(`/${locale}`)
 }
 
-const toggleNav = () => {
-  // TODO: Better than this
-  // resolve resize issue
-  if(window.innerWidth > 768) return
-  // document.body.style.display = document.body.style.overflow === 'hidden' ? 'auto' : 'hidden'
-  menu.value.style.display = menu.value.style.display === 'flex' ? 'none' : 'flex'
-}
-
 const onOpen = () => {
-  tl.play()
+  tl.timeScale(1).play()
 }
 
-const onClose = () => {
-  tl.reverse()
+const onClose = (path) => {
+  let d = 1000
+  if(path === route.path) {
+    d = 0
+  }
+  setTimeout(() => {
+    tl.timeScale(2).reverse()
+    }, d)
 }
 
 onMounted(() => {
