@@ -156,8 +156,8 @@ onMounted(() => {
       @include h2(1.8vw)
       width: 26vw
 
-    @include xl
-      width: 21.5vw
+    //@include xl
+    //  width: 21.5vw
 
   &__cta
     position: absolute

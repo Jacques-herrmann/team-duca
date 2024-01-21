@@ -188,9 +188,10 @@ onMounted(() => {
     margin: 0 auto
     &__single
       width: calc((100vw - 20px) / 6)
+
       @include xl
-        width: calc(5/6 * (100vw - 180px))
-        min-width: 110px
+        width: calc((100vw - 180px) / 6)
+        //min-width: 110px
       &__day
         @include text(2.6vw)
         text-transform: uppercase

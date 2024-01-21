@@ -72,7 +72,8 @@ onMounted(() => {
   justify-content: space-between
   overflow: hidden
   @include lg
-    padding: 3rem 3rem 3rem 40px
+    padding: 3.5rem 3.5rem 3.5rem 40px
+    height: 400px
 
   &__parallax
     left: 0

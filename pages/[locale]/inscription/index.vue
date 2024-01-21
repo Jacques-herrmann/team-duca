@@ -75,7 +75,7 @@ onMounted(() => {
 
     @include lg
       @include h1()
-      padding-top: 20rem
+      //padding-top: 20rem
 
   &__subtitle
     @include text(4vw)

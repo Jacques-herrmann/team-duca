@@ -90,6 +90,8 @@ $margin: 90px
       @include lg
         @include grid(0.1, 6)
         padding: 0
+      @include xxl
+        @include grid(1, 6)
 
   &__img
     @include grid-mobile(1, 9)
@@ -108,6 +110,8 @@ $margin: 90px
       @include grid-mobile(3, 11)
       @include lg
         @include grid(5, 12)
+      @include xxl
+        @include grid(5, 11)
 
 
   &__content

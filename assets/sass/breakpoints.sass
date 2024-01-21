@@ -37,6 +37,11 @@ $screen-xxl-min: 1500px
     @content
 
 // Extra large device
+@mixin xxl
+  @media (min-width: #{$screen-xxl-min})
+    @content
+
+// Extra large device
 @mixin xl-h
   @media (min-height: 1000px)
     @content
