@@ -36,7 +36,7 @@ const {data: footer } = useAsyncData("[footer]", () => prismic.client.getSingle(
   justify-content: space-between
   flex-direction: column
   padding: 0 4rem
-  @include lg
+  @include md
     height: 20vw
     flex-direction: row
 
@@ -45,17 +45,17 @@ const {data: footer } = useAsyncData("[footer]", () => prismic.client.getSingle(
     flex-direction: column
     justify-content: center
     text-align: center
-    @include lg
+    @include md
       text-align: left
 
   &__left
     margin-bottom: 4rem
-    @include lg
+    @include md
       margin-bottom: 0
 
   &__right
     margin-bottom: 2rem
-    @include lg
+    @include md
       margin-bottom: 0
 
   &__title
@@ -74,7 +74,7 @@ const {data: footer } = useAsyncData("[footer]", () => prismic.client.getSingle(
     @include text()
     color: $white
     text-align: center
-    @include lg
+    @include md
       text-align: right
 
   &__socials
@@ -83,7 +83,7 @@ const {data: footer } = useAsyncData("[footer]", () => prismic.client.getSingle(
     justify-content: center
     gap: 0.5rem
     margin-top: 0.5rem
-    @include lg
+    @include md
       justify-content: flex-end
 
   &__icon
@@ -108,7 +108,7 @@ const {data: footer } = useAsyncData("[footer]", () => prismic.client.getSingle(
     user-select: none
     pointer-events: none
     color: rgba(255, 255, 255, 0.01)
-    @include lg
+    @include md
       position: absolute
       left: 50%
       bottom: -50%

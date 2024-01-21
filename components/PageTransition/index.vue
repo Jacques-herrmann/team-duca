@@ -63,6 +63,7 @@ watch(() => store.isTransitionVisible, (value) => {
   left: 0
   z-index: $z-transition
   height: 100vh
+  height: calc(var(--vh, 1vh) * 100)
   width: 100vw
   background: $black
   display: flex

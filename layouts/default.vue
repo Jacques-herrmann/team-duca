@@ -64,7 +64,7 @@ main
   position: relative
   width: 100%
   min-height: 100vh
-  z-index: $z-content
+  //z-index: $z-content
 
 #app-layout::after
   animation: grain 6s steps(10) infinite

@@ -88,9 +88,11 @@ onMounted(() => {
     width: calc(100% - 60px)
     display: flex
     flex-direction: column
-    padding: 90px 20px
+    padding: 60px 20px
     pointer-events: none
     z-index: 1
+    @include md
+      padding: 90px 60px
     @include lg
       width: calc(100% - 180px)
       padding: 90px
@@ -101,6 +103,9 @@ onMounted(() => {
     color: $white
     max-width: 700px
     margin-top: 40px
+    @include md
+      @include text(1.5rem)
+      margin-top: 60px
     @include lg
       @include text()
 
@@ -113,6 +118,8 @@ onMounted(() => {
     justify-content: center
     background: transparent
     cursor: pointer
+    @include md
+      width: 60px
     @include lg
       width: 90px
 
@@ -132,19 +139,22 @@ onMounted(() => {
       transform: rotate(180deg)
 
   &__title
-    @include h1(20vw)
+    @include h1(4.4rem)
     position: relative
-    height: 18vw
+    height: 4.4rem
     z-index: 1
     color: $red
     pointer-events: none
+    @include md
+      @include h1(6.1rem)
+      height: 6.1rem
     @include lg
       @include h1()
       height: 6.1rem
 
   &__subtitle
-    @include title(5vw)
-    height: 5vw
+    @include title(4vw)
+    height: 4vw
     position: relative
     z-index: 1
     color: $white

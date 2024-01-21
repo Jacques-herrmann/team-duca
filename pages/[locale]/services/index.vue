@@ -83,10 +83,16 @@ onMounted(() => {
     left: 45px
     font-weight: 800
     color: $white
+    pointer-events: none
     & > div
       overflow: hidden
     & span
       display: inline-block
+
+    @include md
+      top: 80px
+      left: 65px
+      height: 4.1rem
 
     @include lg
       top: 100px
@@ -95,13 +101,17 @@ onMounted(() => {
 
 
   &__right
+    @include text()
     width: 100%
     height: 50vh
     padding: 35px
     display: flex
     flex-direction: column
 
-    @include text()
+    @include md
+      @include text(1.5rem)
+      padding: 45px
+      width: 100%
 
     @include lg
       padding: 0 45px
@@ -121,9 +131,12 @@ onMounted(() => {
     height: 50vh
     cursor: pointer
     overflow: hidden
+    @include md
+      height: 60vh
     @include lg
       width: 55%
       height: 100vh
+      height: calc(var(--vh, 1vh) * 100)
       margin-bottom: 2rem
 
     &:hover

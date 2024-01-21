@@ -80,7 +80,7 @@ onMounted(() => {
     justify-content: center
     flex-direction: column
     gap: 100px
-    @include lg
+    @include md
       flex-direction: row
       gap: 40px
 

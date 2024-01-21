@@ -92,7 +92,7 @@ onMounted(() => {
     flex-direction: row
 
   &__title
-    @include h1(16vw)
+    @include h1(18vw)
     position: absolute
     top: 60px
     left: 55px
@@ -103,6 +103,11 @@ onMounted(() => {
     & span
       display: inline-block
 
+    @include md
+      top: 80px
+      left: 65px
+      height: 4.1rem
+
     @include lg
       top: 160px
       left: 45%
@@ -110,12 +115,17 @@ onMounted(() => {
 
 
   &__right
+    @include text()
     width: 100%
     height: 60vh
     padding: 35px
     display: flex
     flex-direction: column
-    @include text()
+
+    @include md
+      @include text(1.5rem)
+      padding: 45px
+      width: 100%
 
     @include lg
       padding: 0 45px
@@ -146,15 +156,21 @@ onMounted(() => {
         color: $white
         opacity: 0.8
 
+      @include md
+        @include text(1.5rem)
+
   &__cover
     width: 100%
     height: 40vh
     object-fit: cover
     object-position: center
+    @include md
+      height: 50vh
 
     @include lg
       width: 55%
       height: 100vh
+      height: calc(var(--vh, 1vh) * 100)
       margin-bottom: 2rem
 
 
@@ -162,6 +178,9 @@ onMounted(() => {
     @include text()
     color: $white
     margin-bottom: 1.5rem
+
+    @include md
+      @include text(1.5rem)
 
 .hidden
   display: none
