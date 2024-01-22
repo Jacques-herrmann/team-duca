@@ -1,0 +1,70 @@
+{
+  "id": "gallery",
+  "type": "SharedSlice",
+  "name": "Gallery",
+  "description": "Gallery",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "hauteur": {
+          "type": "Number",
+          "config": {
+            "label": "hauteur",
+            "placeholder": ""
+          }
+        },
+        "largeur": {
+          "type": "Number",
+          "config": {
+            "label": "largeur",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {
+        "media": {
+          "type": "Image",
+          "config": {
+            "label": "media",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "posx": {
+          "type": "Number",
+          "config": {
+            "label": "posX",
+            "placeholder": ""
+          }
+        },
+        "posy": {
+          "type": "Number",
+          "config": {
+            "label": "posY",
+            "placeholder": ""
+          }
+        },
+        "hauteur": {
+          "type": "Number",
+          "config": {
+            "label": "hauteur",
+            "placeholder": ""
+          }
+        },
+        "largeur": {
+          "type": "Number",
+          "config": {
+            "label": "largeur",
+            "placeholder": ""
+          }
+        }
+      }
+    }
+  ]
+}

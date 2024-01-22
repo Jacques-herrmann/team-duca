@@ -1,0 +1,30 @@
+<template>
+  <div class="block" v-for="b in blocks">
+    <component :is="components[b.slice_type]" :block="b"></component>
+  </div>
+</template>
+<script lang="ts" setup>
+import { defineProps } from 'vue'
+
+const props = defineProps<{
+  blocks: any[]
+}>()
+
+const components = {
+  'hero': resolveComponent('BlocksHero'),
+  'gallery': resolveComponent('BlocksGallery'),
+  'presentation_club': resolveComponent('BlocksPresentationClub'),
+  'keys_facts': resolveComponent('BlocksKeyFacts'),
+  'sponsors': resolveComponent('BlocksSponsors'),
+  'join_us': resolveComponent('BlocksJoinUs'),
+  'carousel': resolveComponent('BlocksSlider'),
+  'historique': resolveComponent('BlocksHistorique'),
+  'abonnement': resolveComponent('BlocksAbonnement'),
+  'calendar': resolveComponent('BlocksCalendar'),
+}
+</script>
+
+<style scoped lang="sass">
+.block
+  position: relative
+</style>

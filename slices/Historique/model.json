@@ -1,0 +1,63 @@
+{
+  "id": "historique",
+  "type": "SharedSlice",
+  "name": "Historique",
+  "description": "Historique",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "cover": {
+          "type": "Image",
+          "config": {
+            "label": "cover",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {
+        "media": {
+          "type": "Image",
+          "config": {
+            "label": "media",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "title",
+            "placeholder": ""
+          }
+        },
+        "content": {
+          "type": "StructuredText",
+          "config": {
+            "label": "content",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          }
+        },
+        "orientation": {
+          "type": "Select",
+          "config": {
+            "label": "orientation",
+            "placeholder": "",
+            "options": [
+              "portrait",
+              "landscape"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

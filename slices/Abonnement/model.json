@@ -1,0 +1,50 @@
+{
+  "id": "abonnement",
+  "type": "SharedSlice",
+  "name": "Abonnement",
+  "description": "Abonnement",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {},
+      "items": {
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "title",
+            "placeholder": ""
+          }
+        },
+        "price": {
+          "type": "Text",
+          "config": {
+            "label": "price",
+            "placeholder": ""
+          }
+        },
+        "cover": {
+          "type": "Image",
+          "config": {
+            "label": "cover",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "texte": {
+          "type": "StructuredText",
+          "config": {
+            "label": "texte",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,strong,em,list-item,o-list-item,heading5,heading6"
+          }
+        }
+      }
+    }
+  ]
+}

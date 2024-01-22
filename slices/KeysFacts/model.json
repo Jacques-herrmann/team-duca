@@ -1,0 +1,61 @@
+{
+  "id": "keys_facts",
+  "type": "SharedSlice",
+  "name": "KeysFacts",
+  "description": "KeysFacts",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "number_1": {
+          "type": "Text",
+          "config": {
+            "label": "Number 1",
+            "placeholder": ""
+          }
+        },
+        "text_1": {
+          "type": "Text",
+          "config": {
+            "label": "Text 1",
+            "placeholder": ""
+          }
+        },
+        "number_2": {
+          "type": "Text",
+          "config": {
+            "label": "Number 2",
+            "placeholder": ""
+          }
+        },
+        "text_2": {
+          "type": "Text",
+          "config": {
+            "label": "Text 2",
+            "placeholder": ""
+          }
+        },
+        "number_3": {
+          "type": "Text",
+          "config": {
+            "label": "Number 3",
+            "placeholder": ""
+          }
+        },
+        "text_3": {
+          "type": "Text",
+          "config": {
+            "label": "Text 3",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -4,15 +4,35 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --host",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "slicemachine": "start-slicemachine"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxtjs/google-fonts": "^3.0.2",
+    "@nuxtjs/prismic": "^3.0.3",
+    "@slicemachine/adapter-nuxt": "^0.3.18",
     "nuxt": "^3.7.4",
+    "slice-machine-ui": "^1.15.0",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.5.1",
+    "@splidejs/splide": "^4.1.4",
+    "@vueuse/core": "^10.4.1",
+    "@vueuse/nuxt": "^10.4.1",
+    "eventemitter2": "^6.4.9",
+    "gsap": "^3.12.2",
+    "jspdf": "^2.5.1",
+    "ogl": "^1.0.1",
+    "pinia": "^2.1.7",
+    "sass": "^1.68.0",
+    "sass-loader": "^13.3.2",
+    "slicemachine": "^0.0.1",
+    "virtual-scroll": "^2.2.1"
   }
 }
