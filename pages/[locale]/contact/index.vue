@@ -111,7 +111,7 @@ onMounted(() => {
     @include lg
       top: 160px
       left: 45%
-      @include h1()
+      @include h1(7.5rem)
 
 
   &__right
@@ -130,7 +130,7 @@ onMounted(() => {
     @include lg
       padding: 0 45px
       margin-top: 18rem
-      width: 45%
+      width: 50%
       justify-content: flex-end
 
   &__cta
@@ -160,7 +160,7 @@ onMounted(() => {
         @include text(1.5rem)
 
       @include lg
-        @include text()
+        @include text(0.8rem)
 
   &__cover
     width: 100%
@@ -171,7 +171,7 @@ onMounted(() => {
       height: 50vh
 
     @include lg
-      width: 55%
+      width: 50%
       height: 100vh
       height: calc(var(--vh, 1vh) * 100)
       margin-bottom: 2rem
@@ -184,6 +184,9 @@ onMounted(() => {
 
     @include md
       @include text(1.5rem)
+
+    @include lg
+      @include text(1.2rem)
 
 .hidden
   display: none

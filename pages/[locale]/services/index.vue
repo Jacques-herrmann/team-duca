@@ -95,9 +95,9 @@ onMounted(() => {
       height: 4.1rem
 
     @include lg
-      top: 100px
+      top: 140px
       left: 45%
-      @include h1()
+      @include h1(7.5rem)
 
 
   &__right

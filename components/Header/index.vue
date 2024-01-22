@@ -93,6 +93,7 @@ onMounted(() => {
   z-index: $z-header
   @include lg
     background: $gradient
+    height: 80px
   &__burger
     position: absolute
     right: 20px
@@ -137,6 +138,7 @@ onMounted(() => {
       height: 100%
       width: unset
       margin-right: 20px
+      gap: 10px
 
 
     &-item
@@ -166,8 +168,8 @@ onMounted(() => {
         will-change: transform
 
       @include lg
-        @include text(1rem)
-        letter-spacing: unset
+        @include text(0.85rem)
+        //letter-spacing: unset
         margin-left: 30px
         &:not(:last-child)
           margin-bottom: 0
