@@ -1,23 +1,25 @@
 <template>
   <div class="abonnement-element" ref="root" @mouseenter="onHoverEnter" @mouseleave="onHoverLeave">
-    <parallax class="abonnement-element__parallax" :active="intersect.active.value" :speed="2" :speed-mobile="1.2" :is-absolute="true">
+    <parallax class="abonnement-element__parallax" :active="intersect.active.value" :speed="2" :speed-mobile="1.2"
+              :is-absolute="true">
       <figure-element :image="cover" class="abonnement-element__cover"/>
     </parallax>
     <div class="abonnement-element__top ">
       <h3 class="abonnement-element__top__title">
-        <div v-for="t in splitedText"><span>{{t}}</span></div>
+        <div v-for="t in splitedText"><span>{{ t }}</span></div>
       </h3>
-    <prismic-rich-text class="abonnement-element__top__subtitle" :field="texte"></prismic-rich-text>
+      <prismic-rich-text class="abonnement-element__top__subtitle" :field="texte"></prismic-rich-text>
     </div>
     <span class="abonnement-element__price">
-      <div v-for="t in price"><span>{{t}}</span></div>
+      <div v-for="t in price"><span>{{ t }}</span></div>
     </span>
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import {defineProps} from 'vue'
 import gsap from "gsap";
 import A from "assets/animations";
+import Timeline = gsap.core.Timeline;
 
 const props = defineProps<{
   cover: any,
@@ -27,12 +29,13 @@ const props = defineProps<{
 }>()
 
 const root = ref<HTMLElement | null>(null)
-const tl = gsap.timeline({paused: true})
+let tl = <Timeline | null>null
+
 const intersect = useIntersect(root, {
   threshold: 0.2,
   rootMargin: '100px 0px 0px 0px',
   onReveal: () => {
-    tl.play()
+    tl?.play()
   },
 })
 
@@ -54,6 +57,7 @@ const onHoverLeave = () => {
 }
 
 onMounted(() => {
+  tl = gsap.timeline({paused: true})
   tl.from(root.value?.querySelectorAll('.abonnement-element__top__title span') as NodeList, A.h2, 0.2)
   tl.from(root.value?.querySelectorAll('.abonnement-element__top__subtitle') as NodeList, A.opacity, 0.2)
   tl.from(root.value?.querySelectorAll('.abonnement-element__price span') as NodeList, A.h2, 0.4)
@@ -89,11 +93,14 @@ onMounted(() => {
     @include lg
       width: 100%
       height: unset
+
   &__top
     &__title
       @include h3(4.2rem, 100%)
+
       & > div
         overflow: hidden
+
       & span
         display: inline-block
 
@@ -115,9 +122,11 @@ onMounted(() => {
     text-align: right
     @include lg
       bottom: 1rem
+
     & > div
       overflow: hidden
       display: inline-block
+
     & span
       display: inline-block
 

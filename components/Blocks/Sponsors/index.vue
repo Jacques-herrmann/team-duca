@@ -5,17 +5,17 @@
     </h2>
     <div class="sponsors__list">
       <div class="sponsors__item" v-for="item in block.items">
-        <img :src="item.logo.url" :alt="item.logo.alt" />
+        <img :src="item.logo.url" :alt="item.logo.alt"/>
       </div>
     </div>
     <CTA class="sponsors__cta" :url="block.primary.cta_link" :text="block.primary.cta_text" :is-nuxt-link="true"/>
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import {defineProps} from 'vue'
 import gsap from "gsap";
 import A from "assets/animations";
-import {shuffle} from "~/utils/math";
+import Timeline = gsap.core.Timeline;
 
 const props = defineProps<{
   block: any
@@ -29,13 +29,14 @@ const intersect = useIntersect(root, {
     draw()
   },
 })
-const tl = gsap.timeline({ paused: true })
+let tl = <Timeline | null>null
 
 const draw = () => {
-  tl.play()
+  tl?.play()
 }
 
 onMounted(() => {
+  tl = gsap.timeline({paused: true})
   tl.from(root.value?.querySelectorAll('.sponsors__title--letter') as NodeListOf<HTMLElement>, A.title, 0)
 
   let elements = root.value?.querySelectorAll('.sponsors__item,.sponsors__cta') as NodeListOf<HTMLElement>
@@ -64,6 +65,7 @@ onMounted(() => {
     color: $white
     margin-bottom: 6rem
     overflow: hidden
+
     & span
       display: inline-block
       white-space: pre

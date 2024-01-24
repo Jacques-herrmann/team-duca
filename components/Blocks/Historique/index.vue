@@ -2,23 +2,23 @@
   <div class="history" ref="root">
     <div class="history__cover">
       <parallax :active="intersect.active.value" :speed="3" :speed-mobile="1.2" :is-absolute="true">
-        <figure-element class="history__cover-image" :image="block.primary.cover" />
+        <figure-element class="history__cover-image" :image="block.primary.cover"/>
       </parallax>
     </div>
     <BlocksHistoriqueElement
-     class="history__element"
-     v-for="(element, e) in block.items"
-     :key="e"
-     :index="e + 1"
-     :media="element.media"
-     :title="element.title"
-     :content="element.content"
+      class="history__element"
+      v-for="(element, e) in block.items"
+      :key="e"
+      :index="e + 1"
+      :media="element.media"
+      :title="element.title"
+      :content="element.content"
       :orientation="element.orientation"
     />
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import {defineProps} from 'vue'
 
 const props = defineProps<{
   block: any
@@ -54,12 +54,13 @@ $margin: 90px
 .history
   position: relative
   width: 100%
+  padding-bottom: 10rem
 
   &__cover
     position: relative
     overflow: hidden
     width: 100vw
-    height: calc(9/16 * 100vw)
+    height: calc(9 / 16 * 100vw)
 
     &-image
       width: 110%

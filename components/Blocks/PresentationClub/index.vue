@@ -4,7 +4,7 @@
     <Parallax :active="intersect.active.value" :speed="2" :is-absolute="true">
       <div class="club__content">
         <h2 class="club__title">
-          <div v-for="t in title"><span>{{t}}</span></div>
+          <div v-for="t in title"><span>{{ t }}</span></div>
         </h2>
         <prismic-rich-text class="club__text" :field="block.primary.text"/>
       </div>
@@ -13,9 +13,10 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import {defineProps} from 'vue'
 import A from '@/assets/animations'
 import gsap from 'gsap'
+import Timeline = gsap.core.Timeline;
 
 const props = defineProps<{
   block: any
@@ -24,11 +25,12 @@ const props = defineProps<{
 const root = ref<HTMLElement | null>(null)
 const left = ref<HTMLElement | null>(null)
 const right = ref<HTMLElement | null>(null)
-const tl = gsap.timeline({paused: true})
+let tl = <Timeline | null>null
+
 const intersect = useIntersect(root, {
   threshold: 0,
   onReveal: () => {
-    tl.play()
+    tl?.play()
     left.value?.draw()
     right.value?.draw()
   },
@@ -37,13 +39,13 @@ const intersect = useIntersect(root, {
 const title = computed(() => props.block.primary.title.split('\n'))
 
 onMounted(() => {
+  tl = gsap.timeline({paused: true})
   tl.from(root.value?.querySelectorAll('.club__title span') as NodeList, A.h2, 0.2)
   tl.from(root.value?.querySelectorAll('.club__title span') as NodeList, A.opacity, 0.2)
   tl.from(root.value?.querySelectorAll('.club__text p') as NodeList, A.text, 0.4)
-  tl.from(root.value?.querySelectorAll('.club__text p') as NodeList,  A.opacity, 0.4)
+  tl.from(root.value?.querySelectorAll('.club__text p') as NodeList, A.opacity, 0.4)
 
 })
-
 
 
 </script>
@@ -54,6 +56,7 @@ onMounted(() => {
   height: 100vh
   height: calc(var(--vh, 1vh) * 100)
   overflow: hidden
+
   &__content
     position: absolute
     top: 50%
@@ -67,11 +70,14 @@ onMounted(() => {
     text-align: center
     @include md
       padding: 0 60px
+
   &__title
     @include h2(8vw)
     margin-bottom: 60px
+
     & > div
       overflow: hidden
+
     & span
       display: inline-block
 
@@ -96,6 +102,7 @@ onMounted(() => {
       height: 100%
       top: 0
       transform: translate(0, 0)
+
   &__logo-r
     position: absolute
     top: 50%
