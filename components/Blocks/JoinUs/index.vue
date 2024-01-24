@@ -2,7 +2,7 @@
   <div class="join-us" ref="root">
     <div class="join-us__cover">
       <parallax :active="intersect.active.value" :speed="3" :is-absolute="true">
-        <figure-element class="join-us__image" :image="block.primary.cover" caption="" />
+        <figure-element class="join-us__image" :image="block.primary.cover" caption=""/>
       </parallax>
     </div>
 
@@ -15,9 +15,10 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import {defineProps} from 'vue'
 import gsap from "gsap";
 import A from "assets/animations";
+import Timeline = gsap.core.Timeline;
 
 const props = defineProps<{
   block: any
@@ -33,16 +34,17 @@ const intersectTitle = useIntersect(title, {
   },
 })
 
-const tl = gsap.timeline({ paused: true })
+const tl = ref<Timeline | null>(null)
 const titleArr = computed(() => props.block.primary.title.split('\n'))
 
 const draw = () => {
-  tl.play()
+  tl.value?.play()
 }
 
 onMounted(() => {
-  tl.from(title.value?.querySelectorAll('.join-us__title--letter') as NodeListOf<HTMLElement>, A.title)
-  tl.from(root.value?.querySelectorAll('.join-us__cta') as NodeListOf<HTMLElement>, A.opacity, 0.4)
+  tl.value = gsap.timeline({paused: true})
+  tl.value?.from(title.value?.querySelectorAll('.join-us__title--letter') as NodeListOf<HTMLElement>, A.title)
+  tl.value?.from(root.value?.querySelectorAll('.join-us__cta') as NodeListOf<HTMLElement>, A.opacity, 0.4)
 })
 </script>
 <style scoped lang="sass">
@@ -62,9 +64,11 @@ onMounted(() => {
     max-width: 70rem
     text-align: center
     color: $white
+
     & > span
       display: block
       overflow: hidden
+
     &--letter
       display: inline-block
       white-space: pre
@@ -83,7 +87,7 @@ onMounted(() => {
     position: relative
     overflow: hidden
     width: 100vw
-    height: calc(9/16 * 100vw)
+    height: calc(9 / 16 * 100vw)
 
   &__image
     width: 110%

@@ -10,6 +10,7 @@
 <script lang="ts" setup>
 import gsap from "gsap";
 import A from "@/assets/animations";
+import Timeline = gsap.core.Timeline;
 
 const prismic = usePrismic();
 const store = useIndexStore();
@@ -17,9 +18,9 @@ const route = useRoute();
 const page = usePage();
 
 
-const {data: inscriptionPage } = useAsyncData("[inscription]", () => prismic.client.getSingle('inscription'))
-console.log(inscriptionPage)
-
+const {data: inscriptionPage} = await useAsyncData("inscription", () => prismic.client.getSingle('inscription'))
+// const inscriptionPage = ref(null)
+// console.log(inscriptionPage.value)
 useHead({
   title: inscriptionPage.value?.data.meta_title,
   meta: [
@@ -34,10 +35,10 @@ const root = ref<HTMLElement | null>(null)
 const intersect = useIntersect(root, {
   rootMargin: '200px 0px -10px 0px',
 })
-const tl = gsap.timeline({ paused: true })
+const tl = ref<Timeline | null>(null)
 
 watch(() => store.isTransitionVisible, (value) => {
-  if(!value) {
+  if (!value) {
     setTimeout(() => {
       draw()
     }, 1000)
@@ -45,12 +46,13 @@ watch(() => store.isTransitionVisible, (value) => {
 })
 
 const draw = () => {
-  tl.play()
+  tl.value?.play()
 }
 
 onMounted(() => {
-  tl.from(root.value?.querySelectorAll('.inscription-page__title--letter') as NodeListOf<HTMLElement>, A.title)
-  tl.from(root.value?.querySelectorAll('.inscription-page__subtitle') as NodeListOf<HTMLElement>, A.opacity, 0.2)
+  tl.value = gsap.timeline({paused: true})
+  tl.value?.from(root.value?.querySelectorAll('.inscription-page__title--letter') as NodeListOf<HTMLElement>, A.title)
+  tl.value?.from(root.value?.querySelectorAll('.inscription-page__subtitle') as NodeListOf<HTMLElement>, A.opacity, 0.2)
 })
 
 </script>
@@ -68,6 +70,7 @@ onMounted(() => {
     color: white
     text-align: center
     overflow: hidden
+
     & span
       display: inline-block
       white-space: pre
@@ -75,7 +78,7 @@ onMounted(() => {
 
     @include lg
       @include h1()
-      //padding-top: 20rem
+  //padding-top: 20rem
 
   &__subtitle
     @include text(4vw)

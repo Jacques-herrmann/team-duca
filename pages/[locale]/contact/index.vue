@@ -2,30 +2,30 @@
   <div class="contact-page" ref="root">
     <figure-element class="contact-page__cover" :image="contactPage?.data.image"/>
     <h1 class="contact-page__title">
-      <div v-for="t in title"><span>{{t}}</span></div>
+      <div v-for="t in title"><span>{{ t }}</span></div>
     </h1>
     <div class="contact-page__right">
-      <prismic-rich-text class="contact-page__content" :field="contactPage?.data.subtitle" />
+      <prismic-rich-text class="contact-page__content" :field="contactPage?.data.subtitle"/>
       <div class="contact-page__form">
         <form
-         ref="form"
-         class="contact-page__form"
-         name="contact"
-         netlify
-         netlify-honeypot="bot-field"
+          ref="form"
+          class="contact-page__form"
+          name="contact"
+          netlify
+          netlify-honeypot="bot-field"
         >
           <p class="hidden">
             <label>
-              Don’t fill this out if you’re human: <input name="bot-field" />
+              Don’t fill this out if you’re human: <input name="bot-field"/>
             </label>
           </p>
           <p>
             <input type="email" name="email" placeholder="EMAIL"/>
           </p>
           <p>
-            <textarea type="text" name="message" :rows="isMobile ? 6: 10" placeholder="VOTRE MESSAGE" />
+            <textarea type="text" name="message" :rows="isMobile ? 6: 10" placeholder="VOTRE MESSAGE"/>
           </p>
-          <CTA class="contact-page__cta" text="send"  :is-nuxt-link="true"/>
+          <CTA class="contact-page__cta" text="send" :is-nuxt-link="false"/>
         </form>
       </div>
     </div>
@@ -35,6 +35,7 @@
 
 import gsap from "gsap";
 import A from "assets/animations";
+import Timeline = gsap.core.Timeline;
 
 const prismic = usePrismic();
 const store = useIndexStore();
@@ -42,8 +43,8 @@ const page = usePage();
 
 // const form = ref<HTMLFormElement | null>(null);
 
-const {data: contactPage } = useAsyncData("[contact]", () => prismic.client.getSingle('contact'))
-console.log(contactPage)
+const {data: contactPage} = await useAsyncData("contact", () => prismic.client.getSingle('contact'))
+// console.log(contactPage)
 
 useHead({
   title: contactPage.value?.data.meta_title,
@@ -57,24 +58,25 @@ useHead({
 
 const root = ref<HTMLElement | null>(null)
 const title = computed(() => contactPage.value?.data.titre.split('\n'))
-const tl = gsap.timeline({paused: true})
+const tl = ref<Timeline | null>(null)
 const isMobile = computed(() => store.isMobile)
 
 watch(() => store.isTransitionVisible, (value) => {
-  if(!value) {
+  if (!value) {
     setTimeout(() => {
-      tl.play()
+      tl.value?.play()
     }, 280)
   }
 })
 
 
 onMounted(() => {
-  tl.from(root.value?.querySelectorAll(".contact-page__cover") as NodeList, A.imageWidth, 0)
-  tl.from(root.value?.querySelectorAll(".contact-page__title span") as NodeList, A.h2, 0.4)
-  tl.from(root.value?.querySelectorAll(".contact-page__content") as NodeList, A.opacity, 0.4)
-  tl.from(root.value?.querySelectorAll(".contact-page__form") as NodeList, A.opacity, 0.5)
-  tl.from(root.value?.querySelectorAll(".contact-page__cta") as NodeList, A.opacity, 0.6)
+  tl.value = gsap.timeline({paused: true})
+  tl.value?.from(root.value?.querySelectorAll(".contact-page__cover") as NodeList, A.imageWidth, 0)
+  tl.value?.from(root.value?.querySelectorAll(".contact-page__title span") as NodeList, A.h2, 0.4)
+  tl.value?.from(root.value?.querySelectorAll(".contact-page__content") as NodeList, A.opacity, 0.4)
+  tl.value?.from(root.value?.querySelectorAll(".contact-page__form") as NodeList, A.opacity, 0.5)
+  tl.value?.from(root.value?.querySelectorAll(".contact-page__cta") as NodeList, A.opacity, 0.6)
 
 })
 </script>
@@ -98,8 +100,10 @@ onMounted(() => {
     left: 55px
     font-weight: 800
     color: $white
+
     & > div
       overflow: hidden
+
     & span
       display: inline-block
 
@@ -152,6 +156,7 @@ onMounted(() => {
       padding: 0.8rem
       outline: none
       width: 100%
+
       &::placeholder
         color: $white
         opacity: 0.8

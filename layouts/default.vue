@@ -1,11 +1,11 @@
 <template>
-  <div id="app-layout">
-    <PageTransition />
-    <Cursor />
-    <Header />
+  <div class="app-layout">
+    <PageTransition/>
+    <Cursor/>
+    <Header/>
     <main>
-      <GridBackground />
-      <slot />
+      <GridBackground/>
+      <NuxtPage/>
     </main>
     <Footer v-if="!isGalleryPage"/>
   </div>
@@ -15,47 +15,25 @@
 import Header from "@/components/Header/index.vue"
 import Footer from "@/components/Footer/index.vue"
 import PageTransition from "@/components/PageTransition/index.vue"
-import Lenis from "@/utils/lenis/lenis"
 import gsap from "gsap"
 import {useIndexStore} from "~/stores";
-import {body} from "slice-machine-ui/src/components/Table/Table.css";
 
 const store = useIndexStore()
-const scroll: Ref<Lenis | null> = ref(null)
 const route = useRoute()
-const isGalleryPage = computed(() => route.name === 'locale-galerie')
 
+const isGalleryPage = computed(() => route.name === 'locale-galerie')
 const noiseOpacity = ref(0)
 
-const onUpdate = () => {
-  requestAnimationFrame(onUpdate)
-  scroll.value?.raf()
-}
-
-const onResize = () => {
-  const vh = window.innerHeight * 0.01
-  document.documentElement.style.setProperty('--vh', `${vh}px`)
-  store.setIsMobile(window.innerWidth < 1024)
-}
-
 onMounted(() => {
-  gsap.to(noiseOpacity, { value: 0.04, duration: 1, ease: 'linear'})
-  scroll.value = new Lenis()
-  store.setScroll(scroll.value)
+  gsap.to(noiseOpacity, {value: 0.04, duration: 1, ease: 'linear'})
+
   store.setTransition(true)
   setTimeout(() => {
     store.setTransition(false)
   }, 3000)
-  onResize()
-  onUpdate()
 
-  window.addEventListener('resize', onResize)
 })
 
-onUnmounted(() => {
-  scroll.value?.destroy()
-  window.removeEventListener('resize', onResize)
-})
 
 </script>
 <style lang="sass" scoped>
@@ -64,9 +42,9 @@ main
   position: relative
   width: 100%
   min-height: 100vh
-  //z-index: $z-content
+//z-index: $z-content
 
-#app-layout::after
+.app-layout::after
   animation: grain 6s steps(10) infinite
   background-image: url('./assets/images/grain.png')
   background-repeat: repeat

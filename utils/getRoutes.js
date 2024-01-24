@@ -1,17 +1,13 @@
-import fetch from "node-fetch";
+const getRoutes = (locales = ['fr']) => {
+  const routes = []
+  for (const locale of locales) {
 
-const getRoutes = async (locales = ['ar', 'ber', 'fr', 'en']) => {
-    const routes = []
-    for (const locale of locales) {
-        routes.push(`/${locale}`)
-
-        const pins = await fetch(`${process.env.API_URL}/api/pins?locale=${locale}`)
-            .then((res) => res.json())
-        pins?.docs?.forEach((item) => {
-            routes.push(`/${locale}/${item?.slug}`)
-        })
-    }
-    console.log(routes)
-    return routes
+    routes.push(`/${locale}`)
+    routes.push(`/${locale}/contact`)
+    routes.push(`/${locale}/galerie`)
+    routes.push(`/${locale}/inscription`)
+    routes.push(`/${locale}/services`)
+  }
+  return routes
 }
 export default getRoutes

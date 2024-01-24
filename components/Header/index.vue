@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <Logo class="header__logo" @click="toHome" />
+    <Logo class="header__logo" @click="toHome"/>
     <div class="header__burger" @click="onOpen">
       <svg width="38" height="29" viewBox="0 0 38 29" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M36 2L2 2" stroke="#F9F9F9" stroke-width="4" stroke-linecap="round"/>
@@ -11,8 +11,8 @@
     <ul class="header__menu" ref="menu">
       <li class="header__menu-item" v-for="item in header?.data.pages" :key="item.id">
         <nuxt-link
-         @click.native="onClose(`/${locale}${item.url ?`/${item.url}`: ''}`)"
-         :to="`/${locale}${item.url ?`/${item.url}`: ''}`"
+          @click.native="onClose(`/${locale}${item.url ?`/${item.url}`: ''}`)"
+          :to="`/${locale}${item.url ?`/${item.url}`: ''}`"
         >
           <span class="header__menu-item--letter" v-for="l in item.titre">{{ l }}</span>
         </nuxt-link>
@@ -21,45 +21,46 @@
   </header>
 </template>
 <script lang="ts" setup>
-import gsap from 'gsap'
 import A from '@/assets/animations'
+import Timeline = gsap.core.Timeline;
 
 const prismic = usePrismic();
 const route = useRoute();
 const store = useIndexStore();
-console.log(route)
+// console.log(route)
 const locale = 'fr';
 
-const {data: header } = useAsyncData("[header]", () => prismic.client.getSingle('header'))
-console.log(header)
+const {data: header} = await useAsyncData("header", () => prismic.client.getSingle('header'))
+// console.log(header)
+// const header = ref(null)
 
 const isMobile = computed(() => store.isMobile)
 const menu = ref(null)
-let tl = gsap.timeline({paused: true})
+const tl = ref<Timeline | null>(null)
 
 const toHome = () => {
- navigateTo(`/${locale}`)
+  navigateTo(`/${locale}`)
 }
 
 const onOpen = () => {
-  tl.timeScale(1).play()
+  tl.value?.timeScale(1).play()
 }
 
-const onClose = (path) => {
+const onClose = (path: string) => {
   let d = 1000
-  if(path === route.path) {
+  if (path === route.path) {
     d = 0
   }
   setTimeout(() => {
-    tl.timeScale(2).reverse()
+    tl.value?.timeScale(2).reverse()
   }, d)
 }
 
 const onResize = () => {
-  tl = gsap.timeline({paused: true})
-  console.log(isMobile.value)
-  if(isMobile.value) {
-    tl.from(menu.value, {
+  tl.value = gsap.timeline({paused: true})
+  // console.log(isMobile.value)
+  if (isMobile.value) {
+    tl.value.from(menu.value, {
       height: '0',
       duration: 0.4,
       ease: 'power2.out'
@@ -67,12 +68,13 @@ const onResize = () => {
     // tl.set(menu.value.querySelector('div'), {opacity: 1}, 0.1)
     const listeElement = menu.value.querySelectorAll('.header__menu-item')
     listeElement.forEach((element, index) => {
-        tl.from(element.querySelectorAll('.header__menu-item--letter'), A.h2,  0.1 + index * 0.05)
+      tl.value?.from(element.querySelectorAll('.header__menu-item--letter'), A.h2, 0.1 + index * 0.05)
     })
   }
 }
 
 onMounted(() => {
+  tl.value = gsap.timeline({paused: true})
   nextTick(() => {
     onResize()
   })
@@ -94,6 +96,7 @@ onMounted(() => {
   @include lg
     background: $gradient
     height: 80px
+
   &__burger
     position: absolute
     right: 20px
@@ -160,7 +163,7 @@ onMounted(() => {
         color: $red
 
       .router-link-active
-          color: $red
+        color: $red
 
       &--letter
         display: inline-block
