@@ -29,12 +29,13 @@ const props = defineProps<{
 }>()
 
 const root = ref<HTMLElement | null>(null)
-const tl = ref<Timeline | null>(null)
+let tl = <Timeline | null>null
+
 const intersect = useIntersect(root, {
   threshold: 0.2,
   rootMargin: '100px 0px 0px 0px',
   onReveal: () => {
-    tl.value?.play()
+    tl?.play()
   },
 })
 
@@ -56,10 +57,10 @@ const onHoverLeave = () => {
 }
 
 onMounted(() => {
-  tl.value = gsap.timeline({paused: true})
-  tl.value?.from(root.value?.querySelectorAll('.abonnement-element__top__title span') as NodeList, A.h2, 0.2)
-  tl.value?.from(root.value?.querySelectorAll('.abonnement-element__top__subtitle') as NodeList, A.opacity, 0.2)
-  tl.value?.from(root.value?.querySelectorAll('.abonnement-element__price span') as NodeList, A.h2, 0.4)
+  tl = gsap.timeline({paused: true})
+  tl.from(root.value?.querySelectorAll('.abonnement-element__top__title span') as NodeList, A.h2, 0.2)
+  tl.from(root.value?.querySelectorAll('.abonnement-element__top__subtitle') as NodeList, A.opacity, 0.2)
+  tl.from(root.value?.querySelectorAll('.abonnement-element__price span') as NodeList, A.h2, 0.4)
 })
 
 </script>

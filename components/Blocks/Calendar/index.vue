@@ -42,7 +42,7 @@ const intersect = useIntersect(root, {
     draw()
   },
 })
-const tl = ref<Timeline | null>(null)
+let tl = <Timeline | null>null
 
 const downloadCalendar = () => {
   const doc = new jsPDF()
@@ -97,25 +97,25 @@ const filterEvents = (sport: string) => {
 }
 
 const draw = () => {
-  tl.value?.play()
+  tl?.play()
 }
 
 onMounted(() => {
-  tl.value = gsap.timeline({paused: true})
-  tl.value?.from(root.value?.querySelectorAll('.planning__title--letter') as NodeListOf<HTMLElement>, A.title)
-  tl.value?.from(root.value?.querySelectorAll('.planning__content') as NodeListOf<HTMLElement>, A.opacity, 0.2)
-  tl.value?.from(root.value?.querySelectorAll('.planning__container') as NodeListOf<HTMLElement>, {
+  tl = gsap.timeline({paused: true})
+  tl.from(root.value?.querySelectorAll('.planning__title--letter') as NodeListOf<HTMLElement>, A.title)
+  tl.from(root.value?.querySelectorAll('.planning__content') as NodeListOf<HTMLElement>, A.opacity, 0.2)
+  tl.from(root.value?.querySelectorAll('.planning__container') as NodeListOf<HTMLElement>, {
     height: 0,
     duration: 0.6,
     ease: 'power3.out',
   }, 0.6)
-  tl.value?.from(root.value?.querySelectorAll('.planning__filter') as NodeListOf<HTMLElement>, A.opacity, 0.6)
-  tl.value?.from(root.value?.querySelectorAll('.download') as NodeListOf<HTMLElement>, A.opacity, 0.8)
-  tl.value?.from(root.value?.querySelectorAll('.asterix') as NodeListOf<HTMLElement>, A.opacity, 0.8)
+  tl.from(root.value?.querySelectorAll('.planning__filter') as NodeListOf<HTMLElement>, A.opacity, 0.6)
+  tl.from(root.value?.querySelectorAll('.download') as NodeListOf<HTMLElement>, A.opacity, 0.8)
+  tl.from(root.value?.querySelectorAll('.asterix') as NodeListOf<HTMLElement>, A.opacity, 0.8)
 
   let elements = root.value?.querySelectorAll('.planning__container .event') as NodeListOf<HTMLElement>
   elements = shuffle(Array.from(elements))
-  tl.value?.from(elements, {
+  tl.from(elements, {
     height: 0,
     padding: 0,
     duration: 0.6,

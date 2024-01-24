@@ -6,7 +6,7 @@
 import {onMounted} from "vue";
 
 
-definePageMeta({layout: false})
+// definePageMeta({layout: false})
 
 const fallbackLocale = 'fr'
 const locales = ['fr']

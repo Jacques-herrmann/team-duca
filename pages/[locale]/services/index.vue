@@ -40,7 +40,7 @@ useHead({
 const root = ref<HTMLElement | null>(null)
 const visible = computed(() => store.isFullscreenVisible)
 const title = computed(() => servicePage.value?.data.title.split('\n'))
-const tl = ref<Timeline | null>(null)
+let tl = <Timeline | null>null
 
 
 const onVideoClick = () => {
@@ -50,18 +50,18 @@ const onVideoClick = () => {
 watch(() => store.isTransitionVisible, (value) => {
   if (!value) {
     setTimeout(() => {
-      tl.value?.play()
+      tl?.play()
     }, 280)
   }
 })
 
 
 onMounted(() => {
-  tl.value = gsap.timeline({paused: true})
-  tl.value?.from(root.value?.querySelectorAll(".service-page__cover") as NodeList, A.imageWidth, 0)
-  tl.value?.from(root.value?.querySelectorAll(".service-page__title span") as NodeList, A.h2, 0.4)
-  tl.value?.from(root.value?.querySelectorAll(".service-page__content") as NodeList, A.opacity, 0.6)
-  tl.value?.from(root.value?.querySelectorAll(".service-page__cta") as NodeList, A.opacity, 0.8)
+  tl = gsap.timeline({paused: true})
+  tl.from(root.value?.querySelectorAll(".service-page__cover") as NodeList, A.imageWidth, 0)
+  tl.from(root.value?.querySelectorAll(".service-page__title span") as NodeList, A.h2, 0.4)
+  tl.from(root.value?.querySelectorAll(".service-page__content") as NodeList, A.opacity, 0.6)
+  tl.from(root.value?.querySelectorAll(".service-page__cta") as NodeList, A.opacity, 0.8)
 
 })
 </script>

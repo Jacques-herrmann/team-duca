@@ -43,6 +43,12 @@ const locale = route.params.locale
     color: $white
     padding: 0 40px
 
+  & button
+    border: none
+    background-color: transparent
+    height: 100%
+    width: 100%
+
   &__background
     position: absolute
     top: 0

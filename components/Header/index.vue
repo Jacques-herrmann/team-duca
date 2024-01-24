@@ -22,6 +22,7 @@
 </template>
 <script lang="ts" setup>
 import A from '@/assets/animations'
+import gsap from "gsap";
 import Timeline = gsap.core.Timeline;
 
 const prismic = usePrismic();

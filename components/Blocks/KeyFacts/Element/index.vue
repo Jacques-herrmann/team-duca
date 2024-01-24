@@ -27,21 +27,21 @@ const intersect = useIntersect(root, {
     draw()
   },
 })
-const tl = ref<Timeline | null>(null)
+let tl = <Timeline | null>null
 
 const chars = props.number.split('')
 
 const draw = () => {
-  tl.value?.play()
+  tl?.play()
 }
 
 onMounted(() => {
-  tl.value = gsap.timeline({delay: props.delay, paused: true})
+  tl = gsap.timeline({delay: props.delay, paused: true})
   const reds = root.value?.querySelectorAll('.keyfact__red span')
   if (reds) {
-    tl.value.from(reds, A.h2, 0)
-    tl.value.from(root.value?.querySelector('.keyfact__grey') as HTMLElement, A.opacity, 0.2)
-    tl.value.from(root.value?.querySelector('.keyfact__text') as HTMLElement, A.opacity, 0.4)
+    tl.from(reds, A.h2, 0)
+    tl.from(root.value?.querySelector('.keyfact__grey') as HTMLElement, A.opacity, 0.2)
+    tl.from(root.value?.querySelector('.keyfact__text') as HTMLElement, A.opacity, 0.4)
   }
 })
 

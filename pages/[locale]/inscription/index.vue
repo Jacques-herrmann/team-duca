@@ -35,7 +35,7 @@ const root = ref<HTMLElement | null>(null)
 const intersect = useIntersect(root, {
   rootMargin: '200px 0px -10px 0px',
 })
-const tl = ref<Timeline | null>(null)
+let tl = <Timeline | null>null
 
 watch(() => store.isTransitionVisible, (value) => {
   if (!value) {
@@ -46,13 +46,13 @@ watch(() => store.isTransitionVisible, (value) => {
 })
 
 const draw = () => {
-  tl.value?.play()
+  tl?.play()
 }
 
 onMounted(() => {
-  tl.value = gsap.timeline({paused: true})
-  tl.value?.from(root.value?.querySelectorAll('.inscription-page__title--letter') as NodeListOf<HTMLElement>, A.title)
-  tl.value?.from(root.value?.querySelectorAll('.inscription-page__subtitle') as NodeListOf<HTMLElement>, A.opacity, 0.2)
+  tl = gsap.timeline({paused: true})
+  tl.from(root.value?.querySelectorAll('.inscription-page__title--letter') as NodeListOf<HTMLElement>, A.title)
+  tl.from(root.value?.querySelectorAll('.inscription-page__subtitle') as NodeListOf<HTMLElement>, A.opacity, 0.2)
 })
 
 </script>

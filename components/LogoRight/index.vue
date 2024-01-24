@@ -191,14 +191,14 @@ import gsap from 'gsap'
 import Timeline = gsap.core.Timeline;
 
 const root = ref<HTMLElement | null>(null)
-const tl = ref<Timeline | null>(null)
+let tl = <Timeline | null>null
 
 const draw = () => {
-  tl.value?.play()
+  tl?.play()
 }
 
 onMounted(() => {
-  tl.value = gsap.timeline({paused: true})
+  tl = gsap.timeline({paused: true})
   const paths = Array.from(root.value?.querySelectorAll('path') as NodeList)
   gsap.set(paths, {
     fillOpacity: 0,
@@ -223,7 +223,7 @@ onMounted(() => {
   //   }, 0)
   // })
 
-  tl.value?.to(paths, {
+  tl.to(paths, {
     duration: 1,
     fillOpacity: 0.1,
     strokeOpacity: 0,

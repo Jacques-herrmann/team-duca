@@ -34,17 +34,17 @@ const intersectTitle = useIntersect(title, {
   },
 })
 
-const tl = ref<Timeline | null>(null)
+let tl = <Timeline | null>null
 const titleArr = computed(() => props.block.primary.title.split('\n'))
 
 const draw = () => {
-  tl.value?.play()
+  tl?.play()
 }
 
 onMounted(() => {
-  tl.value = gsap.timeline({paused: true})
-  tl.value?.from(title.value?.querySelectorAll('.join-us__title--letter') as NodeListOf<HTMLElement>, A.title)
-  tl.value?.from(root.value?.querySelectorAll('.join-us__cta') as NodeListOf<HTMLElement>, A.opacity, 0.4)
+  tl = gsap.timeline({paused: true})
+  tl.from(title.value?.querySelectorAll('.join-us__title--letter') as NodeListOf<HTMLElement>, A.title)
+  tl.from(root.value?.querySelectorAll('.join-us__cta') as NodeListOf<HTMLElement>, A.opacity, 0.4)
 })
 </script>
 <style scoped lang="sass">

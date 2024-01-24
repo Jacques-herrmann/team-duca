@@ -29,18 +29,18 @@ const intersect = useIntersect(root, {
     draw()
   },
 })
-const tl = ref<Timeline | null>(null)
+let tl = <Timeline | null>null
 
 const draw = () => {
-  tl.value?.play()
+  tl?.play()
 }
 
 onMounted(() => {
-  tl.value = gsap.timeline({paused: true})
-  tl.value?.from(root.value?.querySelectorAll('.sponsors__title--letter') as NodeListOf<HTMLElement>, A.title, 0)
+  tl = gsap.timeline({paused: true})
+  tl.from(root.value?.querySelectorAll('.sponsors__title--letter') as NodeListOf<HTMLElement>, A.title, 0)
 
   let elements = root.value?.querySelectorAll('.sponsors__item,.sponsors__cta') as NodeListOf<HTMLElement>
-  tl.value?.from(elements, {
+  tl.from(elements, {
     opacity: 0,
     duration: 0.6,
     stagger: 0.1,

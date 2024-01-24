@@ -31,7 +31,7 @@ const store = useIndexStore();
 const locale = 'fr';
 const root = ref<HTMLElement | null>(null)
 const intersect = useIntersect(root)
-const tl = ref<Timeline | null>(null)
+let tl = <Timeline | null>null
 
 const splitTitle = computed(() => props.block.primary.title.split(' '))
 
@@ -39,7 +39,7 @@ watch(() => store.isTransitionVisible, (value) => {
   if (!value) {
     setTimeout(() => {
       draw()
-    }, 1000)
+    }, 800)
   }
 })
 
@@ -48,13 +48,13 @@ const toHome = () => {
 }
 
 const draw = () => {
-  tl.value?.play()
+  tl?.play()
 }
 
 onMounted(() => {
-  tl.value = gsap.timeline({paused: true})
-  tl.value?.from('.hero__title--letter', A.title)
-  tl.value?.from('.hero__footer h2', {
+  tl = gsap.timeline({paused: true})
+  tl?.from('.hero__title--letter', A.title)
+  tl?.from('.hero__footer h2', {
     opacity: 0,
     duration: 0.6,
     ease: 'linear'
