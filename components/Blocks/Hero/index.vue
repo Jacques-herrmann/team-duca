@@ -1,8 +1,8 @@
 <template>
   <div class="hero" ref="root">
     <WebglImage class="hero__background" :image="block.primary.hero"/>
-<!--    <Logo class="hero__logo" @click="toHome" />-->
-    <Parallax class="hero__content" :active="intersect.active.value" :speed="2" >
+    <!--    <Logo class="hero__logo" @click="toHome" />-->
+    <Parallax class="hero__content" :active="intersect.active.value" :speed="2">
       <div>
         <h1 class="hero__title">
           <span class="hero__title--word" v-for="s in splitTitle">
@@ -10,17 +10,18 @@
           </span>
         </h1>
         <div class="hero__footer">
-          <h2 class="hero__sub">{{ block.primary.text_left}}</h2>
-          <h2 class="hero__sub">{{ block.primary.text_right}}</h2>
+          <h2 class="hero__sub">{{ block.primary.text_left }}</h2>
+          <h2 class="hero__sub">{{ block.primary.text_right }}</h2>
         </div>
       </div>
     </Parallax>
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import {defineProps} from 'vue'
 import gsap from 'gsap'
 import A from '@/assets/animations'
+import Timeline = gsap.core.Timeline;
 
 const props = defineProps<{
   block: any
@@ -30,29 +31,30 @@ const store = useIndexStore();
 const locale = 'fr';
 const root = ref<HTMLElement | null>(null)
 const intersect = useIntersect(root)
-const tl = gsap.timeline({paused: true})
+let tl = <Timeline | null>null
 
 const splitTitle = computed(() => props.block.primary.title.split(' '))
 
 watch(() => store.isTransitionVisible, (value) => {
-  if(!value) {
+  if (!value) {
     setTimeout(() => {
       draw()
-    }, 1000)
+    }, 800)
   }
 })
 
 const toHome = () => {
- navigateTo(`/${locale}`)
+  navigateTo(`/${locale}`)
 }
 
 const draw = () => {
-  tl.play()
+  tl?.play()
 }
 
 onMounted(() => {
-  tl.from('.hero__title--letter', A.title)
-  tl.from('.hero__footer h2', {
+  tl = gsap.timeline({paused: true})
+  tl?.from('.hero__title--letter', A.title)
+  tl?.from('.hero__footer h2', {
     opacity: 0,
     duration: 0.6,
     ease: 'linear'
@@ -68,6 +70,7 @@ onMounted(() => {
   height: 100vh
   height: calc(var(--vh, 1vh) * 100)
   overflow: hidden
+
   &__logo
     position: absolute
     top: 40vw
@@ -77,6 +80,7 @@ onMounted(() => {
     pointer-events: all
     z-index: 1
     cursor: pointer
+
   &__background
     position: absolute
     top: 0
@@ -107,6 +111,7 @@ onMounted(() => {
     text-align: left
     color: $white
     pointer-events: none
+
     &--word
       overflow: hidden
       display: block
@@ -116,6 +121,7 @@ onMounted(() => {
         will-change: transform
         &:first-child
           margin-right: 2vw
+
     &--letter
       display: inline-block
       white-space: pre
@@ -147,8 +153,10 @@ onMounted(() => {
     letter-spacing: 0.08rem
     width: 50%
     color: $white
+
     &:first-child
       text-align: left
+
     &:last-child
       text-align: right
 
@@ -156,8 +164,8 @@ onMounted(() => {
       @include h2(1.8vw)
       width: 26vw
 
-    //@include xl
-    //  width: 21.5vw
+  //@include xl
+  //  width: 21.5vw
 
   &__cta
     position: absolute

@@ -1,22 +1,23 @@
 <template>
   <div class="keyfact__element" ref="root">
     <div class="keyfact__number">
-      <span class="keyfact__grey">{{number}}</span>
+      <span class="keyfact__grey">{{ number }}</span>
       <span class="keyfact__red">
-        <span v-for="c in chars">{{c}}</span>
+        <span v-for="c in chars">{{ c }}</span>
       </span>
     </div>
-    <p class="keyfact__text">{{text}}</p>
+    <p class="keyfact__text">{{ text }}</p>
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import {defineProps} from 'vue'
 import gsap from 'gsap'
 import A from '@/assets/animations'
+import Timeline = gsap.core.Timeline;
 
 const props = defineProps<{
   number: String,
-  delay: Number,
+  delay: number,
   text: String
 }>()
 
@@ -26,16 +27,17 @@ const intersect = useIntersect(root, {
     draw()
   },
 })
-const tl = gsap.timeline({delay: props.delay, paused: true})
+let tl = <Timeline | null>null
 
 const chars = props.number.split('')
 
 const draw = () => {
-  tl.play()
+  tl?.play()
 }
 
 onMounted(() => {
- const reds = root.value?.querySelectorAll('.keyfact__red span')
+  tl = gsap.timeline({delay: props.delay, paused: true})
+  const reds = root.value?.querySelectorAll('.keyfact__red span')
   if (reds) {
     tl.from(reds, A.h2, 0)
     tl.from(root.value?.querySelector('.keyfact__grey') as HTMLElement, A.opacity, 0.2)
@@ -69,6 +71,7 @@ onMounted(() => {
     position: relative
     color: $red
     overflow: hidden
+
     & span
       display: inline-block
 

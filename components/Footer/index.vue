@@ -1,14 +1,14 @@
 <template>
   <footer class="footer">
     <div class="footer__left">
-      <span class="footer__title">{{footer?.data.titre}}</span>
-      <span class="footer__subtitle">{{footer?.data.subtitle}}</span>
+      <span class="footer__title">{{ footer?.data.titre }}</span>
+      <span class="footer__subtitle">{{ footer?.data.subtitle }}</span>
     </div>
     <div class="footer__right">
       <prismic-rich-text class="footer__address" :field="footer?.data.address"></prismic-rich-text>
       <div class="footer__socials">
-        <IconFacebook class="footer__icon" />
-        <IconInstagram class="footer__icon" />
+        <IconFacebook class="footer__icon"/>
+        <IconInstagram class="footer__icon"/>
       </div>
     </div>
     <span class="footer__background">TEAM DUCA</span>
@@ -20,7 +20,7 @@ const prismic = usePrismic();
 const route = useRoute();
 const locale = route.params.locale;
 
-const {data: footer } = useAsyncData("[footer]", () => prismic.client.getSingle('footer'))
+const {data: footer} = await useAsyncData("footer", () => prismic.client.getSingle('footer'))
 
 </script>
 

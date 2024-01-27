@@ -5,13 +5,13 @@
     <NuxtLink v-if="isNuxtLink" :to="`${url}`" class="cta__link">
       {{ text }}
     </NuxtLink>
-    <a v-else :href="text" class="cta__link">
+    <button v-else class="cta__link">
       {{ text }}
-    </a>
+    </button>
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import {defineProps} from 'vue'
 
 const props = defineProps<{
   text: string,
@@ -37,10 +37,17 @@ const locale = route.params.locale
   align-items: center
   justify-content: center
   cursor: pointer
+
   &__link
     @include cta()
     color: $white
     padding: 0 40px
+
+  & button
+    border: none
+    background-color: transparent
+    height: 100%
+    width: 100%
 
   &__background
     position: absolute
@@ -48,12 +55,13 @@ const locale = route.params.locale
     left: 0
     height: 100%
     width: 120%
-    background-color:  $white
+    background-color: $white
     border-radius: 4px
     transform: translateX(-120%)
     transition: transform 0.3s ease
     clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%)
     z-index: -1
+
     &:nth-child(2)
       background-color: $red
       transition: transform 0.3s ease 0.02s

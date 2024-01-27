@@ -2,29 +2,31 @@
   <div class="service-page" ref="root">
     <div class="service-page__cover" @click="onVideoClick">
       <figure-element class="service-page__img" :image="servicePage?.data.cover"/>
-      <IconPlay class="service-page__icon" />
+      <IconPlay class="service-page__icon"/>
     </div>
     <video-fullscreen v-if="visible" :video="servicePage?.data.video"/>
     <h1 class="service-page__title">
-      <div v-for="t in title"><span>{{t}}</span></div>
+      <div v-for="t in title"><span>{{ t }}</span></div>
     </h1>
     <div class="service-page__right">
       <prismic-rich-text class="service-page__content" :field="servicePage?.data.content"></prismic-rich-text>
-      <CTA class="service-page__right__cta" :text="servicePage?.data.cta_text" :url="servicePage?.data.cta_link" :is-nuxt-link="true"/>
+      <CTA class="service-page__right__cta" :text="servicePage?.data.cta_text" :url="servicePage?.data.cta_link"
+           :is-nuxt-link="true"/>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import A from '@/assets/animations'
 import gsap from 'gsap'
+import Timeline = gsap.core.Timeline;
 
 const prismic = usePrismic();
 const route = useRoute();
 const page = usePage();
 const store = useIndexStore()
 
-const {data: servicePage } = useAsyncData("[services]", () => prismic.client.getSingle('services'))
-console.log(servicePage)
+const {data: servicePage} = await useAsyncData("services", () => prismic.client.getSingle('services'))
+// console.log(servicePage)
 
 useHead({
   title: servicePage.value?.data.meta_title,
@@ -38,7 +40,7 @@ useHead({
 const root = ref<HTMLElement | null>(null)
 const visible = computed(() => store.isFullscreenVisible)
 const title = computed(() => servicePage.value?.data.title.split('\n'))
-const tl = gsap.timeline({paused: true})
+let tl = <Timeline | null>null
 
 
 const onVideoClick = () => {
@@ -46,15 +48,16 @@ const onVideoClick = () => {
 }
 
 watch(() => store.isTransitionVisible, (value) => {
-  if(!value) {
+  if (!value) {
     setTimeout(() => {
-      tl.play()
+      tl?.play()
     }, 280)
   }
 })
 
 
 onMounted(() => {
+  tl = gsap.timeline({paused: true})
   tl.from(root.value?.querySelectorAll(".service-page__cover") as NodeList, A.imageWidth, 0)
   tl.from(root.value?.querySelectorAll(".service-page__title span") as NodeList, A.h2, 0.4)
   tl.from(root.value?.querySelectorAll(".service-page__content") as NodeList, A.opacity, 0.6)
@@ -84,8 +87,10 @@ onMounted(() => {
     font-weight: 800
     color: $white
     pointer-events: none
+
     & > div
       overflow: hidden
+
     & span
       display: inline-block
 
@@ -95,9 +100,9 @@ onMounted(() => {
       height: 4.1rem
 
     @include lg
-      top: 100px
+      top: 140px
       left: 45%
-      @include h1()
+      @include h1(7.5rem)
 
 
   &__right

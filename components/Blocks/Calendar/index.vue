@@ -3,16 +3,18 @@
     <h2 class="planning__title">
       <span class="planning__title--letter" v-for="l in block.primary.title">{{ l }}</span>
     </h2>
-    <prismic-rich-text class="planning__content" :field="block.primary.content" />
+    <prismic-rich-text class="planning__content" :field="block.primary.content"/>
     <ul class="planning__filter">
       <li class="planning__filter__item" @click="filterEvents('clear')">Tous les cours</li>
-      <li class="planning__filter__item" @click="filterEvents(sport.split(' ')[0])"  v-for="sport of getAllSports()">{{sport}}</li>
+      <li class="planning__filter__item" @click="filterEvents(sport.split(' ')[0])" v-for="sport of getAllSports()">
+        {{ sport }}
+      </li>
     </ul>
-    <div class="planning__container" >
+    <div class="planning__container">
       <div class="planning__container__single" v-for="event of formatPlanning()">
         <p class="planning__container__single__day">{{ event[0].day }}</p>
         <div class="planning__container__single__events">
-          <BlocksCalendarElement v-for="event of event" :eventData="event" />
+          <BlocksCalendarElement v-for="event of event" :eventData="event"/>
         </div>
       </div>
       <IconDownload class="download" @click="downloadCalendar"/>
@@ -21,11 +23,12 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import {defineProps} from 'vue'
 import gsap from "gsap";
 import A from "@/assets/animations";
 import {shuffle} from "~/utils/math";
-import { jsPDF } from "jspdf"
+import {jsPDF} from "jspdf"
+import Timeline = gsap.core.Timeline;
 
 const props = defineProps<{
   block: any
@@ -39,12 +42,12 @@ const intersect = useIntersect(root, {
     draw()
   },
 })
-const tl = gsap.timeline({ paused: true })
+let tl = <Timeline | null>null
 
 const downloadCalendar = () => {
   const doc = new jsPDF()
   const calendar = document.querySelector('.planning__container') as HTMLElement
-  doc.html(calendar,  {
+  doc.html(calendar, {
     x: 3,
     y: 3,
     html2canvas: {
@@ -85,7 +88,7 @@ const filterEvents = (sport: string) => {
     el.style.opacity = "1"
   })
   if (sport !== 'clear') {
-    const s = sport.replace('*','')
+    const s = sport.replace('*', '')
     const toHide = document.querySelectorAll(`.event:not(.${s})`)
     toHide.forEach((el: any) => {
       el.style.opacity = "0"
@@ -94,10 +97,11 @@ const filterEvents = (sport: string) => {
 }
 
 const draw = () => {
-  tl.play()
+  tl?.play()
 }
 
 onMounted(() => {
+  tl = gsap.timeline({paused: true})
   tl.from(root.value?.querySelectorAll('.planning__title--letter') as NodeListOf<HTMLElement>, A.title)
   tl.from(root.value?.querySelectorAll('.planning__content') as NodeListOf<HTMLElement>, A.opacity, 0.2)
   tl.from(root.value?.querySelectorAll('.planning__container') as NodeListOf<HTMLElement>, {
@@ -131,12 +135,14 @@ onMounted(() => {
   flex-direction: column
   align-items: center
   padding: 4rem 0 10rem 0
+
   &__title
     @include h1(16vw)
     margin-top: 80px
     color: white
     text-align: center
     overflow: hidden
+
     & span
       display: inline-block
       white-space: pre
@@ -166,7 +172,7 @@ onMounted(() => {
     margin-top: 50px
     gap: 10px
     @include xl
-      width: calc(5/6 * (100vw - 180px))
+      width: calc(5 / 6 * (100vw - 180px))
 
     &__item
       @include text(2.8vw)
@@ -174,6 +180,7 @@ onMounted(() => {
       font-weight: bold
       margin: 10px
       cursor: pointer
+
       &:hover
         text-decoration: underline
 
@@ -186,12 +193,13 @@ onMounted(() => {
     border-radius: 4px
     display: flex
     margin: 0 auto
+
     &__single
       width: calc((100vw - 20px) / 6)
 
       @include xl
         width: calc((100vw - 180px) / 6)
-        //min-width: 110px
+      //min-width: 110px
       &__day
         @include text(2.6vw)
         text-transform: uppercase
@@ -201,10 +209,12 @@ onMounted(() => {
         @include lg
           @include text()
           padding: 20px
+
       &__events
         display: grid
         grid-template-columns: 1fr
-        $v: calc( calc(((21 * 60) + 30) / 15) - calc(((10 * 60) + 30) / 15) ) // start at 10h30 // End at 21h30
+        $v: calc(calc(((21 * 60) + 30) / 15) - calc(((10 * 60) + 30) / 15))
+        // start at 10h30 // End at 21h30
         grid-template-rows: repeat($v, 0.8rem)
         @include md
           grid-template-rows: repeat($v, 1rem)
@@ -223,8 +233,6 @@ onMounted(() => {
       right: 0
       @include text(0.8rem)
       color: rgba(255, 255, 255, 0.4)
-
-
 
 
 </style>
