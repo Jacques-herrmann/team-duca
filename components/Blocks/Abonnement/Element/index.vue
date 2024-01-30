@@ -1,5 +1,5 @@
 <template>
-  <div class="abonnement-element" ref="root" @mouseenter="onHoverEnter" @mouseleave="onHoverLeave">
+  <div class="abonnement-element" ref="root" @mouseenter="onHoverEnter" @mouseleave="onHoverLeave" @click="toInstagram">
     <parallax class="abonnement-element__parallax" :active="intersect.active.value" :speed="2" :speed-mobile="1.2"
               :is-absolute="true">
       <figure-element :image="cover" class="abonnement-element__cover"/>
@@ -63,6 +63,10 @@ onMounted(() => {
   tl.from(root.value?.querySelectorAll('.abonnement-element__price span') as NodeList, A.h2, 0.4)
 })
 
+const toInstagram = () => {
+  window.open('https://www.instagram.com/science_duca/?hl=fr', '_blank')
+}
+
 </script>
 <style scoped lang="sass">
 .abonnement-element
@@ -75,6 +79,7 @@ onMounted(() => {
   flex-direction: column
   justify-content: space-between
   overflow: hidden
+  cursor: pointer
   @include lg
     padding: 3.5rem 3.5rem 3.5rem 40px
     height: 400px

@@ -8,11 +8,13 @@
       <div v-for="t in block.primary.title"><span>{{ t }}</span></div>
     </h3>
     <prismic-rich-text class="article-element__text" :field="block.primary.content"/>
+    <Carousel class="article-element__carousel" :content="block.items"/>
   </div>
 </template>
 <script lang="ts" setup>
 import {defineProps} from 'vue'
 import {gsap} from 'gsap'
+import Carousel from "~/components/Carousel/Carousel.vue";
 
 const props = defineProps<{
   block: any,
@@ -38,9 +40,10 @@ const draw = () => {
 .article-element
   position: relative
   width: 100%
-  height: 75vw
-  margin: 8rem 0
-  padding: 0 110px
+  padding: 4rem 30px
+
+  @include lg
+    padding: 8rem 110px
 
   &__subtitle
     @include text(3vw)
@@ -74,5 +77,7 @@ const draw = () => {
     @include lg
       @include text()
 
+  &__carousel
+    margin-top: 40px
 
 </style>

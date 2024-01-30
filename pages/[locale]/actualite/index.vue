@@ -84,11 +84,11 @@ onMounted(() => {
     color: $white
     text-align: center
     margin: 2rem auto 4rem auto
-    max-width: 700px
-    padding: 0 20px
+    max-width: 900px
+    padding: 0 40px
     @include lg
       @include text()
       padding: 0
-      margin: 2rem auto 8rem auto
+      margin: 2rem auto 4rem auto
 
 </style>

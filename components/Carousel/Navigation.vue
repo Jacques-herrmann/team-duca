@@ -18,7 +18,7 @@
 </template>
 <script setup>
 
-import Arrow from "~/components/Icons/Arrow.vue";
+import Arrow from "~/components/Icon/Arrow";
 
 const emits = defineEmits(['next', 'previous'])
 const props = defineProps({
@@ -43,10 +43,13 @@ const onPrevious = (ev) => {
 </script>
 <style lang="sass" scoped>
 .carousel-navigation
-  width: 110px
+  width: calc(100% + 80px)
   height: 50px
   display: flex
   justify-content: space-between
+  @include lg
+    width: calc(100% + 180px)
+
 
   &-btn
     height: 48px
@@ -55,25 +58,20 @@ const onPrevious = (ev) => {
     justify-content: center
     align-items: center
     border-radius: 50%
-    background-color: #002C5599
+    background: transparent
     opacity: 1
+    transform: rotate(180deg)
+    scale: 0.6
+    cursor: pointer
+
+    @include lg
+      scale: 1
 
     &--disable
       opacity: 0.6
 
     &--prev
-      transform: rotate(180deg)
-      .ar &
-        transform: rotate(0deg) !important
-
-    .ar &
-      transform: rotate(180deg)
-
-
-
-
-
-
+      transform: rotate(0deg)
 
 
 </style>
