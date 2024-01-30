@@ -119,9 +119,9 @@ onMounted(() => {
       width: 100%
 
     @include lg
-      padding: 0 45px
-      margin-top: 18rem
+      padding: 45px
       width: 45%
+      height: 100vh
       justify-content: flex-end
 
     &__cta
@@ -154,6 +154,7 @@ onMounted(() => {
   &__img
     width: 100%
     height: 100%
+    opacity: 0.4
     object-fit: cover
     object-position: center
     transition: transform 0.6s ease-out
@@ -170,13 +171,19 @@ onMounted(() => {
 
   &__content
     color: $white
-
+    ::v-deep(p)
+      margin: 10px 0
     ::v-deep(ul)
       list-style: disc
-      margin-top: 40px
-
+      margin-top: 20px
       li
         margin-left: 1rem
+
+    ::v-deep(h6)
+      margin-top: 20px
+      font-weight: bold
+
+
 
 
 </style>
