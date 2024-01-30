@@ -4,7 +4,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import {defineProps} from 'vue'
 
 const props = defineProps<{
   blocks: any[]
@@ -21,6 +21,7 @@ const components = {
   'historique': resolveComponent('BlocksHistorique'),
   'abonnement': resolveComponent('BlocksAbonnement'),
   'calendar': resolveComponent('BlocksCalendar'),
+  'article': resolveComponent('BlocksArticle'),
 }
 </script>
 

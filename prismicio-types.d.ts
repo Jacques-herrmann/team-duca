@@ -201,12 +201,34 @@ export type FooterDocument<Lang extends string = string> =
     Lang
   >;
 
-type GalerieDocumentDataSlicesSlice = GallerySlice;
+type GalerieDocumentDataSlicesSlice = ArticleSlice;
 
 /**
  * Content for Galerie documents
  */
 interface GalerieDocumentData {
+  /**
+   * title field in *Galerie*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: galerie.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * content field in *Galerie*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: galerie.content
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
   /**
    * Slice Zone field in *Galerie*
    *
@@ -717,6 +739,86 @@ type AbonnementSliceVariation = AbonnementSliceDefault;
 export type AbonnementSlice = prismic.SharedSlice<
   "abonnement",
   AbonnementSliceVariation
+>;
+
+/**
+ * Primary content in *Article → Primary*
+ */
+export interface ArticleSliceDefaultPrimary {
+  /**
+   * title field in *Article → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * subtitle field in *Article → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
+   * content field in *Article → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *Article → Items*
+ */
+export interface ArticleSliceDefaultItem {
+  /**
+   * media field in *Article → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.items[].media
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  media: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Article Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArticleSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ArticleSliceDefaultPrimary>,
+  Simplify<ArticleSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Article*
+ */
+type ArticleSliceVariation = ArticleSliceDefault;
+
+/**
+ * Article Shared Slice
+ *
+ * - **API ID**: `article`
+ * - **Description**: Article
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArticleSlice = prismic.SharedSlice<
+  "article",
+  ArticleSliceVariation
 >;
 
 /**
@@ -1552,6 +1654,11 @@ declare module "@prismicio/client" {
       AbonnementSliceDefaultItem,
       AbonnementSliceVariation,
       AbonnementSliceDefault,
+      ArticleSlice,
+      ArticleSliceDefaultPrimary,
+      ArticleSliceDefaultItem,
+      ArticleSliceVariation,
+      ArticleSliceDefault,
       CalendarSlice,
       CalendarSliceDefaultPrimary,
       CalendarSliceDefaultItem,
