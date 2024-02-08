@@ -1,8 +1,9 @@
-import { defineStore } from 'pinia'
+import {defineStore} from 'pinia'
 
 export const useIndexStore = defineStore('index', {
   state: () => {
     return {
+      isLocalTransition: false,
       isTransitionVisible: false,
       isFullscreenVisible: false,
       isMobile: false,
@@ -18,6 +19,9 @@ export const useIndexStore = defineStore('index', {
     },
     setTransition(transition) {
       this.isTransitionVisible = transition
+    },
+    setLocalTransition(transition) {
+      this.isLocalTransition = transition
     },
     setFullscreen(fullscreen) {
       this.isFullscreenVisible = fullscreen

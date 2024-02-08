@@ -61,7 +61,6 @@ const onEnter = (cb = () => {
 }
 
 watch(() => store.isTransitionVisible, (value) => {
-  console.log(value)
   if (value) {
     onEnter()
   } else {

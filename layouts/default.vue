@@ -28,6 +28,7 @@ onMounted(() => {
 
   store.setTransition(true)
   setTimeout(() => {
+    store.setLocalTransition(true)
     store.setTransition(false)
   }, 3000)
 

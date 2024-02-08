@@ -3,8 +3,6 @@ const useCursor = () => {
   const scroll = computed(() => store.scroll)
 
   onBeforeRouteLeave((to, from, next) => {
-
-    console.log('leave')
     store.setTransition(true)
     setTimeout(() => {
       scroll.value.smooth = false
@@ -14,8 +12,8 @@ const useCursor = () => {
     }, 1200)
   })
 
+
   onBeforeMount(() => {
-    console.log('mounted')
     store.setTransition(false)
   })
 

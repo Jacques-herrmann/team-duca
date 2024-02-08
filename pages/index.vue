@@ -3,10 +3,8 @@
 </template>
 <script lang="ts" setup>
 
-import {onMounted} from "vue";
 
-
-// definePageMeta({layout: false})
+definePageMeta({layout: 'empty'})
 
 const fallbackLocale = 'fr'
 const locales = ['fr']
