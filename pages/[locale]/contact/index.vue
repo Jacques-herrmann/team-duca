@@ -46,15 +46,17 @@ const page = usePage();
 const {data: contactPage} = await useAsyncData("contact", () => prismic.client.getSingle('contact'))
 // console.log(contactPage)
 
-useHead({
-  title: contactPage.value?.data.meta_title,
-  meta: [
-    {
-      name: "description",
-      content: contactPage.value?.data.meta_description,
-    },
-  ],
-});
+useSeoMeta({
+  title: 'SCIENCE DUCA - CONTACT',
+  ogTitle: 'LOCATION CAGE MMA MARSEILLE - CONTACT',
+  twitterTitle: 'LOCATION CAGE MMA MARSEILLE - CONTACT',
+  description: 'Contactez-nous pour toute question ou demande d\'information sur le club SCIENCE DUCA. Remplissez le formulaire de contact ou contactez nous sur Instagram pour nous joindre',
+  ogDescription: 'Contactez-nous pour toute question ou demande d\'information sur le club SCIENCE DUCA. Remplissez le formulaire de contact ou contactez nous sur Instagram pour nous joindre',
+  twitterDescription: 'Contactez-nous pour toute question ou demande d\'information sur le club SCIENCE DUCA. Remplissez le formulaire de contact ou contactez nous sur Instagram pour nous joindre',
+  ogImage: '/meta.png',
+  twitterImage: '/meta.png',
+  twitterCard: 'summary_large_image',
+})
 
 const root = ref<HTMLElement | null>(null)
 const title = computed(() => contactPage.value?.data.titre.split('\n'))

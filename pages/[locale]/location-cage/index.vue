@@ -26,6 +26,19 @@ const page = usePage();
 const store = useIndexStore()
 
 const {data: servicePage} = await useAsyncData("services", () => prismic.client.getSingle('services'))
+
+useSeoMeta({
+  title: 'LOCATION CAGE MMA MARSEILLE - SCIENCE DUCA',
+  ogTitle: 'LOCATION CAGE MMA MARSEILLE - SCIENCE DUCA',
+  twitterTitle: 'LOCATION CAGE MMA MARSEILLE - SCIENCE DUCA',
+  description: 'Louez une cage MMA à Marseille et dans toute la France pour vos événements sportifs ou vos séances d\'entraînement. Découvrez notre cage professionnelle de haute qualité adaptée à tous les niveaux de pratique.',
+  ogDescription: 'Louez une cage MMA à Marseille et dans toute la France pour vos événements sportifs ou vos séances d\'entraînement. Découvrez notre cage professionnelle de haute qualité adaptée à tous les niveaux de pratique.',
+  twitterDescription: 'Louez une cage MMA à Marseille et dans toute la France pour vos événements sportifs ou vos séances d\'entraînement. Découvrez notre cage professionnelle de haute qualité adaptée à tous les niveaux de pratique.',
+  ogImage: '/meta.png',
+  twitterImage: '/meta.png',
+  twitterCard: 'summary_large_image',
+})
+
 // console.log(servicePage)
 
 useHead({

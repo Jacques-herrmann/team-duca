@@ -72,7 +72,8 @@ interface ContactDocumentData {
    * - **API ID Path**: contact.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   */
+  ;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -247,7 +248,8 @@ interface GalerieDocumentData {
    * - **API ID Path**: galerie.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   */
+  ;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -399,7 +401,8 @@ interface HomeDocumentData {
    * - **API ID Path**: home.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   */
+  ;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -483,7 +486,8 @@ interface InscriptionDocumentData {
    * - **API ID Path**: inscription.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   */
+  ;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -536,7 +540,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.title
+   * - **API ID Path**: location-cage.title
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
@@ -547,7 +551,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.content
+   * - **API ID Path**: location-cage.content
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
@@ -558,7 +562,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.cover
+   * - **API ID Path**: location-cage.cover
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
@@ -569,7 +573,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.cta_text
+   * - **API ID Path**: location-cage.cta_text
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
@@ -580,7 +584,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.cta_link
+   * - **API ID Path**: location-cage.cta_link
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
@@ -591,7 +595,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.video
+   * - **API ID Path**: location-cage.video
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
@@ -602,7 +606,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.slices[]
+   * - **API ID Path**: location-cage.slices[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
@@ -612,10 +616,11 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: services.meta_description
+   * - **API ID Path**: location-cage.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   */
+  ;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -623,7 +628,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.meta_image
+   * - **API ID Path**: location-cage.meta_image
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#image
    */
@@ -634,7 +639,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: services.meta_title
+   * - **API ID Path**: location-cage.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
@@ -644,7 +649,7 @@ interface ServicesDocumentData {
 /**
  * Services document from Prismic
  *
- * - **API ID**: `services`
+ * - **API ID**: `location-cage`
  * - **Repeatable**: `false`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *

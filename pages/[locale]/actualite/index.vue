@@ -19,15 +19,18 @@ const route = useRoute();
 const page = usePage();
 
 const {data: galeriePage} = await useAsyncData("galerie", () => prismic.client.getSingle('galerie'))
-useHead({
-  title: galeriePage.value?.data.meta_title,
-  meta: [
-    {
-      name: "description",
-      content: galeriePage.value?.data.meta_description,
-    },
-  ],
-});
+
+useSeoMeta({
+  title: 'SCIENCE DUCA - ACTUALITES',
+  ogTitle: 'LOCATION CAGE MMA MARSEILLE - ACTUALITES',
+  twitterTitle: 'LOCATION CAGE MMA MARSEILLE - ACTUALITES',
+  description: 'Restez à jour avec les dernières actualités de SCIENCE DUCA à Marseille. Découvrez les événements à venir, les résultats des combats, les nouvelles recrues et plus encore.',
+  ogDescription: 'Restez à jour avec les dernières actualités de SCIENCE DUCA à Marseille. Découvrez les événements à venir, les résultats des combats, les nouvelles recrues et plus encore.',
+  twitterDescription: 'Restez à jour avec les dernières actualités de SCIENCE DUCA à Marseille. Découvrez les événements à venir, les résultats des combats, les nouvelles recrues et plus encore.',
+  ogImage: '/meta.png',
+  twitterImage: '/meta.png',
+  twitterCard: 'summary_large_image',
+})
 
 
 const root = ref<HTMLElement | null>(null)
