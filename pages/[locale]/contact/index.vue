@@ -132,9 +132,9 @@ onMounted(() => {
       width: 100%
 
     @include lg
-      padding: 0 45px
-      margin-top: 18rem
+      padding: 45px
       width: 50%
+      height: 100vh
       justify-content: flex-end
 
   &__cta
@@ -142,7 +142,6 @@ onMounted(() => {
 
   &__form
     display: flex
-    height: 100%
     flex-direction: column
     gap: 2rem
     color: $white

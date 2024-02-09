@@ -105,6 +105,8 @@ defineExpose({
     width: 100%
     height: 100%
     z-index: 1
+    user-select: none
+    pointer-events: none
     @include lg
       bottom: 2.3vw
       left: unset

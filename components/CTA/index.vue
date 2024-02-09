@@ -27,7 +27,7 @@ const locale = route.params.locale
 .cta
   position: relative
   background-color: transparent
-  height: 60px
+  height: 70px
   min-width: 180px
   width: max-content
   overflow: hidden
@@ -37,6 +37,7 @@ const locale = route.params.locale
   align-items: center
   justify-content: center
   cursor: pointer
+  padding-top: 4px
 
   &__link
     @include cta()

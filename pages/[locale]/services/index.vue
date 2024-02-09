@@ -114,7 +114,7 @@ onMounted(() => {
     flex-direction: column
 
     @include md
-      @include text(1.5rem)
+      @include text(1.2rem)
       padding: 45px
       width: 100%
 
@@ -171,19 +171,20 @@ onMounted(() => {
 
   &__content
     color: $white
+
     ::v-deep(p)
       margin: 10px 0
+
     ::v-deep(ul)
       list-style: disc
       margin-top: 20px
+
       li
         margin-left: 1rem
 
     ::v-deep(h6)
       margin-top: 20px
       font-weight: bold
-
-
 
 
 </style>
