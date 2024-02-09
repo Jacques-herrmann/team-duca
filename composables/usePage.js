@@ -1,6 +1,7 @@
 const useCursor = () => {
   const store = useIndexStore()
   const scroll = computed(() => store.scroll)
+  const route = useRoute()
 
   onBeforeRouteLeave((to, from, next) => {
     store.setTransition(true)
@@ -15,6 +16,7 @@ const useCursor = () => {
 
   onBeforeMount(() => {
     store.setTransition(false)
+    document.documentElement.lang = route.params.locale
   })
 
   return {}
