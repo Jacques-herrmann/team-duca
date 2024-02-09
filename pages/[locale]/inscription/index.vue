@@ -24,11 +24,11 @@ useSeoMeta({
   title: 'SCIENCE DUCA - INSCRIPTION',
   ogTitle: 'SCIENCE DUCA - INSCRIPTION',
   twitterTitle: 'SCIENCE DUCA - INSCRIPTION',
-  description: 'Rejoignez la TEAM DUCA, club de MMA à Marseille la Timone ! Découvrez nos programmes d\'entraînement, nos instructeurs qualifiés et nos installations modernes.',
-  ogDescription: 'Rejoignez la TEAM DUCA, club de MMA à Marseille la Timone ! Découvrez nos programmes d\'entraînement, nos instructeurs qualifiés et nos installations modernes.',
-  twitterDescription: 'Rejoignez la TEAM DUCA, club de MMA à Marseille la Timone ! Découvrez nos programmes d\'entraînement, nos instructeurs qualifiés et nos installations modernes.',
-  ogImage: '/meta.png',
-  twitterImage: '/meta.png',
+  description: 'Rejoignez la TEAM DUCA, club de MMA à Marseille la Timone !\nDécouvrez nos programmes d\'entraînement, nos instructeurs qualifiés et nos installations modernes.',
+  ogDescription: 'Rejoignez la TEAM DUCA, club de MMA à Marseille la Timone !\nDécouvrez nos programmes d\'entraînement, nos instructeurs qualifiés et nos installations modernes.',
+  twitterDescription: 'Rejoignez la TEAM DUCA, club de MMA à Marseille la Timone !\nDécouvrez nos programmes d\'entraînement, nos instructeurs qualifiés et nos installations modernes.',
+  ogImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
+  twitterImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
   twitterCard: 'summary_large_image',
 })
 

@@ -24,11 +24,11 @@ useSeoMeta({
   title: 'SCIENCE DUCA - ACTUALITES',
   ogTitle: 'LOCATION CAGE MMA MARSEILLE - ACTUALITES',
   twitterTitle: 'LOCATION CAGE MMA MARSEILLE - ACTUALITES',
-  description: 'Restez à jour avec les dernières actualités de SCIENCE DUCA à Marseille. Découvrez les événements à venir, les résultats des combats, les nouvelles recrues et plus encore.',
-  ogDescription: 'Restez à jour avec les dernières actualités de SCIENCE DUCA à Marseille. Découvrez les événements à venir, les résultats des combats, les nouvelles recrues et plus encore.',
-  twitterDescription: 'Restez à jour avec les dernières actualités de SCIENCE DUCA à Marseille. Découvrez les événements à venir, les résultats des combats, les nouvelles recrues et plus encore.',
-  ogImage: '/meta.png',
-  twitterImage: '/meta.png',
+  description: 'Restez à jour avec les dernières actualités de SCIENCE DUCA à Marseille.\nDécouvrez les événements à venir, les résultats des combats, les nouvelles recrues et plus encore.',
+  ogDescription: 'Restez à jour avec les dernières actualités de SCIENCE DUCA à Marseille.\nDécouvrez les événements à venir, les résultats des combats, les nouvelles recrues et plus encore.',
+  twitterDescription: 'Restez à jour avec les dernières actualités de SCIENCE DUCA à Marseille.\nDécouvrez les événements à venir, les résultats des combats, les nouvelles recrues et plus encore.',
+  ogImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
+  twitterImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
   twitterCard: 'summary_large_image',
 })
 

@@ -50,11 +50,11 @@ useSeoMeta({
   title: 'SCIENCE DUCA - CONTACT',
   ogTitle: 'LOCATION CAGE MMA MARSEILLE - CONTACT',
   twitterTitle: 'LOCATION CAGE MMA MARSEILLE - CONTACT',
-  description: 'Contactez-nous pour toute question ou demande d\'information sur le club SCIENCE DUCA. Remplissez le formulaire de contact ou contactez nous sur Instagram pour nous joindre',
-  ogDescription: 'Contactez-nous pour toute question ou demande d\'information sur le club SCIENCE DUCA. Remplissez le formulaire de contact ou contactez nous sur Instagram pour nous joindre',
-  twitterDescription: 'Contactez-nous pour toute question ou demande d\'information sur le club SCIENCE DUCA. Remplissez le formulaire de contact ou contactez nous sur Instagram pour nous joindre',
-  ogImage: '/meta.png',
-  twitterImage: '/meta.png',
+  description: 'Contactez-nous pour toute question ou demande d\'information sur le club SCIENCE DUCA.\nRemplissez le formulaire de contact ou contactez nous sur Instagram pour nous joindre',
+  ogDescription: 'Contactez-nous pour toute question ou demande d\'information sur le club SCIENCE DUCA.\nRemplissez le formulaire de contact ou contactez nous sur Instagram pour nous joindre',
+  twitterDescription: 'Contactez-nous pour toute question ou demande d\'information sur le club SCIENCE DUCA.\nRemplissez le formulaire de contact ou contactez nous sur Instagram pour nous joindre',
+  ogImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
+  twitterImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
   twitterCard: 'summary_large_image',
 })
 
