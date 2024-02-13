@@ -46,14 +46,14 @@ export default {
 
     const draw = () => {
       tl = gsap.timeline({paused: true})
-      tl?.to('.error-page__title > span', {
+      tl?.to(root.value?.querySelectorAll('.error-page__title > span'), {
         duration: 0.4,
         y: 0,
         rotateZ: 0,
         stagger: 0.022,
         ease: 'power2.out'
       })
-      tl?.to('.error-page__cta', {
+      tl?.to(root.value?.querySelector('.error-page__cta'), {
         duration: 0.4,
         opacity: 1,
         ease: 'linear'

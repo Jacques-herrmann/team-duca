@@ -133,28 +133,29 @@ onMounted(() => {
 </style>
 
 <style lang="sass">
-.splide__slide
-  max-width: calc(100% - 20px) !important
-  width: min-content !important
-  @include lg
+.carousel
+  & .splide__slide
+    max-width: calc(100% - 20px) !important
+    width: min-content !important
+    @include lg
+      max-width: calc(100% - 40px) !important
+
+  & .splide__slide .figure-element img
+    min-width: 300px
+    object-fit: cover
+    @include lg
+      width: auto !important
+  //min-width: 400px!important
+
+  & .splide__slide .figure-element
     max-width: calc(100% - 40px) !important
+    min-width: 100px !important
+    overflow: hidden
 
-.splide__slide .figure-element img
-  min-width: 300px
-  object-fit: cover
-  @include lg
-    width: auto !important
-//min-width: 400px!important
+  & .splide__slide .figure-element__caption
+    width: 100%
 
-.splide__slide .figure-element
-  max-width: calc(100% - 40px) !important
-  min-width: 100px !important
-  overflow: hidden
-
-.splide__slide .figure-element__caption
-  width: 100%
-
-.splide__pagination
-  display: none
+  & .splide__pagination
+    display: none
 
 </style>
