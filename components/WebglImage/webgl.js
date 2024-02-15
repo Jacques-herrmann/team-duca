@@ -89,7 +89,7 @@ const webgl = () => {
     requestAnimationFrame(onUpdate)
     const p = cursor.getPosition('unit')
     target.lerp(p, 0.05)
-    vTarget.lerp(cursor.velocity, 0.05)
+    vTarget.lerp(cursor.velocity, 0.01)
     program.uniforms.uMouse.value.x = target.x
     program.uniforms.uMouse.value.y = target.y
     program.uniforms.uVelo.value = Math.min(vTarget.len() * 0.2, 0.1)
