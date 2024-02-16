@@ -1,5 +1,6 @@
 <template>
   <div class="contact-page" ref="root">
+    <Snackbar ref="snackbar"/>
     <figure-element class="contact-page__cover" :image="contactPage?.data.image"/>
     <h1 class="contact-page__title">
       <div v-for="t in title"><span>{{ t }}</span></div>
@@ -61,6 +62,7 @@ useSeoMeta({
 })
 
 const root = ref<HTMLElement | null>(null)
+const snackbar = ref<HTMLElement | null>(null)
 const title = computed(() => contactPage.value?.data.titre.split('\n'))
 let tl = <Timeline | null>null
 const isMobile = computed(() => store.isMobile)
@@ -85,9 +87,11 @@ const onSubmit = (e: Event) => {
   })
     .then(() => {
       form.reset()
-      alert("Votre message a bien été envoyé")
+      snackbar.value?.show('Votre message a bien été envoyé')
     })
-    .catch((error) => alert("Une erreur est survenue, veuillez réessayer plus tard"))
+    .catch((error) => {
+      snackbar.value?.show('Une erreur est survenue, veuillez réessayer', 'error')
+    })
 }
 
 
