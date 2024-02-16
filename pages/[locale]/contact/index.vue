@@ -14,6 +14,7 @@
           name="contact"
           netlify
           netlify-honeypot="bot-field"
+          data-netlify-recaptcha="true"
           @submit="onSubmit"
         >
           <input type="hidden" name="form-name" value="contact"/>
@@ -28,6 +29,7 @@
           <p>
             <textarea type="text" name="message" :rows="isMobile ? 6: 10" placeholder="VOTRE MESSAGE"/>
           </p>
+          <div data-netlify-recaptcha="true"></div>
           <CTA class="contact-page__cta" text="envoyer" :is-nuxt-link="false"/>
         </form>
       </div>
