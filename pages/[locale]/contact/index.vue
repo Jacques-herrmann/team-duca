@@ -25,7 +25,7 @@
           <p>
             <textarea type="text" name="message" :rows="isMobile ? 6: 10" placeholder="VOTRE MESSAGE"/>
           </p>
-          <CTA class="contact-page__cta" text="send" :is-nuxt-link="false"/>
+          <CTA class="contact-page__cta" text="envoyer" :is-nuxt-link="false"/>
         </form>
       </div>
     </div>
@@ -140,7 +140,9 @@ onMounted(() => {
       justify-content: flex-end
 
   &__cta
-    align-self: end
+    align-self: center
+    @include lg
+      align-self: end
 
   &__form
     display: flex

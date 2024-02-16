@@ -48,12 +48,30 @@ const downloadCalendar = () => {
   const doc = new jsPDF()
   const calendar = document.querySelector('.planning__container') as HTMLElement
   doc.html(calendar, {
-    x: 3,
-    y: 3,
+    autoPaging: false,
+    windowWidth: 1920,
+    width: 1920,
+    height: 1080,
+    fontFaces: [
+      {
+        url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap',
+        family: 'Roboto',
+        style: 'normal',
+        weight: '400',
+      },
+      {
+        url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap',
+        family: 'Roboto',
+        style: 'normal',
+        weight: '700',
+      },
+    ],
     html2canvas: {
       scale: 0.14,
-      windowWidth: 1920,
-      windowHeight: 1080,
+      windowWidth: 1920 * 0.88,
+      windowHeight: 1080 * 0.88,
+      width: 1920,
+      height: 1080,
     },
     callback: function (doc) {
       doc.save('team-duca-planning.pdf')
@@ -97,7 +115,7 @@ const filterEvents = (sport: string) => {
 }
 
 const draw = () => {
-  tl?.play()
+  tl?.play(0)
 }
 
 onMounted(() => {
@@ -122,6 +140,8 @@ onMounted(() => {
     stagger: 0.02,
     ease: 'power3.out',
   }, 1.2)
+
+  window.addEventListener('resize', draw)
 
 })
 

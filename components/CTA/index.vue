@@ -13,11 +13,20 @@
 <script lang="ts" setup>
 import {defineProps} from 'vue'
 
-const props = defineProps<{
-  text: string,
-  url: string,
-  isNuxtLink: boolean,
-}>()
+const props = defineProps({
+  text: {
+    type: String,
+    required: true,
+  },
+  url: {
+    type: String,
+    default: ''
+  },
+  isNuxtLink: {
+    type: Boolean,
+    default: false
+  }
+})
 
 const route = useRoute()
 const locale = route.params.locale

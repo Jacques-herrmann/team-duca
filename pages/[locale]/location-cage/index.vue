@@ -139,8 +139,9 @@ onMounted(() => {
 
     &__cta
       margin-top: 30px
-      align-self: end
+      align-self: center
       @include lg
+        align-self: end
         margin-top: 60px
 
   &__cover

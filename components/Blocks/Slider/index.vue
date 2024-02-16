@@ -27,6 +27,8 @@
 import {defineProps} from 'vue'
 import {Splide, SplideSlide} from "@splidejs/vue-splide";
 import '@splidejs/vue-splide/css/core';
+import gsap from "gsap";
+import A from "assets/animations";
 
 const props = defineProps<{
   block: any
@@ -42,14 +44,28 @@ const root = ref(null)
 const carousel = ref(null)
 const hovered = ref(-1)
 
+let tl = <Timeline | null>null
+const intersect = useIntersect(root, {
+  threshold: 0.4,
+  rootMargin: '100px 0px 0px 0px',
+  onReveal: () => {
+    draw()
+  },
+})
+
 const onMouseEnter = (index: number) => {
   hovered.value = index
 }
 const onMouseLeave = () => {
   hovered.value = -1
 }
+const draw = () => {
+  tl?.play()
+}
 
 onMounted(() => {
+  tl = gsap.timeline({paused: true})
+  tl.from(root.value?.querySelectorAll('.slider__title--letter') as NodeListOf<HTMLElement>, A.title, 0)
 })
 
 </script>
