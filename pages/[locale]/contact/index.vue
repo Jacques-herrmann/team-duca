@@ -29,7 +29,6 @@
           <p>
             <textarea type="text" name="message" :rows="isMobile ? 6: 10" placeholder="VOTRE MESSAGE"/>
           </p>
-          <div data-netlify-recaptcha="true"></div>
           <CTA class="contact-page__cta" text="envoyer" :is-nuxt-link="false"/>
         </form>
       </div>
@@ -40,13 +39,13 @@
 
 import gsap from "gsap";
 import A from "assets/animations";
+import {VueReCaptcha} from 'vue-recaptcha-v3';
 import Timeline = gsap.core.Timeline;
 
 const prismic = usePrismic();
 const store = useIndexStore();
 const page = usePage();
-
-// const form = ref<HTMLFormElement | null>(null);
+const config = useRuntimeConfig();
 
 const {data: contactPage} = await useAsyncData("contact", () => prismic.client.getSingle('contact'))
 // console.log(contactPage)
@@ -66,8 +65,10 @@ useSeoMeta({
 const root = ref<HTMLElement | null>(null)
 const snackbar = ref<HTMLElement | null>(null)
 const title = computed(() => contactPage.value?.data.titre.split('\n'))
-let tl = <Timeline | null>null
 const isMobile = computed(() => store.isMobile)
+let tl = <Timeline | null>null
+
+const token = ref('')
 
 watch(() => store.isTransitionVisible, (value) => {
   if (!value) {
@@ -77,15 +78,19 @@ watch(() => store.isTransitionVisible, (value) => {
   }
 })
 
-const onSubmit = (e: Event) => {
+const onSubmit = async (e: Event) => {
   e.preventDefault()
+
   const form = e.target as HTMLFormElement
   const formData = new FormData(form) as any
+
+  formData.set('g-recaptcha-response', token.value)
+
 
   fetch("/", {
     method: "POST",
     headers: {"Content-Type": "application/x-www-form-urlencoded"},
-    body: new URLSearchParams(formData).toString()
+    body: new URLSearchParams(formData).toString(),
   })
     .then(() => {
       form.reset()
@@ -96,8 +101,15 @@ const onSubmit = (e: Event) => {
     })
 }
 
+const {vueApp} = useNuxtApp();
+vueApp.use(VueReCaptcha, {
+  siteKey: config.public.RECAPTCHA_SITE_KEY,
+  loaderOptions: {
+    autoHideBadge: true,
+  },
+});
 
-onMounted(() => {
+onMounted(async () => {
   tl = gsap.timeline({paused: true})
   tl.from(root.value?.querySelectorAll(".contact-page__cover") as NodeList, A.imageWidth, 0)
   tl.from(root.value?.querySelectorAll(".contact-page__title span") as NodeList, A.h2, 0.4)
@@ -105,6 +117,8 @@ onMounted(() => {
   tl.from(root.value?.querySelectorAll(".contact-page__form") as NodeList, A.opacity, 0.5)
   tl.from(root.value?.querySelectorAll(".contact-page__cta") as NodeList, A.opacity, 0.6)
 
+  token.value = await useVueRecaptcha()
+  // console.log(token.value)
 })
 </script>
 
