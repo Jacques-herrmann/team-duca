@@ -7,7 +7,7 @@
       <GridBackground/>
       <NuxtPage/>
     </main>
-    <Footer v-if="!isGalleryPage"/>
+    <Footer/>
   </div>
 </template>
 
@@ -21,7 +21,6 @@ import {useIndexStore} from "~/stores";
 const store = useIndexStore()
 const route = useRoute()
 
-const isGalleryPage = computed(() => route.name === 'locale-galerie')
 const noiseOpacity = ref(0)
 
 onMounted(() => {
@@ -29,6 +28,7 @@ onMounted(() => {
 
   store.setTransition(true)
   setTimeout(() => {
+    store.setLocalTransition(true)
     store.setTransition(false)
   }, 3000)
 

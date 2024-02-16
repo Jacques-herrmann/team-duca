@@ -1,24 +1,24 @@
 <template>
   <div
-   ref="root"
-   class="history-element"
-   :class="`${index % 2 === 0 ? 'history-element--reverse': ''} history-element--is-${orientation}`"
+    ref="root"
+    class="history-element"
+    :class="`${index % 2 === 0 ? 'history-element--reverse': ''} history-element--is-${orientation}`"
   >
-    <figure-element class="history-element__img" :image="media" />
+    <figure-element class="history-element__img" :image="media"/>
     <Parallax class="history-element__parallax" :active="intersect.active.value" :speed="3">
-    <div class="history-element__content">
-      <h3 class="history-element__title">
-        <div v-for="t in sTitle"><span>{{t}}</span></div>
-      </h3>
-      <prismic-rich-text class="history-element__text" :field="content" />
-    </div>
+      <div class="history-element__content">
+        <h3 class="history-element__title">
+          <div v-for="t in sTitle"><span>{{ t }}</span></div>
+        </h3>
+        <prismic-rich-text class="history-element__text" :field="content"/>
+      </div>
     </Parallax>
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue'
-import { gsap } from 'gsap'
-import A  from '@/assets/animations'
+import {defineProps} from 'vue'
+import {gsap} from 'gsap'
+import A from '@/assets/animations'
 
 const props = defineProps<{
   index: Number,
@@ -69,11 +69,14 @@ $margin: 90px
 .history-element
   position: relative
   width: 100%
-  height: 75vw
+  height: 95vw
   margin: 8rem 0
   @include lg
     margin: 10rem 0
     height: 36vw
+
+  &:last-child
+    margin-bottom: 0
 
   &__parallax
     height: 100%
@@ -127,8 +130,10 @@ $margin: 90px
     @include h2(9vw)
     @include lg
       @include h2()
+
     & > div
       overflow: hidden
+
     & span
       display: block
       height: 9vw

@@ -72,7 +72,7 @@ onMounted(() => {
       padding: 0 60px
 
   &__title
-    @include h2(8vw)
+    @include h2(9vw)
     margin-bottom: 60px
 
     & > div
@@ -87,7 +87,7 @@ onMounted(() => {
 
 
   &__text
-    @include text(2.8vw)
+    @include text(3.5vw)
     @include lg
       @include text()
 

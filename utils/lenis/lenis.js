@@ -6,228 +6,229 @@ import VirtualScroll from 'virtual-scroll'
 import {clamp, lerp} from './maths.js'
 
 export default class Lenis extends EventEmitter2 {
-    constructor({lerp = 0.08, smooth = true, direction = 'vertical', body = document.body, container = window} = {}) {
-        super()
+  constructor({lerp = 0.08, smooth = true, direction = 'vertical', body = document.body, container = window} = {}) {
+    super()
 
-        this.lerp = lerp
-        this.smooth = smooth
-        this.direction = direction
-        this.body = body
-        this.container = container
+    this.lerp = lerp
+    this.smooth = smooth
+    this.direction = direction
+    this.body = body
+    this.container = container
 
-        this.container.addEventListener('scroll', this.onScroll, false)
+    this.container.addEventListener('scroll', this.onScroll, false)
 
-        const platform =
-            navigator?.userAgentData?.platform || navigator?.platform || 'unknown'
+    const platform =
+      navigator?.userAgentData?.platform || navigator?.platform || 'unknown'
 
-        // listen and normalize wheel event cross-browser
-        this.virtualScroll = new VirtualScroll({
-            firefoxMultiplier: 50,
-            mouseMultiplier: platform.includes('Win') ? 1 : 0.2,
-            useKeyboard: false,
-            useTouch: true,
-        })
+    // listen and normalize wheel event cross-browser
+    this.virtualScroll = new VirtualScroll({
+      firefoxMultiplier: 50,
+      mouseMultiplier: platform.includes('Win') ? 1 : 0.2,
+      useKeyboard: false,
+      useTouch: true,
+      passive: false
+    })
 
-        this.virtualScroll.on(this.onVirtualScroll)
+    this.virtualScroll.on(this.onVirtualScroll)
 
-        // recalculate maxScroll when body height changes
-        this.bodyResizeObserver = new ResizeObserver(this.onResize)
-        this.bodyResizeObserver.observe(this.body)
+    // recalculate maxScroll when body height changes
+    this.bodyResizeObserver = new ResizeObserver(this.onResize)
+    this.bodyResizeObserver.observe(this.body)
 
-        if (this.container instanceof Window) {
-            this.container.addEventListener('resize', this.onContainerResize, false)
-        } else {
-            this.containerResizeObserver = new ResizeObserver(this.onContainerResize)
-            this.containerResizeObserver.observe(this.container)
-        }
-
-        this.onContainerResize()
-        this.onResize()
-
-        this.limit =
-            this.direction === 'horizontal'
-                ? this.bodyBBox.width - this.containerBBox.width
-                : this.bodyBBox.height - this.containerBBox.height
-
-        const scroll = this.getContainerScroll()
-
-        this.targetScroll = this.scroll =
-            this.direction === 'horizontal' ? scroll.left : scroll.top
-        this.velocity = 0
+    if (this.container instanceof Window) {
+      this.container.addEventListener('resize', this.onContainerResize, false)
+    } else {
+      this.containerResizeObserver = new ResizeObserver(this.onContainerResize)
+      this.containerResizeObserver.observe(this.container)
     }
 
-    start() {
-        this.stopped = false
+    this.onContainerResize()
+    this.onResize()
+
+    this.limit =
+      this.direction === 'horizontal'
+        ? this.bodyBBox.width - this.containerBBox.width
+        : this.bodyBBox.height - this.containerBBox.height
+
+    const scroll = this.getContainerScroll()
+
+    this.targetScroll = this.scroll =
+      this.direction === 'horizontal' ? scroll.left : scroll.top
+    this.velocity = 0
+  }
+
+  start() {
+    this.stopped = false
+  }
+
+  stop() {
+    this.stopped = true
+  }
+
+  destroy() {
+    this.container.removeEventListener('scroll', this.onScroll, false)
+    this.virtualScroll.destroy()
+    this.bodyResizeObserver.disconnect()
+
+    if (this.container instanceof Window) {
+      this.container.removeEventListener('resize', this.onContainerResize, false)
+    } else {
+      this.containerResizeObserver.disconnect()
+    }
+  }
+
+  onResize = (entries) => {
+    const entry = entries && entries[0]
+    if (entry) {
+      this.bodyBBox = entry.contentRect
+      this.limit =
+        this.direction === 'horizontal'
+          ? this.bodyBBox.width - this.containerBBox.width
+          : this.bodyBBox.height - this.containerBBox.height
+    } else {
+      this.bodyBBox = this.body.getBoundingClientRect()
+    }
+  }
+
+  onContainerResize = (entries) => {
+    const entry = entries && entries[0]
+    if (entry) {
+      this.containerBBox = entry.contentRect
+    } else if (this.container instanceof Window) {
+      this.containerBBox = {
+        width: this.container.innerWidth,
+        height: this.container.innerHeight
+      }
+    } else {
+      this.containerBBox = this.container.getBoundingClientRect()
+    }
+  }
+
+  onVirtualScroll = ({deltaY, originalEvent: e}) => {
+    if (this.stopped) {
+      e.preventDefault()
+      return
     }
 
-    stop() {
-        this.stopped = true
+    // prevent native wheel scrolling
+    if (this.smooth && !e.ctrlKey) {
+      e.preventDefault()
     }
 
-    destroy() {
-        this.container.removeEventListener('scroll', this.onScroll, false)
-        this.virtualScroll.destroy()
-        this.bodyResizeObserver.disconnect()
+    this.targetScroll -= deltaY
+    this.targetScroll = clamp(0, this.targetScroll, this.limit)
+  }
 
-        if (this.container instanceof Window) {
-            this.container.removeEventListener('resize', this.onContainerResize, false)
-        } else {
-            this.containerResizeObserver.disconnect()
-        }
+  getContainerScroll() {
+    if (this.container instanceof Window) {
+      return {
+        left: this.container.pageXOffset,
+        top: this.container.pageYOffset
+      }
+    } else {
+      return {
+        left: this.container.scrollLeft,
+        top: this.container.scrollTop
+      }
+    }
+  }
+
+  raf() {
+    if (this.stopped || !this.smooth) {
+      return
+    }
+    // where smooth scroll happens
+
+    let lastScroll = this.scroll
+
+    // lerp scroll value
+    this.scroll = lerp(this.scroll, this.targetScroll, this.lerp)
+    if (Math.round(this.scroll) === Math.round(this.targetScroll)) {
+      this.scroll = lastScroll = this.targetScroll
     }
 
-    onResize = (entries) => {
-        const entry = entries && entries[0]
-        if (entry) {
-            this.bodyBBox = entry.contentRect
-            this.limit =
-                this.direction === 'horizontal'
-                    ? this.bodyBBox.width - this.containerBBox.width
-                    : this.bodyBBox.height - this.containerBBox.height
-        } else {
-            this.bodyBBox = this.body.getBoundingClientRect()
-        }
+    this.velocity = this.scroll - lastScroll
+
+    if (this.scrolling) {
+      // scroll to lerped scroll value
+      this.direction === 'horizontal'
+        ? this.container.scrollTo(this.scroll, 0)
+        : this.container.scrollTo(0, this.scroll)
+      this.notify()
     }
 
-    onContainerResize = (entries) => {
-        const entry = entries && entries[0]
-        if (entry) {
-            this.containerBBox = entry.contentRect
-        } else if (this.container instanceof Window) {
-            this.containerBBox = {
-                width: this.container.innerWidth,
-                height: this.container.innerHeight
-            }
-        } else {
-            this.containerBBox = this.container.getBoundingClientRect()
-        }
+    this.scrolling = this.scroll !== this.targetScroll
+  }
+
+  onScroll = (e) => {
+    if (this.stopped) {
+      return
     }
 
-    onVirtualScroll = ({deltaY, originalEvent: e}) => {
-        if (this.stopped) {
-            e.preventDefault()
-            return
-        }
+    // if scrolling is false we can estimate use isn't scrolling with wheel (cmd+F, keyboard or whatever). So we must scroll to without any easing
+    if (!this.scrolling || !this.smooth) {
+      // where native scroll happens
 
-        // prevent native wheel scrolling
-        if (this.smooth && !e.ctrlKey) {
-            e.preventDefault()
-        }
+      const lastScroll = this.scroll
+      const newScroll = this.getContainerScroll()
+      this.targetScroll = this.scroll =
+        this.direction === 'horizontal' ? newScroll.left : newScroll.top
+      this.velocity = this.scroll - lastScroll
+      this.notify()
+    }
+  }
 
-        this.targetScroll -= deltaY
-        this.targetScroll = clamp(0, this.targetScroll, this.limit)
+  notify() {
+    this.emit('scroll', {
+      scroll: this.scroll,
+      limit: this.limit,
+      velocity: this.velocity,
+      direction: this.direction
+    })
+  }
+
+  scrollTo(target, {offset = 0} = {}) {
+    let value
+
+    if (typeof target === 'number') {
+      // Number
+      value = target
+    } else if (target === 'top') {
+      value = 0
+    } else if (target === 'bottom') {
+      value = this.limit
+    } else {
+      let node
+
+      if (typeof target === 'string') {
+        // CSS selector
+        node = document.querySelector(target)
+      } else if (target?.nodeType) {
+        // Node element
+        node = target
+      } else {
+        return
+      }
+
+      if (!target) {
+        return
+      }
+      const rect = node.getBoundingClientRect()
+      value =
+        (this.direction === 'horizontal' ? rect.left : rect.top) + this.scroll
     }
 
-    getContainerScroll() {
-        if (this.container instanceof Window) {
-            return {
-                left: this.container.pageXOffset,
-                top: this.container.pageYOffset
-            }
-        } else {
-            return {
-                left: this.container.scrollLeft,
-                top: this.container.scrollTop
-            }
-        }
+    value += offset
+
+    this.targetScroll = value
+    this.scrolling = true
+    if (!this.smooth) {
+      this.scroll = value
+      if (this.direction === 'horizontal') {
+        this.container.scrollTo(this.scroll, 0)
+      } else {
+        this.container.scrollTo(0, this.scroll)
+      }
     }
-
-    raf() {
-        if (this.stopped || !this.smooth) {
-            return
-        }
-        // where smooth scroll happens
-
-        let lastScroll = this.scroll
-
-        // lerp scroll value
-        this.scroll = lerp(this.scroll, this.targetScroll, this.lerp)
-        if (Math.round(this.scroll) === Math.round(this.targetScroll)) {
-            this.scroll = lastScroll = this.targetScroll
-        }
-
-        this.velocity = this.scroll - lastScroll
-
-        if (this.scrolling) {
-            // scroll to lerped scroll value
-            this.direction === 'horizontal'
-                ? this.container.scrollTo(this.scroll, 0)
-                : this.container.scrollTo(0, this.scroll)
-            this.notify()
-        }
-
-        this.scrolling = this.scroll !== this.targetScroll
-    }
-
-    onScroll = (e) => {
-        if (this.stopped) {
-            return
-        }
-
-        // if scrolling is false we can estimate use isn't scrolling with wheel (cmd+F, keyboard or whatever). So we must scroll to without any easing
-        if (!this.scrolling || !this.smooth) {
-            // where native scroll happens
-
-            const lastScroll = this.scroll
-            const newScroll = this.getContainerScroll()
-            this.targetScroll = this.scroll =
-                this.direction === 'horizontal' ? newScroll.left : newScroll.top
-            this.velocity = this.scroll - lastScroll
-            this.notify()
-        }
-    }
-
-    notify() {
-        this.emit('scroll', {
-            scroll: this.scroll,
-            limit: this.limit,
-            velocity: this.velocity,
-            direction: this.direction
-        })
-    }
-
-    scrollTo(target, {offset = 0} = {}) {
-        let value
-
-        if (typeof target === 'number') {
-            // Number
-            value = target
-        } else if (target === 'top') {
-            value = 0
-        } else if (target === 'bottom') {
-            value = this.limit
-        } else {
-            let node
-
-            if (typeof target === 'string') {
-                // CSS selector
-                node = document.querySelector(target)
-            } else if (target?.nodeType) {
-                // Node element
-                node = target
-            } else {
-                return
-            }
-
-            if (!target) {
-                return
-            }
-            const rect = node.getBoundingClientRect()
-            value =
-                (this.direction === 'horizontal' ? rect.left : rect.top) + this.scroll
-        }
-
-        value += offset
-
-        this.targetScroll = value
-        this.scrolling = true
-        if (!this.smooth) {
-            this.scroll = value
-            if (this.direction === 'horizontal') {
-                this.container.scrollTo(this.scroll, 0)
-            } else {
-                this.container.scrollTo(0, this.scroll)
-            }
-        }
-    }
+  }
 }

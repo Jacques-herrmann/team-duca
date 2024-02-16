@@ -13,11 +13,20 @@
 <script lang="ts" setup>
 import {defineProps} from 'vue'
 
-const props = defineProps<{
-  text: string,
-  url: string,
-  isNuxtLink: boolean,
-}>()
+const props = defineProps({
+  text: {
+    type: String,
+    required: true,
+  },
+  url: {
+    type: String,
+    default: ''
+  },
+  isNuxtLink: {
+    type: Boolean,
+    default: false
+  }
+})
 
 const route = useRoute()
 const locale = route.params.locale
@@ -27,7 +36,7 @@ const locale = route.params.locale
 .cta
   position: relative
   background-color: transparent
-  height: 60px
+  height: 70px
   min-width: 180px
   width: max-content
   overflow: hidden
@@ -37,6 +46,7 @@ const locale = route.params.locale
   align-items: center
   justify-content: center
   cursor: pointer
+  padding-top: 4px
 
   &__link
     @include cta()

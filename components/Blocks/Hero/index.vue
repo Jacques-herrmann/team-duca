@@ -20,7 +20,6 @@
 <script lang="ts" setup>
 import {defineProps} from 'vue'
 import gsap from 'gsap'
-import A from '@/assets/animations'
 import Timeline = gsap.core.Timeline;
 
 const props = defineProps<{
@@ -36,29 +35,36 @@ let tl = <Timeline | null>null
 const splitTitle = computed(() => props.block.primary.title.split(' '))
 
 watch(() => store.isTransitionVisible, (value) => {
-  if (!value) {
+  if (!value && store.isLocalTransition) {
     setTimeout(() => {
       draw()
-    }, 800)
+    }, 1000)
   }
-})
+}, {immediate: true})
 
 const toHome = () => {
   navigateTo(`/${locale}`)
 }
 
 const draw = () => {
-  tl?.play()
-}
-
-onMounted(() => {
   tl = gsap.timeline({paused: true})
-  tl?.from('.hero__title--letter', A.title)
-  tl?.from('.hero__footer h2', {
-    opacity: 0,
+  tl?.to('.hero__title--letter', {
+    duration: 0.4,
+    y: 0,
+    rotateZ: 0,
+    stagger: 0.022,
+    ease: 'power2.out'
+  })
+  tl?.to('.hero__footer h2', {
+    opacity: 1,
     duration: 0.6,
     ease: 'linear'
   }, 0.6)
+  tl?.play()
+}
+
+defineExpose({
+  draw
 })
 
 
@@ -99,6 +105,8 @@ onMounted(() => {
     width: 100%
     height: 100%
     z-index: 1
+    user-select: none
+    pointer-events: none
     @include lg
       bottom: 2.3vw
       left: unset
@@ -126,6 +134,7 @@ onMounted(() => {
       display: inline-block
       white-space: pre
       will-change: transform
+      transform: translateY(105%) rotateZ(10deg)
 
     @include lg
       @include h1(20vw)
@@ -153,6 +162,7 @@ onMounted(() => {
     letter-spacing: 0.08rem
     width: 50%
     color: $white
+    opacity: 0
 
     &:first-child
       text-align: left

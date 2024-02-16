@@ -19,17 +19,18 @@ const page = usePage();
 
 
 const {data: inscriptionPage} = await useAsyncData("inscription", () => prismic.client.getSingle('inscription'))
-// const inscriptionPage = ref(null)
-// console.log(inscriptionPage.value)
-useHead({
-  title: inscriptionPage.value?.data.meta_title,
-  meta: [
-    {
-      name: "description",
-      content: inscriptionPage.value?.data.meta_description,
-    },
-  ],
-});
+
+useSeoMeta({
+  title: 'SCIENCE DUCA - INSCRIPTION',
+  ogTitle: 'SCIENCE DUCA - INSCRIPTION',
+  twitterTitle: 'SCIENCE DUCA - INSCRIPTION',
+  description: 'Rejoignez la TEAM DUCA, club de MMA à Marseille la Timone !\nDécouvrez nos programmes d\'entraînement, nos instructeurs qualifiés et nos installations modernes.',
+  ogDescription: 'Rejoignez la TEAM DUCA, club de MMA à Marseille la Timone !\nDécouvrez nos programmes d\'entraînement, nos instructeurs qualifiés et nos installations modernes.',
+  twitterDescription: 'Rejoignez la TEAM DUCA, club de MMA à Marseille la Timone !\nDécouvrez nos programmes d\'entraînement, nos instructeurs qualifiés et nos installations modernes.',
+  ogImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
+  twitterImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
+  twitterCard: 'summary_large_image',
+})
 
 const root = ref<HTMLElement | null>(null)
 const intersect = useIntersect(root, {

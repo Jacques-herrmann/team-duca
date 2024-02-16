@@ -4,9 +4,9 @@ const getRoutes = (locales = ['fr']) => {
 
     routes.push(`/${locale}`)
     routes.push(`/${locale}/contact`)
-    routes.push(`/${locale}/galerie`)
+    routes.push(`/${locale}/actualite`)
     routes.push(`/${locale}/inscription`)
-    routes.push(`/${locale}/services`)
+    routes.push(`/${locale}/location-cage`)
   }
   return routes
 }

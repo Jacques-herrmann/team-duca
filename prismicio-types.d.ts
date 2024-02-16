@@ -72,7 +72,8 @@ interface ContactDocumentData {
    * - **API ID Path**: contact.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   */
+  ;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -201,12 +202,34 @@ export type FooterDocument<Lang extends string = string> =
     Lang
   >;
 
-type GalerieDocumentDataSlicesSlice = GallerySlice;
+type GalerieDocumentDataSlicesSlice = ArticleSlice;
 
 /**
  * Content for Galerie documents
  */
 interface GalerieDocumentData {
+  /**
+   * title field in *Galerie*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: galerie.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * content field in *Galerie*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: galerie.content
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
   /**
    * Slice Zone field in *Galerie*
    *
@@ -225,7 +248,8 @@ interface GalerieDocumentData {
    * - **API ID Path**: galerie.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   */
+  ;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -377,7 +401,8 @@ interface HomeDocumentData {
    * - **API ID Path**: home.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   */
+  ;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -461,7 +486,8 @@ interface InscriptionDocumentData {
    * - **API ID Path**: inscription.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   */
+  ;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -514,7 +540,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.title
+   * - **API ID Path**: location-cage.title
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
@@ -525,7 +551,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.content
+   * - **API ID Path**: location-cage.content
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
@@ -536,7 +562,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.cover
+   * - **API ID Path**: location-cage.cover
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
@@ -547,7 +573,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.cta_text
+   * - **API ID Path**: location-cage.cta_text
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
@@ -558,7 +584,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.cta_link
+   * - **API ID Path**: location-cage.cta_link
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
@@ -569,7 +595,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.video
+   * - **API ID Path**: location-cage.video
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
@@ -580,7 +606,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.slices[]
+   * - **API ID Path**: location-cage.slices[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
@@ -590,10 +616,11 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: services.meta_description
+   * - **API ID Path**: location-cage.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */;
+   */
+  ;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -601,7 +628,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: services.meta_image
+   * - **API ID Path**: location-cage.meta_image
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#image
    */
@@ -612,7 +639,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: services.meta_title
+   * - **API ID Path**: location-cage.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
@@ -622,7 +649,7 @@ interface ServicesDocumentData {
 /**
  * Services document from Prismic
  *
- * - **API ID**: `services`
+ * - **API ID**: `location-cage`
  * - **Repeatable**: `false`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
@@ -717,6 +744,86 @@ type AbonnementSliceVariation = AbonnementSliceDefault;
 export type AbonnementSlice = prismic.SharedSlice<
   "abonnement",
   AbonnementSliceVariation
+>;
+
+/**
+ * Primary content in *Article → Primary*
+ */
+export interface ArticleSliceDefaultPrimary {
+  /**
+   * title field in *Article → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * subtitle field in *Article → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.primary.subtitle
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
+   * content field in *Article → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *Article → Items*
+ */
+export interface ArticleSliceDefaultItem {
+  /**
+   * media field in *Article → Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.items[].media
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  media: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Article Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArticleSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ArticleSliceDefaultPrimary>,
+  Simplify<ArticleSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Article*
+ */
+type ArticleSliceVariation = ArticleSliceDefault;
+
+/**
+ * Article Shared Slice
+ *
+ * - **API ID**: `article`
+ * - **Description**: Article
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArticleSlice = prismic.SharedSlice<
+  "article",
+  ArticleSliceVariation
 >;
 
 /**
@@ -1552,6 +1659,11 @@ declare module "@prismicio/client" {
       AbonnementSliceDefaultItem,
       AbonnementSliceVariation,
       AbonnementSliceDefault,
+      ArticleSlice,
+      ArticleSliceDefaultPrimary,
+      ArticleSliceDefaultItem,
+      ArticleSliceVariation,
+      ArticleSliceDefault,
       CalendarSlice,
       CalendarSliceDefaultPrimary,
       CalendarSliceDefaultItem,

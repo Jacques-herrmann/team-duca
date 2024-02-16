@@ -1,73 +1,71 @@
 <template>
   <div class="slider" ref="root">
-    <div class="slider__btn slider__btn--previous" @click="onPrevious">
-      <IconArrow/>
-    </div>
-    <div class="slider__inner">
-      <BlocksSliderElement ref="title" class="slider__title" :list="block.items" :current="current" l-key="title" />
-      <BlocksSliderElement ref="subtitle" class="slider__subtitle" :list="block.items" :current="current" l-key="subtitle" />
-      <prismic-rich-text :field="description" class="slider__description" />
-    </div>
-    <div class="slider__btn slider__btn--next" @click="onNext">
-      <IconArrow/>
-    </div>
+    <h2 class="slider__title">
+      <span class="slider__title--letter" v-for="l in 'Nos Disciplines'">{{ l }}</span>
+    </h2>
+    <Splide ref="carousel" :options="sliderOpts">
+      <SplideSlide
+        v-for="(item, i) in block.items"
+        :key="item"
+      >
+        <figure-element
+          class="slider__image"
+          :image="item.media"
+          @mouseenter="onMouseEnter(i as number)"
+          @mouseleave="onMouseLeave"
+        />
+        <div class="slider-item__content" :class="hovered === i ? 'slider__content--hovered':''">
+          <h1 class="slider-item__title">{{ item.title }}</h1>
+          <!--          <h3 class="slider__subtitle">{{ item.subtitle }}</h3>-->
+          <!--          <prismic-rich-text class="slider__text" :field="item.content"/>-->
+        </div>
+      </SplideSlide>
+    </Splide>
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue'
-import Slider from "@/utils/slider/webgl";
+import {defineProps} from 'vue'
+import {Splide, SplideSlide} from "@splidejs/vue-splide";
+import '@splidejs/vue-splide/css/core';
+import gsap from "gsap";
+import A from "assets/animations";
 
 const props = defineProps<{
   block: any
 }>()
-
-const root = ref(null)
-const title = ref(null)
-const subtitle = ref(null)
-const slider: Ref<null | Slider> = ref(null)
-
-const current = ref(0)
-const active = ref(false)
-const description = computed(() => {
-  return props.block.items[current.value].content
+const sliderOpts = ref({
+  type: 'loop',
+  arrows: false,
+  padding: '16vw',
+  gap: '8vw',
 })
 
-const setActive = () => {
-  active.value = true
-  setTimeout(() => {
-    active.value = false
-  }, 1000)
+const root = ref(null)
+const carousel = ref(null)
+const hovered = ref(-1)
+
+let tl = <Timeline | null>null
+const intersect = useIntersect(root, {
+  threshold: 0.4,
+  rootMargin: '100px 0px 0px 0px',
+  onReveal: () => {
+    draw()
+  },
+})
+
+const onMouseEnter = (index: number) => {
+  hovered.value = index
 }
-
-const onNext = () => {
-  if(active.value) return
-  setActive()
-  const next = (current.value + 1) % 3
-  current.value = next
-
-  slider.value?.onNext()
-  title.value?.changeTo(next)
-  subtitle.value?.changeTo(next)
+const onMouseLeave = () => {
+  hovered.value = -1
 }
-
-const onPrevious = () => {
-  if(active.value) return
-  setActive()
-  let previous = (current.value - 1) % 3;
-  if (previous < 0) {
-    previous = 2;
-  }
-  current.value = previous
-
-  title.value?.changeTo(previous)
-  subtitle.value?.changeTo(previous)
-  slider.value?.onPrevious()
+const draw = () => {
+  tl?.play()
 }
 
 onMounted(() => {
-  slider.value = new Slider(root.value, props.block.items)
-  title.value?.changeTo(0)
-  subtitle.value?.changeTo(0)
+  tl = gsap.timeline({paused: true})
+  tl.from(root.value?.querySelectorAll('.slider__title--letter') as NodeListOf<HTMLElement>, A.title, 0)
 })
 
 </script>
@@ -75,100 +73,80 @@ onMounted(() => {
 .slider
   position: relative
   width: 100%
-  height: 60vh
-  display: flex
-  align-items: center
-  justify-content: center
-  @include lg
-    height: 100vh
-    height: calc(var(--vh, 1vh) * 100)
-
-  &__inner
-    height: 100%
-    width: calc(100% - 60px)
-    display: flex
-    flex-direction: column
-    padding: 60px 20px
-    pointer-events: none
-    z-index: 1
-    @include md
-      padding: 90px 60px
-    @include lg
-      width: calc(100% - 180px)
-      padding: 90px
-      padding-top: 40vh
-
-  &__description
-    @include text(3.5vw)
-    color: $white
-    max-width: 700px
-    margin-top: 40px
-    @include md
-      @include text(1.5rem)
-      margin-top: 60px
-    @include lg
-      @include text()
-
-  &__btn
-    height: 100%
-    width: 30px
-    z-index: 1
-    display: flex
-    align-items: center
-    justify-content: center
-    background: transparent
-    cursor: pointer
-    @include md
-      width: 60px
-    @include lg
-      width: 90px
-
-    & svg
-      transition: transform .3s ease-out
-      transform: scale(0.5)
-      @include lg
-        transform: scale(1)
-
-    &:hover
-      & svg
-        transform: translateX(-2px) scale(0.5)
-        @include lg
-          transform: translateX(-2px) scale(1)
-
-    &--next
-      transform: rotate(180deg)
+  cursor: grab
 
   &__title
-    @include h1(4.4rem)
-    position: relative
-    height: 4.4rem
-    z-index: 1
-    color: $red
-    pointer-events: none
-    @include md
-      @include h1(6.1rem)
-      height: 6.1rem
+    @include h1(14vw)
+    font-weight: 900
+    letter-spacing: 0.1rem
+    width: 100%
+    text-align: center
+    color: $white
+    margin-bottom: 6rem
+    overflow: hidden
+
+    & span
+      display: inline-block
+      white-space: pre
+      will-change: transform
+
     @include lg
       @include h1()
-      height: 6.1rem
+      margin-bottom: 6rem
 
-  &__subtitle
-    @include title(4vw)
-    height: 4vw
-    position: relative
-    z-index: 1
-    color: $white
-    pointer-events: none
-    @include lg
-      @include title(1.5rem)
-      height: 1.5rem
+  &__image
+    //min-width: 80vw
+    //max-width: 80vw
+    //width: 80vw
+    height: calc(70vw * 9 / 16)
+    opacity: 0.5
+
+  &-item
+    &__content
+      position: absolute
+      left: 50%
+      top: 50%
+      transform: translate(-50%, -50%)
+      max-height: 8.5vw
+      z-index: 2
+      text-align: center
+      color: $white
+      pointer-events: none
+      transition: all 0.3s ease-in-out
+      display: flex
+      flex-direction: column
+      justify-content: center
+      overflow: hidden
+
+      &--hovered
+        max-height: 100%
+        padding: 0
+
+    &__title
+      @include h1(10vw, 85%)
+      width: 100%
+
+    &__subtitle
+      @include title(4vw)
+      width: 100%
+      margin-top: 20px
+      @include lg
+        @include title(1.5rem)
+        margin-top: 20px
+
+    &__text
+      @include text(1rem)
+      max-width: 600px
+      margin-top: 20px
 
 
 </style>
 <style lang="sass">
-.slider canvas
+.slider__images canvas
   position: absolute
   top: 0
   left: 0
+  height: 100%
+  width: 100%
   z-index: 0
 </style>

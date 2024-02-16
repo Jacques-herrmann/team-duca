@@ -26,6 +26,19 @@ const page = usePage();
 const store = useIndexStore()
 
 const {data: servicePage} = await useAsyncData("services", () => prismic.client.getSingle('services'))
+
+useSeoMeta({
+  title: 'LOCATION CAGE MMA MARSEILLE - SCIENCE DUCA',
+  ogTitle: 'LOCATION CAGE MMA MARSEILLE - SCIENCE DUCA',
+  twitterTitle: 'LOCATION CAGE MMA MARSEILLE - SCIENCE DUCA',
+  description: 'Louez une cage MMA à Marseille et dans toute la France pour vos événements sportifs ou vos séances d\'entraînement.\nDécouvrez notre cage professionnelle de haute qualité adaptée à tous les niveaux de pratique.',
+  ogDescription: 'Louez une cage MMA à Marseille et dans toute la France pour vos événements sportifs ou vos séances d\'entraînement.\nDécouvrez notre cage professionnelle de haute qualité adaptée à tous les niveaux de pratique.',
+  twitterDescription: 'Louez une cage MMA à Marseille et dans toute la France pour vos événements sportifs ou vos séances d\'entraînement.\nDécouvrez notre cage professionnelle de haute qualité adaptée à tous les niveaux de pratique.',
+  ogImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
+  twitterImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
+  twitterCard: 'summary_large_image',
+})
+
 // console.log(servicePage)
 
 useHead({
@@ -114,20 +127,21 @@ onMounted(() => {
     flex-direction: column
 
     @include md
-      @include text(1.5rem)
+      @include text(1.2rem)
       padding: 45px
       width: 100%
 
     @include lg
-      padding: 0 45px
-      margin-top: 18rem
+      padding: 45px
       width: 45%
+      height: 100vh
       justify-content: flex-end
 
     &__cta
       margin-top: 30px
-      align-self: end
+      align-self: center
       @include lg
+        align-self: end
         margin-top: 60px
 
   &__cover
@@ -154,6 +168,7 @@ onMounted(() => {
   &__img
     width: 100%
     height: 100%
+    opacity: 0.4
     object-fit: cover
     object-position: center
     transition: transform 0.6s ease-out
@@ -171,12 +186,19 @@ onMounted(() => {
   &__content
     color: $white
 
+    ::v-deep(p)
+      margin: 10px 0
+
     ::v-deep(ul)
       list-style: disc
-      margin-top: 40px
+      margin-top: 20px
 
       li
         margin-left: 1rem
+
+    ::v-deep(h6)
+      margin-top: 20px
+      font-weight: bold
 
 
 </style>

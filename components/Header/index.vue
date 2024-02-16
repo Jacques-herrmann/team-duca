@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <Logo class="header__logo" @click="toHome"/>
-    <div class="header__burger" @click="onOpen">
+    <div class="header__burger" @click="toggleMenu">
       <svg width="38" height="29" viewBox="0 0 38 29" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M36 2L2 2" stroke="#F9F9F9" stroke-width="4" stroke-linecap="round"/>
         <path d="M36 14L2 14" stroke="#F9F9F9" stroke-width="4" stroke-linecap="round"/>
@@ -20,10 +20,9 @@
     </ul>
   </header>
 </template>
-<script lang="ts" setup>
+<script setup>
 import A from '@/assets/animations'
 import gsap from "gsap";
-import Timeline = gsap.core.Timeline;
 
 const prismic = usePrismic();
 const route = useRoute();
@@ -37,31 +36,41 @@ const {data: header} = await useAsyncData("header", () => prismic.client.getSing
 
 const isMobile = computed(() => store.isMobile)
 const menu = ref(null)
-const tl = ref<Timeline | null>(null)
+const isOpen = ref(false)
+let tl
 
 const toHome = () => {
   navigateTo(`/${locale}`)
 }
 
-const onOpen = () => {
-  tl.value?.timeScale(1).play()
+const toggleMenu = () => {
+  if (isOpen.value) {
+    onClose(route.path)
+  } else {
+    onOpen()
+  }
 }
 
-const onClose = (path: string) => {
-  let d = 1000
+const onOpen = () => {
+  isOpen.value = true
+  tl.timeScale(1).play()
+}
+
+const onClose = (path, d = 1000) => {
   if (path === route.path) {
     d = 0
   }
   setTimeout(() => {
-    tl.value?.timeScale(2).reverse()
+    tl.timeScale(2).reverse()
+    isOpen.value = false
   }, d)
 }
 
 const onResize = () => {
-  tl.value = gsap.timeline({paused: true})
+  tl = gsap.timeline({paused: true})
   // console.log(isMobile.value)
   if (isMobile.value) {
-    tl.value.from(menu.value, {
+    tl.from(menu.value, {
       height: '0',
       duration: 0.4,
       ease: 'power2.out'
@@ -69,13 +78,13 @@ const onResize = () => {
     // tl.set(menu.value.querySelector('div'), {opacity: 1}, 0.1)
     const listeElement = menu.value.querySelectorAll('.header__menu-item')
     listeElement.forEach((element, index) => {
-      tl.value?.from(element.querySelectorAll('.header__menu-item--letter'), A.h2, 0.1 + index * 0.05)
+      tl.from(element.querySelectorAll('.header__menu-item--letter'), A.h2, 0.1 + index * 0.05)
     })
   }
 }
 
 onMounted(() => {
-  tl.value = gsap.timeline({paused: true})
+  tl = gsap.timeline({paused: true})
   nextTick(() => {
     onResize()
   })

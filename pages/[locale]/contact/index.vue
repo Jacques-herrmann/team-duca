@@ -25,7 +25,7 @@
           <p>
             <textarea type="text" name="message" :rows="isMobile ? 6: 10" placeholder="VOTRE MESSAGE"/>
           </p>
-          <CTA class="contact-page__cta" text="send" :is-nuxt-link="false"/>
+          <CTA class="contact-page__cta" text="envoyer" :is-nuxt-link="false"/>
         </form>
       </div>
     </div>
@@ -46,15 +46,17 @@ const page = usePage();
 const {data: contactPage} = await useAsyncData("contact", () => prismic.client.getSingle('contact'))
 // console.log(contactPage)
 
-useHead({
-  title: contactPage.value?.data.meta_title,
-  meta: [
-    {
-      name: "description",
-      content: contactPage.value?.data.meta_description,
-    },
-  ],
-});
+useSeoMeta({
+  title: 'SCIENCE DUCA - CONTACT',
+  ogTitle: 'LOCATION CAGE MMA MARSEILLE - CONTACT',
+  twitterTitle: 'LOCATION CAGE MMA MARSEILLE - CONTACT',
+  description: 'Contactez-nous pour toute question ou demande d\'information sur le club SCIENCE DUCA.\nRemplissez le formulaire de contact ou contactez nous sur Instagram pour nous joindre',
+  ogDescription: 'Contactez-nous pour toute question ou demande d\'information sur le club SCIENCE DUCA.\nRemplissez le formulaire de contact ou contactez nous sur Instagram pour nous joindre',
+  twitterDescription: 'Contactez-nous pour toute question ou demande d\'information sur le club SCIENCE DUCA.\nRemplissez le formulaire de contact ou contactez nous sur Instagram pour nous joindre',
+  ogImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
+  twitterImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
+  twitterCard: 'summary_large_image',
+})
 
 const root = ref<HTMLElement | null>(null)
 const title = computed(() => contactPage.value?.data.titre.split('\n'))
@@ -132,17 +134,18 @@ onMounted(() => {
       width: 100%
 
     @include lg
-      padding: 0 45px
-      margin-top: 18rem
+      padding: 45px
       width: 50%
+      height: 100vh
       justify-content: flex-end
 
   &__cta
-    align-self: end
+    align-self: center
+    @include lg
+      align-self: end
 
   &__form
     display: flex
-    height: 100%
     flex-direction: column
     gap: 2rem
     color: $white

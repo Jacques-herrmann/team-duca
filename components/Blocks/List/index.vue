@@ -4,7 +4,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import {defineProps} from 'vue'
 
 const props = defineProps<{
   blocks: any[]
@@ -21,10 +21,19 @@ const components = {
   'historique': resolveComponent('BlocksHistorique'),
   'abonnement': resolveComponent('BlocksAbonnement'),
   'calendar': resolveComponent('BlocksCalendar'),
+  'article': resolveComponent('BlocksArticle'),
 }
 </script>
 
 <style scoped lang="sass">
 .block
   position: relative
+  @include lg
+    margin: 6rem 0
+
+  &:first-child
+    margin-top: 0
+
+  &:last-child
+    margin-bottom: 0
 </style>
