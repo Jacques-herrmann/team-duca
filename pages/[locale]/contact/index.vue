@@ -13,6 +13,7 @@
           name="contact"
           netlify
           netlify-honeypot="bot-field"
+          @submit="onSubmit"
         >
           <p class="hidden">
             <label>
@@ -70,6 +71,23 @@ watch(() => store.isTransitionVisible, (value) => {
     }, 280)
   }
 })
+
+const onSubmit = (e: Event) => {
+  e.preventDefault()
+  const form = e.target as HTMLFormElement
+  const formData = new FormData(form) as any
+
+  fetch("/", {
+    method: "POST",
+    headers: {"Content-Type": "application/x-www-form-urlencoded"},
+    body: new URLSearchParams(formData).toString()
+  })
+    .then(() => {
+      form.reset()
+      alert("Votre message a bien été envoyé")
+    })
+    .catch((error) => alert("Une erreur est survenue, veuillez réessayer plus tard"))
+}
 
 
 onMounted(() => {
