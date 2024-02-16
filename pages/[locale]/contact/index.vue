@@ -15,6 +15,7 @@
           netlify-honeypot="bot-field"
           @submit="onSubmit"
         >
+          <input type="hidden" name="form-name" value="contact"/>
           <p class="hidden">
             <label>
               Don’t fill this out if you’re human: <input name="bot-field"/>
