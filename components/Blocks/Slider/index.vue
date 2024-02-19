@@ -38,6 +38,8 @@ const sliderOpts = ref({
   arrows: false,
   padding: '16vw',
   gap: '8vw',
+  autoplay: true,
+  pagination: false,
 })
 
 const root = ref(null)

@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <Logo class="header__logo" @click="toHome"/>
+    <!--    <Logo class="header__logo" @click="toHome"/>-->
     <div class="header__burger" @click="toggleMenu">
       <svg width="38" height="29" viewBox="0 0 38 29" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M36 2L2 2" stroke="#F9F9F9" stroke-width="4" stroke-linecap="round"/>
@@ -150,7 +150,7 @@ onMounted(() => {
       flex-direction: row
       height: 100%
       width: unset
-      margin-right: 20px
+      //margin-right: 20px
       gap: 10px
 
 

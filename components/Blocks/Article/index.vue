@@ -54,6 +54,7 @@ const draw = () => {
 
   &__title
     @include h2(9vw)
+    margin-top: 0.5rem !important
     color: $white
     @include lg
       @include h2()

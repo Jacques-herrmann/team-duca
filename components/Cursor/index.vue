@@ -3,7 +3,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { Vec2 } from "ogl";
+import {Vec2} from "ogl";
 
 const props = defineProps({
   lerp: {
@@ -44,6 +44,9 @@ onMounted(() => {
   background-color: $white
   border-radius: 50%
   pointer-events: none
+  display: none
+  @media (pointer: fine)
+    display: block
 
 
 </style>
