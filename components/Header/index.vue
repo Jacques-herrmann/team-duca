@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <Logo class="header__logo" @click="toHome"/>
+    <!--    <Logo class="header__logo" @click="toHome"/>-->
     <div class="header__burger" @click="toggleMenu">
       <svg width="38" height="29" viewBox="0 0 38 29" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M36 2L2 2" stroke="#F9F9F9" stroke-width="4" stroke-linecap="round"/>
@@ -67,8 +67,34 @@ const onClose = (path, d = 1000) => {
 }
 
 const onResize = () => {
-  tl = gsap.timeline({paused: true})
+  // tl = gsap.timeline({paused: true})
   // console.log(isMobile.value)
+  if (!isMobile.value) {
+    gsap.to(menu.value, {
+      height: '100%',
+      duration: 0.4,
+      ease: 'power2.out'
+    })
+    const listeElement = menu.value.querySelectorAll('.header__menu-item')
+    listeElement.forEach((element, index) => {
+      gsap.to(element.querySelectorAll('.header__menu-item--letter'), {
+        y: 0,
+        rotateZ: 0,
+        duration: 0.4,
+        ease: 'power2.out'
+      }, 0.1 + index * 0.05)
+    })
+  } else {
+    gsap.to(menu.value, {
+      height: '0',
+      duration: 0.4,
+      ease: 'power2.out'
+    })
+  }
+}
+
+onMounted(() => {
+  tl = gsap.timeline({paused: true})
   if (isMobile.value) {
     tl.from(menu.value, {
       height: '0',
@@ -81,13 +107,6 @@ const onResize = () => {
       tl.from(element.querySelectorAll('.header__menu-item--letter'), A.h2, 0.1 + index * 0.05)
     })
   }
-}
-
-onMounted(() => {
-  tl = gsap.timeline({paused: true})
-  nextTick(() => {
-    onResize()
-  })
   window.addEventListener('resize', onResize)
 })
 
@@ -150,7 +169,7 @@ onMounted(() => {
       flex-direction: row
       height: 100%
       width: unset
-      margin-right: 20px
+      //margin-right: 20px
       gap: 10px
 
 
