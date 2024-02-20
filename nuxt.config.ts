@@ -8,6 +8,9 @@ export default defineNuxtConfig({
     '/slice-simulator': {prerender: false, ssr: false},
     '/preview': {prerender: false, ssr: false},
   },
+  head: {
+    link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
+  },
   devtools: {enabled: true},
   modules: ["@nuxtjs/prismic", '@vueuse/nuxt', '@nuxtjs/google-fonts', '@pinia/nuxt', 'nuxt-speedkit'],
   prismic: {
