@@ -24,7 +24,7 @@ const webgl = () => {
 
     const geometry = new Triangle(gl)
     const texture = new Texture(gl)
-    const dmap = new Texture(gl)
+    // const dmap = new Texture(gl)
 
     const image = new Image()
     image.crossOrigin = 'Anonymous'
@@ -32,22 +32,22 @@ const webgl = () => {
       ratio = image.height / image.width
       texture.image = image
       loaded++
-      if (loaded < 2) return
+      // if (loaded < 1) return
       onUpdate()
       onResize()
     }
     image.src = url
 
-    const dMapImage = new Image()
-    dMapImage.crossOrigin = 'Anonymous'
-    dMapImage.onload = () => {
-      dmap.image = dMapImage
-      loaded++
-      if (loaded < 2) return
-      onUpdate()
-      onResize()
-    }
-    dMapImage.src = './dmap.png'
+    // const dMapImage = new Image()
+    // dMapImage.crossOrigin = 'Anonymous'
+    // dMapImage.onload = () => {
+    //   dmap.image = dMapImage
+    //   loaded++
+    //   if (loaded < 2) return
+    //   onUpdate()
+    //   onResize()
+    // }
+    // dMapImage.src = './dmap.png'
 
     program = new Program(gl, {
       vertex,
@@ -55,7 +55,7 @@ const webgl = () => {
       uniforms: {
         uTime: {value: 0},
         uTexture: {value: texture},
-        uDMap: {value: dmap},
+        // uDMap: {value: dmap},
         uMouse: {value: new Vec2()},
         uVelo: {value: 0},
         uResolution: {value: resolution},

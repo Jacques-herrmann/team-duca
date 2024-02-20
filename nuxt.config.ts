@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     '/preview': {prerender: false, ssr: false},
   },
   devtools: {enabled: true},
-  modules: ["@nuxtjs/prismic", '@vueuse/nuxt', '@nuxtjs/google-fonts', '@pinia/nuxt'],
+  modules: ["@nuxtjs/prismic", '@vueuse/nuxt', '@nuxtjs/google-fonts', '@pinia/nuxt', 'nuxt-speedkit'],
   prismic: {
     endpoint: "team-duca",
     preview: false,
@@ -29,6 +29,39 @@ export default defineNuxtConfig({
       Overpass: true,
     }
   },
+  speedkit: {
+
+    detection: {
+      performance: true,
+      browserSupport: true
+    },
+
+    performanceMetrics: {
+      device: {
+        hardwareConcurrency: {min: 2, max: 48},
+        deviceMemory: {min: 2}
+      },
+      timing: {
+        fcp: 800,
+        dcl: 1200
+      }
+    },
+
+    targetFormats: ['webp', 'avif', 'jpg|jpeg|png|gif'],
+
+    componentAutoImport: false,
+    componentPrefix: undefined,
+
+    /**
+     * IntersectionObserver rootMargin for Compoennts and Assets
+     */
+    lazyOffset: {
+      component: '0%',
+      asset: '0%'
+
+    },
+  },
+
   hooks: {
     async 'nitro:config'(nitroConfig) {
       if (nitroConfig.dev) {
