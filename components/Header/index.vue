@@ -67,8 +67,34 @@ const onClose = (path, d = 1000) => {
 }
 
 const onResize = () => {
-  tl = gsap.timeline({paused: true})
+  // tl = gsap.timeline({paused: true})
   // console.log(isMobile.value)
+  if (!isMobile.value) {
+    gsap.to(menu.value, {
+      height: '100%',
+      duration: 0.4,
+      ease: 'power2.out'
+    })
+    const listeElement = menu.value.querySelectorAll('.header__menu-item')
+    listeElement.forEach((element, index) => {
+      gsap.to(element.querySelectorAll('.header__menu-item--letter'), {
+        y: 0,
+        rotateZ: 0,
+        duration: 0.4,
+        ease: 'power2.out'
+      }, 0.1 + index * 0.05)
+    })
+  } else {
+    gsap.to(menu.value, {
+      height: '0',
+      duration: 0.4,
+      ease: 'power2.out'
+    })
+  }
+}
+
+onMounted(() => {
+  tl = gsap.timeline({paused: true})
   if (isMobile.value) {
     tl.from(menu.value, {
       height: '0',
@@ -81,13 +107,6 @@ const onResize = () => {
       tl.from(element.querySelectorAll('.header__menu-item--letter'), A.h2, 0.1 + index * 0.05)
     })
   }
-}
-
-onMounted(() => {
-  tl = gsap.timeline({paused: true})
-  nextTick(() => {
-    onResize()
-  })
   window.addEventListener('resize', onResize)
 })
 
