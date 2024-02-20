@@ -6,12 +6,14 @@ export default defineNuxtConfig({
     '/': {static: true},
     '/**': {static: true},
     '/slice-simulator': {prerender: false, ssr: false},
+    '/preview': {prerender: false, ssr: false},
   },
   devtools: {enabled: true},
   modules: ["@nuxtjs/prismic", '@vueuse/nuxt', '@nuxtjs/google-fonts', '@pinia/nuxt'],
   prismic: {
     endpoint: "team-duca",
     preview: false,
+    toolbar: false,
   },
   components: {
     global: true,
