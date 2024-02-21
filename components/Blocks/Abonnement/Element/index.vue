@@ -88,7 +88,7 @@ const toInstagram = () => {
     left: 0
 
   &__cover
-    //width: 100%
+    width: 100%
     height: 160%
     position: absolute
     top: 50%
