@@ -11,7 +11,7 @@
         <IconInstagram class="footer__icon"/>
       </div>
     </div>
-    <span class="footer__background">TEAM DUCA</span>
+    <span class="footer__background">TEAM SCIENCE DUCA</span>
   </footer>
 </template>
 <script lang="ts" setup>

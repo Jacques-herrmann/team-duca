@@ -28,7 +28,7 @@ export default defineNuxtConfig({
   // site: {
   //   url: 'https://science-duca.fr',
   //   name: 'SCIENCE DUCA - MMA MARSEILLE',
-  //   description: 'Bienvenue sur le site de la TEAM DUCA, club de MMA !\nRetrouvez nous au 50 Avenue de la Timone 13010 Marseille.\nRejoignez-nous pour apprendre les techniques de combat et améliorer votre condition physique.',
+  //   description: 'Bienvenue sur le site de la TEAM SCIENCE DUCA, club de MMA !\nRetrouvez nous au 50 Avenue de la Timone 13010 Marseille.\nRejoignez-nous pour apprendre les techniques de combat et améliorer votre condition physique.',
   //   defaultLocale: 'fr', // not needed if you have @nuxtjs/i18n installed
   // },
   app: {
