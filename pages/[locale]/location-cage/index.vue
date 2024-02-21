@@ -41,15 +41,15 @@ useSeoMeta({
 
 // console.log(servicePage)
 
-useHead({
-  title: servicePage.value?.data.meta_title,
-  meta: [
-    {
-      name: "description",
-      content: servicePage.value?.data.meta_description,
-    },
-  ],
-});
+// useHead({
+//   title: servicePage.value?.data.meta_title,
+//   meta: [
+//     {
+//       name: "description",
+//       content: servicePage.value?.data.meta_description,
+//     },
+//   ],
+// });
 const root = ref<HTMLElement | null>(null)
 const visible = computed(() => store.isFullscreenVisible)
 const title = computed(() => servicePage.value?.data.title.split('\n'))
