@@ -46,7 +46,7 @@ main
 
 .app-layout::after
   animation: grain 6s steps(10) infinite
-  background-image: url('./assets/images/grain.png')
+  background-image: url('/assets/images/grain.png')
   background-repeat: repeat
   content: ''
   position: fixed

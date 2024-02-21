@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
   },
   devtools: {enabled: true},
-  modules: ["@nuxtjs/prismic", '@vueuse/nuxt', '@nuxtjs/google-fonts', '@pinia/nuxt', 'nuxt-speedkit', '@nuxtjs/seo'],
+  modules: ["@nuxtjs/prismic", '@vueuse/nuxt', '@nuxtjs/google-fonts', '@pinia/nuxt', 'nuxt-speedkit'],
   prismic: {
     endpoint: "team-duca",
     preview: false,
@@ -22,15 +22,15 @@ export default defineNuxtConfig({
     global: true,
     dirs: ['@/components']
   },
-  ogImage: {
-    enabled: false
-  },
-  site: {
-    url: 'https://science-duca.fr',
-    name: 'SCIENCE DUCA - MMA MARSEILLE',
-    description: 'Bienvenue sur le site de la TEAM DUCA, club de MMA !\nRetrouvez nous au 50 Avenue de la Timone 13010 Marseille.\nRejoignez-nous pour apprendre les techniques de combat et améliorer votre condition physique.',
-    defaultLocale: 'fr', // not needed if you have @nuxtjs/i18n installed
-  },
+  // ogImage: {
+  //   enabled: false
+  // },
+  // site: {
+  //   url: 'https://science-duca.fr',
+  //   name: 'SCIENCE DUCA - MMA MARSEILLE',
+  //   description: 'Bienvenue sur le site de la TEAM SCIENCE DUCA, club de MMA !\nRetrouvez nous au 50 Avenue de la Timone 13010 Marseille.\nRejoignez-nous pour apprendre les techniques de combat et améliorer votre condition physique.',
+  //   defaultLocale: 'fr', // not needed if you have @nuxtjs/i18n installed
+  // },
   app: {
     pageTransition: false,
     layoutTransition: false
