@@ -43,7 +43,7 @@ watch(() => store.isTransitionVisible, (value) => {
 }, {immediate: true})
 
 const toHome = () => {
-  navigateTo(`/${locale}`)
+  navigateTo(`/`)
 }
 
 const draw = () => {

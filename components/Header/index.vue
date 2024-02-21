@@ -11,8 +11,8 @@
     <ul class="header__menu" ref="menu">
       <li class="header__menu-item" v-for="item in header?.data.pages" :key="item.id">
         <nuxt-link
-          @click.native="onClose(`/${locale}${item.url ?`/${item.url}`: ''}`)"
-          :to="`/${locale}${item.url ?`/${item.url}`: ''}`"
+          @click.native="onClose(`${item.url ?`/${item.url}`: '/'}`)"
+          :to="`${item.url ?`/${item.url}`: '/'}`"
         >
           <span class="header__menu-item--letter" v-for="l in item.titre">{{ l }}</span>
         </nuxt-link>
@@ -40,7 +40,7 @@ const isOpen = ref(false)
 let tl
 
 const toHome = () => {
-  navigateTo(`/${locale}`)
+  navigateTo(`/`)
 }
 
 const toggleMenu = () => {

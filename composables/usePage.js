@@ -16,7 +16,7 @@ const useCursor = () => {
 
   onBeforeMount(() => {
     store.setTransition(false)
-    document.documentElement.lang = route.params.locale
+    document.documentElement.lang = 'fr' //route.params.locale
   })
 
   return {}

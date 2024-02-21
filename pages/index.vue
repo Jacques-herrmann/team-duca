@@ -1,10 +1,15 @@
 <template>
-  <div></div>
+  <div class="home-page">
+    <blocks-list :blocks="homepage?.data.slices"></blocks-list>
+  </div>
 </template>
 <script lang="ts" setup>
 
+const prismic = usePrismic();
+const page = usePage();
 
-definePageMeta({layout: 'empty'})
+const {data: homepage} = useAsyncData("home", () => prismic.client.getSingle('home'))
+
 useSeoMeta({
   title: 'SCIENCE DUCA - MMA MARSEILLE',
   ogTitle: 'SCIENCE DUCA - MMA MARSEILLE',
@@ -17,15 +22,9 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 
-const fallbackLocale = 'fr'
-const locales = ['fr']
-
-onMounted(() => {
-  const userLocale = navigator.language.split('-')[0]
-  const locale = locales.includes(userLocale) ? userLocale : fallbackLocale
-
-  navigateTo(`/${locale}`)
-})
-
 </script>
 
+<style scoped lang="sass">
+h1
+  color: red
+</style>

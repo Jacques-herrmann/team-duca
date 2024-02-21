@@ -31,6 +31,9 @@ export default defineNuxtConfig({
     description: 'Bienvenue sur le site de la TEAM SCIENCE DUCA, club de MMA !\nRetrouvez nous au 50 Avenue de la Timone 13010 Marseille.\nRejoignez-nous pour apprendre les techniques de combat et améliorer votre condition physique.',
     defaultLocale: 'fr', // not needed if you have @nuxtjs/i18n installed
   },
+  sitemap: {
+    exclude: ['/preview', '/slice-simulator'],
+  },
   app: {
     pageTransition: false,
     layoutTransition: false
