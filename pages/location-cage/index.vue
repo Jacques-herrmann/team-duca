@@ -28,9 +28,9 @@ const store = useIndexStore()
 const {data: servicePage} = await useAsyncData("services", () => prismic.client.getSingle('services'))
 
 useSeoMeta({
-  title: 'LOCATION CAGE MMA MARSEILLE - SCIENCE DUCA',
-  ogTitle: 'LOCATION CAGE MMA MARSEILLE - SCIENCE DUCA',
-  twitterTitle: 'LOCATION CAGE MMA MARSEILLE - SCIENCE DUCA',
+  title: 'LOCATION CAGE MMA MARSEILLE, FRANCE - SCIENCE DUCA',
+  ogTitle: 'LOCATION CAGE MMA MARSEILLE, FRANCE - SCIENCE DUCA',
+  twitterTitle: 'LOCATION CAGE MMA MARSEILLE, FRANCE - SCIENCE DUCA',
   description: 'Louez une cage MMA à Marseille et dans toute la France pour vos événements sportifs ou vos séances d\'entraînement.\nDécouvrez notre cage professionnelle de haute qualité adaptée à tous les niveaux de pratique.',
   ogDescription: 'Louez une cage MMA à Marseille et dans toute la France pour vos événements sportifs ou vos séances d\'entraînement.\nDécouvrez notre cage professionnelle de haute qualité adaptée à tous les niveaux de pratique.',
   twitterDescription: 'Louez une cage MMA à Marseille et dans toute la France pour vos événements sportifs ou vos séances d\'entraînement.\nDécouvrez notre cage professionnelle de haute qualité adaptée à tous les niveaux de pratique.',
@@ -41,15 +41,15 @@ useSeoMeta({
 
 // console.log(servicePage)
 
-useHead({
-  title: servicePage.value?.data.meta_title,
-  meta: [
-    {
-      name: "description",
-      content: servicePage.value?.data.meta_description,
-    },
-  ],
-});
+// useHead({
+//   title: servicePage.value?.data.meta_title,
+//   meta: [
+//     {
+//       name: "description",
+//       content: servicePage.value?.data.meta_description,
+//     },
+//   ],
+// });
 const root = ref<HTMLElement | null>(null)
 const visible = computed(() => store.isFullscreenVisible)
 const title = computed(() => servicePage.value?.data.title.split('\n'))
