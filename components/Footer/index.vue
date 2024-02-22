@@ -7,8 +7,12 @@
     <div class="footer__right">
       <prismic-rich-text class="footer__address" :field="footer?.data.address"></prismic-rich-text>
       <div class="footer__socials">
-        <IconFacebook class="footer__icon"/>
-        <IconInstagram class="footer__icon"/>
+        <a :href="footer?.data.facebook" target="_blank">
+          <IconFacebook class="footer__icon"/>
+        </a>
+        <a :href="footer?.data.instagram" target="_blank">
+          <IconInstagram class="footer__icon"/>
+        </a>
       </div>
     </div>
     <span class="footer__background">TEAM SCIENCE DUCA</span>
