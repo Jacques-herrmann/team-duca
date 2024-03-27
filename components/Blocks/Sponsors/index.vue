@@ -87,12 +87,12 @@ onMounted(() => {
       gap: 40px
 
   &__item
-    height: 40px
-    max-width: 200px
+    height: 60px
+    max-width: 300px
     margin: 0 1rem
 
     @include lg
-      height: 60px
+      height: 80px
 
     img
       height: 100%

@@ -1,79 +1,116 @@
 <template>
-    <div class="slider-element" ref="root">
-      <span>{{ currentT }}</span>
-      <span>{{ nextT }}</span>
+  <div class="slider-element" ref="root">
+    <h2 class="slider-element__title">
+      <span class="slider-element__title--letter" v-for="l in max">{{ l <= title.length ? title[l - 1] : '' }}</span>
+    </h2>
+    <h3 class="slider-element__subtitle">{{ subtitle }}</h3>
+    <prismic-rich-text class="slider-element__text" :field="content"/>
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue'
-import gsap from 'gsap'
+import {defineProps} from 'vue'
+import gsap from "gsap";
 
 const props = defineProps<{
-  list: Array<Object>,
-  current: Number,
-  lKey: String,
+  block: any,
+  current: number
 }>()
 
-const root = ref<null |HTMLElement>(null)
-const currentT = ref("")
-const nextT = ref("")
+const root = ref<null | HTMLElement>(null)
+let tl = <Timeline | null>null
 
-const list = computed(() => {
-  return props.list.map((i: any) => i[props.lKey])
-})
+const title = ref(props.block.items[props.current].title)
+const subtitle = ref(props.block.items[props.current].subtitle)
+const content = ref(props.block.items[props.current].content)
 
-const changeTo = (index: number) => {
-  nextT.value = list.value[index]
-
-  const elts = root.value?.children
-  if(!elts || elts.length < 2) return
-  const tl = gsap.timeline({
-    onComplete: () => {
-      currentT.value = list.value[index]
-      nextT.value = ""
-      gsap.set(elts[1], {autoAlpha: 0})
-      gsap.set(elts[0], {autoAlpha: 1, x: 0})
+const max = computed(() => {
+  let v = 0
+  props.block.items.forEach((item: any) => {
+    if (v < item.title.length) {
+      v = item.title.length
     }
   })
-  gsap.set(elts[1], {autoAlpha: 0, x: -10})
-
-  tl.to(elts[0], {
-    autoAlpha: 0,
-    duration: 0.4,
-    ease: 'linear'
-  }, 0)
-  tl.to(elts[0], {
-    x: -10,
-    duration: 0.4,
-    ease: 'power1.out'
-  }, 0.2)
-
-  tl.to(elts[1], {
-    autoAlpha: 1,
-    duration: 0.4,
-    ease: 'linear'
-  }, 0.2)
-  tl.to(elts[1], {
-    x: 0,
-    duration: 0.4,
-    ease: 'power1.in'
-  }, 0.2)
-}
-
-
-defineExpose({
-  changeTo
+  return v
 })
+
+watch(() => props.current, () => {
+  tl?.restart()
+})
+
+onMounted(() => {
+  tl = gsap.timeline({
+    repeat: 1,
+    yoyo: true,
+    onRepeat: () => {
+      title.value = props.block.items[props.current].title
+      subtitle.value = props.block.items[props.current].subtitle
+      content.value = props.block.items[props.current].content
+    }
+  })
+
+  const elements = Array.from(root.value?.querySelectorAll('.slider-element__title--letter') as NodeListOf<HTMLElement>)
+  elements.reverse()
+
+  tl?.to(elements, {
+    duration: 0.3,
+    y: '105%',
+    rotateZ: '10deg',
+    stagger: 0.018,
+    ease: 'power1.out'
+  }, 0)
+  tl?.to(root.value?.querySelector('.slider-element__subtitle'), {
+    duration: 0.2,
+    opacity: 0,
+    ease: 'linear'
+  }, 0.2)
+  tl?.to(root.value?.querySelectorAll('.slider-element__text'), {
+    duration: 0.2,
+    opacity: 0,
+    ease: 'linear'
+  }, 0.2)
+})
+
 
 </script>
 <style scoped lang="sass">
 .slider-element
   position: relative
+  padding: 0 8.4vw
+  @include lg
+    padding: 0
 
-  & span
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
+  &__title
+    @include h1(6rem, 100%)
+    font-weight: 900
+    color: $white
+    overflow: hidden
+
+    @include md
+      @include h1(10rem, 100%)
+
+    & span
+      display: inline-block
+      white-space: pre
+      will-change: transform
+
+  &__subtitle
+    @include h2(4vw)
+    font-weight: 400
+    color: $red
+
+    @include lg
+      @include h2(2vw)
+      margin-bottom: 4rem
+
+  &__text
+    @include text()
+    height: 200px
+    color: $white
+    line-height: 1.5
+    font-weight: 400
+    transform: translateY(20px)
+    @include lg
+      max-width: 80%
+
+
 </style>

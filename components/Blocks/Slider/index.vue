@@ -3,48 +3,25 @@
     <h2 class="slider__title">
       <span class="slider__title--letter" v-for="l in 'Nos Disciplines'">{{ l }}</span>
     </h2>
-    <Splide ref="carousel" :options="sliderOpts">
-      <SplideSlide
-        v-for="(item, i) in block.items"
-        :key="item"
-      >
-        <figure-element
-          class="slider__image"
-          :image="item.media"
-          @mouseenter="onMouseEnter(i as number)"
-          @mouseleave="onMouseLeave"
-        />
-        <div class="slider-item__content" :class="hovered === i ? 'slider__content--hovered':''">
-          <h1 class="slider-item__title">{{ item.title }}</h1>
-          <!--          <h3 class="slider__subtitle">{{ item.subtitle }}</h3>-->
-          <!--          <prismic-rich-text class="slider__text" :field="item.content"/>-->
-        </div>
-      </SplideSlide>
-    </Splide>
+    <div class="slider__content">
+      <div class="slider__left">
+        <BlocksSliderElement :block="block" :current="current"/>
+      </div>
+      <BlocksSliderMask class="slider__right" :image="block.items[current].media"/>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
 import {defineProps} from 'vue'
-import {Splide, SplideSlide} from "@splidejs/vue-splide";
-import '@splidejs/vue-splide/css/core';
 import gsap from "gsap";
-import A from "assets/animations";
 
 const props = defineProps<{
   block: any
 }>()
-const sliderOpts = ref({
-  type: 'loop',
-  arrows: false,
-  padding: '16vw',
-  gap: '8vw',
-  autoplay: true,
-  pagination: false,
-})
 
 const root = ref(null)
 const carousel = ref(null)
-const hovered = ref(-1)
+const current = ref(0)
 
 let tl = <Timeline | null>null
 const intersect = useIntersect(root, {
@@ -55,19 +32,19 @@ const intersect = useIntersect(root, {
   },
 })
 
-const onMouseEnter = (index: number) => {
-  hovered.value = index
-}
-const onMouseLeave = () => {
-  hovered.value = -1
-}
 const draw = () => {
   tl?.play()
 }
 
 onMounted(() => {
   tl = gsap.timeline({paused: true})
-  tl.from(root.value?.querySelectorAll('.slider__title--letter') as NodeListOf<HTMLElement>, A.title, 0)
+  setInterval(() => {
+    if (current.value === props.block.items.length - 1) {
+      current.value = 0
+    } else {
+      current.value++
+    }
+  }, 3000)
 })
 
 </script>
@@ -96,59 +73,42 @@ onMounted(() => {
       @include h1()
       margin-bottom: 6rem
 
-  &__image
-    //min-width: 80vw
-    //max-width: 80vw
-    //width: 80vw
-    height: calc(70vw * 9 / 16)
-    opacity: 0.5
+  &__content
+    position: relative
+    width: 100%
+    height: 80vh
+    @include lg
+      height: 100vh
 
-  &-item
-    &__content
-      position: absolute
-      left: 50%
-      top: 50%
-      transform: translate(-50%, -50%)
-      max-height: 8.5vw
-      z-index: 2
-      text-align: center
-      color: $white
-      pointer-events: none
-      transition: all 0.3s ease-in-out
-      display: flex
-      flex-direction: column
-      justify-content: center
+  &__left
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: 1
+    display: flex
+    justify-content: center
+    flex-direction: column
+
+    @include lg
+      left: 8rem
+      width: 60%
+      padding: 0 4rem
+
+
+  &__right
+    position: absolute
+    top: 0
+    right: 0
+    width: 100%
+    height: 100%
+    overflow: hidden
+
+    @include lg
+      top: 0
+      right: 8rem
+      width: 50%
       overflow: hidden
 
-      &--hovered
-        max-height: 100%
-        padding: 0
-
-    &__title
-      @include h1(10vw, 85%)
-      width: 100%
-
-    &__subtitle
-      @include title(4vw)
-      width: 100%
-      margin-top: 20px
-      @include lg
-        @include title(1.5rem)
-        margin-top: 20px
-
-    &__text
-      @include text(1rem)
-      max-width: 600px
-      margin-top: 20px
-
-
-</style>
-<style lang="sass">
-.slider__images canvas
-  position: absolute
-  top: 0
-  left: 0
-  height: 100%
-  width: 100%
-  z-index: 0
 </style>
