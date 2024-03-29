@@ -1,5 +1,6 @@
 <template>
   <div class="app-layout">
+    <BoxingBag/>
     <PageTransition/>
     <Cursor/>
     <Header/>
