@@ -91,7 +91,6 @@ onMounted(() => {
     height: 100vh
     opacity: 0
     overflow: hidden
-    pointer-events: none
 
   &__close-btn
     position: absolute
