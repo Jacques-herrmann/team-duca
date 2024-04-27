@@ -52,10 +52,10 @@ onMounted(() => {
   elements.reverse()
 
   tl?.to(elements, {
-    duration: 0.3,
+    duration: 0.25,
     y: '105%',
-    rotateZ: '10deg',
-    stagger: 0.018,
+    rotateZ: '3deg',
+    stagger: 0.012,
     ease: 'power1.out'
   }, 0)
   tl?.to(root.value?.querySelector('.slider-element__subtitle'), {
@@ -97,6 +97,7 @@ onMounted(() => {
     @include h2(4vw)
     font-weight: 400
     color: $red
+    letter-spacing: 0 !important
 
     @include lg
       @include h2(2vw)

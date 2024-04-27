@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
   },
   devtools: {enabled: true},
-  modules: ["@nuxtjs/prismic", '@vueuse/nuxt', '@nuxtjs/google-fonts', '@pinia/nuxt', 'nuxt-speedkit', '@nuxtjs/seo'],
+  modules: ["@nuxtjs/prismic", '@vueuse/nuxt', '@nuxtjs/google-fonts', '@pinia/nuxt', '@nuxtjs/seo'],
   prismic: {
     endpoint: "team-duca",
     preview: false,
@@ -45,6 +45,7 @@ export default defineNuxtConfig({
     }
   },
   speedkit: {
+    disableNuxtImage: true,
 
     detection: {
       performance: true,

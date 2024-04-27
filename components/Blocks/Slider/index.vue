@@ -1,8 +1,8 @@
 <template>
   <div class="slider" ref="root">
-    <h2 class="slider__title">
-      <span class="slider__title--letter" v-for="l in 'Nos Disciplines'">{{ l }}</span>
-    </h2>
+<!--    <h2 class="slider__title">-->
+<!--      <span class="slider__title&#45;&#45;letter" v-for="l in 'Nos Disciplines'">{{ l }}</span>-->
+<!--    </h2>-->
     <div class="slider__content">
       <div class="slider__left">
         <BlocksSliderElement :block="block" :current="current"/>
@@ -44,7 +44,7 @@ onMounted(() => {
     } else {
       current.value++
     }
-  }, 3000)
+  }, 5000)
 })
 
 </script>
@@ -71,7 +71,7 @@ onMounted(() => {
 
     @include lg
       @include h1()
-      margin-bottom: 6rem
+      //margin-bottom: 6rem
 
   &__content
     position: relative
@@ -82,7 +82,7 @@ onMounted(() => {
 
   &__left
     position: absolute
-    top: 0
+    top: 80px
     left: 0
     width: 100%
     height: 100%
@@ -92,6 +92,7 @@ onMounted(() => {
     flex-direction: column
 
     @include lg
+      top: 0
       left: 8rem
       width: 60%
       padding: 0 4rem
@@ -99,7 +100,7 @@ onMounted(() => {
 
   &__right
     position: absolute
-    top: 0
+    top: -90px
     right: 0
     width: 100%
     height: 100%

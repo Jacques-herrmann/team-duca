@@ -1,6 +1,6 @@
 <template>
   <div class="abonnement-element" ref="root" @mouseenter="onHoverEnter" @mouseleave="onHoverLeave" @click="toInstagram">
-    <parallax class="abonnement-element__parallax" :active="intersect.active.value" :speed="2" :speed-mobile="1.2"
+    <parallax class="abonnement-element__parallax" :active="intersect.active.value" :speed="1.2" :speed-mobile="1.2"
               :is-absolute="true">
       <figure-element :image="cover" class="abonnement-element__cover"/>
     </parallax>
@@ -32,7 +32,7 @@ const root = ref<HTMLElement | null>(null)
 let tl = <Timeline | null>null
 
 const intersect = useIntersect(root, {
-  threshold: 0.2,
+  threshold: 0,
   rootMargin: '100px 0px 0px 0px',
   onReveal: () => {
     tl?.play()
@@ -82,7 +82,7 @@ const toInstagram = () => {
   cursor: pointer
   @include lg
     padding: 3.5rem 3.5rem 3.5rem 40px
-    height: 400px
+    height: 30vw
 
   &__parallax
     left: 0
