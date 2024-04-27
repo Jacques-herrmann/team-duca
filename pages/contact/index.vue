@@ -163,7 +163,6 @@ onMounted(async () => {
   &__right
     @include text()
     width: 100%
-    height: 60vh
     padding: 35px
     display: inline-flex
     flex-direction: column

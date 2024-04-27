@@ -122,7 +122,6 @@ onMounted(() => {
   &__right
     @include text()
     width: 100%
-    height: 50vh
     padding: 35px
     display: flex
     flex-direction: column
