@@ -29,12 +29,15 @@ import A from "@/assets/animations";
 import {shuffle} from "~/utils/math";
 import {jsPDF} from "jspdf"
 import Timeline = gsap.core.Timeline;
+import {useIndexStore} from "~/stores";
 
 const props = defineProps<{
   block: any
 }>()
 
 const root = ref<HTMLElement | null>(null)
+const store = useIndexStore()
+const isMobile = computed(() => store.isMobile)
 const intersect = useIntersect(root, {
   threshold: 0.4,
   rootMargin: '100px 0px 0px 0px',
@@ -44,28 +47,16 @@ const intersect = useIntersect(root, {
 })
 let tl = <Timeline | null>null
 
+
 const downloadCalendar = () => {
   const doc = new jsPDF()
   const calendar = document.querySelector('.planning__container') as HTMLElement
+  calendar.classList.add('print')
   doc.html(calendar, {
     autoPaging: false,
     windowWidth: 1920,
     width: 1920,
     height: 1080,
-    fontFaces: [
-      {
-        url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap',
-        family: 'Roboto',
-        style: 'normal',
-        weight: '400',
-      },
-      {
-        url: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap',
-        family: 'Roboto',
-        style: 'normal',
-        weight: '700',
-      },
-    ],
     html2canvas: {
       scale: 0.14,
       windowWidth: 1920 * 0.88,
@@ -75,6 +66,7 @@ const downloadCalendar = () => {
     },
     callback: function (doc) {
       doc.save('team-duca-planning.pdf')
+      calendar.classList.remove('print')
     },
   })
 }
@@ -122,8 +114,8 @@ onMounted(() => {
   tl = gsap.timeline({paused: true})
   tl.from(root.value?.querySelectorAll('.planning__title--letter') as NodeListOf<HTMLElement>, A.title)
   tl.from(root.value?.querySelectorAll('.planning__content') as NodeListOf<HTMLElement>, A.opacity, 0.2)
-  tl.from(root.value?.querySelectorAll('.planning__container') as NodeListOf<HTMLElement>, {
-    height: 0,
+  tl.fromTo(root.value?.querySelectorAll('.planning__container') as NodeListOf<HTMLElement>, {height: 0}, {
+    height: 'calc(44 * 0.9rem + 2.6vw)',
     duration: 0.6,
     ease: 'power3.out',
   }, 0.6)
@@ -235,9 +227,9 @@ onMounted(() => {
         grid-template-columns: 1fr
         $v: calc(calc(((21 * 60) + 30) / 15) - calc(((10 * 60) + 30) / 15))
         // start at 10h30 // End at 21h30
-        grid-template-rows: repeat($v, 0.8rem)
-        @include md
-          grid-template-rows: repeat($v, 1rem)
+        grid-template-rows: repeat($v, 0.9rem)
+        //@include md
+        //  grid-template-rows: repeat($v, 1rem)
 
     & .download
       position: absolute
