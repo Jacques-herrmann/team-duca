@@ -83,6 +83,7 @@ const toInstagram = () => {
   @include lg
     padding: 3.5rem 3.5rem 3.5rem 40px
     height: 30vw
+    max-height: 450px
 
   &__parallax
     left: 0
