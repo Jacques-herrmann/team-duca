@@ -164,7 +164,7 @@ onMounted(() => {
       position: absolute
       background-color: transparent
       top: 0
-      right: 40px
+      right: 90px
       align-items: center
       flex-direction: row
       height: 100%
@@ -200,9 +200,9 @@ onMounted(() => {
         will-change: transform
 
       @include lg
-        @include text(0.85rem)
+        @include text(0.9rem)
         //letter-spacing: unset
-        margin-left: 30px
+        margin-left: 2vw
         &:not(:last-child)
           margin-bottom: 0
           margin-right: 30px

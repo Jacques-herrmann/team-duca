@@ -1,7 +1,9 @@
 <template>
   <div class="contact-page" ref="root">
     <Snackbar ref="snackbar"/>
-    <figure-element class="contact-page__cover" :image="contactPage?.data.image"/>
+    <div class="contact-page__left">
+      <figure-element class="contact-page__cover" :image="contactPage?.data.image"/>
+    </div>
     <h1 class="contact-page__title">
       <div v-for="t in title"><span>{{ t }}</span></div>
     </h1>
@@ -111,7 +113,7 @@ vueApp.use(VueReCaptcha, {
 
 onMounted(async () => {
   tl = gsap.timeline({paused: true})
-  tl.from(root.value?.querySelectorAll(".contact-page__cover") as NodeList, A.imageWidth, 0)
+  tl.from(root.value?.querySelectorAll(".contact-page__cover") as NodeList, isMobile.value ? A.imageHeight : A.imageWidth, 0.1)
   tl.from(root.value?.querySelectorAll(".contact-page__title span") as NodeList, A.h2, 0.4)
   tl.from(root.value?.querySelectorAll(".contact-page__content") as NodeList, A.opacity, 0.4)
   tl.from(root.value?.querySelectorAll(".contact-page__form") as NodeList, A.opacity, 0.5)
@@ -158,13 +160,11 @@ onMounted(async () => {
       left: 45%
       @include h1(7.5rem)
 
-
   &__right
     @include text()
     width: 100%
-    height: 60vh
     padding: 35px
-    display: flex
+    display: inline-flex
     flex-direction: column
 
     @include md
@@ -211,9 +211,11 @@ onMounted(async () => {
 
   &__cover
     width: 100%
+    height: 100%
+
+  &__left
+    width: 100%
     height: 40vh
-    object-fit: cover
-    object-position: center
     @include md
       height: 50vh
 
@@ -221,8 +223,7 @@ onMounted(async () => {
       width: 50%
       height: 100vh
       height: calc(var(--vh, 1vh) * 100)
-      margin-bottom: 2rem
-
+      justify-content: flex-end
 
   &__content
     @include text()
@@ -237,4 +238,10 @@ onMounted(async () => {
 
 .hidden
   display: none
+</style>
+
+<style lang="sass">
+//.contact-page__left
+//  & .figure-element > img
+//    object-fit: unset
 </style>

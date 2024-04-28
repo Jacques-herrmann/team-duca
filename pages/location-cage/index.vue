@@ -24,6 +24,7 @@ const prismic = usePrismic();
 const route = useRoute();
 const page = usePage();
 const store = useIndexStore()
+const isMobile = computed(() => store.isMobile)
 
 const {data: servicePage} = await useAsyncData("services", () => prismic.client.getSingle('services'))
 
@@ -71,7 +72,7 @@ watch(() => store.isTransitionVisible, (value) => {
 
 onMounted(() => {
   tl = gsap.timeline({paused: true})
-  tl.from(root.value?.querySelectorAll(".service-page__cover") as NodeList, A.imageWidth, 0)
+  tl.from(root.value?.querySelectorAll(".service-page__cover") as NodeList, isMobile.value ? A.imageHeight : A.imageWidth, 0.1)
   tl.from(root.value?.querySelectorAll(".service-page__title span") as NodeList, A.h2, 0.4)
   tl.from(root.value?.querySelectorAll(".service-page__content") as NodeList, A.opacity, 0.6)
   tl.from(root.value?.querySelectorAll(".service-page__cta") as NodeList, A.opacity, 0.8)
@@ -121,7 +122,6 @@ onMounted(() => {
   &__right
     @include text()
     width: 100%
-    height: 50vh
     padding: 35px
     display: flex
     flex-direction: column

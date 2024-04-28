@@ -12,7 +12,15 @@ export default defineNuxtConfig({
     link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
   },
   devtools: {enabled: true},
-  modules: ["@nuxtjs/prismic", '@vueuse/nuxt', '@nuxtjs/google-fonts', '@pinia/nuxt', 'nuxt-speedkit', '@nuxtjs/seo'],
+  modules: [
+    "@nuxtjs/prismic",
+    '@vueuse/nuxt',
+    '@nuxtjs/google-fonts',
+    'nuxt-booster',
+    '@pinia/nuxt',
+    '@nuxtjs/seo',
+    "@nuxt/image"
+  ],
   prismic: {
     endpoint: "team-duca",
     preview: false,

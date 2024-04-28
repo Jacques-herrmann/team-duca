@@ -79,6 +79,11 @@ const splitSport = computed(() => {
     @include lg
       @include title(20px, 100%)
       font-weight: 700
+
+    .print &
+      @include text(18px, 100%)
+      letter-spacing: unset !important
+
   &__time
     @include text(2vw)
     display: flex
