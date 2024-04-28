@@ -63,8 +63,7 @@ interface ContactDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ContactDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<ContactDocumentDataSlicesSlice> /**
    * Meta Description field in *Contact*
    *
    * - **Field Type**: Text
@@ -72,8 +71,7 @@ interface ContactDocumentData {
    * - **API ID Path**: contact.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  ;
+   */;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -239,8 +237,7 @@ interface GalerieDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<GalerieDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<GalerieDocumentDataSlicesSlice> /**
    * Meta Description field in *Galerie*
    *
    * - **Field Type**: Text
@@ -248,8 +245,7 @@ interface GalerieDocumentData {
    * - **API ID Path**: galerie.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  ;
+   */;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -392,8 +388,7 @@ interface HomeDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<HomeDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<HomeDocumentDataSlicesSlice> /**
    * Meta Description field in *Home*
    *
    * - **Field Type**: Text
@@ -401,8 +396,7 @@ interface HomeDocumentData {
    * - **API ID Path**: home.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  ;
+   */;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -469,6 +463,28 @@ interface InscriptionDocumentData {
   texte: prismic.RichTextField;
 
   /**
+   * cta_text field in *Inscription*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: inscription.cta_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * cta_url field in *Inscription*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: inscription.cta_url
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta_url: prismic.LinkField;
+
+  /**
    * Slice Zone field in *Inscription*
    *
    * - **Field Type**: Slice Zone
@@ -477,8 +493,7 @@ interface InscriptionDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<InscriptionDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<InscriptionDocumentDataSlicesSlice> /**
    * Meta Description field in *Inscription*
    *
    * - **Field Type**: Text
@@ -486,8 +501,7 @@ interface InscriptionDocumentData {
    * - **API ID Path**: inscription.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  ;
+   */;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -540,7 +554,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: location-cage.title
+   * - **API ID Path**: services.title
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
@@ -551,7 +565,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: location-cage.content
+   * - **API ID Path**: services.content
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
@@ -562,7 +576,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: location-cage.cover
+   * - **API ID Path**: services.cover
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#image
    */
@@ -573,7 +587,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: location-cage.cta_text
+   * - **API ID Path**: services.cta_text
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
@@ -584,7 +598,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: location-cage.cta_link
+   * - **API ID Path**: services.cta_link
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
@@ -595,7 +609,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
-   * - **API ID Path**: location-cage.video
+   * - **API ID Path**: services.video
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
@@ -606,21 +620,19 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
-   * - **API ID Path**: location-cage.slices[]
+   * - **API ID Path**: services.slices[]
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ServicesDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<ServicesDocumentDataSlicesSlice> /**
    * Meta Description field in *Services*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: location-cage.meta_description
+   * - **API ID Path**: services.meta_description
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  ;
+   */;
   meta_description: prismic.KeyTextField;
 
   /**
@@ -628,7 +640,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: location-cage.meta_image
+   * - **API ID Path**: services.meta_image
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#image
    */
@@ -639,7 +651,7 @@ interface ServicesDocumentData {
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: location-cage.meta_title
+   * - **API ID Path**: services.meta_title
    * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
@@ -649,7 +661,7 @@ interface ServicesDocumentData {
 /**
  * Services document from Prismic
  *
- * - **API ID**: `location-cage`
+ * - **API ID**: `services`
  * - **Repeatable**: `false`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
@@ -1628,7 +1640,7 @@ declare module "@prismicio/client" {
   interface CreateClient {
     (
       repositoryNameOrEndpoint: string,
-      options?: prismic.ClientConfig
+      options?: prismic.ClientConfig,
     ): prismic.Client<AllDocumentTypes>;
   }
 
