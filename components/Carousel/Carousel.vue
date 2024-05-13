@@ -13,6 +13,7 @@
     </Splide>
     <Navigation
       class="carousel__nav"
+      v-if="content.length > 1"
       :current="current"
       :length="content.length"
       @next="onNext"

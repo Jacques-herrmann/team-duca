@@ -19,7 +19,7 @@
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Et esse dolore sit duis irure ipsum. Laboris mollit fugiat mollit in esse ipsum ad tempor excepteur."
+							"text": "Elit sunt commodo veniam velit laboris ad proident duis consectetur deserunt cupidatat sit. Ex aute consequat ipsum."
 						}
 					}
 				]
@@ -32,7 +32,6 @@
 					[
 						"media",
 						{
-							"__TYPE__": "ImageContent",
 							"origin": {
 								"id": "main",
 								"url": "https://images.unsplash.com/photo-1547394765-185e1e68f34e",
@@ -50,6 +49,9 @@
 								},
 								"background": "transparent"
 							},
+							"credits": null,
+							"alt": null,
+							"__TYPE__": "ImageContent",
 							"thumbnails": {}
 						}
 					]
