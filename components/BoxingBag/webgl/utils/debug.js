@@ -9,9 +9,16 @@ const getQueryVariable = (variable) => {
   return urlParams.get(variable)
 }
 
-class Debug extends EventEmitter2 {
+export default class Debug extends EventEmitter2 {
+  _instance = null
+
   constructor() {
     super()
+    if (this._instance) {
+      return this._instance
+    }
+    this._instance = this
+
     this._active = config.debug || getQueryVariable('debug') === 'true'
     this._state = {}
     Object.assign(this._state, config)
@@ -81,10 +88,7 @@ class Debug extends EventEmitter2 {
 
       volumeSoftBody.setTotalMass(physics.bag.volumeMass, false);
     })
-
   }
-
 }
 
 
-export default new Debug()

@@ -31,12 +31,15 @@
     "eventemitter2": "^6.4.9",
     "gsap": "^3.12.2",
     "jspdf": "^2.5.1",
-    "nuxt-booster": "^3.0.4",
+    "nuxt-booster": "^3.0.15",
     "ogl": "^1.0.1",
     "pinia": "^2.1.7",
     "sass": "^1.68.0",
     "sass-loader": "^13.3.2",
     "slicemachine": "^0.0.1",
+    "stats.js": "^0.17.0",
+    "three": "^0.163.0",
+    "tweakpane": "^4.0.3",
     "virtual-scroll": "^2.2.1",
     "vue-recaptcha-v3": "^2.0.1"
   }

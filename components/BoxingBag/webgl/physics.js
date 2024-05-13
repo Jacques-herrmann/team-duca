@@ -18,6 +18,9 @@ import Loader from "./utils/loader.js";
 import config from "./config.js";
 import debug from "./utils/debug.js";
 import {clamp} from "./utils/math.js";
+import * as Ammo from "@/libs/ammo.wasm.js";
+
+console.log(Ammo)
 
 
 let constants = config

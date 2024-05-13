@@ -15,8 +15,9 @@ let pointer = undefined
 const raycaster = new Raycaster()
 
 export default class Engine extends EventDispatcher {
-  constructor() {
+  constructor(canvas) {
     super()
+    this.canvas = canvas
     this.init()
 
     this.onResize()
@@ -28,8 +29,12 @@ export default class Engine extends EventDispatcher {
     this.camera = new PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
     this.camera.position.set(-8, 9, 10)
 
-    this.renderer = new WebGLRenderer({antialias: true, alpha: true, powerPreference: "high-performance"});
-    document.body.appendChild(this.renderer.domElement);
+    this.renderer = new WebGLRenderer({
+      canvas: this.canvas,
+      antialias: true,
+      alpha: true,
+      powerPreference: "high-performance"
+    });
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement)
     this.controls.enableDamping = true
