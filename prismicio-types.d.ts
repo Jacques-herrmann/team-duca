@@ -63,8 +63,7 @@ interface ContactDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ContactDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<ContactDocumentDataSlicesSlice> /**
    * Meta Description field in *Contact*
    *
    * - **Field Type**: Text
@@ -238,8 +237,7 @@ interface GalerieDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<GalerieDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<GalerieDocumentDataSlicesSlice> /**
    * Meta Description field in *Galerie*
    *
    * - **Field Type**: Text
@@ -390,8 +388,7 @@ interface HomeDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<HomeDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<HomeDocumentDataSlicesSlice> /**
    * Meta Description field in *Home*
    *
    * - **Field Type**: Text
@@ -466,6 +463,28 @@ interface InscriptionDocumentData {
   texte: prismic.RichTextField;
 
   /**
+   * cta_text field in *Inscription*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: inscription.cta_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * cta_url field in *Inscription*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: inscription.cta_url
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  cta_url: prismic.LinkField;
+
+  /**
    * Slice Zone field in *Inscription*
    *
    * - **Field Type**: Slice Zone
@@ -474,8 +493,7 @@ interface InscriptionDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<InscriptionDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<InscriptionDocumentDataSlicesSlice> /**
    * Meta Description field in *Inscription*
    *
    * - **Field Type**: Text
@@ -606,8 +624,7 @@ interface ServicesDocumentData {
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#slices
    */
-  slices: prismic.SliceZone<ServicesDocumentDataSlicesSlice>
-  /**
+  slices: prismic.SliceZone<ServicesDocumentDataSlicesSlice> /**
    * Meta Description field in *Services*
    *
    * - **Field Type**: Text
@@ -1623,7 +1640,7 @@ declare module "@prismicio/client" {
   interface CreateClient {
     (
       repositoryNameOrEndpoint: string,
-      options?: prismic.ClientConfig
+      options?: prismic.ClientConfig,
     ): prismic.Client<AllDocumentTypes>;
   }
 

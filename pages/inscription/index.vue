@@ -4,6 +4,11 @@
       <span class="inscription-page__title--letter" v-for="l in inscriptionPage?.data.titre">{{ l }}</span>
     </h1>
     <prismic-rich-text class="inscription-page__subtitle" :field="inscriptionPage?.data.texte"/>
+    <CTA
+     class="inscription-page__cta"
+     :text="inscriptionPage?.data.cta_text"
+     @click="onDownload(inscriptionPage?.data.cta_url.url)"
+    />
     <blocks-list :blocks="inscriptionPage?.data.slices"></blocks-list>
   </div>
 </template>
@@ -11,6 +16,7 @@
 import gsap from "gsap";
 import A from "@/assets/animations";
 import Timeline = gsap.core.Timeline;
+import {download} from "google-fonts-helper";
 
 const prismic = usePrismic();
 const store = useIndexStore();
@@ -50,6 +56,10 @@ const draw = () => {
   tl?.play()
 }
 
+const onDownload = (url) => {
+  window.open(url, '_blank');
+}
+
 onMounted(() => {
   tl = gsap.timeline({paused: true})
   tl.from(root.value?.querySelectorAll('.inscription-page__title--letter') as NodeListOf<HTMLElement>, A.title)
@@ -85,12 +95,17 @@ onMounted(() => {
     @include text(4vw)
     color: $white
     text-align: center
-    margin: 2rem auto 4rem auto
+    margin: 2rem auto 2rem auto
     max-width: 700px
     padding: 0 20px
     @include lg
       @include text()
       padding: 0
-      margin: 2rem auto 8rem auto
+      margin: 2rem auto 4rem auto
+
+  &__cta
+    margin: 0 auto 4rem auto
+    @include lg
+      margin: 0 auto 8rem auto
 
 </style>
