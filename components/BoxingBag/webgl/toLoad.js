@@ -1,4 +1,4 @@
-import Loader from "./utils/loader";
+import Loader from "./utils/loader.js";
 
 const P = '/'
 export default [

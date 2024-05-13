@@ -1,5 +1,5 @@
 import {EventEmitter2} from 'eventemitter2'
-import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader'
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
 import {DRACOLoader} from 'three/addons/loaders/DRACOLoader.js';
 import {FBXLoader} from 'three/addons/loaders/FBXLoader.js';
 import {LoadingManager, TextureLoader} from "three";
