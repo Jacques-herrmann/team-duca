@@ -3,17 +3,23 @@
     <button class="boxing-bag__button" @click="toggleVisible"/>
     <div class="boxing-bag__content">
       <button class="boxing-bag__close-btn" @click="toggleVisible">X</button>
+      <canvas ref="webgl"/>
     </div>
   </div>
 </template>
-<script lang="ts" setup>
+<script setup>
 import gsap from "gsap";
+import Loader from "~/components/BoxingBag/webgl/utils/loader.js";
+import toLoad from "~/components/BoxingBag/webgl/toLoad.js";
+import Engine from "~/components/BoxingBag/webgl/engine.js";
 
 const store = useIndexStore()
 const isMobile = computed(() => store.isMobile)
-const root = ref<HTMLElement | null>(null)
+
+const root = ref(null)
+const webgl = ref(null)
 const visible = ref(false)
-let tl = null
+let tl, loader, engine
 
 const onClose = () => {
   tl.reverse()
@@ -32,7 +38,7 @@ const toggleVisible = () => {
   visible.value = !visible.value
 }
 
-onMounted(() => {
+const onReady = () => {
   tl = gsap.timeline({paused: true})
 
   tl.to(root.value.querySelector('.boxing-bag__button'), {
@@ -51,6 +57,20 @@ onMounted(() => {
     duration: 0.5,
     ease: 'power2.inOut'
   }, 0.2)
+
+  engine = new Engine(webgl.value)
+  engine.init()
+}
+
+
+onMounted(() => {
+  if (process.client) {
+    loader = new Loader()
+    loader.on('ready', () => {
+      onReady()
+    })
+    loader.load(toLoad)
+  }
 })
 
 
@@ -91,7 +111,6 @@ onMounted(() => {
     height: 100vh
     opacity: 0
     overflow: hidden
-    pointer-events: none
 
   &__close-btn
     position: absolute
@@ -105,5 +124,8 @@ onMounted(() => {
     z-index: 2
     transition: all 0.3s ease
 
+  & canvas
+    width: 100%
+    height: 100%
 
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="app-layout">
-<!--    <BoxingBag/>-->
+    <!--    <BoxingBag/>-->
     <PageTransition/>
     <Cursor/>
     <Header/>

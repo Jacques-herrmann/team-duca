@@ -6,7 +6,7 @@
       <span>0</span>
       <span>4</span>
     </h1>
-    <CTA class="error-page__cta" :text="`Retour à l'entrainement`" :url="`/fr`" :is-nuxt-link="true"/>
+    <CTA class="error-page__cta" :text="`Retour à l'entrainement`" :url="`/`" :is-nuxt-link="true"/>
   </div>
 </template>
 <script>
