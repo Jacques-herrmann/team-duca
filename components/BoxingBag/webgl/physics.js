@@ -18,11 +18,9 @@ import Loader from "./utils/loader.js";
 import config from "./config.js";
 import debug from "./utils/debug.js";
 import {clamp} from "./utils/math.js";
-import * as Ammo from "@/libs/ammo.wasm.js";
+import AmmoLib from "@/libs/ammo.js";
 
-console.log(Ammo)
-
-
+let Ammo
 let constants = config
 
 let scene, camera, mouseCoords = new Vector3(), clickRequest = false;
@@ -43,7 +41,8 @@ export default class Physics extends EventDispatcher {
 
     this.ready = false
 
-    Ammo().then(() => {
+    AmmoLib().then((re) => {
+      Ammo = re
       this.init()
       this.ready = true
       if (debug.active) {

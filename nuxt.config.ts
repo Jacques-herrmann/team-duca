@@ -10,7 +10,7 @@ export default defineNuxtConfig({
   },
   head: {
     link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
-    // script: [{src: './libs/ammo.wasm.js',}]
+    // script: [{src: '/libs/ammo.wasm.js',}]
   },
   devtools: {enabled: true},
   modules: [
