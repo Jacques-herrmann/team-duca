@@ -3,6 +3,7 @@ import {OrbitControls} from "three/addons";
 import Physics from "./physics.js";
 import Loader from "./utils/loader.js";
 import Glove from "./glove.js";
+import Debug from "./utils/debug.js";
 
 let time = {
   start: Date.now(),
@@ -11,6 +12,7 @@ let time = {
   delta: 16,
 }
 
+let debug
 let pointer = undefined
 const raycaster = new Raycaster()
 
@@ -18,7 +20,14 @@ export default class Engine extends EventDispatcher {
   constructor(canvas) {
     super()
     this.canvas = canvas
+    debug = new Debug()
+
     this.init()
+
+    if(debug.active) {
+      console.log(debug)
+      debug.debugPerf(this.renderer)
+    }
 
     this.onResize()
     window.addEventListener('resize', this.onResize.bind(this))
@@ -50,10 +59,16 @@ export default class Engine extends EventDispatcher {
     this.scene.add(this.glove)
 
     this.physics = new Physics(this.scene, this.camera)
-    this.renderer.setAnimationLoop(this.render.bind(this))
   }
 
-  onStart() {
+  pause() {
+    this.physics.running = false
+    this.renderer.setAnimationLoop(null)
+  }
+
+  play() {
+    this.physics.running = true
+    this.renderer.setAnimationLoop(this.render.bind(this))
   }
 
   onResize() {
@@ -63,6 +78,9 @@ export default class Engine extends EventDispatcher {
   }
 
   render(t, frame) {
+    if(debug.active) {
+      debug.stats?.begin()
+    }
     const currentTime = t
     time.delta = (currentTime - time.current) * 0.001
     time.current = currentTime
@@ -73,5 +91,8 @@ export default class Engine extends EventDispatcher {
     this.glove.update(time)
 
     this.renderer.render(this.scene, this.camera)
+    if(debug.active) {
+      debug.stats?.end()
+    }
   }
 }

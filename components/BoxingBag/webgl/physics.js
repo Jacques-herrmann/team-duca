@@ -16,11 +16,11 @@ import {
 import * as BufferGeometryUtils from "three/addons/utils/BufferGeometryUtils.js";
 import Loader from "./utils/loader.js";
 import config from "./config.js";
-import debug from "./utils/debug.js";
+import Debug from "./utils/debug.js";
 import {clamp} from "./utils/math.js";
 import AmmoLib from "@/libs/ammo.js";
 
-let Ammo
+let Ammo, debug
 let constants = config
 
 let scene, camera, mouseCoords = new Vector3(), clickRequest = false;
@@ -35,11 +35,13 @@ export default class Physics extends EventDispatcher {
   constructor(_scene, _camera) {
     scene = _scene
     camera = _camera
+    debug = new Debug()
     super()
     this.rigidBodies = []
     this.softBodies = []
 
     this.ready = false
+    this.running = false
 
     AmmoLib().then((re) => {
       Ammo = re
@@ -328,6 +330,7 @@ export default class Physics extends EventDispatcher {
   }
 
   punch(force) {
+    if(!this.running) return
     raycaster.setFromCamera(mouseCoords, camera);
 
     // Creates a ball
@@ -349,11 +352,10 @@ export default class Physics extends EventDispatcher {
     pos.multiplyScalar(force / 10);
     ballBody.setLinearVelocity(new Ammo.btVector3(pos.x, pos.y, pos.z));
 
-
   }
 
   update(time) {
-    if (!this.ready) return
+    if (!this.ready || !this.running) return
     // Hinge control
     // this.hinge.enableAngularMotor(true, 1.5 * this.armMovement, 50);
 

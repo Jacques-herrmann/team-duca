@@ -9,17 +9,18 @@ const getQueryVariable = (variable) => {
   return urlParams.get(variable)
 }
 
+let _instance
 export default class Debug extends EventEmitter2 {
-  _instance = null
 
   constructor() {
     super()
-    if (this._instance) {
-      return this._instance
+    if (_instance) {
+      return _instance
     }
-    this._instance = this
+    _instance = this
 
     this._active = config.debug || getQueryVariable('debug') === 'true'
+    console.log('Debug mode:', this._active)
     this._state = {}
     Object.assign(this._state, config)
 
@@ -35,7 +36,8 @@ export default class Debug extends EventEmitter2 {
       // Add CSS to debug UI
       const panel = document.querySelector('.tp-dfwv')
       panel.style.width = '370px'
-      panel.style.zIndex = '999'
+      panel.style.position = 'fixed'
+      panel.style.zIndex = '9999'
 
       document.body.appendChild(this.stats.dom)
     }
@@ -55,14 +57,15 @@ export default class Debug extends EventEmitter2 {
   debugPerf(renderer) {
     const rendererFolder = this.addFolder(0, 'Renderer')
 
-    rendererFolder.addMonitor(renderer.info.render, 'calls')
-    rendererFolder.addMonitor(renderer.info.memory, 'geometries')
-    rendererFolder.addMonitor(renderer.info.memory, 'textures')
-    rendererFolder.addMonitor(renderer.info.programs, 'length', {label: 'programs'})
-    rendererFolder.addMonitor(renderer.info.render, 'triangles')
+    rendererFolder.addBinding(renderer.info.render, 'calls')
+    rendererFolder.addBinding(renderer.info.memory, 'geometries')
+    rendererFolder.addBinding(renderer.info.memory, 'textures')
+    rendererFolder.addBinding(renderer.info.programs, 'length', {label: 'programs'})
+    rendererFolder.addBinding(renderer.info.render, 'triangles')
   }
 
   debugPhysics(physics, volumeSoftBody) {
+    console.log('Debug physics')
     const physicsFolder = this.addFolder(0, 'Punching Bag Physics')
 
     physicsFolder.addBinding(physics.bag, 'pressure', {min: 1, max: 1000, step: 1})
