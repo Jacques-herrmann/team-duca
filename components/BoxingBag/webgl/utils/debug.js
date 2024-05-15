@@ -57,11 +57,11 @@ export default class Debug extends EventEmitter2 {
   debugPerf(renderer) {
     const rendererFolder = this.addFolder(0, 'Renderer')
 
-    rendererFolder.addBinding(renderer.info.render, 'calls')
-    rendererFolder.addBinding(renderer.info.memory, 'geometries')
-    rendererFolder.addBinding(renderer.info.memory, 'textures')
-    rendererFolder.addBinding(renderer.info.programs, 'length', {label: 'programs'})
-    rendererFolder.addBinding(renderer.info.render, 'triangles')
+    rendererFolder.addBinding(renderer.info.render, 'calls', { readonly: true })
+    rendererFolder.addBinding(renderer.info.memory, 'geometries', { readonly: true })
+    rendererFolder.addBinding(renderer.info.memory, 'textures', { readonly: true })
+    rendererFolder.addBinding(renderer.info.programs, 'length', {label: 'programs', readonly: true})
+    rendererFolder.addBinding(renderer.info.render, 'triangles', { readonly: true })
   }
 
   debugPhysics(physics, volumeSoftBody) {

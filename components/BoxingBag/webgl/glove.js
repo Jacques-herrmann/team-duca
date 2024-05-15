@@ -17,7 +17,10 @@ export default class Glove extends Object3D {
     this.hit = this.mixer.clipAction(this.file.animations[0])
     this.hit.setLoop(LoopOnce, 1)
 
-    this.add(this.file.scene)
+    const scene = this.file.scene
+    scene.rotateX(Math.PI / 2)
+
+    this.add(scene)
     this.targetPosition = this.position.clone()
     this.scale.setScalar(0.6)
 
@@ -26,9 +29,9 @@ export default class Glove extends Object3D {
   }
 
   onMouseMove(event) {
-    let angle = Math.PI / 2
+    let angle = 1.2 * Math.PI / 2
     angle -= (event.clientX / window.innerWidth) * maxAngle - maxAngle / 2
-    const elevation = 8 - (event.clientY / window.innerHeight) * 4 - 2
+    const elevation = 10 - (event.clientY / window.innerHeight) * 4 - 2
 
     const position = new Vector3(
       center.x + Math.cos(angle) * distance,
