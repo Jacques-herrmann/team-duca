@@ -4,6 +4,172 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Item in *AFC → prelim*
+ */
+export interface AfcDocumentDataPrelimItem {
+  /**
+   * fight field in *AFC → prelim*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: afc.prelim[].fight
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  fight: prismic.LinkToMediaField;
+
+  /**
+   * description field in *AFC → prelim*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: afc.prelim[].description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Item in *AFC → main*
+ */
+export interface AfcDocumentDataMainItem {
+  /**
+   * fight field in *AFC → main*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: afc.main[].fight
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  fight: prismic.LinkToMediaField;
+
+  /**
+   * description field in *AFC → main*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: afc.main[].description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+type AfcDocumentDataSlicesSlice = never;
+
+/**
+ * Content for AFC documents
+ */
+interface AfcDocumentData {
+  /**
+   * cover field in *AFC*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: afc.cover
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  cover: prismic.ImageField<never>;
+
+  /**
+   * titre field in *AFC*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: afc.titre
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  titre: prismic.KeyTextField;
+
+  /**
+   * text field in *AFC*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: afc.text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * prelim field in *AFC*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: afc.prelim[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  prelim: prismic.GroupField<Simplify<AfcDocumentDataPrelimItem>>;
+
+  /**
+   * main field in *AFC*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: afc.main[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  main: prismic.GroupField<Simplify<AfcDocumentDataMainItem>>;
+
+  /**
+   * Slice Zone field in *AFC*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: afc.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<AfcDocumentDataSlicesSlice> /**
+   * Meta Description field in *AFC*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: afc.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *AFC*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: afc.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+
+  /**
+   * Meta Title field in *AFC*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: afc.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_title: prismic.KeyTextField;
+}
+
+/**
+ * AFC document from Prismic
+ *
+ * - **API ID**: `afc`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AfcDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<AfcDocumentData>, "afc", Lang>;
+
 type ContactDocumentDataSlicesSlice = never;
 
 /**
@@ -675,6 +841,7 @@ export type ServicesDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | AfcDocument
   | ContactDocument
   | FooterDocument
   | GalerieDocument
@@ -1646,6 +1813,11 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      AfcDocument,
+      AfcDocumentData,
+      AfcDocumentDataPrelimItem,
+      AfcDocumentDataMainItem,
+      AfcDocumentDataSlicesSlice,
       ContactDocument,
       ContactDocumentData,
       ContactDocumentDataSlicesSlice,

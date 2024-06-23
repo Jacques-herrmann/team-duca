@@ -1,0 +1,121 @@
+{
+  "format": "page",
+  "id": "afc",
+  "label": "AFC",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "cover": {
+        "type": "Image",
+        "config": {
+          "label": "cover",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "titre": {
+        "type": "Text",
+        "config": {
+          "label": "titre",
+          "placeholder": ""
+        }
+      },
+      "text": {
+        "type": "StructuredText",
+        "config": {
+          "label": "text",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+        }
+      },
+      "prelim": {
+        "type": "Group",
+        "config": {
+          "label": "prelim",
+          "repeat": true,
+          "fields": {
+            "fight": {
+              "type": "Link",
+              "config": {
+                "label": "fight",
+                "placeholder": "",
+                "select": "media"
+              }
+            },
+            "description": {
+              "type": "StructuredText",
+              "config": {
+                "label": "description",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+              }
+            }
+          }
+        }
+      },
+      "main": {
+        "type": "Group",
+        "config": {
+          "label": "main",
+          "repeat": true,
+          "fields": {
+            "fight": {
+              "type": "Link",
+              "config": {
+                "label": "fight",
+                "placeholder": "",
+                "select": "media"
+              }
+            },
+            "description": {
+              "type": "StructuredText",
+              "config": {
+                "label": "description",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+              }
+            }
+          }
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      },
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      }
+    }
+  }
+}
