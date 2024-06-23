@@ -200,7 +200,7 @@ onMounted(() => {
         will-change: transform
 
       @include lg
-        @include text(0.9rem)
+        @include text(0.8rem)
         //letter-spacing: unset
         margin-left: 2vw
         &:not(:last-child)

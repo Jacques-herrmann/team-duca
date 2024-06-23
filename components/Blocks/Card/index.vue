@@ -1,0 +1,65 @@
+<template>
+  <div class="card" ref="root">
+    <h2 class="card__title">
+      <span class="card__title--letter" v-for="l in title">{{ l }}</span>
+    </h2>
+    <BlocksCardImage v-for="elt in fights" :key="elt.id" :fight="elt.fight" :text="elt.description"/>
+  </div>
+</template>
+<script setup>
+import {defineProps} from 'vue'
+import {gsap} from 'gsap'
+import A from "assets/animations";
+
+const props = defineProps({
+  title: String,
+  fights: Array,
+})
+
+const root = ref(null)
+const intersect = useIntersect(root, {
+  threshold: 0.2,
+  rootMargin: '100px 0px 0px 0px',
+  onReveal: () => {
+    draw()
+  },
+})
+let tl
+
+const draw = () => {
+  tl?.play()
+}
+
+onMounted(() => {
+  tl = gsap.timeline({paused: true})
+  tl.from(root.value?.querySelectorAll('.card__title--letter') , A.title)
+})
+
+</script>
+<style scoped lang="sass">
+.card
+  position: relative
+  width: 100%
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+
+  &__title
+    @include h2(14vw)
+    font-weight: 900
+    letter-spacing: 0.1rem
+    margin: 8rem 0 4rem 0
+    color: white
+    text-align: center
+    overflow: hidden
+
+    & span
+      display: inline-block
+      white-space: pre
+      will-change: transform
+
+    @include lg
+      @include h2()
+
+</style>

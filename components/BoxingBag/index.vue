@@ -12,6 +12,7 @@ import gsap from "gsap";
 import Loader from "~/components/BoxingBag/webgl/utils/loader.js";
 import toLoad from "~/components/BoxingBag/webgl/toLoad.js";
 import Engine from "~/components/BoxingBag/webgl/engine.js";
+import Debug from "~/components/BoxingBag/webgl/utils/debug.js";
 
 const store = useIndexStore()
 const isMobile = computed(() => store.isMobile)
@@ -19,14 +20,16 @@ const isMobile = computed(() => store.isMobile)
 const root = ref(null)
 const webgl = ref(null)
 const visible = ref(false)
-let tl, loader, engine
+let tl, loader, engine, debug
 
 const onClose = () => {
   tl.reverse()
+  engine?.pause()
 }
 
 const onOpen = () => {
   tl.play()
+  engine?.play()
 }
 
 const toggleVisible = () => {
@@ -59,12 +62,13 @@ const onReady = () => {
   }, 0.2)
 
   engine = new Engine(webgl.value)
-  engine.init()
+  onOpen()
 }
 
 
 onMounted(() => {
   if (process.client) {
+    debug = new Debug()
     loader = new Loader()
     loader.on('ready', () => {
       onReady()

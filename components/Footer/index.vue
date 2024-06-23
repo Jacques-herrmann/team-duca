@@ -40,6 +40,7 @@ const {data: footer} = await useAsyncData("footer", () => prismic.client.getSing
   justify-content: space-between
   flex-direction: column
   padding: 0 4rem
+  overflow: hidden
   @include md
     height: 20vw
     flex-direction: row
