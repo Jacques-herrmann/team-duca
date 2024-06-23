@@ -5,6 +5,7 @@ const getRoutes = (locales = ['fr']) => {
   routes.push(`/`)
   routes.push(`/contact`)
   routes.push(`/actualite`)
+  routes.push(`/afc`)
   routes.push(`/inscription`)
   routes.push(`/location-cage`)
   // }

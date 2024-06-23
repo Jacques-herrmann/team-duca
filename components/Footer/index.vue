@@ -16,6 +16,7 @@
       </div>
     </div>
     <span class="footer__background">TEAM SCIENCE DUCA</span>
+    <a href="https://www.instagram.com/hrmn.dev/" target="_blank" class="footer__credit">Design & dévelopement - HRMN</a>
   </footer>
 </template>
 <script lang="ts" setup>
@@ -118,4 +119,16 @@ const {data: footer} = await useAsyncData("footer", () => prismic.client.getSing
       left: 50%
       bottom: -50%
       transform: translateX(-50%)
+
+  &__credit
+    @include text(0.6rem)
+    position: absolute
+    bottom: 0.6rem
+    left: 50%
+    transform: translateX(-50%)
+    text-align: center
+    text-transform: uppercase
+    text-decoration: underline
+    color: $white
+    opacity: 0.8
 </style>
