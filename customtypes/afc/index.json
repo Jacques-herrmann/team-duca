@@ -82,6 +82,23 @@
           }
         }
       },
+      "partner": {
+        "type": "Group",
+        "config": {
+          "label": "partner",
+          "repeat": true,
+          "fields": {
+            "medi": {
+              "type": "Link",
+              "config": {
+                "label": "fight",
+                "placeholder": "",
+                "select": "media"
+              }
+            }
+          }
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

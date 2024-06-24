@@ -1,5 +1,6 @@
 <template>
   <div class="card" ref="root">
+    <div class="seperator"></div>
     <h2 class="card__title">
       <span class="card__title--letter" v-for="l in title">{{ l }}</span>
     </h2>
@@ -32,7 +33,7 @@ const draw = () => {
 
 onMounted(() => {
   tl = gsap.timeline({paused: true})
-  tl.from(root.value?.querySelectorAll('.card__title--letter') , A.title)
+  tl.from(root.value?.querySelectorAll('.card__title--letter'), A.title)
 })
 
 </script>
@@ -44,12 +45,23 @@ onMounted(() => {
   flex-direction: column
   align-items: center
   justify-content: center
+  margin-top: 40px
+
+  & .seperator
+    width: 80%
+    height: 1px
+    background: rgba(255, 255, 255, 0.4)
+    margin-bottom: 40px
+
+    @include lg
+      width: 60%
+      margin-bottom: 100px
 
   &__title
     @include h2(14vw)
     font-weight: 900
     letter-spacing: 0.1rem
-    margin: 8rem 0 4rem 0
+    margin: 6rem 0 4rem 0
     color: white
     text-align: center
     overflow: hidden
