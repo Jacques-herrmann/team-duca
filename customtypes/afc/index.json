@@ -88,7 +88,7 @@
           "label": "partner",
           "repeat": true,
           "fields": {
-            "medi": {
+            "fight": {
               "type": "Link",
               "config": {
                 "label": "fight",
