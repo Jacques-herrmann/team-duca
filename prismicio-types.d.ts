@@ -54,6 +54,21 @@ export interface AfcDocumentDataMainItem {
   description: prismic.RichTextField;
 }
 
+/**
+ * Item in *AFC → partner*
+ */
+export interface AfcDocumentDataPartnerItem {
+  /**
+   * fight field in *AFC → partner*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: *None*
+   * - **API ID Path**: afc.partner[].medi
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  medi: prismic.LinkToMediaField;
+}
+
 type AfcDocumentDataSlicesSlice = never;
 
 /**
@@ -114,6 +129,17 @@ interface AfcDocumentData {
    * - **Documentation**: https://prismic.io/docs/field#group
    */
   main: prismic.GroupField<Simplify<AfcDocumentDataMainItem>>;
+
+  /**
+   * partner field in *AFC*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: afc.partner[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#group
+   */
+  partner: prismic.GroupField<Simplify<AfcDocumentDataPartnerItem>>;
 
   /**
    * Slice Zone field in *AFC*
@@ -1817,6 +1843,7 @@ declare module "@prismicio/client" {
       AfcDocumentData,
       AfcDocumentDataPrelimItem,
       AfcDocumentDataMainItem,
+      AfcDocumentDataPartnerItem,
       AfcDocumentDataSlicesSlice,
       ContactDocument,
       ContactDocumentData,

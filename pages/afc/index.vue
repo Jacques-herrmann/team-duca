@@ -1,24 +1,24 @@
 <template>
   <div class="afc-page" ref="root">
     <div class="afc-page__cover">
-      <figure-element class="afc-page__cover-bg" :image="afcPage?.data.cover" />
+      <figure-element class="afc-page__cover-bg" :image="afcPage?.data.cover"/>
       <h1 class="afc-page__title">
         <span class="afc-page__title--letter" v-for="l in afcPage?.data.titre">{{ l }}</span>
       </h1>
       <prismic-rich-text class="afc-page__text" :field="afcPage?.data.text"/>
       <transition name="fade">
-      <IconArrowDown v-if="iconVisible" class="icon-arrow-down" />
+        <IconArrowDown v-if="iconVisible" class="icon-arrow-down"/>
       </transition>
     </div>
-    <BlocksCard title="carte préliminaire" :fights="afcPage?.data.prelim" />
-    <BlocksCard title="carte principale" :fights="afcPage?.data.main" />
+    <BlocksCard title="carte préliminaire" :fights="afcPage?.data.prelim" :has-seperator="false"/>
+    <BlocksCard title="carte principale" :fights="afcPage?.data.main"/>
+    <BlocksCard title="nos partenaires" :fights="afcPage?.data.partner"/>
   </div>
 </template>
 <script lang="ts" setup>
 
 import gsap from "gsap";
 import A from "assets/animations";
-import {VueReCaptcha} from 'vue-recaptcha-v3';
 import Timeline = gsap.core.Timeline;
 
 const prismic = usePrismic();
@@ -70,6 +70,9 @@ onMounted(async () => {
     width: 100%
     height: 100vh
     height: calc(var(--vh, 1vh) * 100)
+    margin-bottom: 40px
+    @include lg
+      margin-bottom: 200px
 
     &-bg
       position: absolute

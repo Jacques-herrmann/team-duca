@@ -1,5 +1,6 @@
 <template>
-  <div class="card" ref="root">
+  <div class="card" :class="hasSeperator ? '':'separator-hidden'" ref="root">
+    <div class="seperator"/>
     <h2 class="card__title">
       <span class="card__title--letter" v-for="l in title">{{ l }}</span>
     </h2>
@@ -14,11 +15,15 @@ import A from "assets/animations";
 const props = defineProps({
   title: String,
   fights: Array,
+  hasSeperator: {
+    type: Boolean,
+    default: true
+  }
 })
 
 const root = ref(null)
 const intersect = useIntersect(root, {
-  threshold: 0.2,
+  threshold: 0,
   rootMargin: '100px 0px 0px 0px',
   onReveal: () => {
     draw()
@@ -32,7 +37,7 @@ const draw = () => {
 
 onMounted(() => {
   tl = gsap.timeline({paused: true})
-  tl.from(root.value?.querySelectorAll('.card__title--letter') , A.title)
+  tl.from(root.value?.querySelectorAll('.card__title--letter'), A.title)
 })
 
 </script>
@@ -44,12 +49,27 @@ onMounted(() => {
   flex-direction: column
   align-items: center
   justify-content: center
+  margin-top: 40px
+
+  &.separator-hidden
+    .seperator
+      display: none
+
+  & .seperator
+    width: 80%
+    height: 1px
+    background: rgba(255, 255, 255, 0.4)
+    margin-bottom: 40px
+
+    @include lg
+      width: 60%
+      margin-bottom: 100px
 
   &__title
     @include h2(14vw)
     font-weight: 900
     letter-spacing: 0.1rem
-    margin: 8rem 0 4rem 0
+    margin: 6rem 0 4rem 0
     color: white
     text-align: center
     overflow: hidden
