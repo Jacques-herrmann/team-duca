@@ -1,6 +1,6 @@
 <template>
-  <div class="card" ref="root">
-    <div class="seperator"></div>
+  <div class="card" :class="hasSeperator ? '':'separator-hidden'" ref="root">
+    <div class="seperator"/>
     <h2 class="card__title">
       <span class="card__title--letter" v-for="l in title">{{ l }}</span>
     </h2>
@@ -15,11 +15,15 @@ import A from "assets/animations";
 const props = defineProps({
   title: String,
   fights: Array,
+  hasSeperator: {
+    type: Boolean,
+    default: true
+  }
 })
 
 const root = ref(null)
 const intersect = useIntersect(root, {
-  threshold: 0.2,
+  threshold: 0,
   rootMargin: '100px 0px 0px 0px',
   onReveal: () => {
     draw()
@@ -46,6 +50,10 @@ onMounted(() => {
   align-items: center
   justify-content: center
   margin-top: 40px
+
+  &.separator-hidden
+    .seperator
+      display: none
 
   & .seperator
     width: 80%

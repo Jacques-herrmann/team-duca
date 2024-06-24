@@ -10,7 +10,7 @@
         <IconArrowDown v-if="iconVisible" class="icon-arrow-down"/>
       </transition>
     </div>
-    <BlocksCard title="carte préliminaire" :fights="afcPage?.data.prelim"/>
+    <BlocksCard title="carte préliminaire" :fights="afcPage?.data.prelim" :has-seperator="false"/>
     <BlocksCard title="carte principale" :fights="afcPage?.data.main"/>
     <BlocksCard title="nos partenaires" :fights="afcPage?.data.main"/>
   </div>
@@ -70,6 +70,9 @@ onMounted(async () => {
     width: 100%
     height: 100vh
     height: calc(var(--vh, 1vh) * 100)
+    margin-bottom: 40px
+    @include lg
+      margin-bottom: 200px
 
     &-bg
       position: absolute
