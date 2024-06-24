@@ -63,10 +63,10 @@ export interface AfcDocumentDataPartnerItem {
    *
    * - **Field Type**: Link to Media
    * - **Placeholder**: *None*
-   * - **API ID Path**: afc.partner[].medi
+   * - **API ID Path**: afc.partner[].fight
    * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
    */
-  medi: prismic.LinkToMediaField;
+  fight: prismic.LinkToMediaField;
 }
 
 type AfcDocumentDataSlicesSlice = never;
