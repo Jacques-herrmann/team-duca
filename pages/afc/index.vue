@@ -12,7 +12,7 @@
     </div>
     <BlocksCard title="carte préliminaire" :fights="afcPage?.data.prelim" :has-seperator="false"/>
     <BlocksCard title="carte principale" :fights="afcPage?.data.main"/>
-    <BlocksCard title="nos partenaires" :fights="afcPage?.data.main"/>
+    <BlocksCard :title="'merci à \nnos partenaires'" :fights="afcPage?.data.main"/>
   </div>
 </template>
 <script lang="ts" setup>

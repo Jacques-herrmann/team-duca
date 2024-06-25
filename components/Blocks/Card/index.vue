@@ -2,7 +2,9 @@
   <div class="card" :class="hasSeperator ? '':'separator-hidden'" ref="root">
     <div class="seperator"/>
     <h2 class="card__title">
-      <span class="card__title--letter" v-for="l in title">{{ l }}</span>
+      <span v-for="t in splitTitle">
+        <span class="card__title--letter" v-for="l in t">{{ l }}</span>
+      </span>
     </h2>
     <BlocksCardImage v-for="elt in fights" :key="elt.id" :fight="elt.fight" :text="elt.description"/>
   </div>
@@ -19,6 +21,11 @@ const props = defineProps({
     type: Boolean,
     default: true
   }
+})
+
+const splitTitle = computed(() => {
+  if (!props.title) return []
+  return props.title.split('\n')
 })
 
 const root = ref(null)
@@ -73,6 +80,9 @@ onMounted(() => {
     color: white
     text-align: center
     overflow: hidden
+
+    & > span
+      overflow: hidden
 
     & span
       display: inline-block
