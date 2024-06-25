@@ -21,6 +21,13 @@
           "placeholder": ""
         }
       },
+      "subtitle": {
+        "type": "Text",
+        "config": {
+          "label": "subtitle",
+          "placeholder": ""
+        }
+      },
       "text": {
         "type": "StructuredText",
         "config": {

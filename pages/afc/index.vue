@@ -5,6 +5,9 @@
       <h1 class="afc-page__title">
         <span class="afc-page__title--letter" v-for="l in afcPage?.data.titre">{{ l }}</span>
       </h1>
+      <h2 class="afc-page__subtitle">
+        <span class="afc-page__subtitle--letter" v-for="l in subtitle">{{ l }}</span>
+      </h2>
       <prismic-rich-text class="afc-page__text" :field="afcPage?.data.text"/>
       <transition name="fade">
         <IconArrowDown v-if="iconVisible" class="icon-arrow-down"/>
@@ -12,7 +15,7 @@
     </div>
     <BlocksCard title="carte préliminaire" :fights="afcPage?.data.prelim" :has-seperator="false"/>
     <BlocksCard title="carte principale" :fights="afcPage?.data.main"/>
-    <BlocksCard :title="'merci à \nnos partenaires'" :fights="afcPage?.data.main"/>
+    <BlocksCard :title="'merci à \nnos partenaires'" :fights="afcPage?.data.partner"/>
   </div>
 </template>
 <script lang="ts" setup>
@@ -42,6 +45,8 @@ useSeoMeta({
 
 const root = ref<HTMLElement | null>(null)
 
+const subtitle = 'ALPHA FIGHT CHAMPOINSHIP'
+
 const isMobile = computed(() => store.isMobile)
 const iconVisible = computed(() => store.scroll?.scroll <= 0)
 let tl = <Timeline | null>null
@@ -57,7 +62,8 @@ watch(() => store.isTransitionVisible, (value) => {
 onMounted(async () => {
   tl = gsap.timeline({paused: true})
   tl.from(root.value?.querySelectorAll('.afc-page__title--letter') as NodeListOf<HTMLElement>, A.title)
-  tl.from(root.value?.querySelectorAll('.afc-page__text') as NodeListOf<HTMLElement>, A.opacity, 0.2)
+  tl.from(root.value?.querySelectorAll('.afc-page__subtitle--letter') as NodeListOf<HTMLElement>, A.title, 0.15)
+  tl.from(root.value?.querySelectorAll('.afc-page__text') as NodeListOf<HTMLElement>, A.opacity, 0.35)
 
   // console.log(token.value)
 })
@@ -99,6 +105,23 @@ onMounted(async () => {
 
     @include lg
       @include h1()
+
+  &__subtitle
+    @include h1(10vw)
+    font-weight: 900
+    letter-spacing: 0.1rem
+    padding-top: 10px
+    color: $red
+    text-align: center
+    overflow: hidden
+
+    & span
+      display: inline-block
+      white-space: pre
+      will-change: transform
+
+    @include lg
+      @include h1(4rem)
 
   &__text
     @include text(4vw)

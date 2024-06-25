@@ -98,6 +98,17 @@ interface AfcDocumentData {
   titre: prismic.KeyTextField;
 
   /**
+   * subtitle field in *AFC*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: afc.subtitle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
    * text field in *AFC*
    *
    * - **Field Type**: Rich Text
