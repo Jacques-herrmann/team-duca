@@ -32,9 +32,9 @@ const config = useRuntimeConfig();
 const {data: afcPage} = await useAsyncData("afc", () => prismic.client.getSingle('afc'))
 
 useSeoMeta({
-  title: 'ALPHA FIGHT CHAMPOINSHIP',
-  ogTitle: 'ALPHA FIGHT CHAMPOINSHIP',
-  twitterTitle: 'ALPHA FIGHT CHAMPOINSHIP',
+  title: 'ALPHA FIGHT CHAMPIONSHIP',
+  ogTitle: 'ALPHA FIGHT CHAMPIONSHIP',
+  twitterTitle: 'ALPHA FIGHT CHAMPIONSHIP',
   description: '',
   ogDescription: '',
   twitterDescription: '',
@@ -45,7 +45,7 @@ useSeoMeta({
 
 const root = ref<HTMLElement | null>(null)
 
-const subtitle = 'ALPHA FIGHT CHAMPOINSHIP'
+const subtitle = 'ALPHA FIGHT CHAMPIONSHIP'
 
 const isMobile = computed(() => store.isMobile)
 const iconVisible = computed(() => store.scroll?.scroll <= 0)
