@@ -4,11 +4,11 @@
       <span class="inscription-page__title--letter" v-for="l in inscriptionPage?.data.titre">{{ l }}</span>
     </h1>
     <prismic-rich-text class="inscription-page__subtitle" :field="inscriptionPage?.data.texte"/>
-    <CTA
-     class="inscription-page__cta"
-     :text="inscriptionPage?.data.cta_text"
-     @click="onDownload(inscriptionPage?.data.cta_url.url)"
-    />
+    <!--    <CTA-->
+    <!--        class="inscription-page__cta"-->
+    <!--        :text="inscriptionPage?.data.cta_text"-->
+    <!--        @click="onDownload(inscriptionPage?.data.cta_url.url)"-->
+    <!--    />-->
     <blocks-list :blocks="inscriptionPage?.data.slices"></blocks-list>
   </div>
 </template>
@@ -16,7 +16,6 @@
 import gsap from "gsap";
 import A from "@/assets/animations";
 import Timeline = gsap.core.Timeline;
-import {download} from "google-fonts-helper";
 
 const prismic = usePrismic();
 const store = useIndexStore();
@@ -30,9 +29,9 @@ useSeoMeta({
   title: 'SCIENCE DUCA - INSCRIPTION',
   ogTitle: 'SCIENCE DUCA - INSCRIPTION',
   twitterTitle: 'SCIENCE DUCA - INSCRIPTION',
-  description: 'Rejoignez la TEAM SCIENCE DUCA, club de MMA à Marseille la Timone !\nDécouvrez nos programmes d\'entraînement, nos instructeurs qualifiés et nos installations modernes.',
-  ogDescription: 'Rejoignez la TEAM SCIENCE DUCA, club de MMA à Marseille la Timone !\nDécouvrez nos programmes d\'entraînement, nos instructeurs qualifiés et nos installations modernes.',
-  twitterDescription: 'Rejoignez la TEAM SCIENCE DUCA, club de MMA à Marseille la Timone !\nDécouvrez nos programmes d\'entraînement, nos instructeurs qualifiés et nos installations modernes.',
+  description: 'Rejoignez la TEAM SCIENCE DUCA, club de MMA à Marseille la Capelette !\nDécouvrez nos programmes d\'entraînement, nos instructeurs qualifiés et nos installations modernes.',
+  ogDescription: 'Rejoignez la TEAM SCIENCE DUCA, club de MMA à Marseille la Capelette !\nDécouvrez nos programmes d\'entraînement, nos instructeurs qualifiés et nos installations modernes.',
+  twitterDescription: 'Rejoignez la TEAM SCIENCE DUCA, club de MMA à Marseille la Capelette !\nDécouvrez nos programmes d\'entraînement, nos instructeurs qualifiés et nos installations modernes.',
   ogImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
   twitterImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
   twitterCard: 'summary_large_image',
@@ -96,7 +95,7 @@ onMounted(() => {
     color: $white
     text-align: center
     margin: 2rem auto 2rem auto
-    max-width: 700px
+    max-width: 900px
     padding: 0 20px
     @include lg
       @include text()
@@ -108,4 +107,24 @@ onMounted(() => {
     @include lg
       margin: 0 auto 8rem auto
 
+</style>
+<style lang="sass">
+.inscription-page__subtitle
+  strong
+    color: rgb(120, 120, 120)
+    font-weight: bold
+    font-size: 1rem
+    @include lg
+      font-size: 1.2rem
+
+  p
+    margin-top: 1rem
+    margin-bottom: 1rem
+
+  a
+    color: $red
+    text-decoration: underline
+
+    &:hover
+      text-decoration: none
 </style>

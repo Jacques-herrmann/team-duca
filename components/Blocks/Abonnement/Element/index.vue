@@ -25,7 +25,8 @@ const props = defineProps<{
   cover: any,
   title: String,
   texte: any,
-  price: String
+  price: String,
+  url: String
 }>()
 
 const root = ref<HTMLElement | null>(null)
@@ -64,7 +65,9 @@ onMounted(() => {
 })
 
 const toInstagram = () => {
-  window.open('https://www.instagram.com/science_duca/?hl=fr', '_blank')
+  // window.open('https://www.instagram.com/science_duca/?hl=fr', '_blank')
+  console.log(props.url)
+  window.open(props.url, '_blank')
 }
 
 </script>
@@ -138,4 +141,19 @@ const toInstagram = () => {
       display: inline-block
 
 
+</style>
+<style lang="sass">
+.abonnement-element__top__subtitle
+  strong
+    font-weight: bold
+    font-size: 1rem
+    @include lg
+      font-size: 1.2rem
+
+  a
+    color: $red
+    text-decoration: underline
+
+    &:hover
+      text-decoration: none
 </style>

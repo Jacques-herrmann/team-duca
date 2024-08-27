@@ -1,5 +1,5 @@
 <template>
-  <div class="event" :class="props.eventData.sport.split(' ')[0].replace('*','')">
+  <div class="event" :class="props.eventData.color.replace(' ', '-')">
     <p class="event__title">{{ splitSport }}</p>
     <div class="event__time">
       <p>{{ props.eventData.time }}</p>-
@@ -20,7 +20,7 @@ const gridRow = computed(() => {
   // calculate the start and end of the event in 15 minute
   // calendar start at 10h30 so we need to substract 10h30 in 15 minute
 
-  const offset = ((10 * 60) + 30) / 15
+  const offset = ((11 * 60)) / 15
 
   const [starHour, starMinute] = props.eventData.time.split("h")
   const [endHour, endMinute] = props.eventData.duration.split("h")
@@ -60,15 +60,15 @@ const splitSport = computed(() => {
   flex-direction: column
   align-items: center
   justify-content: center
-  background-color: rgba(255, 255, 255, 0.37)
+  background-color: rgba(255, 255, 255, 0.8)
   border-radius: 2px
   margin: 1px
   padding: 10px
-  gap: 5px
+  gap: 3px
   overflow: hidden
+
   &__title
     @include title(2.8vw)
-    white-space: pre-line
     text-align: center
     font-weight: 700
     letter-spacing: 0.05rem
@@ -76,8 +76,9 @@ const splitSport = computed(() => {
     display: grid
     place-items: center
     transition: transform 0.2s ease-in-out
+    padding: 0 1.5rem
     @include lg
-      @include title(20px, 100%)
+      @include title(16px, 100%)
       font-weight: 700
 
     .print &
@@ -91,25 +92,46 @@ const splitSport = computed(() => {
     gap: 2px
     transition: transform 0.2s ease-in-out
     @include lg
-      @include text()
+      @include text(0.8rem)
 
-  &.MMA
-    background-color: #C93D3D
+  &.rouge
+    background-color: rgba(201, 61, 61, 0.8)
+  //background-color: #C93D3D
 
-  &.JJB
-    background-color: #8B3DC9
+  &.violet
+    background-color: rgba(139, 61, 201, 0.8)
+  //background-color: #8B3DC9
 
-  &.Grappling
-    background-color: #C9803D
+  &.violet-clair
+    background-color: rgba(188, 144, 224, 0.8)
+  //background-color: #BC90E0
 
-  &.Kick-boxing
-    background-color: #3DC9AF
+  &.orange
+    background-color: rgba(255, 145, 2, 0.8)
+  //background-color: #C9803D
+
+  &.bleu
+    background-color: rgba(61, 122, 201, 0.8)
+  //background-color: #3D7AC9
+
+  &.noir
+    background-color: rgba(30, 30, 30, 0.8)
+
+  &.blanc
+    background-color: rgba(255, 255, 255, 0.9)
+
+    & *
+      color: rgb(30, 30, 30)
+
+  &.gris
+    background-color: rgba(120, 120, 120, 0.8)
+
 
   &:hover
     & .event__title
       transform: scale(1.05)
-    //& .event__time
-    //  transform: scale(1.05)
+//& .event__time
+//  transform: scale(1.05)
 
 
 </style>

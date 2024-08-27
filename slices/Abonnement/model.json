@@ -43,6 +43,14 @@
             "allowTargetBlank": true,
             "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,strong,em,list-item,o-list-item,heading5,heading6"
           }
+        },
+        "lien_paiement": {
+          "type": "Link",
+          "config": {
+            "label": "lien_paiement",
+            "placeholder": "",
+            "select": null
+          }
         }
       }
     }

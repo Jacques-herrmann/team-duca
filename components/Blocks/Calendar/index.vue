@@ -4,13 +4,14 @@
       <span class="planning__title--letter" v-for="l in block.primary.title">{{ l }}</span>
     </h2>
     <prismic-rich-text class="planning__content" :field="block.primary.content"/>
-    <ul class="planning__filter">
-      <li class="planning__filter__item" @click="filterEvents('clear')">Tous les cours</li>
-      <li class="planning__filter__item" @click="filterEvents(sport.split(' ')[0])" v-for="sport of getAllSports()">
-        {{ sport }}
-      </li>
-    </ul>
+    <!--    <ul class="planning__filter">-->
+    <!--      <li class="planning__filter__item" @click="filterEvents('clear')">Tous les cours</li>-->
+    <!--      <li class="planning__filter__item" @click="filterEvents(sport.split(' ')[0])" v-for="sport of getAllSports()">-->
+    <!--        {{ sport }}-->
+    <!--      </li>-->
+    <!--    </ul>-->
     <div class="planning__container">
+      <img class="planning__bg" :src="block.primary.background.url" alt="calendar">
       <div class="planning__container__single" v-for="event of formatPlanning()">
         <p class="planning__container__single__day">{{ event[0].day }}</p>
         <div class="planning__container__single__events">
@@ -18,7 +19,7 @@
         </div>
       </div>
       <IconDownload class="download" @click="downloadCalendar"/>
-      <span class="asterix">* club partenaire</span>
+      <!--      <span class="asterix">* club partenaire</span>-->
     </div>
   </div>
 </template>
@@ -28,8 +29,8 @@ import gsap from "gsap";
 import A from "@/assets/animations";
 import {shuffle} from "~/utils/math";
 import {jsPDF} from "jspdf"
-import Timeline = gsap.core.Timeline;
 import {useIndexStore} from "~/stores";
+import Timeline = gsap.core.Timeline;
 
 const props = defineProps<{
   block: any
@@ -115,7 +116,7 @@ onMounted(() => {
   tl.from(root.value?.querySelectorAll('.planning__title--letter') as NodeListOf<HTMLElement>, A.title)
   tl.from(root.value?.querySelectorAll('.planning__content') as NodeListOf<HTMLElement>, A.opacity, 0.2)
   tl.fromTo(root.value?.querySelectorAll('.planning__container') as NodeListOf<HTMLElement>, {height: 0}, {
-    height: 'calc(44 * 0.9rem + 2.6vw)',
+    height: 'calc(43 * 0.9rem + 2.6vw)',
     duration: 0.6,
     ease: 'power3.out',
   }, 0.6)
@@ -132,6 +133,8 @@ onMounted(() => {
     stagger: 0.02,
     ease: 'power3.out',
   }, 1.2)
+
+  tl.from(root.value?.querySelectorAll('.planning__bg') as NodeListOf<HTMLElement>, A.opacity, 1.2)
 
   window.addEventListener('resize', draw)
 
@@ -208,6 +211,7 @@ onMounted(() => {
 
     &__single
       width: calc((100vw - 20px) / 6)
+      z-index: 1
 
       @include xl
         width: calc((100vw - 180px) / 6)
@@ -225,11 +229,11 @@ onMounted(() => {
       &__events
         display: grid
         grid-template-columns: 1fr
-        $v: calc(calc(((21 * 60) + 30) / 15) - calc(((10 * 60) + 30) / 15))
-        // start at 10h30 // End at 21h30
+        $v: calc(calc(((21 * 60)) / 15) - calc(((11 * 60)) / 15))
+        // start at 11h // End at 21h
         grid-template-rows: repeat($v, 0.9rem)
-        //@include md
-        //  grid-template-rows: repeat($v, 1rem)
+    //@include md
+    //  grid-template-rows: repeat($v, 1rem)
 
     & .download
       position: absolute
@@ -238,6 +242,7 @@ onMounted(() => {
       width: 1.2rem
       height: 1.2rem
       cursor: pointer
+      z-index: 2
 
     & .asterix
       position: absolute
@@ -245,6 +250,19 @@ onMounted(() => {
       right: 0
       @include text(0.8rem)
       color: rgba(255, 255, 255, 0.4)
+
+  &__bg
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    object-fit: cover
+    object-position: center
+    opacity: 0.25
+
+    .print &
+      display: none
 
 
 </style>

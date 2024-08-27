@@ -1,18 +1,19 @@
 <template>
   <div class="abonnement">
     <BlocksAbonnementElement
-     class="abonnement__item"
-     v-for="elt in block.items"
-     :key="elt.id"
-     :cover="elt.cover"
-     :title="elt.title"
-     :texte="elt.texte"
-     :price="elt.price"
+        class="abonnement__item"
+        v-for="elt in block.items"
+        :key="elt.id"
+        :cover="elt.cover"
+        :title="elt.title"
+        :texte="elt.texte"
+        :price="elt.price"
+        :url="elt.lien_paiement?.url"
     />
   </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue'
+import {defineProps} from 'vue'
 
 const props = defineProps<{
   block: any
