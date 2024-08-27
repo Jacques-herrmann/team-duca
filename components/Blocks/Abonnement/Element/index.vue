@@ -25,7 +25,8 @@ const props = defineProps<{
   cover: any,
   title: String,
   texte: any,
-  price: String
+  price: String,
+  url: String
 }>()
 
 const root = ref<HTMLElement | null>(null)
@@ -64,7 +65,9 @@ onMounted(() => {
 })
 
 const toInstagram = () => {
-  window.open('https://www.instagram.com/science_duca/?hl=fr', '_blank')
+  // window.open('https://www.instagram.com/science_duca/?hl=fr', '_blank')
+  console.log(props.url)
+  window.open(props.url, '_blank')
 }
 
 </script>

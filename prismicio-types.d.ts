@@ -930,6 +930,16 @@ export interface AbonnementSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   texte: prismic.RichTextField;
+
+  /**
+   * lien_paiement field in *Abonnement → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: abonnement.items[].lien_paiement
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  lien_paiement: prismic.LinkField;
 }
 
 /**
@@ -1065,6 +1075,16 @@ export interface CalendarSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   content: prismic.RichTextField;
+
+  /**
+   * background field in *Calendar → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: calendar.primary.background
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  background: prismic.ImageField<never>;
 }
 
 /**
@@ -1092,24 +1112,17 @@ export interface CalendarSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   time: prismic.SelectField<
-    | "10h30"
     | "11h00"
-    | "11h30"
-    | "12h00"
     | "12h30"
-    | "13h00"
-    | "13h30"
     | "14h00"
-    | "14h30"
     | "15h00"
-    | "15h30"
     | "16h00"
-    | "16h30"
     | "17h00"
-    | "17h30"
     | "18h00"
     | "18h30"
     | "19h00"
+    | "19h30"
+    | "20h00"
   >;
 
   /**
@@ -1120,7 +1133,7 @@ export interface CalendarSliceDefaultItem {
    * - **API ID Path**: calendar.items[].duration
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  duration: prismic.SelectField<"1h00" | "1h30" | "2h00" | "2h30">;
+  duration: prismic.SelectField<"1h00" | "1h30" | "2h00" | "2h30" | "3h00">;
 
   /**
    * sport field in *Calendar → Items*
@@ -1131,13 +1144,40 @@ export interface CalendarSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   sport: prismic.SelectField<
-    | "MMA Tout public"
-    | "MMA Compétiteurs"
-    | "Grappling Tout public"
-    | "Grappling Compétiteurs"
-    | "JJB Tout public"
-    | "JJB Compétiteurs"
-    | "Kick-boxing*"
+    | "Compétiteurs"
+    | "Boxe"
+    | "Boxe - Lutte"
+    | "JJB"
+    | "Pied/Poing"
+    | "Pied/Poing - Lutte"
+    | "JJB - 7/10ans"
+    | "JJB - 10/13ans"
+    | "NOGI"
+    | "MMA"
+    | "Sol/MMA"
+    | "Libre"
+    | "Sparring"
+    | "Prépa Physique (Comp et Exclusif)"
+    | "Prépa Physique (Comp et Premium)"
+  >;
+
+  /**
+   * color field in *Calendar → Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: calendar.items[].color
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  color: prismic.SelectField<
+    | "violet"
+    | "violet clair"
+    | "orange"
+    | "rouge"
+    | "bleu"
+    | "noir"
+    | "blanc"
+    | "gris"
   >;
 }
 
