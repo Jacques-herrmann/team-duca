@@ -16,7 +16,8 @@
       </div>
     </div>
     <span class="footer__background">TEAM SCIENCE DUCA</span>
-    <a href="https://www.instagram.com/hrmn.dev/" target="_blank" class="footer__credit">Design & dévelopement - HRMN</a>
+    <a href="https://www.instagram.com/hrmt.dev/" target="_blank" class="footer__credit">Design & dévelopement -
+      HRMT</a>
   </footer>
 </template>
 <script lang="ts" setup>

@@ -142,3 +142,18 @@ const toInstagram = () => {
 
 
 </style>
+<style lang="sass">
+.abonnement-element__top__subtitle
+  strong
+    font-weight: bold
+    font-size: 1rem
+    @include lg
+      font-size: 1.2rem
+
+  a
+    color: $red
+    text-decoration: underline
+
+    &:hover
+      text-decoration: none
+</style>
