@@ -77,7 +77,7 @@ const toInstagram = () => {
   padding: 2rem 2rem 2rem 40px
   position: relative
   color: $white
-  height: 300px
+  height: 400px
   display: flex
   flex-direction: column
   justify-content: space-between
