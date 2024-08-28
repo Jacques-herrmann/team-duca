@@ -20,7 +20,7 @@ const gridRow = computed(() => {
   // calculate the start and end of the event in 15 minute
   // calendar start at 10h30 so we need to substract 10h30 in 15 minute
 
-  const offset = ((11 * 60)) / 15
+  const offset = ((10 * 60)) / 15
 
   const [starHour, starMinute] = props.eventData.time.split("h")
   const [endHour, endMinute] = props.eventData.duration.split("h")
@@ -109,6 +109,8 @@ const splitSport = computed(() => {
   &.orange
     background-color: rgba(255, 145, 2, 0.8)
   //background-color: #C9803D
+  &.orange-clair
+    background-color: rgba(255, 145, 2, 0.8)
 
   &.bleu
     background-color: rgba(61, 122, 201, 0.8)

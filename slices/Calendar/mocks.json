@@ -59,7 +59,7 @@
 						"time",
 						{
 							"__TYPE__": "FieldContent",
-							"value": "14h00",
+							"value": "18h00",
 							"type": "Select"
 						}
 					],
@@ -75,7 +75,7 @@
 						"sport",
 						{
 							"__TYPE__": "FieldContent",
-							"value": "Prépa Physique (Comp et Premium)",
+							"value": "Boxe/Lutte",
 							"type": "Select"
 						}
 					],
@@ -83,7 +83,7 @@
 						"color",
 						{
 							"__TYPE__": "FieldContent",
-							"value": "orange",
+							"value": "orange clair",
 							"type": "Select"
 						}
 					]

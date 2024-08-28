@@ -116,7 +116,7 @@ onMounted(() => {
   tl.from(root.value?.querySelectorAll('.planning__title--letter') as NodeListOf<HTMLElement>, A.title)
   tl.from(root.value?.querySelectorAll('.planning__content') as NodeListOf<HTMLElement>, A.opacity, 0.2)
   tl.fromTo(root.value?.querySelectorAll('.planning__container') as NodeListOf<HTMLElement>, {height: 0}, {
-    height: 'calc(43 * 0.9rem + 2.6vw)',
+    height: 'calc(50 * 0.9rem + 2.6vw)',
     duration: 0.6,
     ease: 'power3.out',
   }, 0.6)
@@ -229,7 +229,7 @@ onMounted(() => {
       &__events
         display: grid
         grid-template-columns: 1fr
-        $v: calc(calc(((21 * 60)) / 15) - calc(((11 * 60)) / 15))
+        $v: calc(calc(((21 * 60) + 30) / 15) - calc(((10 * 60)) / 15))
         // start at 11h // End at 21h
         grid-template-rows: repeat($v, 0.9rem)
     //@include md
