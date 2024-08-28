@@ -1112,11 +1112,12 @@ export interface CalendarSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   time: prismic.SelectField<
+    | "10h00"
     | "11h00"
-    | "12h30"
+    | "12h00"
+    | "13h00"
     | "14h00"
-    | "15h00"
-    | "16h00"
+    | "15h30"
     | "17h00"
     | "18h00"
     | "18h30"
@@ -1146,19 +1147,18 @@ export interface CalendarSliceDefaultItem {
   sport: prismic.SelectField<
     | "Compétiteurs"
     | "Boxe"
-    | "Boxe - Lutte"
     | "JJB"
     | "Pied/Poing"
-    | "Pied/Poing - Lutte"
     | "JJB - 7/10ans"
     | "JJB - 10/13ans"
     | "NOGI"
     | "MMA"
-    | "Sol/MMA"
-    | "Libre"
     | "Sparring"
-    | "Prépa Physique (Comp et Exclusif)"
-    | "Prépa Physique (Comp et Premium)"
+    | "Prépa Physique (Exclusif)"
+    | "Prépa Physique (Exclusif et Premium)"
+    | "NOGI - 7/10ans"
+    | "NOGI - 10/13ans"
+    | "Boxe/Lutte"
   >;
 
   /**
@@ -1178,6 +1178,7 @@ export interface CalendarSliceDefaultItem {
     | "noir"
     | "blanc"
     | "gris"
+    | "orange clair"
   >;
 }
 
