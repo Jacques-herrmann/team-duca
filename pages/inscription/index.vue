@@ -4,11 +4,11 @@
       <span class="inscription-page__title--letter" v-for="l in inscriptionPage?.data.titre">{{ l }}</span>
     </h1>
     <prismic-rich-text class="inscription-page__subtitle" :field="inscriptionPage?.data.texte"/>
-    <!--    <CTA-->
-    <!--        class="inscription-page__cta"-->
-    <!--        :text="inscriptionPage?.data.cta_text"-->
-    <!--        @click="onDownload(inscriptionPage?.data.cta_url.url)"-->
-    <!--    />-->
+    <CTA
+        class="inscription-page__cta"
+        :text="inscriptionPage?.data.cta_text"
+        @click="onDownload(inscriptionPage?.data.cta_url.url)"
+    />
     <blocks-list :blocks="inscriptionPage?.data.slices"></blocks-list>
   </div>
 </template>
