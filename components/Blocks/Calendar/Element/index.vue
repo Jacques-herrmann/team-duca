@@ -1,39 +1,52 @@
 <template>
-  <div class="event" :class="props.eventData.color.replace(' ', '-')">
+  <div class="event" :class="eventData.color.replace(' ', '-')">
     <p class="event__title">{{ splitSport }}</p>
     <div class="event__time">
-      <p>{{ props.eventData.time }}</p>-
+      <p>{{ eventData.time }}</p>-
       <p>{{ endTime }}</p>
     </div>
   </div>
-
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 
 const props = defineProps<{
-  eventData: Object
+  eventData: {
+    id: number;
+    sport: string;
+    time: string;
+    duration: string;
+    color: string;
+    splice?: string;
+  }
 }>()
 
 const gridRow = computed(() => {
-
-  // calculate the start and end of the event in 15 minute
-  // calendar start at 10h30 so we need to substract 10h30 in 15 minute
-
   const offset = ((10 * 60)) / 15
-
-  const [starHour, starMinute] = props.eventData.time.split("h")
+  const [startHour, startMinute] = props.eventData.time.split("h")
   const [endHour, endMinute] = props.eventData.duration.split("h")
-  const start = (((parseInt(starHour) * 60) + parseInt(starMinute)) / 15) - offset
+  const start = (((parseInt(startHour) * 60) + parseInt(startMinute)) / 15) - offset
   const end = ((parseInt(endHour) * 60) + parseInt(endMinute)) / 15
   return `${start + 1} / ${end + start + 1}`
 })
 
+const gridColumn = computed(() => {
+  console.log(props.eventData.splice)
+  if (!props.eventData.splice) {
+    return '1 / -1'
+  } else if (props.eventData.splice === '1') {
+    return '1'
+  } else {
+    return '2'
+  }
+})
+
 const endTime = computed(() => {
-  const [starHour, starMinute] = props.eventData.time.split("h")
+  const [startHour, startMinute] = props.eventData.time.split("h")
   const [dHour, dMinute] = props.eventData.duration.split("h")
 
-  const start = ((parseInt(starHour) * 60) + parseInt(starMinute))
+  const start = ((parseInt(startHour) * 60) + parseInt(startMinute))
   const duration = ((parseInt(dHour) * 60) + parseInt(dMinute))
 
   const end = duration + start
@@ -45,6 +58,7 @@ const endTime = computed(() => {
 
   return `${hours}h${minutes}`
 })
+
 const splitSport = computed(() => {
   const s = props.eventData.sport.split(' ')
   return s.shift() + '\n' + s.join(' ')
@@ -52,10 +66,13 @@ const splitSport = computed(() => {
 
 </script>
 
-
 <style scoped lang="sass">
 .event
   grid-row: v-bind(gridRow)
+  grid-column: v-bind(gridColumn)
+  //grid-column: 1
+  //grid-column: 2
+  //grid-column: 1 / -1
   display: flex
   flex-direction: column
   align-items: center
@@ -96,44 +113,34 @@ const splitSport = computed(() => {
 
   &.rouge
     background-color: rgba(201, 61, 61, 0.8)
-  //background-color: #C93D3D
 
   &.violet
     background-color: rgba(139, 61, 201, 0.8)
-  //background-color: #8B3DC9
 
   &.violet-clair
     background-color: rgba(188, 144, 224, 0.8)
-  //background-color: #BC90E0
 
   &.orange
     background-color: rgba(255, 145, 2, 0.8)
-  //background-color: #C9803D
+
   &.orange-clair
     background-color: rgba(255, 145, 2, 0.8)
 
   &.bleu
     background-color: rgba(61, 122, 201, 0.8)
-  //background-color: #3D7AC9
 
   &.noir
     background-color: rgba(30, 30, 30, 0.8)
 
   &.blanc
     background-color: rgba(255, 255, 255, 0.9)
-
     & *
       color: rgb(30, 30, 30)
 
   &.gris
     background-color: rgba(120, 120, 120, 0.8)
 
-
   &:hover
     & .event__title
       transform: scale(1.05)
-//& .event__time
-//  transform: scale(1.05)
-
-
 </style>
