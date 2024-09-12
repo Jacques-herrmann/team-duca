@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import {computed} from 'vue'
 
 const props = defineProps<{
   eventData: {
@@ -111,6 +111,9 @@ const splitSport = computed(() => {
     @include lg
       @include text(0.8rem)
 
+    .blanc &
+      display: none
+
   &.rouge
     background-color: rgba(201, 61, 61, 0.8)
 
@@ -134,6 +137,7 @@ const splitSport = computed(() => {
 
   &.blanc
     background-color: rgba(255, 255, 255, 0.9)
+
     & *
       color: rgb(30, 30, 30)
 
