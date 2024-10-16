@@ -1115,15 +1115,21 @@ export interface CalendarSliceDefaultItem {
     | "10h00"
     | "11h00"
     | "12h00"
+    | "12h15"
     | "13h00"
     | "14h00"
     | "15h30"
+    | "16h30"
     | "17h00"
+    | "17h30"
     | "18h00"
+    | "18h15"
     | "18h30"
     | "19h00"
+    | "19h15"
     | "19h30"
     | "20h00"
+    | "20h15"
   >;
 
   /**
@@ -1153,12 +1159,13 @@ export interface CalendarSliceDefaultItem {
     | "JJB - 10/13ans"
     | "NOGI"
     | "MMA"
-    | "Sparring"
+    | "Sparring / Open Mat"
     | "Prépa Physique (Exclusif)"
     | "Prépa Physique (Exclusif et Premium)"
     | "NOGI - 7/10ans"
     | "NOGI - 10/13ans"
     | "Boxe/Lutte"
+    | "MMA Féminin"
   >;
 
   /**
