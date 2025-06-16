@@ -59,7 +59,7 @@
 						"time",
 						{
 							"__TYPE__": "FieldContent",
-							"value": "12h15",
+							"value": "20h15",
 							"type": "Select"
 						}
 					],
@@ -67,7 +67,7 @@
 						"duration",
 						{
 							"__TYPE__": "FieldContent",
-							"value": "2h00",
+							"value": "1h00",
 							"type": "Select"
 						}
 					],

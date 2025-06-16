@@ -1112,12 +1112,14 @@ export interface CalendarSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   time: prismic.SelectField<
+    | "9h30"
     | "10h00"
     | "11h00"
     | "12h00"
     | "12h15"
     | "13h00"
     | "14h00"
+    | "15h00"
     | "15h30"
     | "16h30"
     | "17h00"
@@ -1140,7 +1142,9 @@ export interface CalendarSliceDefaultItem {
    * - **API ID Path**: calendar.items[].duration
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  duration: prismic.SelectField<"1h00" | "1h30" | "2h00" | "2h30" | "3h00">;
+  duration: prismic.SelectField<
+    "1h00" | "1h15" | "1h30" | "2h00" | "2h30" | "3h00"
+  >;
 
   /**
    * sport field in *Calendar → Items*
