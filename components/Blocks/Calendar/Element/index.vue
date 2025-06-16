@@ -23,7 +23,7 @@ const props = defineProps<{
 }>()
 
 const gridRow = computed(() => {
-  const offset = ((10 * 60)) / 15
+  const offset = ((9 * 60) + 30) / 15
   const [startHour, startMinute] = props.eventData.time.split("h")
   const [endHour, endMinute] = props.eventData.duration.split("h")
   const start = (((parseInt(startHour) * 60) + parseInt(startMinute)) / 15) - offset
