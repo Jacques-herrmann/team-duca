@@ -22,13 +22,13 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, onMounted } from 'vue'
+import {computed, onMounted, ref} from 'vue'
 import gsap from "gsap"
 import A from "@/assets/animations"
-import { shuffle } from "~/utils/math"
-import { jsPDF } from "jspdf"
-import { useIndexStore } from "~/stores"
-import BlocksCalendarElement from './Element/index.vue'  // Assurez-vous que le chemin est correct
+import {shuffle} from "~/utils/math"
+import {jsPDF} from "jspdf"
+import {useIndexStore} from "~/stores"
+import BlocksCalendarElement from './Element/index.vue' // Assurez-vous que le chemin est correct
 import IconDownload from '~/components/Icon/Download'
 
 const props = defineProps<{
@@ -113,10 +113,10 @@ const draw = () => {
 let tl: gsap.core.Timeline | null = null
 
 onMounted(() => {
-  tl = gsap.timeline({ paused: true })
+  tl = gsap.timeline({paused: true})
   tl.from(root.value?.querySelectorAll('.planning__title--letter') as NodeListOf<HTMLElement>, A.title)
   tl.from(root.value?.querySelectorAll('.planning__content') as NodeListOf<HTMLElement>, A.opacity, 0.2)
-  tl.fromTo(root.value?.querySelectorAll('.planning__container') as NodeListOf<HTMLElement>, { height: 0 }, {
+  tl.fromTo(root.value?.querySelectorAll('.planning__container') as NodeListOf<HTMLElement>, {height: 0}, {
     height: 'calc(50 * 0.9rem + 2.6vw)',
     duration: 0.6,
     ease: 'power3.out',
@@ -206,7 +206,7 @@ onMounted(() => {
         //grid-template-columns: 1fr
         // two columns
         grid-template-columns: repeat(2, 1fr)
-        $v: calc(calc(((21 * 60) + 30) / 15) - calc(((10 * 60)) / 15))
+        $v: calc(calc(((21 * 60) + 30) / 15) - calc(((8 * 60)) / 15))
         grid-template-rows: repeat($v, 0.9rem)
 
     & .download

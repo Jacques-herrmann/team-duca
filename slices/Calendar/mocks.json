@@ -59,7 +59,7 @@
 						"time",
 						{
 							"__TYPE__": "FieldContent",
-							"value": "20h15",
+							"value": "11h00",
 							"type": "Select"
 						}
 					],
@@ -67,7 +67,7 @@
 						"duration",
 						{
 							"__TYPE__": "FieldContent",
-							"value": "1h00",
+							"value": "2h30",
 							"type": "Select"
 						}
 					],
@@ -75,7 +75,7 @@
 						"sport",
 						{
 							"__TYPE__": "FieldContent",
-							"value": "Boxe/Lutte",
+							"value": "Compétiteurs",
 							"type": "Select"
 						}
 					],
