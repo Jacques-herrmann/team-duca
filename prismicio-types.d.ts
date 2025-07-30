@@ -1112,26 +1112,16 @@ export interface CalendarSliceDefaultItem {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   time: prismic.SelectField<
-    | "9h30"
+    | "9h00"
     | "10h00"
     | "11h00"
-    | "12h00"
-    | "12h15"
-    | "13h00"
-    | "14h00"
+    | "12h30"
     | "15h00"
-    | "15h30"
-    | "16h30"
     | "17h00"
-    | "17h30"
     | "18h00"
-    | "18h15"
     | "18h30"
     | "19h00"
-    | "19h15"
     | "19h30"
-    | "20h00"
-    | "20h15"
   >;
 
   /**
@@ -1142,9 +1132,7 @@ export interface CalendarSliceDefaultItem {
    * - **API ID Path**: calendar.items[].duration
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  duration: prismic.SelectField<
-    "1h00" | "1h15" | "1h30" | "2h00" | "2h30" | "3h00"
-  >;
+  duration: prismic.SelectField<"1h00" | "1h30" | "2h00" | "2h30" | "3h00">;
 
   /**
    * sport field in *Calendar → Items*
@@ -1156,20 +1144,15 @@ export interface CalendarSliceDefaultItem {
    */
   sport: prismic.SelectField<
     | "Compétiteurs"
-    | "Boxe"
-    | "JJB"
-    | "Pied/Poing"
-    | "JJB - 7/10ans"
-    | "JJB - 10/13ans"
-    | "NOGI"
+    | "JJB (GI)"
+    | "MMA / NOGI"
+    | "MMA (Féminine)"
     | "MMA"
+    | "Boxe / NOGI"
+    | "Boxe / Kick"
+    | "Boxe (11-16ans)"
+    | "MMA / NOGO (11-16ans)"
     | "Sparring / Open Mat"
-    | "Prépa Physique (Exclusif)"
-    | "Prépa Physique (Exclusif et Premium)"
-    | "NOGI - 7/10ans"
-    | "NOGI - 10/13ans"
-    | "Boxe/Lutte"
-    | "MMA Féminin"
   >;
 
   /**
