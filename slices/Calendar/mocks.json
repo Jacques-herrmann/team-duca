@@ -59,7 +59,7 @@
 						"time",
 						{
 							"__TYPE__": "FieldContent",
-							"value": "11h00",
+							"value": "18h30",
 							"type": "Select"
 						}
 					],
@@ -75,7 +75,7 @@
 						"sport",
 						{
 							"__TYPE__": "FieldContent",
-							"value": "Compétiteurs",
+							"value": "Boxe / NOGI",
 							"type": "Select"
 						}
 					],

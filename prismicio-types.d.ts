@@ -1116,6 +1116,7 @@ export interface CalendarSliceDefaultItem {
     | "10h00"
     | "11h00"
     | "12h30"
+    | "14h00"
     | "15h00"
     | "17h00"
     | "18h00"
@@ -1150,9 +1151,10 @@ export interface CalendarSliceDefaultItem {
     | "MMA"
     | "Boxe / NOGI"
     | "Boxe / Kick"
-    | "Boxe (11-16ans)"
-    | "MMA / NOGO (11-16ans)"
+    | "Boxe (11-15ans)"
+    | "MMA / NOGI (11-15ans)"
     | "Sparring / Open Mat"
+    | "MMA  (7-10ans)"
   >;
 
   /**
