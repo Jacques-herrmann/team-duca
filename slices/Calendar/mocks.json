@@ -59,7 +59,7 @@
 						"time",
 						{
 							"__TYPE__": "FieldContent",
-							"value": "11h00",
+							"value": "12h30",
 							"type": "Select"
 						}
 					],
@@ -75,7 +75,7 @@
 						"sport",
 						{
 							"__TYPE__": "FieldContent",
-							"value": "Compétiteurs",
+							"value": "MMA / NOGI",
 							"type": "Select"
 						}
 					],
@@ -83,7 +83,7 @@
 						"color",
 						{
 							"__TYPE__": "FieldContent",
-							"value": "orange clair",
+							"value": "violet clair",
 							"type": "Select"
 						}
 					]
