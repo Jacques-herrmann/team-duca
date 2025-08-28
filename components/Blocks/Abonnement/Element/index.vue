@@ -117,7 +117,7 @@ const toInstagram = () => {
     &__subtitle
       @include text()
       font-style: italic
-      max-width: 600px
+      max-width: 700px
       margin-top: .7rem
       position: relative
       z-index: 1
