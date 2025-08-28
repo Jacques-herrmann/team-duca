@@ -65,6 +65,7 @@
               "12h30",
               "14h00",
               "15h00",
+              "16h00",
               "17h00",
               "18h00",
               "18h30",
@@ -103,7 +104,8 @@
               "Boxe (11-15ans)",
               "MMA / NOGI (11-15ans)",
               "Sparring / Open Mat",
-              "MMA  (7-10ans)"
+              "MMA  (7-10ans)",
+              "NOGI"
             ]
           }
         },
@@ -121,6 +123,8 @@
               "noir",
               "blanc",
               "gris",
+              "vert",
+              "jaune",
               "orange clair"
             ]
           }

@@ -142,6 +142,15 @@ const splitSport = computed(() => {
   &.gris
     background-color: rgba(120, 120, 120, 0.8)
 
+  &.vert
+    background-color: rgba(61, 201, 104, 0.8)
+
+  &.vert-clair;
+    background-color: rgba(144, 224, 188, 0.8)
+
+  &.jaune
+    background-color: rgba(255, 223, 61, 0.8)
+
   &:hover
     & .event__title
       transform: scale(1.05)

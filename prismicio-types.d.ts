@@ -1118,6 +1118,7 @@ export interface CalendarSliceDefaultItem {
     | "12h30"
     | "14h00"
     | "15h00"
+    | "16h00"
     | "17h00"
     | "18h00"
     | "18h30"
@@ -1155,6 +1156,7 @@ export interface CalendarSliceDefaultItem {
     | "MMA / NOGI (11-15ans)"
     | "Sparring / Open Mat"
     | "MMA  (7-10ans)"
+    | "NOGI"
   >;
 
   /**
@@ -1174,6 +1176,8 @@ export interface CalendarSliceDefaultItem {
     | "noir"
     | "blanc"
     | "gris"
+    | "vert"
+    | "jaune"
     | "orange clair"
   >;
 }
