@@ -145,7 +145,7 @@ const splitSport = computed(() => {
   &.vert
     background-color: rgba(61, 201, 104, 0.8)
 
-  &.vert-clair;
+  &.vert-clair
     background-color: rgba(144, 224, 188, 0.8)
 
   &.jaune
