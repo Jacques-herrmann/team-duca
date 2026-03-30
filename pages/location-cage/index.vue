@@ -1,204 +1,84 @@
 <template>
-  <div class="service-page" ref="root">
-    <div class="service-page__cover" @click="onVideoClick">
-      <figure-element class="service-page__img" :image="servicePage?.data.cover"/>
-      <IconPlay class="service-page__icon"/>
+  <main class="cage-page">
+    <div class="cage-page__hero">
+      <span class="section__label">{{ $t('locationCage.label') }}</span>
+      <h1 class="cage-page__title">Location<br><span class="cage-page__title-outline">Cage</span></h1>
     </div>
-    <video-fullscreen v-if="visible" :video="servicePage?.data.video"/>
-    <h1 class="service-page__title">
-      <div v-for="t in title"><span>{{ t }}</span></div>
-    </h1>
-    <div class="service-page__right">
-      <prismic-rich-text class="service-page__content" :field="servicePage?.data.content"></prismic-rich-text>
-      <CTA class="service-page__right__cta" :text="servicePage?.data.cta_text" :url="servicePage?.data.cta_link"
-           :is-nuxt-link="true"/>
+
+    <div class="cage-page__body">
+      <div class="cage-page__left">
+        <p class="cage-page__desc">{{ $t('locationCage.description') }}</p>
+        <AppFeatureList :features="features" class="cage-page__features" />
+        <AppButton :to="localePath('/inscription?service=cage')" variant="primary">
+          {{ $t('locationCage.cta') }}
+        </AppButton>
+      </div>
+
+      <div class="cage-page__image">
+        <AppImage
+          src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=700&h=500&fit=crop&q=80"
+          alt="Cage MMA homologuée compétition — Science DUCA Marseille, éclairage de salle professionnelle, vue d'ensemble depuis l'extérieur de la cage"
+        />
+      </div>
     </div>
-  </div>
+  </main>
 </template>
-<script lang="ts" setup>
-import A from '@/assets/animations'
-import gsap from 'gsap'
-import Timeline = gsap.core.Timeline;
 
-const prismic = usePrismic();
-const route = useRoute();
-const page = usePage();
-const store = useIndexStore()
-const isMobile = computed(() => store.isMobile)
+<script setup lang="ts">
+const localePath = useLocalePath()
+const { tm } = useI18n()
 
-const {data: servicePage} = await useAsyncData("services", () => prismic.client.getSingle('services'))
+const features = computed(() => tm('locationCage.features') as string[])
 
-useSeoMeta({
-  title: 'LOCATION CAGE MMA MARSEILLE, FRANCE - SCIENCE DUCA',
-  ogTitle: 'LOCATION CAGE MMA MARSEILLE, FRANCE - SCIENCE DUCA',
-  twitterTitle: 'LOCATION CAGE MMA MARSEILLE, FRANCE - SCIENCE DUCA',
-  description: 'Louez une cage MMA à Marseille et dans toute la France pour vos événements sportifs ou vos séances d\'entraînement.\nDécouvrez notre cage professionnelle de haute qualité adaptée à tous les niveaux de pratique.',
-  ogDescription: 'Louez une cage MMA à Marseille et dans toute la France pour vos événements sportifs ou vos séances d\'entraînement.\nDécouvrez notre cage professionnelle de haute qualité adaptée à tous les niveaux de pratique.',
-  twitterDescription: 'Louez une cage MMA à Marseille et dans toute la France pour vos événements sportifs ou vos séances d\'entraînement.\nDécouvrez notre cage professionnelle de haute qualité adaptée à tous les niveaux de pratique.',
-  ogImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
-  twitterImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
-  twitterCard: 'summary_large_image',
-})
-
-// console.log(servicePage)
-
-// useHead({
-//   title: servicePage.value?.data.meta_title,
-//   meta: [
-//     {
-//       name: "description",
-//       content: servicePage.value?.data.meta_description,
-//     },
-//   ],
-// });
-const root = ref<HTMLElement | null>(null)
-const visible = computed(() => store.isFullscreenVisible)
-const title = computed(() => servicePage.value?.data.title.split('\n'))
-let tl = <Timeline | null>null
-
-
-const onVideoClick = () => {
-  store.isFullscreenVisible = true
-}
-
-watch(() => store.isTransitionVisible, (value) => {
-  if (!value) {
-    setTimeout(() => {
-      tl?.play()
-    }, 280)
-  }
-})
-
-
-onMounted(() => {
-  tl = gsap.timeline({paused: true})
-  tl.from(root.value?.querySelectorAll(".service-page__cover") as NodeList, isMobile.value ? A.imageHeight : A.imageWidth, 0.1)
-  tl.from(root.value?.querySelectorAll(".service-page__title span") as NodeList, A.h2, 0.4)
-  tl.from(root.value?.querySelectorAll(".service-page__content") as NodeList, A.opacity, 0.6)
-  tl.from(root.value?.querySelectorAll(".service-page__cta") as NodeList, A.opacity, 0.8)
-
-})
+useHead({ title: 'Location Cage MMA Marseille — Science DUCA' })
 </script>
 
 <style scoped lang="sass">
-.service-page
-  position: relative
+.cage-page
   min-height: 100vh
-  width: 100%
-  display: flex
-  align-items: center
-  justify-content: center
-  flex-direction: column
+  padding: $spacing-xl $spacing-md
+
   @include lg
-    flex-direction: row
+    padding: $spacing-xxl 90px
 
-  &__title
-    @include h1(16vw)
-    height: 6.1rem
-    position: absolute
-    top: 60px
-    left: 45px
-    font-weight: 800
-    color: $white
-    pointer-events: none
+// ─── Hero ────────────────────────────────────────────────────
+.cage-page__hero
+  margin-bottom: $spacing-xl
 
-    & > div
-      overflow: hidden
+.cage-page__title
+  @include title(clamp(4rem, 10vw, 10rem))
+  color: $white
+  margin-top: $spacing-sm
+  line-height: 0.88
 
-    & span
-      display: inline-block
+.cage-page__title-outline
+  -webkit-text-stroke: 1px $white
+  color: transparent
 
-    @include md
-      top: 80px
-      left: 65px
-      height: 4.1rem
+// ─── Body ────────────────────────────────────────────────────
+.cage-page__body
+  display: grid
+  grid-template-columns: 1fr
+  gap: $spacing-xl
 
-    @include lg
-      top: 140px
-      left: 45%
-      @include h1(7.5rem)
+  @include lg
+    grid-template-columns: 1fr 1fr
+    gap: $spacing-xxl
+    align-items: start
 
+// ─── Left ────────────────────────────────────────────────────
+.cage-page__desc
+  @include text(1rem)
+  color: rgba($white, 0.75)
+  line-height: 1.8
+  margin: 0 0 $spacing-lg
 
-  &__right
-    @include text()
-    width: 100%
-    padding: 35px
-    display: flex
-    flex-direction: column
+.cage-page__features
+  margin-bottom: $spacing-lg
 
-    @include md
-      @include text(1.2rem)
-      padding: 45px
-      width: 100%
-
-    @include lg
-      padding: 45px
-      width: 45%
-      height: 100vh
-      justify-content: flex-end
-
-    &__cta
-      margin-top: 30px
-      align-self: center
-      @include lg
-        align-self: end
-        margin-top: 60px
-
-  &__cover
-    position: relative
-    width: 100%
-    height: 50vh
-    cursor: pointer
-    overflow: hidden
-    @include md
-      height: 60vh
-    @include lg
-      width: 55%
-      height: 100vh
-      height: calc(var(--vh, 1vh) * 100)
-      margin-bottom: 2rem
-
-    &:hover
-      & .service-page__icon
-        opacity: 1
-
-      & .service-page__img
-        transform: scale(1.02)
-
-  &__img
-    width: 100%
-    height: 100%
-    opacity: 0.4
-    object-fit: cover
-    object-position: center
-    transition: transform 0.6s ease-out
-
-  &__icon
-    position: absolute
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
-    height: 70px
-    width: 70px
-    opacity: 0.8
-    transition: opacity 0.6s ease-out
-
-  &__content
-    color: $white
-
-    ::v-deep(p)
-      margin: 10px 0
-
-    ::v-deep(ul)
-      list-style: disc
-      margin-top: 20px
-
-      li
-        margin-left: 1rem
-
-    ::v-deep(h6)
-      margin-top: 20px
-      font-weight: bold
-
-
+// ─── Image ───────────────────────────────────────────────────
+.cage-page__image
+  aspect-ratio: 7 / 5
+  overflow: hidden
+  border: 1px solid rgba($white, 0.06)
 </style>

@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Science DUCA — Direction Artistique 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ─── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ─── Tokens ────────────────────────────────────────────── */
+    :root {
+      --black:       #171717;
+      --black-mid:   #242424;
+      --black-light: #2e2e2e;
+      --white:       #f9f9f9;
+      --red:         #E72640;
+      --gold:        #C9A84C;
+    }
+
+    /* ─── Base ──────────────────────────────────────────────── */
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Grain global */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* ─── Typo display (Dharma Gothic E → Bebas Neue) ───────── */
+    .font-display {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+
+    .font-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .font-body {
+      font-family: 'Barlow', sans-serif;
+    }
+
+    /* ─── Layout utilitaires ─────────────────────────────────── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    .section {
+      padding: 8rem 0;
+      position: relative;
+    }
+
+    .section--dark   { background: var(--black); }
+    .section--mid    { background: var(--black-mid); }
+    .section--light  { background: var(--black-light); }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+
+    /* ─── Composants ─────────────────────────────────────────── */
+
+    /* Label section */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      color: rgba(249,249,249,0.4);
+      margin-bottom: 2rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    /* Divider graphique */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+    .divider__line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(249,249,249,0.2), transparent);
+    }
+    .divider__ornament {
+      color: var(--red);
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+
+    /* Badge tampon */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid currentColor;
+      padding: 0.4rem 1rem;
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      opacity: 0.9;
+    }
+    .badge--red    { color: var(--red);  border-color: var(--red); }
+    .badge--gold   { color: var(--gold); border-color: var(--gold); }
+    .badge--white  { color: var(--white); border-color: rgba(249,249,249,0.4); }
+    .badge--round  { border-radius: 999px; padding: 0.5rem 1.4rem; }
+    .badge--circle {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      padding: 0;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-align: center;
+      line-height: 1.3;
+      flex-direction: column;
+    }
+
+    /* ─── HERO COVER ─────────────────────────────────────────── */
+    .cover {
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 4rem 3rem;
+      position: relative;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    .cover__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(23,23,23,0.3) 0%, rgba(23,23,23,0.95) 80%),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 2px,
+          rgba(255,255,255,0.015) 2px,
+          rgba(255,255,255,0.015) 4px
+        );
+    }
+
+    .cover__label {
+      position: absolute;
+      top: 3rem;
+      right: 3rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      color: rgba(249,249,249,0.3);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .cover__eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--red);
+      margin-bottom: 1rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover__title {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: clamp(5rem, 20vw, 20rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 0.88;
+      letter-spacing: 0.02em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover__title span {
+      display: block;
+    }
+
+    .cover__title .outline {
+      -webkit-text-stroke: 1px var(--white);
+      color: transparent;
+    }
+
+    .cover__title .red {
+      color: var(--red);
+    }
+
+    .cover__subtitle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: rgba(249,249,249,0.45);
+      margin-top: 1.5rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+      max-width: 500px;
+    }
+
+    .cover__meta {
+      position: absolute;
+      bottom: 3rem;
+      right: 3rem;
+      text-align: right;
+      z-index: 1;
+    }
+
+    .cover__meta p {
+      font-size: 0.75rem;
+      color: rgba(249,249,249,0.35);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ─── Intro DA ───────────────────────────────────────────── */
+    .intro-da {
+      max-width: 760px;
+    }
+
+    .intro-da__title {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 2.5rem;
+    }
+
+    .intro-da__text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(249,249,249,0.6);
+      font-weight: 400;
+    }
+
+    .intro-da__text strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    .intro-da__quote {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-style: normal;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+      line-height: 1.3;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--white);
+      border-left: 4px solid var(--red);
+      padding-left: 2rem;
+      margin: 3rem 0;
+    }
+
+    /* ─── Palette ────────────────────────────────────────────── */
+    .palette-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .swatch {
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .swatch__color {
+      height: 120px;
+      position: relative;
+    }
+
+    .swatch__color--has-border {
+      border: 1px solid rgba(249,249,249,0.1);
+    }
+
+    .swatch__role {
+      position: absolute;
+      bottom: 0.75rem;
+      left: 0.75rem;
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    .swatch__info {
+      padding: 0.75rem 0;
+    }
+
+    .swatch__name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .swatch__hex {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: rgba(249,249,249,0.35);
+    }
+
+    .swatch__usage {
+      font-size: 0.7rem;
+      color: rgba(249,249,249,0.4);
+      margin-top: 0.3rem;
+      line-height: 1.4;
+    }
+
+    /* ─── Typo showcase ──────────────────────────────────────── */
+    .typo-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .typo-row {
+      display: flex;
+      align-items: baseline;
+      gap: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(249,249,249,0.06);
+    }
+
+    .typo-row__meta {
+      width: 180px;
+      flex-shrink: 0;
+    }
+
+    .typo-row__label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.4rem;
+    }
+
+    .typo-row__spec {
+      font-size: 0.75rem;
+      color: rgba(249,249,249,0.35);
+      line-height: 1.6;
+    }
+
+    .typo-row__sample {
+      flex: 1;
+    }
+
+    .typo-hero    { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(4rem, 14vw, 13rem); text-transform: uppercase; line-height: 0.88; letter-spacing: 0.02em; }
+    .typo-h1      { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(2.5rem, 7vw, 7rem); text-transform: uppercase; line-height: 0.92; letter-spacing: 0.03em; }
+    .typo-h2      { font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(2rem, 4vw, 4.5rem); text-transform: uppercase; line-height: 0.95; letter-spacing: 0.04em; }
+    .typo-caption { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(1rem, 1.8vw, 1.4rem); line-height: 1.3; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(249,249,249,0.6); }
+    .typo-stamp   { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 0.85rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--red); }
+    .typo-body    { font-family: 'Barlow', sans-serif; font-size: 1rem; line-height: 1.75; color: rgba(249,249,249,0.6); font-weight: 400; max-width: 520px; }
+
+    /* ─── Moodboard ──────────────────────────────────────────── */
+    .moodboard {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+
+    .mood-card {
+      background: var(--black-mid);
+      border-radius: 4px;
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .mood-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+
+    .mood-card--span-col { grid-column: span 1; }
+    .mood-card--large   { grid-row: span 2; min-height: 420px; }
+
+    .mood-card--boxing {
+      background:
+        linear-gradient(160deg, #1a1a1a 0%, #0d0d0d 100%);
+      border: 1px solid rgba(231,38,64,0.2);
+    }
+
+    .mood-card--vintage {
+      background: linear-gradient(135deg, #1e1a14 0%, #17120c 100%);
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .mood-card--modern {
+      background: var(--black-light);
+    }
+
+    .mood-card__big-text {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: clamp(4rem, 12vw, 11rem);
+      text-transform: uppercase;
+      line-height: 0.85;
+      letter-spacing: -0.02em;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      opacity: 0.06;
+      pointer-events: none;
+    }
+
+    .mood-card__content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .mood-card__title {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: clamp(1.8rem, 4vw, 3.5rem);
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .mood-card__desc {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.9rem;
+      color: rgba(249,249,249,0.5);
+      line-height: 1.5;
+    }
+
+    .mood-card__accent { color: var(--red); }
+    .mood-card__accent--gold { color: var(--gold); }
+
+    /* ─── Éléments graphiques ────────────────────────────────── */
+    .elements-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+
+    .element-demo {
+      background: var(--black-mid);
+      border-radius: 4px;
+      padding: 3rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .element-demo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+
+    .element-demo__label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(249,249,249,0.35);
+    }
+
+    /* Divider SVG */
+    .graphic-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+    }
+    .graphic-divider__line {
+      flex: 1;
+      height: 1px;
+      background: rgba(249,249,249,0.2);
+    }
+    .graphic-divider__center {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--red);
+    }
+    .graphic-divider__diamond {
+      width: 8px;
+      height: 8px;
+      background: var(--red);
+      transform: rotate(45deg);
+    }
+    .graphic-divider__line-center {
+      width: 20px;
+      height: 1px;
+      background: var(--red);
+    }
+
+    /* Coin décoratif */
+    .corner-decor-demo {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      border: 1px solid rgba(249,249,249,0.1);
+    }
+    .corner-decor-demo::before,
+    .corner-decor-demo::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-color: var(--gold);
+      border-style: solid;
+    }
+    .corner-decor-demo::before {
+      top: -2px; left: -2px;
+      border-width: 2px 0 0 2px;
+    }
+    .corner-decor-demo::after {
+      bottom: -2px; right: -2px;
+      border-width: 0 2px 2px 0;
+    }
+    .corner-decor-demo span {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(249,249,249,0.3);
+    }
+
+    /* ─── Hero preview ───────────────────────────────────────── */
+    .hero-preview {
+      background: var(--black);
+      border: 1px solid rgba(249,249,249,0.06);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-preview__inner {
+      height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 3rem;
+      position: relative;
+      background:
+        linear-gradient(160deg, rgba(23,23,23,0.1) 0%, rgba(23,23,23,0.9) 50%, rgba(23,23,23,1) 100%),
+        linear-gradient(135deg, #1a0f0f 0%, #0d0d0d 50%, #111820 100%);
+    }
+
+    .hero-preview__badge {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+    }
+
+    .hero-preview__eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      color: var(--red);
+      margin-bottom: 1rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+
+    .hero-preview__title {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: clamp(3rem, 8vw, 8rem);
+      text-transform: uppercase;
+      line-height: 0.9;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-preview__title .line-1 { display: block; }
+    .hero-preview__title .line-2 { display: block; -webkit-text-stroke: 1px var(--white); color: transparent; }
+    .hero-preview__title .line-3 { display: block; color: var(--red); }
+
+    .hero-preview__sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(249,249,249,0.4);
+    }
+
+    .hero-preview__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(249,249,249,0.08);
+    }
+
+    .hero-preview__location {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(249,249,249,0.3);
+    }
+
+    .hero-preview__cta {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      border-bottom: 1px solid var(--red);
+      padding-bottom: 2px;
+    }
+
+    /* ─── Schedule preview ───────────────────────────────────── */
+    .schedule-preview {
+      background: var(--black-mid);
+      border: 1px solid rgba(249,249,249,0.06);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .schedule-header {
+      display: grid;
+      grid-template-columns: 100px repeat(5, 1fr);
+      background: var(--black);
+      border-bottom: 1px solid rgba(249,249,249,0.06);
+    }
+
+    .schedule-header__cell {
+      padding: 1rem;
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-align: center;
+      color: rgba(249,249,249,0.4);
+    }
+
+    .schedule-header__cell--today {
+      color: var(--red);
+      position: relative;
+    }
+    .schedule-header__cell--today::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+
+    .schedule-row {
+      display: grid;
+      grid-template-columns: 100px repeat(5, 1fr);
+      border-bottom: 1px solid rgba(249,249,249,0.04);
+    }
+
+    .schedule-cell {
+      padding: 0.75rem 1rem;
+      border-right: 1px solid rgba(249,249,249,0.04);
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .schedule-cell--time {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: rgba(249,249,249,0.3);
+      justify-content: flex-end;
+      padding-right: 1.5rem;
+    }
+
+    .schedule-class {
+      background: rgba(231,38,64,0.1);
+      border-left: 2px solid var(--red);
+      border-radius: 2px;
+      padding: 0.4rem 0.6rem;
+      width: 100%;
+    }
+
+    .schedule-class--gold {
+      background: rgba(201,168,76,0.08);
+      border-left-color: var(--gold);
+    }
+
+    .schedule-class__name {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .schedule-class__coach {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.6rem;
+      color: rgba(249,249,249,0.35);
+      margin-top: 0.1rem;
+    }
+
+    /* ─── Coach card preview ─────────────────────────────────── */
+    .coaches-preview {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .coach-card {
+      background: var(--black-mid);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .coach-card__image {
+      height: 220px;
+      background: var(--black-light);
+      position: relative;
+      overflow: hidden;
+      filter: grayscale(100%);
+      transition: filter 0.5s ease;
+    }
+
+    .coach-card:hover .coach-card__image {
+      filter: grayscale(0%);
+    }
+
+    .coach-card__image-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .coach-card__silhouette {
+      width: 80px;
+      height: 80px;
+      background: rgba(249,249,249,0.06);
+      border-radius: 50%;
+    }
+
+    .coach-card__silhouette-body {
+      width: 100px;
+      height: 60px;
+      background: rgba(249,249,249,0.04);
+      border-radius: 50px 50px 0 0;
+    }
+
+    .coach-card__overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60%;
+      background: linear-gradient(to top, var(--black-mid) 0%, transparent 100%);
+    }
+
+    .coach-card__info {
+      padding: 1.25rem;
+    }
+
+    .coach-card__name {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .coach-card__role {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(249,249,249,0.4);
+    }
+
+    .coach-card__badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    /* ─── Résumé / Signature ─────────────────────────────────── */
+    .signature-section {
+      text-align: center;
+      padding: 6rem 3rem;
+      position: relative;
+    }
+
+    .signature__big {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: clamp(5rem, 18vw, 18rem);
+      text-transform: uppercase;
+      line-height: 0.85;
+      -webkit-text-stroke: 1px rgba(249,249,249,0.08);
+      color: transparent;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .signature__content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .signature__title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(249,249,249,0.35);
+      margin-bottom: 1rem;
+    }
+
+    .signature__name {
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--white);
+    }
+
+    .signature__role {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-top: 0.5rem;
+    }
+
+    .signature__date {
+      margin-top: 2rem;
+      font-family: 'Bebas Neue', Impact, sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(249,249,249,0.2);
+    }
+
+    /* ─── Page nav ───────────────────────────────────────────── */
+    .page-nav {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      z-index: 100;
+    }
+
+    .page-nav__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(249,249,249,0.2);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: block;
+    }
+
+    .page-nav__dot:hover { background: var(--red); transform: scale(1.5); }
+
+    /* ─── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .moodboard { grid-template-columns: 1fr 1fr; }
+      .mood-card--large { grid-row: span 1; min-height: 200px; }
+      .elements-grid { grid-template-columns: 1fr; }
+      .coaches-preview { grid-template-columns: 1fr 1fr; }
+      .schedule-header, .schedule-row { grid-template-columns: 80px repeat(3, 1fr); }
+      .schedule-cell:nth-child(n+5), .schedule-header__cell:nth-child(n+5) { display: none; }
+      .page-nav { display: none; }
+      .container { padding: 0 1.5rem; }
+      .signature__big { font-size: 4rem; }
+    }
+
+    @media (max-width: 600px) {
+      .coaches-preview { grid-template-columns: 1fr; }
+      .moodboard { grid-template-columns: 1fr; }
+      .palette-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ─── Scrollbar ──────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 2px; }
+
+  </style>
+</head>
+<body>
+
+<!-- Navigation latérale -->
+<nav class="page-nav">
+  <a class="page-nav__dot" href="#concept" title="Concept"></a>
+  <a class="page-nav__dot" href="#palette" title="Palette"></a>
+  <a class="page-nav__dot" href="#typographie" title="Typographie"></a>
+  <a class="page-nav__dot" href="#moodboard" title="Moodboard"></a>
+  <a class="page-nav__dot" href="#elements" title="Éléments"></a>
+  <a class="page-nav__dot" href="#composants" title="Composants"></a>
+  <a class="page-nav__dot" href="#animations" title="Animations"></a>
+  <a class="page-nav__dot" href="#roadmap" title="Feuille de route"></a>
+  <a class="page-nav__dot" href="#signature" title="Signature"></a>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- COVER -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="cover">
+  <div class="cover__bg"></div>
+  <p class="cover__label">Document confidentiel — Présentation client</p>
+
+  <p class="cover__eyebrow">Direction Artistique — Refonte 2026</p>
+
+  <h1 class="cover__title font-display">
+    <span>Science</span>
+    <span class="outline">Duca</span>
+    <span class="red">MMA</span>
+  </h1>
+
+  <p class="cover__subtitle font-serif">
+    Un club de combat qui mérite une identité à la hauteur de ses athlètes.
+  </p>
+
+  <div class="cover__meta">
+    <p>Marseille — France</p>
+    <p>2026</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CONCEPT -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="section section--dark" id="concept">
+  <div class="container">
+    <div class="grid-2">
+
+      <div class="intro-da">
+        <p class="section-label">01 — Le concept</p>
+        <h2 class="intro-da__title">
+          Dur.<br>
+          <span style="color: var(--red);">Accessible.</span><br>
+          Moderne.
+        </h2>
+
+        <blockquote class="intro-da__quote">
+          « Une affiche de combat de 1950, imprimée sur du papier usé, accrochée dans une salle de boxe de Marseille. Mais en 2026. »
+        </blockquote>
+
+        <p class="intro-da__text">
+          Science DUCA n'est pas un club de fitness. C'est un endroit où l'on apprend à <strong>se battre pour de vrai</strong>, où l'effort laisse des traces. Le site doit transmettre cette réalité sans être intimidant pour quelqu'un qui voudrait franchir la porte pour la première fois.
+        </p>
+
+        <br>
+
+        <p class="intro-da__text">
+          Le parti pris : puiser dans l'<strong>esthétique des affiches de combat vintage</strong> — massive, imprimée, graphique — et l'exécuter avec la précision du web moderne. Pas de nostalgie kitch. Une référence assumée, sublimée.
+        </p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 2rem; padding-left: 2rem;">
+
+        <div style="background: var(--black-mid); padding: 2.5rem; border-left: 3px solid var(--red); position: relative; overflow: hidden;">
+          <div style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: 8rem; text-transform: uppercase; line-height: 0.8; opacity: 0.05; position: absolute; bottom: -1rem; right: -1rem; pointer-events: none;">MMA</div>
+          <p class="section-label" style="margin-bottom: 1rem;">Ce qu'on garde</p>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem;">
+            <li style="font-size: 0.9rem; color: rgba(249,249,249,0.7); display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span style="color: var(--red); margin-top: 0.1em;">✦</span>
+              La palette noir / blanc / rouge — identité forte
+            </li>
+            <li style="font-size: 0.9rem; color: rgba(249,249,249,0.7); display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span style="color: var(--red); margin-top: 0.1em;">✦</span>
+              Dharma Gothic pour les titres — impact immédiat
+            </li>
+            <li style="font-size: 0.9rem; color: rgba(249,249,249,0.7); display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span style="color: var(--red); margin-top: 0.1em;">✦</span>
+              Les animations GSAP — mouvement signature
+            </li>
+            <li style="font-size: 0.9rem; color: rgba(249,249,249,0.7); display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span style="color: var(--red); margin-top: 0.1em;">✦</span>
+              L'énergie brute du MMA
+            </li>
+          </ul>
+        </div>
+
+        <div style="background: var(--black-mid); padding: 2.5rem; border-left: 3px solid var(--gold); position: relative; overflow: hidden;">
+          <div style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: 8rem; text-transform: uppercase; line-height: 0.8; opacity: 0.05; position: absolute; bottom: -1rem; right: -1rem; pointer-events: none; color: var(--gold);">NEW</div>
+          <p class="section-label" style="margin-bottom: 1rem; color: var(--gold);">Ce qu'on apporte</p>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem;">
+            <li style="font-size: 0.9rem; color: rgba(249,249,249,0.7); display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span style="color: var(--gold); margin-top: 0.1em;">✦</span>
+              Texture grain — chaleur et matière
+            </li>
+            <li style="font-size: 0.9rem; color: rgba(249,249,249,0.7); display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span style="color: var(--gold); margin-top: 0.1em;">✦</span>
+              Barlow Condensed uppercase — rigueur éditoriale
+            </li>
+            <li style="font-size: 0.9rem; color: rgba(249,249,249,0.7); display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span style="color: var(--gold); margin-top: 0.1em;">✦</span>
+              Éléments graphiques — tampons, badges, ornements
+            </li>
+            <li style="font-size: 0.9rem; color: rgba(249,249,249,0.7); display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span style="color: var(--gold); margin-top: 0.1em;">✦</span>
+              Photos B&W — esthétique documentaire
+            </li>
+            <li style="font-size: 0.9rem; color: rgba(249,249,249,0.7); display: flex; gap: 0.75rem; align-items: flex-start;">
+              <span style="color: var(--gold); margin-top: 0.1em;">✦</span>
+              Accessibilité et lisibilité renforcées
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PALETTE -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="section section--mid" id="palette">
+  <div class="container">
+    <p class="section-label">02 — Palette de couleurs</p>
+
+    <div class="grid-2" style="margin-bottom: 4rem; align-items: start;">
+      <div>
+        <h2 style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(2rem, 5vw, 4rem); text-transform: uppercase; line-height: 1; margin-bottom: 1.5rem;">
+          Trois couleurs.<br>
+          <span style="color: var(--red);">Aucun compromis.</span>
+        </h2>
+      </div>
+      <div>
+        <p style="font-size: 1rem; line-height: 1.8; color: rgba(249,249,249,0.65); font-weight: 300;">
+          La palette existante est juste — on la garde intégralement.
+          Le noir profond evoque la salle, l'ombre des rings. Le rouge
+          est la blessure, l'adrénaline, l'action. Le blanc est le
+          silence entre deux coups. On ajoute le <strong style="color: var(--gold);">or</strong> comme
+          accent vintage, réservé aux badges et tampons décoratifs.
+        </p>
+      </div>
+    </div>
+
+    <div class="palette-grid">
+
+      <div class="swatch">
+        <div class="swatch__color" style="background: #171717;">
+          <span class="swatch__role" style="color: rgba(249,249,249,0.4);">FOND PRINCIPAL</span>
+        </div>
+        <div class="swatch__info">
+          <p class="swatch__name">Noir</p>
+          <p class="swatch__hex">#171717</p>
+          <p class="swatch__usage">Fond principal, backgrounds de sections</p>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch__color" style="background: #242424;">
+          <span class="swatch__role" style="color: rgba(249,249,249,0.4);">FOND SECONDAIRE</span>
+        </div>
+        <div class="swatch__info">
+          <p class="swatch__name">Noir moyen</p>
+          <p class="swatch__hex">#242424</p>
+          <p class="swatch__usage">Sections alternées, cards, overlays</p>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch__color" style="background: #2e2e2e;">
+          <span class="swatch__role" style="color: rgba(249,249,249,0.4);">SURFACE</span>
+        </div>
+        <div class="swatch__info">
+          <p class="swatch__name">Noir clair</p>
+          <p class="swatch__hex">#2e2e2e</p>
+          <p class="swatch__usage">Hover states, éléments élevés</p>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch__color swatch__color--has-border" style="background: #f9f9f9;">
+          <span class="swatch__role" style="color: rgba(23,23,23,0.5);">TEXTE PRINCIPAL</span>
+        </div>
+        <div class="swatch__info">
+          <p class="swatch__name">Blanc</p>
+          <p class="swatch__hex">#f9f9f9</p>
+          <p class="swatch__usage">Texte, titres sur fond sombre</p>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch__color" style="background: #E72640;">
+          <span class="swatch__role" style="color: rgba(249,249,249,0.7);">ACCENT PRINCIPAL</span>
+        </div>
+        <div class="swatch__info">
+          <p class="swatch__name">Rouge</p>
+          <p class="swatch__hex">#E72640</p>
+          <p class="swatch__usage">CTA, hover, accents, liens actifs</p>
+        </div>
+      </div>
+
+      <div class="swatch">
+        <div class="swatch__color" style="background: #C9A84C;">
+          <span class="swatch__role" style="color: rgba(249,249,249,0.6);">ACCENT VINTAGE</span>
+        </div>
+        <div class="swatch__info">
+          <p class="swatch__name">Or</p>
+          <p class="swatch__hex">#C9A84C</p>
+          <p class="swatch__usage">Badges, tampons, labels décoratifs</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="divider">
+      <div class="divider__line"></div>
+      <div class="divider__ornament">✦</div>
+      <div class="divider__line"></div>
+    </div>
+
+    <!-- Démo grain -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+      <div style="background: #171717; height: 100px; border-radius: 4px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+        <div style="position: absolute; inset: 0; background-image: url(\"data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\"); background-size: 200px 200px; opacity: 0.07;"></div>
+        <span style="position: relative; z-index: 1; font-family: 'Barlow', sans-serif; font-size: 0.8rem; color: rgba(249,249,249,0.45);">Avec grain — chaleur, matière</span>
+      </div>
+      <div style="background: #171717; height: 100px; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+        <span style="font-family: 'Barlow', sans-serif; font-size: 0.8rem; color: rgba(249,249,249,0.45);">Sans grain — froid, digital</span>
+      </div>
+    </div>
+    <p style="font-size: 0.75rem; color: rgba(249,249,249,0.3); margin-top: 0.75rem; font-family: 'Barlow', sans-serif;">
+      La texture grain est appliquée globalement via un pseudo-élément CSS — opacité 4%, imperceptible mais présente.
+    </p>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- TYPOGRAPHIE -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="section section--dark" id="typographie">
+  <div class="container">
+    <p class="section-label">03 — Typographie</p>
+
+    <div class="grid-2" style="margin-bottom: 5rem; align-items: start;">
+      <div>
+        <h2 style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(2rem, 5vw, 4rem); text-transform: uppercase; line-height: 1; margin-bottom: 1.5rem;">
+          Le choc<br>
+          <span style="color: var(--red);">des contraires.</span>
+        </h2>
+      </div>
+      <div>
+        <p style="font-size: 1rem; line-height: 1.75; color: rgba(249,249,249,0.6); font-family: 'Barlow', sans-serif;">
+          Trois niveaux, zéro compromis. Dharma Gothic E pour <strong>l'impact maximal</strong>
+          des titres. Barlow Condensed uppercase pour <strong>la rigueur éditoriale</strong>
+          des sous-titres. Barlow pour la <strong>lisibilité directe</strong> du corps de texte.
+          Pas de serif, pas de douceur.
+        </p>
+      </div>
+    </div>
+
+    <div class="typo-showcase">
+
+      <div class="typo-row">
+        <div class="typo-row__meta">
+          <p class="typo-row__label">Hero</p>
+          <p class="typo-row__spec">Dharma Gothic E<br>Bebas Neue (web)<br>20vw desktop<br>Uppercase · Spacing serré</p>
+        </div>
+        <div class="typo-row__sample">
+          <p class="typo-hero" style="color: var(--white);">Combat</p>
+        </div>
+      </div>
+
+      <div class="typo-row">
+        <div class="typo-row__meta">
+          <p class="typo-row__label">Titre H1</p>
+          <p class="typo-row__spec">Dharma Gothic E<br>Bebas Neue (web)<br>8–10vw desktop<br>Uppercase</p>
+        </div>
+        <div class="typo-row__sample">
+          <p class="typo-h1">Rejoindre<br>le club</p>
+        </div>
+      </div>
+
+      <div class="typo-row">
+        <div class="typo-row__meta">
+          <p class="typo-row__label">Titre H2</p>
+          <p class="typo-row__spec">Dharma Gothic E<br>Bebas Neue (web)<br>4rem → 4.5rem<br>Uppercase</p>
+        </div>
+        <div class="typo-row__sample">
+          <p class="typo-h2">Nos abonnements</p>
+        </div>
+      </div>
+
+      <div class="typo-row">
+        <div class="typo-row__meta">
+          <p class="typo-row__label">Caption (sous-titre)</p>
+          <p class="typo-row__spec">Barlow Condensed<br>Weight 700<br>Uppercase · Espacé 0.1em<br>Nouveau système</p>
+        </div>
+        <div class="typo-row__sample">
+          <p class="typo-caption">
+            Le club de MMA qui forme les champions de demain, au cœur de Marseille.
+          </p>
+        </div>
+      </div>
+
+      <div class="typo-row">
+        <div class="typo-row__meta">
+          <p class="typo-row__label">Stamp (label)</p>
+          <p class="typo-row__spec">Barlow Condensed<br>Weight 800<br>Espacé 0.35em<br>Uppercase · Rouge</p>
+        </div>
+        <div class="typo-row__sample">
+          <p class="typo-stamp">Marseille · Since 2010 · MMA</p>
+        </div>
+      </div>
+
+      <div class="typo-row">
+        <div class="typo-row__meta">
+          <p class="typo-row__label">Corps de texte</p>
+          <p class="typo-row__spec">Barlow<br>Weight 400<br>1rem · Line-height 1.75<br>Sobre et lisible</p>
+        </div>
+        <div class="typo-row__sample">
+          <p class="typo-body">
+            La Team Science DUCA vous accueille dans une salle professionnelle
+            pour apprendre les disciplines du MMA — boxe anglaise, kick-boxing,
+            grappling et lutte. Tous niveaux acceptés.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- MOODBOARD -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="section section--mid" id="moodboard">
+  <div class="container">
+    <p class="section-label">04 — Moodboard</p>
+
+    <div class="grid-2" style="margin-bottom: 4rem; align-items: start;">
+      <h2 style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(2rem, 5vw, 4rem); text-transform: uppercase; line-height: 1;">
+        L'ambiance<br>
+        <span style="color: var(--red);">voulue.</span>
+      </h2>
+      <p style="font-size: 1rem; line-height: 1.8; color: rgba(249,249,249,0.65); font-weight: 300; align-self: center;">
+        Trois axes qui coexistent sur le site : la brutalité honnête du combat,
+        le charme des salles de boxe d'antan, la clarté moderne qui accueille
+        tout le monde.
+      </p>
+    </div>
+
+    <div class="moodboard">
+
+      <div class="mood-card mood-card--boxing mood-card--large">
+        <div class="mood-card__big-text">FIGHT</div>
+        <div style="position: absolute; top: 2rem; left: 2rem;">
+          <span class="badge badge--red">01</span>
+        </div>
+        <div class="mood-card__content">
+          <p class="mood-card__title">
+            La <span class="mood-card__accent">dureté</span><br>du combat
+          </p>
+          <p class="mood-card__desc">
+            Contraste maximal, typographie agressive, espace négatif assumé.
+            On ne cache pas que c'est un sport de contact.
+          </p>
+        </div>
+      </div>
+
+      <div class="mood-card mood-card--vintage">
+        <div class="mood-card__big-text" style="color: var(--gold);">1950</div>
+        <div class="mood-card__content">
+          <p class="mood-card__title" style="font-size: 1.8rem;">
+            Old school<br><span class="mood-card__accent--gold">boxing</span>
+          </p>
+          <p class="mood-card__desc">
+            Grain, or, serif italic. L'esthétique des affiches de combat d'avant.
+          </p>
+        </div>
+      </div>
+
+      <div class="mood-card mood-card--modern">
+        <div class="mood-card__big-text">WEB</div>
+        <div class="mood-card__content">
+          <p class="mood-card__title" style="font-size: 1.8rem;">
+            Web<br>moderne
+          </p>
+          <p class="mood-card__desc">
+            Lignes propres, hiérarchie lisible, accessible à tous.
+          </p>
+        </div>
+      </div>
+
+      <div class="mood-card" style="background: var(--black); border: 1px solid rgba(249,249,249,0.06);">
+        <div class="mood-card__big-text">B&W</div>
+        <div class="mood-card__content">
+          <p class="mood-card__title" style="font-size: 1.6rem; color: rgba(249,249,249,0.6);">
+            Photos<br><span style="color: var(--white);">en noir & blanc</span>
+          </p>
+          <p class="mood-card__desc">
+            Traitement monochrome — gravité, authenticité documentaire.
+          </p>
+        </div>
+      </div>
+
+      <div class="mood-card" style="background: linear-gradient(135deg, var(--black) 0%, #1a0808 100%); grid-column: span 2; border: 1px solid rgba(231,38,64,0.1);">
+        <div style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
+          <div class="corner-decor-demo">
+            <span>SCIENCE<br>DUCA</span>
+          </div>
+          <div style="flex: 1; min-width: 200px;">
+            <p class="mood-card__title" style="font-size: clamp(1.5rem, 3vw, 2.5rem);">
+              Éléments<br><span class="mood-card__accent">graphiques</span>
+            </p>
+            <p class="mood-card__desc">
+              Coins décorés, tampons typographiques, séparateurs ornementaux.
+              Des détails qui font la différence entre un site ordinaire
+              et une identité mémorable.
+            </p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 1rem; align-items: flex-end;">
+            <span class="badge badge--red badge--round">MMA Marseille</span>
+            <span class="badge badge--gold">Since 2010</span>
+            <span class="badge badge--white badge--circle">SCIENCE<br>DUCA<br>2026</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- ÉLÉMENTS GRAPHIQUES -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="section section--dark" id="elements">
+  <div class="container">
+    <p class="section-label">05 — Éléments graphiques</p>
+
+    <div class="grid-2" style="margin-bottom: 4rem; align-items: start;">
+      <h2 style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(2rem, 5vw, 4rem); text-transform: uppercase; line-height: 1;">
+        Les détails<br>
+        <span style="color: var(--gold);">qui font tout.</span>
+      </h2>
+      <p style="font-size: 1rem; line-height: 1.8; color: rgba(249,249,249,0.65); font-weight: 300; align-self: center;">
+        Trois micro-composants réutilisables dans tout le site.
+        Discrets individuellement, ils construisent ensemble
+        une cohérence visuelle reconnaissable.
+      </p>
+    </div>
+
+    <div class="elements-grid">
+
+      <div class="element-demo">
+        <p class="element-demo__label">GraphicDivider</p>
+        <div class="graphic-divider">
+          <div class="graphic-divider__line"></div>
+          <div class="graphic-divider__center">
+            <div class="graphic-divider__line-center"></div>
+            <div class="graphic-divider__diamond"></div>
+            <div class="graphic-divider__line-center"></div>
+          </div>
+          <div class="graphic-divider__line"></div>
+        </div>
+        <p style="font-size: 0.8rem; color: rgba(249,249,249,0.4); line-height: 1.5; font-family: 'Barlow', sans-serif;">
+          Séparateur entre sections. Ornement central losange rouge sur ligne blanche à 20% d'opacité.
+        </p>
+      </div>
+
+      <div class="element-demo">
+        <p class="element-demo__label">Badge / Tampon</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+          <span class="badge badge--red">MMA</span>
+          <span class="badge badge--gold">Since 2010</span>
+          <span class="badge badge--white badge--round">Marseille</span>
+          <span class="badge badge--red badge--circle">SCIENCE<br>DUCA<br>★</span>
+        </div>
+        <p style="font-size: 0.8rem; color: rgba(249,249,249,0.4); line-height: 1.5; font-family: 'Barlow', sans-serif;">
+          Badges vectoriels CSS — border simple, pas de remplissage. Style tampon d'imprimerie. Rouge ou or selon contexte.
+        </p>
+      </div>
+
+      <div class="element-demo">
+        <p class="element-demo__label">CornerDecor</p>
+        <div class="corner-decor-demo">
+          <span>DUCA<br>2026</span>
+        </div>
+        <p style="font-size: 0.8rem; color: rgba(249,249,249,0.4); line-height: 1.5; font-family: 'Barlow', sans-serif;">
+          Coins dorés décoratifs en CSS pur. Encadrent les sections ou les cards importantes. Style vieux document imprimé.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- COMPOSANTS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="section section--mid" id="composants">
+  <div class="container">
+    <p class="section-label">06 — Aperçus composants</p>
+
+    <h2 style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(2rem, 5vw, 4rem); text-transform: uppercase; line-height: 1; margin-bottom: 1rem;">
+      La DA<br>
+      <span style="color: var(--red);">en action.</span>
+    </h2>
+    <p style="font-size: 1rem; line-height: 1.8; color: rgba(249,249,249,0.55); font-weight: 300; margin-bottom: 4rem; max-width: 600px;">
+      Trois exemples concrets — le Hero, le Programme et les Coaches —
+      pour montrer comment la DA s'applique sur les composants réels du site.
+    </p>
+
+    <!-- Hero preview -->
+    <p style="font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 1rem;">Hero — Section principale</p>
+    <div class="hero-preview" style="margin-bottom: 3rem;">
+      <div class="hero-preview__inner">
+        <div class="hero-preview__badge">
+          <span class="badge badge--gold">Marseille 13010</span>
+        </div>
+        <p class="hero-preview__eyebrow">Bienvenue à la Team</p>
+        <h2 class="hero-preview__title font-display">
+          <span class="line-1">Science</span>
+          <span class="line-2">Duca</span>
+          <span class="line-3">MMA</span>
+        </h2>
+        <p class="hero-preview__sub">
+          Un club. Une famille. Une façon de se battre.
+        </p>
+        <div class="hero-preview__footer">
+          <p class="hero-preview__location">268 Avenue de la Capelette · Marseille</p>
+          <p class="hero-preview__cta">Rejoindre le club →</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coaches preview -->
+    <p style="font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 1rem;">Coaches — Nouvelle section</p>
+    <div class="coaches-preview" style="margin-bottom: 3rem;">
+
+      <div class="coach-card">
+        <div class="coach-card__image">
+          <div class="coach-card__image-placeholder">
+            <div class="coach-card__silhouette"></div>
+            <div class="coach-card__silhouette-body"></div>
+          </div>
+          <div class="coach-card__overlay"></div>
+        </div>
+        <div class="coach-card__badge">
+          <span class="badge badge--red" style="font-size: 0.55rem;">Head Coach</span>
+        </div>
+        <div class="coach-card__info">
+          <p class="coach-card__name">Duca</p>
+          <p class="coach-card__role">MMA · Boxe Anglaise</p>
+        </div>
+      </div>
+
+      <div class="coach-card">
+        <div class="coach-card__image">
+          <div class="coach-card__image-placeholder">
+            <div class="coach-card__silhouette"></div>
+            <div class="coach-card__silhouette-body"></div>
+          </div>
+          <div class="coach-card__overlay"></div>
+        </div>
+        <div class="coach-card__badge">
+          <span class="badge badge--gold" style="font-size: 0.55rem;">Coach</span>
+        </div>
+        <div class="coach-card__info">
+          <p class="coach-card__name">Prénom Nom</p>
+          <p class="coach-card__role">Kick-Boxing · Grappling</p>
+        </div>
+      </div>
+
+      <div class="coach-card">
+        <div class="coach-card__image">
+          <div class="coach-card__image-placeholder">
+            <div class="coach-card__silhouette"></div>
+            <div class="coach-card__silhouette-body"></div>
+          </div>
+          <div class="coach-card__overlay"></div>
+        </div>
+        <div class="coach-card__badge">
+          <span class="badge badge--gold" style="font-size: 0.55rem;">Coach</span>
+        </div>
+        <div class="coach-card__info">
+          <p class="coach-card__name">Prénom Nom</p>
+          <p class="coach-card__role">Lutte · Prépa physique</p>
+        </div>
+      </div>
+
+    </div>
+    <p style="font-size: 0.75rem; color: rgba(249,249,249,0.3); margin-bottom: 4rem; font-family: 'Barlow', sans-serif;">
+      Hover : la photo passe de noir & blanc à la couleur — effet subtil qui récompense l'interaction.
+    </p>
+
+    <!-- Schedule preview -->
+    <p style="font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 1rem;">Programme — Nouvelle section</p>
+    <div class="schedule-preview">
+      <div class="schedule-header">
+        <div class="schedule-header__cell"></div>
+        <div class="schedule-header__cell">Lundi</div>
+        <div class="schedule-header__cell schedule-header__cell--today">Mardi</div>
+        <div class="schedule-header__cell">Mercredi</div>
+        <div class="schedule-header__cell">Jeudi</div>
+        <div class="schedule-header__cell">Vendredi</div>
+      </div>
+      <div class="schedule-row">
+        <div class="schedule-cell schedule-cell--time">09:00</div>
+        <div class="schedule-cell"></div>
+        <div class="schedule-cell">
+          <div class="schedule-class schedule-class--gold">
+            <p class="schedule-class__name">Fitness MMA</p>
+            <p class="schedule-class__coach">Coach Duca</p>
+          </div>
+        </div>
+        <div class="schedule-cell"></div>
+        <div class="schedule-cell"></div>
+        <div class="schedule-cell"></div>
+      </div>
+      <div class="schedule-row">
+        <div class="schedule-cell schedule-cell--time">18:30</div>
+        <div class="schedule-cell">
+          <div class="schedule-class">
+            <p class="schedule-class__name">Boxe Anglaise</p>
+            <p class="schedule-class__coach">Coach Duca</p>
+          </div>
+        </div>
+        <div class="schedule-cell">
+          <div class="schedule-class">
+            <p class="schedule-class__name">MMA</p>
+            <p class="schedule-class__coach">Coach Duca</p>
+          </div>
+        </div>
+        <div class="schedule-cell">
+          <div class="schedule-class">
+            <p class="schedule-class__name">Kick-Boxing</p>
+            <p class="schedule-class__coach">Coach Duca</p>
+          </div>
+        </div>
+        <div class="schedule-cell"></div>
+        <div class="schedule-cell">
+          <div class="schedule-class">
+            <p class="schedule-class__name">Grappling</p>
+            <p class="schedule-class__coach">Coach Duca</p>
+          </div>
+        </div>
+      </div>
+      <div class="schedule-row">
+        <div class="schedule-cell schedule-cell--time">20:00</div>
+        <div class="schedule-cell">
+          <div class="schedule-class schedule-class--gold">
+            <p class="schedule-class__name">MMA Avancé</p>
+            <p class="schedule-class__coach">Coach Duca</p>
+          </div>
+        </div>
+        <div class="schedule-cell"></div>
+        <div class="schedule-cell">
+          <div class="schedule-class schedule-class--gold">
+            <p class="schedule-class__name">Sparring</p>
+            <p class="schedule-class__coach">Coach Duca</p>
+          </div>
+        </div>
+        <div class="schedule-cell">
+          <div class="schedule-class">
+            <p class="schedule-class__name">Lutte</p>
+            <p class="schedule-class__coach">Coach Duca</p>
+          </div>
+        </div>
+        <div class="schedule-cell">
+          <div class="schedule-class">
+            <p class="schedule-class__name">Compétition</p>
+            <p class="schedule-class__coach">Coach Duca</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p style="font-size: 0.75rem; color: rgba(249,249,249,0.3); margin-top: 0.75rem; font-family: 'Barlow', sans-serif;">
+      Rouge = cours réguliers · Or = cours spéciaux ou niveau avancé · Contenu à remplir avec les vrais horaires.
+    </p>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- ANIMATIONS & INTERACTIONS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="section section--mid" id="animations">
+  <div class="container">
+    <p class="section-label">07 — Animations &amp; Interactions</p>
+
+    <div class="grid-2" style="margin-bottom: 4rem; align-items: start;">
+      <h2 style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(2rem, 5vw, 4rem); text-transform: uppercase; line-height: 1; letter-spacing: 0.04em;">
+        Le site<br>
+        <span style="color: var(--red);">vit et respire.</span>
+      </h2>
+      <p style="font-size: 1rem; line-height: 1.8; color: rgba(249,249,249,0.65); font-weight: 300; align-self: center;">
+        Les animations ne sont pas un bonus — elles font partie de l'identité.
+        GSAP orchestre chaque entrée, Lenis fluidifie le scroll.
+        Le tout reste <strong>rapide et accessible</strong> : pas d'anim si <code style="font-family: 'Barlow Condensed', monospace; font-size: 0.85em; color: var(--gold);">prefers-reduced-motion</code> est activé.
+      </p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 3rem;">
+
+      <div style="background: var(--black); border: 1px solid rgba(249,249,249,0.06); padding: 2.5rem; border-radius: 4px; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 1.5rem; right: 1.5rem;"><span class="badge badge--red" style="font-size: 0.6rem;">GSAP</span></div>
+        <p style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: 1.8rem; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem;">Entrées de section</p>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem;">
+          <li style="font-size: 0.85rem; color: rgba(249,249,249,0.6); display: flex; gap: 0.75rem; align-items: flex-start;">
+            <span style="color: var(--red); margin-top: 0.1em; flex-shrink: 0;">→</span>
+            Titres : <strong style="color: var(--white);">clip-path reveal</strong> de bas en haut, stagger 0.08s par lettre
+          </li>
+          <li style="font-size: 0.85rem; color: rgba(249,249,249,0.6); display: flex; gap: 0.75rem; align-items: flex-start;">
+            <span style="color: var(--red); margin-top: 0.1em; flex-shrink: 0;">→</span>
+            Cards : <strong style="color: var(--white);">fade + translateY(40px)</strong>, déclenchées par IntersectionObserver
+          </li>
+          <li style="font-size: 0.85rem; color: rgba(249,249,249,0.6); display: flex; gap: 0.75rem; align-items: flex-start;">
+            <span style="color: var(--red); margin-top: 0.1em; flex-shrink: 0;">→</span>
+            Chiffres clés : <strong style="color: var(--white);">compteur animé</strong> de 0 → valeur finale, ease Power2
+          </li>
+        </ul>
+      </div>
+
+      <div style="background: var(--black); border: 1px solid rgba(249,249,249,0.06); padding: 2.5rem; border-radius: 4px; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 1.5rem; right: 1.5rem;"><span class="badge badge--gold" style="font-size: 0.6rem;">Lenis</span></div>
+        <p style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: 1.8rem; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem;">Scroll &amp; Parallax</p>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem;">
+          <li style="font-size: 0.85rem; color: rgba(249,249,249,0.6); display: flex; gap: 0.75rem; align-items: flex-start;">
+            <span style="color: var(--gold); margin-top: 0.1em; flex-shrink: 0;">→</span>
+            Smooth scroll Lenis — <strong style="color: var(--white);">friction 0.08</strong>, sensation premium
+          </li>
+          <li style="font-size: 0.85rem; color: rgba(249,249,249,0.6); display: flex; gap: 0.75rem; align-items: flex-start;">
+            <span style="color: var(--gold); margin-top: 0.1em; flex-shrink: 0;">→</span>
+            Hero : <strong style="color: var(--white);">parallax lent</strong> sur le fond, scale 1.05 → 1 au scroll
+          </li>
+          <li style="font-size: 0.85rem; color: rgba(249,249,249,0.6); display: flex; gap: 0.75rem; align-items: flex-start;">
+            <span style="color: var(--gold); margin-top: 0.1em; flex-shrink: 0;">→</span>
+            Titre Hero : <strong style="color: var(--white);">scrub GSAP</strong> — le texte se compresse à la descente
+          </li>
+        </ul>
+      </div>
+
+      <div style="background: var(--black); border: 1px solid rgba(249,249,249,0.06); padding: 2.5rem; border-radius: 4px; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 1.5rem; right: 1.5rem;"><span class="badge badge--white" style="font-size: 0.6rem;">Micro</span></div>
+        <p style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: 1.8rem; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem;">Micro-interactions</p>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem;">
+          <li style="font-size: 0.85rem; color: rgba(249,249,249,0.6); display: flex; gap: 0.75rem; align-items: flex-start;">
+            <span style="color: rgba(249,249,249,0.4); margin-top: 0.1em; flex-shrink: 0;">→</span>
+            Boutons : <strong style="color: var(--white);">fond rouge qui se remplit</strong> de gauche à droite au hover
+          </li>
+          <li style="font-size: 0.85rem; color: rgba(249,249,249,0.6); display: flex; gap: 0.75rem; align-items: flex-start;">
+            <span style="color: rgba(249,249,249,0.4); margin-top: 0.1em; flex-shrink: 0;">→</span>
+            Coach cards : <strong style="color: var(--white);">désaturation → couleur</strong> à 500ms au hover
+          </li>
+          <li style="font-size: 0.85rem; color: rgba(249,249,249,0.6); display: flex; gap: 0.75rem; align-items: flex-start;">
+            <span style="color: rgba(249,249,249,0.4); margin-top: 0.1em; flex-shrink: 0;">→</span>
+            Nav : <strong style="color: var(--white);">underline rouge</strong> qui slide de gauche, width 0 → 100%
+          </li>
+        </ul>
+      </div>
+
+      <div style="background: var(--black); border: 1px solid rgba(249,249,249,0.06); padding: 2.5rem; border-radius: 4px; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: 1.5rem; right: 1.5rem;"><span class="badge badge--red" style="font-size: 0.6rem;">Page</span></div>
+        <p style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: 1.8rem; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem;">Transitions de page</p>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem;">
+          <li style="font-size: 0.85rem; color: rgba(249,249,249,0.6); display: flex; gap: 0.75rem; align-items: flex-start;">
+            <span style="color: var(--red); margin-top: 0.1em; flex-shrink: 0;">→</span>
+            <strong style="color: var(--white);">Rideau rouge</strong> qui balaye l'écran verticalement (Nuxt page transitions)
+          </li>
+          <li style="font-size: 0.85rem; color: rgba(249,249,249,0.6); display: flex; gap: 0.75rem; align-items: flex-start;">
+            <span style="color: var(--red); margin-top: 0.1em; flex-shrink: 0;">→</span>
+            Durée 400ms — <strong style="color: var(--white);">imperceptible sur mobile</strong>, satisfaisant sur desktop
+          </li>
+          <li style="font-size: 0.85rem; color: rgba(249,249,249,0.6); display: flex; gap: 0.75rem; align-items: flex-start;">
+            <span style="color: var(--red); margin-top: 0.1em; flex-shrink: 0;">→</span>
+            Géré via Pinia store + <code style="font-family: 'Barlow Condensed', monospace; font-size: 0.85em; color: var(--gold);">usePageTransition</code>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div style="background: var(--black-mid); border-left: 3px solid var(--gold); padding: 1.5rem 2rem; border-radius: 0 4px 4px 0;">
+      <p style="font-family: 'Barlow', sans-serif; font-size: 0.9rem; color: rgba(249,249,249,0.5); line-height: 1.6;">
+        Toutes les valeurs d'ease et de durée sont centralisées dans <strong style="color: var(--gold);">assets/animations.ts</strong> — aucune valeur magique dans les composants.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- PROCHAINES ÉTAPES -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="section section--dark" id="roadmap">
+  <div class="container">
+    <p class="section-label">08 — Feuille de route</p>
+
+    <div class="grid-2" style="margin-bottom: 3rem; align-items: start;">
+      <h2 style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: clamp(2rem, 5vw, 4rem); text-transform: uppercase; line-height: 1;">
+        La suite<br>
+        <span style="color: var(--red);">étape par étape.</span>
+      </h2>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 1px;">
+
+      <div style="display: grid; grid-template-columns: 60px 1fr; gap: 2rem; padding: 2rem; background: var(--black-mid); align-items: start;">
+        <div style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: 3rem; color: var(--red); line-height: 1; text-align: center; opacity: 0.5;">01</div>
+        <div>
+          <p style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;">Design System SASS</p>
+          <p style="font-size: 0.85rem; color: rgba(249,249,249,0.5); font-weight: 300;">Tokens, variables, mixins — <strong style="color: rgba(249,249,249,0.8);">terminé ✓</strong></p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 60px 1fr; gap: 2rem; padding: 2rem; background: var(--black-mid); align-items: start;">
+        <div style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: 3rem; color: var(--red); line-height: 1; text-align: center; opacity: 0.5;">02</div>
+        <div>
+          <p style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;">Hero</p>
+          <p style="font-size: 0.85rem; color: rgba(249,249,249,0.5); font-weight: 300;">Refonte visuelle complète avec la nouvelle DA — vitrine immédiate</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 60px 1fr; gap: 2rem; padding: 2rem; background: var(--black-mid); align-items: start;">
+        <div style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: 3rem; color: var(--red); line-height: 1; text-align: center; opacity: 0.5;">03</div>
+        <div>
+          <p style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;">Sections existantes</p>
+          <p style="font-size: 0.85rem; color: rgba(249,249,249,0.5); font-weight: 300;">Abonnement, KeyFacts, PresentationClub, JoinUs, Sponsors</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 60px 1fr; gap: 2rem; padding: 2rem; background: var(--black-mid); align-items: start;">
+        <div style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: 3rem; color: var(--red); line-height: 1; text-align: center; opacity: 0.5;">04</div>
+        <div>
+          <p style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;">Nouveaux composants</p>
+          <p style="font-size: 0.85rem; color: rgba(249,249,249,0.5); font-weight: 300;">Section Coaches + Section Programme/Horaires</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 60px 1fr; gap: 2rem; padding: 2rem; background: var(--black-mid); align-items: start;">
+        <div style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: 3rem; color: var(--red); line-height: 1; text-align: center; opacity: 0.5;">05</div>
+        <div>
+          <p style="font-family: 'Bebas Neue', Impact, sans-serif; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem;">Micro-composants graphiques</p>
+          <p style="font-size: 0.85rem; color: rgba(249,249,249,0.5); font-weight: 300;">GraphicDivider, Badge, CornerDecor</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SIGNATURE -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="section section--dark signature-section" id="signature">
+  <div class="signature__big">DUCA</div>
+  <div class="signature__content">
+
+    <div class="divider" style="max-width: 400px; margin: 0 auto 3rem;">
+      <div class="divider__line"></div>
+      <div class="divider__ornament">✦</div>
+      <div class="divider__line"></div>
+    </div>
+
+    <p class="signature__title">Présenté par</p>
+    <p class="signature__name">Claude Code</p>
+    <p class="signature__role">Directeur Artistique — Refonte 2026</p>
+
+    <div style="margin-top: 3rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+      <span class="badge badge--red badge--round">Science DUCA</span>
+      <span class="badge badge--gold">Marseille · MMA</span>
+      <span class="badge badge--white">2026</span>
+    </div>
+
+    <p class="signature__date">Document réalisé le 29 mars 2026</p>
+
+  </div>
+</section>
+
+</body>
+</html>

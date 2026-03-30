@@ -1,247 +1,122 @@
 <template>
-  <div class="contact-page" ref="root">
-    <Snackbar ref="snackbar"/>
-    <div class="contact-page__left">
-      <figure-element class="contact-page__cover" :image="contactPage?.data.image"/>
+  <main class="contact-page">
+    <div class="contact-page__header">
+      <span class="section__label">{{ $t('contact.label') }}</span>
+      <h1 class="contact-page__title">Contact</h1>
     </div>
-    <h1 class="contact-page__title">
-      <div v-for="t in title"><span>{{ t }}</span></div>
-    </h1>
-    <div class="contact-page__right">
-      <prismic-rich-text class="contact-page__content" :field="contactPage?.data.subtitle"/>
-      <div class="contact-page__form">
+
+    <div class="contact-page__body">
+      <!-- Infos -->
+      <div class="contact-infos">
+        <div class="contact-infos__block">
+          <span class="contact-infos__label">{{ $t('contact.labelAddress') }}</span>
+          <p class="contact-infos__value">{{ $t('contact.address') }}</p>
+          <p class="contact-infos__value">{{ $t('contact.addressDetail') }}</p>
+          <p class="contact-infos__value">{{ $t('contact.city') }}</p>
+        </div>
+        <div class="contact-infos__block">
+          <span class="contact-infos__label">Email</span>
+          <p class="contact-infos__value">{{ $t('contact.email') }}</p>
+        </div>
+        <div class="contact-infos__block">
+          <span class="contact-infos__label">{{ $t('contact.labelHours') }}</span>
+          <p class="contact-infos__value">{{ $t('contact.hours') }}</p>
+        </div>
+        <!-- Carte placeholder -->
+        <div class="contact-map">
+          <AppImage
+            src="https://placehold.co/600x350/242424/E72640?text=Google+Maps"
+            alt="Carte Google Maps — 268 Avenue de la Capelette, 13010 Marseille — Science DUCA"
+          />
+        </div>
+      </div>
+
+      <!-- Formulaire -->
+      <div class="contact-form-wrap">
         <form
-          ref="form"
-          class="contact-page__form"
           name="contact"
-          netlify
+          method="POST"
+          data-netlify="true"
           netlify-honeypot="bot-field"
-          data-netlify-recaptcha="true"
-          @submit="onSubmit"
+          action="/merci"
+          class="contact-form"
         >
-          <input type="hidden" name="form-name" value="contact"/>
-          <p class="hidden">
-            <label>
-              Don’t fill this out if you’re human: <input name="bot-field"/>
-            </label>
-          </p>
-          <p>
-            <input type="email" name="email" placeholder="EMAIL"/>
-          </p>
-          <p>
-            <textarea type="text" name="message" :rows="isMobile ? 6: 10" placeholder="VOTRE MESSAGE"/>
-          </p>
-          <CTA class="contact-page__cta" text="envoyer" :is-nuxt-link="false"/>
+          <input type="hidden" name="form-name" value="contact" />
+          <input name="bot-field" type="text" class="hidden-field" tabindex="-1" autocomplete="off" />
+          <AppInput name="name" :label="$t('contact.form.name')" required />
+          <AppInput name="email" type="email" :label="$t('contact.form.email')" required />
+          <AppTextarea name="message" :label="$t('contact.form.message')" :rows="6" required />
+          <AppButton type="submit" variant="primary">{{ $t('contact.form.submit') }}</AppButton>
         </form>
       </div>
     </div>
-  </div>
+  </main>
 </template>
-<script lang="ts" setup>
 
-import gsap from "gsap";
-import A from "assets/animations";
-import {VueReCaptcha} from 'vue-recaptcha-v3';
-import Timeline = gsap.core.Timeline;
-
-const prismic = usePrismic();
-const store = useIndexStore();
-const page = usePage();
-const config = useRuntimeConfig();
-
-const {data: contactPage} = await useAsyncData("contact", () => prismic.client.getSingle('contact'))
-// console.log(contactPage)
-
-useSeoMeta({
-  title: 'SCIENCE DUCA - CONTACT',
-  ogTitle: 'LOCATION CAGE MMA MARSEILLE - CONTACT',
-  twitterTitle: 'LOCATION CAGE MMA MARSEILLE - CONTACT',
-  description: 'Contactez-nous pour toute question ou demande d\'information sur le club SCIENCE DUCA.\nRemplissez le formulaire de contact ou contactez nous sur Instagram pour nous joindre',
-  ogDescription: 'Contactez-nous pour toute question ou demande d\'information sur le club SCIENCE DUCA.\nRemplissez le formulaire de contact ou contactez nous sur Instagram pour nous joindre',
-  twitterDescription: 'Contactez-nous pour toute question ou demande d\'information sur le club SCIENCE DUCA.\nRemplissez le formulaire de contact ou contactez nous sur Instagram pour nous joindre',
-  ogImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
-  twitterImage: 'https://images.prismic.io/team-duca/19022be4-3ea4-4f3c-8bb3-0e9edb49bf2d_meta.png?auto=compress,format',
-  twitterCard: 'summary_large_image',
-})
-
-const root = ref<HTMLElement | null>(null)
-const snackbar = ref<HTMLElement | null>(null)
-const title = computed(() => contactPage.value?.data.titre.split('\n'))
-const isMobile = computed(() => store.isMobile)
-let tl = <Timeline | null>null
-
-const token = ref('')
-
-watch(() => store.isTransitionVisible, (value) => {
-  if (!value) {
-    setTimeout(() => {
-      tl?.play()
-    }, 280)
-  }
-})
-
-const onSubmit = async (e: Event) => {
-  e.preventDefault()
-
-  const form = e.target as HTMLFormElement
-  const formData = new FormData(form) as any
-
-  formData.set('g-recaptcha-response', token.value)
-
-
-  fetch("/", {
-    method: "POST",
-    headers: {"Content-Type": "application/x-www-form-urlencoded"},
-    body: new URLSearchParams(formData).toString(),
-  })
-    .then(() => {
-      form.reset()
-      snackbar.value?.show('Votre message a bien été envoyé')
-    })
-    .catch((error) => {
-      snackbar.value?.show('Une erreur est survenue, veuillez réessayer', 'error')
-    })
-}
-
-const {vueApp} = useNuxtApp();
-vueApp.use(VueReCaptcha, {
-  siteKey: config.public.RECAPTCHA_SITE_KEY,
-  loaderOptions: {
-    autoHideBadge: true,
-  },
-});
-
-onMounted(async () => {
-  tl = gsap.timeline({paused: true})
-  tl.from(root.value?.querySelectorAll(".contact-page__cover") as NodeList, isMobile.value ? A.imageHeight : A.imageWidth, 0.1)
-  tl.from(root.value?.querySelectorAll(".contact-page__title span") as NodeList, A.h2, 0.4)
-  tl.from(root.value?.querySelectorAll(".contact-page__content") as NodeList, A.opacity, 0.4)
-  tl.from(root.value?.querySelectorAll(".contact-page__form") as NodeList, A.opacity, 0.5)
-  tl.from(root.value?.querySelectorAll(".contact-page__cta") as NodeList, A.opacity, 0.6)
-
-  token.value = await useVueRecaptcha()
-  // console.log(token.value)
-})
+<script setup lang="ts">
+useHead({ title: 'Contact — Science DUCA MMA Marseille' })
 </script>
 
 <style scoped lang="sass">
 .contact-page
-  position: relative
   min-height: 100vh
-  width: 100%
-  display: flex
-  align-items: center
-  justify-content: center
-  flex-direction: column
+  padding: $spacing-xl $spacing-md
+
   @include lg
-    flex-direction: row
+    padding: $spacing-xxl 90px
 
-  &__title
-    @include h1(18vw)
-    position: absolute
-    top: 60px
-    left: 55px
-    font-weight: 800
-    color: $white
+.contact-page__header
+  margin-bottom: $spacing-lg
 
-    & > div
-      overflow: hidden
+.contact-page__title
+  @include title(clamp(4rem, 10vw, 10rem))
+  color: $white
+  margin: 0
+  line-height: 0.88
 
-    & span
-      display: inline-block
+// ─── Body ────────────────────────────────────────────────────
+.contact-page__body
+  display: grid
+  grid-template-columns: 1fr
+  gap: $spacing-xl
 
-    @include md
-      top: 80px
-      left: 65px
-      height: 4.1rem
+  @include lg
+    grid-template-columns: 1fr 1fr
+    gap: $spacing-xxl
 
-    @include lg
-      top: 160px
-      left: 45%
-      @include h1(7.5rem)
+// ─── Infos ───────────────────────────────────────────────────
+.contact-infos
+  display: flex
+  flex-direction: column
+  gap: $spacing-lg
 
-  &__right
-    @include text()
-    width: 100%
-    padding: 35px
-    display: inline-flex
-    flex-direction: column
+.contact-infos__block
+  display: flex
+  flex-direction: column
+  gap: 0.4rem
 
-    @include md
-      @include text(1.5rem)
-      padding: 45px
-      width: 100%
+.contact-infos__label
+  @include stamp(0.65rem)
 
-    @include lg
-      padding: 45px
-      width: 50%
-      height: 100vh
-      justify-content: flex-end
+.contact-infos__value
+  @include text(0.95rem)
+  color: rgba($white, 0.7)
+  margin: 0
 
-  &__cta
-    align-self: center
-    @include lg
-      align-self: end
+.contact-map
+  aspect-ratio: 16 / 9
+  overflow: hidden
+  border: 1px solid rgba($white, 0.08)
 
-  &__form
-    display: flex
-    flex-direction: column
-    gap: 2rem
-    color: $white
+// ─── Form ────────────────────────────────────────────────────
+.contact-form
+  display: flex
+  flex-direction: column
+  gap: $spacing-md
 
-    & input, textarea
-      @include text(0.8rem)
-      background: rgba(255, 255, 255, 0.03)
-      border: none
-      border-bottom: 1px solid $white
-      color: $white
-      padding: 0.8rem
-      outline: none
-      width: 100%
-
-      &::placeholder
-        color: $white
-        opacity: 0.8
-
-      @include md
-        @include text(1.5rem)
-
-      @include lg
-        @include text(0.8rem)
-
-  &__cover
-    width: 100%
-    height: 100%
-
-  &__left
-    width: 100%
-    height: 40vh
-    @include md
-      height: 50vh
-
-    @include lg
-      width: 50%
-      height: 100vh
-      height: calc(var(--vh, 1vh) * 100)
-      justify-content: flex-end
-
-  &__content
-    @include text()
-    color: $white
-    margin-bottom: 1.5rem
-
-    @include md
-      @include text(1.5rem)
-
-    @include lg
-      @include text(1.2rem)
-
-.hidden
-  display: none
-</style>
-
-<style lang="sass">
-//.contact-page__left
-//  & .figure-element > img
-//    object-fit: unset
+.hidden-field
+  position: absolute
+  left: -9999px
+  opacity: 0
+  pointer-events: none
 </style>

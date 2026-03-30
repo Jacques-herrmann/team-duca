@@ -1,63 +1,41 @@
 <template>
   <div class="app-layout">
-<!--    <BoxingBag/>-->
-    <PageTransition/>
-    <Cursor/>
-    <Header/>
-    <main>
-      <GridBackground/>
-      <NuxtPage/>
-    </main>
-    <Footer/>
+    <Header />
+    <div class="layout-main">
+      <slot />
+    </div>
+    <Footer />
   </div>
 </template>
 
 <script setup lang="ts">
-import Header from "@/components/Header/index.vue"
-import Footer from "@/components/Footer/index.vue"
-import PageTransition from "@/components/PageTransition/index.vue"
-import gsap from "gsap"
-import {useIndexStore} from "~/stores";
-
-const store = useIndexStore()
-const route = useRoute()
-
-const noiseOpacity = ref(0)
-
-onMounted(() => {
-  gsap.to(noiseOpacity, {value: 0.04, duration: 1, ease: 'linear'})
-
-  store.setTransition(true)
-  setTimeout(() => {
-    store.setLocalTransition(true)
-    store.setTransition(false)
-  }, 3000)
-
-})
-
-
 </script>
-<style lang="sass" scoped>
 
-main
+<style lang="sass" scoped>
+.app-layout
   position: relative
   width: 100%
   min-height: 100vh
-//z-index: $z-content
+  background-color: $black
+  color: $white
 
+.layout-main
+  padding-top: $header-height
+
+// ─── Grain global ─────────────────────────────────────────────
 .app-layout::after
   animation: grain 6s steps(10) infinite
   background-image: url('/assets/images/grain.png')
   background-repeat: repeat
+  background-size: 200px 200px
   content: ''
   position: fixed
   top: -100%
   left: -100%
   height: 300%
   width: 300%
-  opacity: v-bind(noiseOpacity)
+  opacity: 0.04
   pointer-events: none
-  transition: opacity 0.4s ease
   will-change: transform
   z-index: $z-noise
 
@@ -84,5 +62,4 @@ main
       transform: translate(-20%, 5%)
     100%
       transform: translate(20%, -5%)
-
 </style>

@@ -1,217 +1,197 @@
 <template>
   <header class="header">
-    <!--    <Logo class="header__logo" @click="toHome"/>-->
-    <div class="header__burger" @click="toggleMenu">
-      <svg width="38" height="29" viewBox="0 0 38 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M36 2L2 2" stroke="#F9F9F9" stroke-width="4" stroke-linecap="round"/>
-        <path d="M36 14L2 14" stroke="#F9F9F9" stroke-width="4" stroke-linecap="round"/>
-        <path d="M36 27L2 27" stroke="#F9F9F9" stroke-width="4" stroke-linecap="round"/>
-      </svg>
+    <nuxt-link :to="localePath('/')" class="header__logo">
+      <span>SCIENCE</span>
+      <span>DUCA</span>
+    </nuxt-link>
+
+    <nav class="header__nav" :class="{ 'header__nav--open': menuOpen }">
+      <nuxt-link
+        v-for="item in regularItems"
+        :key="item.path"
+        class="header__nav-link"
+        :to="localePath(item.path)"
+        @click="menuOpen = false"
+      >
+        {{ $t(item.labelKey) }}
+      </nuxt-link>
+      <LanguageSwitcher class="header__lang-mobile" />
+    </nav>
+
+    <div class="header__right">
+      <LanguageSwitcher class="header__lang-desktop" />
+      <nuxt-link
+        v-if="ctaItem"
+        :to="localePath(ctaItem.path)"
+        class="header__cta"
+      >
+        {{ $t(ctaItem.labelKey) }}
+      </nuxt-link>
+      <button
+        class="header__burger"
+        :class="{ 'header__burger--open': menuOpen }"
+        :aria-label="menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'"
+        @click="menuOpen = !menuOpen"
+      >
+        <span /><span /><span />
+      </button>
     </div>
-    <ul class="header__menu" ref="menu">
-      <li class="header__menu-item" v-for="item in header?.data.pages" :key="item.id">
-        <nuxt-link
-          @click.native="onClose(`${item.url ?`/${item.url}`: '/'}`)"
-          :to="`${item.url ?`/${item.url}`: '/'}`"
-        >
-          <span class="header__menu-item--letter" v-for="l in item.titre">{{ l }}</span>
-        </nuxt-link>
-      </li>
-    </ul>
+
+    <div
+      v-if="menuOpen"
+      class="header__overlay"
+      @click="menuOpen = false"
+    />
   </header>
 </template>
-<script setup>
-import A from '@/assets/animations'
-import gsap from "gsap";
 
-const prismic = usePrismic();
-const route = useRoute();
-const store = useIndexStore();
-// console.log(route)
-const locale = 'fr';
+<script setup lang="ts">
+import { navItems } from '~/data/navigation'
 
-const {data: header} = await useAsyncData("header", () => prismic.client.getSingle('header'))
-// console.log(header)
-// const header = ref(null)
+const localePath = useLocalePath()
+const menuOpen = ref(false)
 
-const isMobile = computed(() => store.isMobile)
-const menu = ref(null)
-const isOpen = ref(false)
-let tl
-
-const toHome = () => {
-  navigateTo(`/`)
-}
-
-const toggleMenu = () => {
-  if (isOpen.value) {
-    onClose(route.path)
-  } else {
-    onOpen()
-  }
-}
-
-const onOpen = () => {
-  isOpen.value = true
-  tl.timeScale(1).play()
-}
-
-const onClose = (path, d = 1000) => {
-  if (path === route.path) {
-    d = 0
-  }
-  setTimeout(() => {
-    tl.timeScale(2).reverse()
-    isOpen.value = false
-  }, d)
-}
-
-const onResize = () => {
-  // tl = gsap.timeline({paused: true})
-  // console.log(isMobile.value)
-  if (!isMobile.value) {
-    gsap.to(menu.value, {
-      height: '100%',
-      duration: 0.4,
-      ease: 'power2.out'
-    })
-    const listeElement = menu.value.querySelectorAll('.header__menu-item')
-    listeElement.forEach((element, index) => {
-      gsap.to(element.querySelectorAll('.header__menu-item--letter'), {
-        y: 0,
-        rotateZ: 0,
-        duration: 0.4,
-        ease: 'power2.out'
-      }, 0.1 + index * 0.05)
-    })
-  } else {
-    gsap.to(menu.value, {
-      height: '0',
-      duration: 0.4,
-      ease: 'power2.out'
-    })
-  }
-}
-
-onMounted(() => {
-  tl = gsap.timeline({paused: true})
-  if (isMobile.value) {
-    tl.from(menu.value, {
-      height: '0',
-      duration: 0.4,
-      ease: 'power2.out'
-    })
-    // tl.set(menu.value.querySelector('div'), {opacity: 1}, 0.1)
-    const listeElement = menu.value.querySelectorAll('.header__menu-item')
-    listeElement.forEach((element, index) => {
-      tl.from(element.querySelectorAll('.header__menu-item--letter'), A.h2, 0.1 + index * 0.05)
-    })
-  }
-  window.addEventListener('resize', onResize)
-})
-
+const regularItems = computed(() => navItems.filter(i => !i.highlight))
+const ctaItem = computed(() => navItems.find(i => i.highlight))
 </script>
 
 <style scoped lang="sass">
-
 .header
   position: fixed
   top: 0
   left: 0
+  right: 0
   height: $header-height
-  width: 100vw
-  padding: 0 90px
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding: 0 $spacing-md
+  background-color: $black
+  border-bottom: 1px solid rgba($white, 0.08)
   z-index: $z-header
+
   @include lg
-    background: $gradient
-    height: 80px
+    padding: 0 90px
 
-  &__burger
-    position: absolute
-    right: 20px
-    top: 20px
-    z-index: 2
-    @include lg
-      display: none
+// ─── Logo ────────────────────────────────────────────────────
+.header__logo
+  display: flex
+  flex-direction: column
+  line-height: 0.85
+  text-decoration: none
+  gap: 0
 
-  &__logo
-    position: absolute
-    left: 14px
-    top: 10px
-    height: 60px
-    width: 60px
-    cursor: pointer
-    pointer-events: all
-    opacity: 0
-    @include lg
-      opacity: 1
+  span
+    @include title(1.4rem)
+    color: $white
+    display: block
 
+// ─── Nav ─────────────────────────────────────────────────────
+.header__nav
+  display: none
+  gap: $spacing-md
 
-  &__menu
-    position: fixed
-    top: 0
-    right: 0
-    width: 100%
-    height: 100vh
-    height: calc(var(--vh, 1vh) * 100)
-    background-color: $black
-    flex-direction: column
-    justify-content: center
+  @include lg
     display: flex
-    overflow: hidden
+    align-items: center
 
-    @include lg
-      position: absolute
-      background-color: transparent
-      top: 0
-      right: 90px
-      align-items: center
-      flex-direction: row
-      height: 100%
-      width: unset
-      //margin-right: 20px
-      gap: 10px
+  &--open
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    position: fixed
+    inset: 0
+    background-color: $black
+    z-index: $z-header - 1
+    gap: $spacing-lg
 
+.header__nav-link
+  @include caption(0.75rem)
+  color: rgba($white, 0.55)
+  text-decoration: none
+  transition: color 0.2s ease
+  letter-spacing: 0.12em
 
-    &-item
-      @include title(8vw)
-      text-transform: uppercase
-      color: $white
-      text-decoration: none
-      user-select: none
-      cursor: pointer
-      transition: color 0.2s ease-in-out
-      margin-left: 60px
+  &:hover,
+  &.router-link-active
+    color: $white
 
-      &:not(:last-child)
-        margin-bottom: 30px
-        @include lg
-          margin-bottom: 0
+  .header__nav--open &
+    @include caption(1.6rem)
+    color: $white
+    letter-spacing: 0.15em
 
-      &:hover
-        color: $red
+// ─── Right block ─────────────────────────────────────────────
+.header__right
+  display: flex
+  align-items: center
+  gap: $spacing-sm
 
-      .router-link-active
-        color: $red
+.header__lang-desktop
+  display: none
+  @include lg
+    display: flex
 
-      &--letter
-        display: inline-block
-        white-space: pre
-        will-change: transform
+.header__lang-mobile
+  display: flex
+  margin-top: $spacing-md
+  @include lg
+    display: none
 
-      @include lg
-        @include text(0.8rem)
-        //letter-spacing: unset
-        margin-left: 2vw
-        &:not(:last-child)
-          margin-bottom: 0
-          margin-right: 30px
+// ─── CTA ─────────────────────────────────────────────────────
+.header__cta
+  @include stamp(0.65rem)
+  display: none
+  padding: 0.45rem 1.1rem
+  background-color: $red
+  color: $white
+  text-decoration: none
+  transition: background-color 0.2s ease
 
+  &:hover
+    background-color: darken($red, 8%)
 
-</style>
-<style lang="sass">
-.header__menu-item > a
-  overflow: hidden
-  display: block
+  @include lg
+    display: block
 
+// ─── Burger ──────────────────────────────────────────────────
+.header__burger
+  display: flex
+  flex-direction: column
+  justify-content: center
+  gap: 5px
+  width: 26px
+  height: 26px
+  background: none
+  border: none
+  cursor: pointer
+  padding: 0
+  position: relative
+  z-index: $z-header + 1
+
+  @include lg
+    display: none
+
+  span
+    display: block
+    width: 100%
+    height: 1.5px
+    background-color: $white
+    transition: transform 0.3s ease, opacity 0.3s ease
+    transform-origin: center
+
+  &--open
+    span:nth-child(1)
+      transform: translateY(6.5px) rotate(45deg)
+    span:nth-child(2)
+      opacity: 0
+    span:nth-child(3)
+      transform: translateY(-6.5px) rotate(-45deg)
+
+// ─── Overlay ─────────────────────────────────────────────────
+.header__overlay
+  position: fixed
+  inset: 0
+  z-index: $z-header - 2
 </style>

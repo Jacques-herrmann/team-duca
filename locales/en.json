@@ -1,0 +1,314 @@
+{
+  "nav": {
+    "home": "Home",
+    "schedule": "Schedule",
+    "programs": "Programs",
+    "locationCage": "Cage rental",
+    "contact": "Contact",
+    "join": "Join the club"
+  },
+  "cta": {
+    "join": "Join the club",
+    "discover": "Discover",
+    "seePrograms": "See programs",
+    "register": "Register",
+    "contact": "Contact us",
+    "learnMore": "Learn more"
+  },
+  "hero": {
+    "eyebrow": "MMA Club — Marseille",
+    "subtitle": "One club. One family. One way to fight.",
+    "ctaPrimary": "Join the club",
+    "ctaSecondary": "See programs"
+  },
+  "presentation": {
+    "label": "The club",
+    "title": "Science DUCA",
+    "text": "Science DUCA welcomes you in a professional training facility in the heart of Marseille. Founded over 10 years ago, our team trains athletes of all levels in MMA disciplines: boxing, kickboxing, grappling and wrestling. Whether you want to learn self-defense, prepare for competition or simply improve your fitness — you're in the right place."
+  },
+  "keyfacts": {
+    "years": "years of existence",
+    "disciplines": "disciplines",
+    "athletes": "trained athletes"
+  },
+  "disciplines": {
+    "label": "What we teach",
+    "title": "The disciplines",
+    "items": {
+      "mma": {
+        "title": "MMA",
+        "description": "Mixed Martial Arts — the complete discipline combining all standing and ground combat techniques."
+      },
+      "boxe": {
+        "title": "Boxing",
+        "description": "Punching technique, footwork and defense. All levels, from age 16."
+      },
+      "kickboxing": {
+        "title": "Kickboxing",
+        "description": "Punches and kicks combinations, intense cardio. The foundation of stand-up MMA."
+      },
+      "grappling": {
+        "title": "Grappling",
+        "description": "Ground combat without strikes. Submissions, control positions, transitions."
+      },
+      "lutte": {
+        "title": "Wrestling",
+        "description": "Takedowns and clinch work. Essential for controlling the fight space."
+      }
+    }
+  },
+  "coaches": {
+    "label": "The team",
+    "title": "Our coaches",
+    "badge": {
+      "head": "Head Coach",
+      "coach": "Coach"
+    },
+    "duca": {
+      "name": "Duca",
+      "role": "Founder · MMA · Boxing"
+    },
+    "coach2": {
+      "name": "First Last",
+      "role": "Kickboxing · Grappling"
+    },
+    "coach3": {
+      "name": "First Last",
+      "role": "Wrestling · Strength & Conditioning"
+    }
+  },
+  "subscriptions": {
+    "label": "Pricing",
+    "title": "Join the team",
+    "decouverte": {
+      "title": "Discovery",
+      "description": "Start at your own pace."
+    },
+    "standard": {
+      "title": "Standard",
+      "description": "The most popular plan at the club."
+    },
+    "illimite": {
+      "title": "Unlimited",
+      "description": "For those who want to give everything."
+    },
+    "features": {
+      "oneClass": "1 class per week",
+      "twoClasses": "2 classes per week",
+      "unlimited": "Unlimited classes",
+      "equipment": "Equipment access",
+      "community": "Team integration",
+      "sparring": "Sparring sessions",
+      "competition": "Competition preparation",
+      "privateAccess": "Priority slot access"
+    }
+  },
+  "schedule": {
+    "label": "Schedule",
+    "title": "Classes",
+    "mma": "MMA",
+    "mmaAdvanced": "Advanced MMA",
+    "fitnessMma": "MMA Fitness",
+    "sparring": "Sparring",
+    "mmaCompetition": "MMA Competition",
+    "openSession": "Discovery Session",
+    "levels": {
+      "all": "All levels",
+      "advanced": "Advanced",
+      "competition": "Competition"
+    },
+    "days": {
+      "lundi": "Monday",
+      "mardi": "Tuesday",
+      "mercredi": "Wednesday",
+      "jeudi": "Thursday",
+      "vendredi": "Friday",
+      "samedi": "Saturday"
+    },
+    "download": "Download schedule"
+  },
+  "programs": {
+    "fondations": {
+      "title": "Foundations",
+      "profile": "Beginner · Fitness"
+    },
+    "combatReady": {
+      "title": "Combat Ready",
+      "profile": "MMA Practitioner · Intermediate"
+    },
+    "elite": {
+      "title": "Elite",
+      "profile": "Competitor · High level"
+    },
+    "features": {
+      "pdfProgram": "Week-by-week PDF program",
+      "nutritionGuide": "Nutrition guide",
+      "weeklyVideos": "Video explanations",
+      "supportGroup": "Private support group",
+      "weeklyCoachFeedback": "Weekly coach feedback",
+      "sparringProtocol": "Integrated sparring protocol",
+      "competitionPrep": "Fight preparation",
+      "privateSession": "1 private session with Duca"
+    }
+  },
+  "prepa": {
+    "label": "Strength & Conditioning",
+    "title": "Push your limits",
+    "subtitle": "Structured programs for every profile.",
+    "weeks": "{n} weeks",
+    "from": "Starting from",
+    "method": {
+      "label": "The method",
+      "text1": "Our strength & conditioning programs are designed for MMA practitioners — beginners and competitors alike. Every plan is structured week by week, with coach follow-up, explainer videos and an adapted nutrition protocol.",
+      "text2": "No generic copy-paste programs. Each plan matches a specific profile and concrete goals."
+    },
+    "highlights": {
+      "programs": "Programs",
+      "weeks": "Weeks",
+      "online": "Online"
+    },
+    "programsLabel": "The programs",
+    "cta": {
+      "title": "Start now",
+      "button": "Choose my program",
+      "anchor": "See programs ↓"
+    },
+    "faq": {
+      "label": "FAQ",
+      "q1": "Do I need to already practice MMA?",
+      "a1": "No. The Foundations program is specifically designed for beginners or people returning after a break. There are no technical prerequisites.",
+      "q2": "How does the coach follow-up work?",
+      "a2": "Depending on the program, follow-up is done via a private group (messages and questions) or with personalized weekly feedback. Everything is done remotely, online.",
+      "q3": "How long is a program?",
+      "a3": "Programs run between 8 and 16 weeks depending on the level. Each week is planned with detailed sessions, explainer videos and clear objectives.",
+      "q4": "Can I combine it with my MMA membership?",
+      "a4": "Yes, it's even recommended. The conditioning programs are designed to be compatible with 2 to 4 MMA training sessions per week."
+    }
+  },
+  "testimonials": {
+    "label": "They speak",
+    "title": "Real results",
+    "karim": {
+      "quote": "I started with no fighting experience. Within 6 months, I competed in my first tournament. Duca and his team's coaching is the real deal."
+    },
+    "sofia": {
+      "quote": "The only gym where I felt truly at home from day one. The level is high but everyone helps you progress."
+    },
+    "thomas": {
+      "quote": "Foundations program: 8 weeks to understand what I'd been doing wrong for years. Visible results, clear method."
+    },
+    "mehdi": {
+      "quote": "Combat Ready got me back to the level I had before my injury. The progression is calculated, nothing is left to chance."
+    }
+  },
+  "locationCage": {
+    "label": "Services",
+    "description": "Looking for a professional space for training, filming or an event? The Science DUCA cage is available for rental. Competition-approved surface, equipment included, coaching available.",
+    "features": [
+      "Competition-approved cage",
+      "Mats and boxing ring",
+      "Locker rooms and showers",
+      "Technical supervision available"
+    ],
+    "cta": "Request a quote"
+  },
+  "athletes": {
+    "label": "Competition",
+    "title": "Our athletes",
+    "proLabel": "Pro",
+    "amateurLabel": "Amateur",
+    "sports": {
+      "mma": "MMA",
+      "bjj": "Brazilian Jiu-Jitsu"
+    },
+    "record": "MMA Record",
+    "wins": "W",
+    "losses": "L",
+    "draws": "D",
+    "belt": "BJJ Belt",
+    "belts": {
+      "white": "White",
+      "blue": "Blue",
+      "purple": "Purple",
+      "brown": "Brown",
+      "black": "Black"
+    },
+    "palmares": "Achievements"
+  },
+  "joinus": {
+    "cta": "Join the club"
+  },
+  "sponsors": {
+    "label": "Partners"
+  },
+  "inscription": {
+    "step1": { "title": "What are you interested in?" },
+    "step2": { "title": "Choose your plan" },
+    "step3": { "title": "Your information" },
+    "services": {
+      "mma": {
+        "title": "MMA Membership",
+        "description": "Access to boxing, kickboxing, grappling and wrestling classes."
+      },
+      "prepa": {
+        "title": "Conditioning Program",
+        "description": "Structured program with coach support, delivered online."
+      },
+      "coaching": {
+        "title": "Private coaching",
+        "description": "Individual or small group sessions with a coach."
+      },
+      "cage": {
+        "title": "Cage rental",
+        "description": "Hourly cage rental for training or events."
+      }
+    },
+    "form": {
+      "firstname": "First name",
+      "lastname": "Last name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message (optional)",
+      "submit": "Send my request",
+      "sending": "Sending…",
+      "successTitle": "Request sent!",
+      "successText": "We'll get back to you within 48h."
+    }
+  },
+  "contact": {
+    "label": "Find us",
+    "labelAddress": "Address",
+    "labelHours": "Hours",
+    "address": "268 Avenue de la Capelette",
+    "addressDetail": "Building G, 1st floor",
+    "city": "13010 Marseille",
+    "phone": "To be provided",
+    "email": "contact{'@'}science-duca.fr",
+    "hours": "Monday – Saturday: see class schedule",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send"
+    }
+  },
+  "merci": {
+    "text": "We received your request. We'll get back to you within 48h.",
+    "cta": "Back to home"
+  },
+  "mentionsLegales": {
+    "label": "Legal",
+    "title": "Legal notice"
+  },
+  "politiqueConfidentialite": {
+    "label": "GDPR",
+    "title": "Privacy policy"
+  },
+  "footer": {
+    "tagline": "MMA club in Marseille since 2010.",
+    "links": "Quick links",
+    "legal": "Legal notice",
+    "privacy": "Privacy policy",
+    "rights": "All rights reserved."
+  }
+}

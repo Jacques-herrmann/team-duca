@@ -1,135 +1,146 @@
 <template>
   <footer class="footer">
-    <div class="footer__left">
-      <span class="footer__title">{{ footer?.data.titre }}</span>
-      <span class="footer__subtitle">{{ footer?.data.subtitle }}</span>
-    </div>
-    <div class="footer__right">
-      <prismic-rich-text class="footer__address" :field="footer?.data.address"></prismic-rich-text>
-      <div class="footer__socials">
-        <a :href="footer?.data.facebook" target="_blank">
-          <IconFacebook class="footer__icon"/>
-        </a>
-        <a :href="footer?.data.instagram" target="_blank">
-          <IconInstagram class="footer__icon"/>
-        </a>
+    <div class="footer__top">
+      <div class="footer__brand">
+        <span class="footer__logo">SCIENCE DUCA</span>
+        <p class="footer__tagline">{{ $t('footer.tagline') }}</p>
+      </div>
+
+      <div class="footer__links">
+        <span class="footer__links-title">{{ $t('footer.links') }}</span>
+        <nav>
+          <nuxt-link
+            v-for="item in regularItems"
+            :key="item.path"
+            class="footer__link"
+            :to="localePath(item.path)"
+          >
+            {{ $t(item.labelKey) }}
+          </nuxt-link>
+        </nav>
+      </div>
+
+      <div class="footer__contact">
+        <p class="footer__contact-line">{{ $t('contact.address') }}</p>
+        <p class="footer__contact-line">{{ $t('contact.addressDetail') }}</p>
+        <p class="footer__contact-line">{{ $t('contact.city') }}</p>
+        <p class="footer__contact-line footer__contact-line--accent">{{ $t('contact.email') }}</p>
+        <p class="footer__contact-line">{{ $t('contact.hours') }}</p>
       </div>
     </div>
-    <span class="footer__background">TEAM SCIENCE DUCA</span>
-    <a href="https://www.instagram.com/hrmt.dev/" target="_blank" class="footer__credit">Design & dévelopement -
-      HRMT</a>
+
+    <div class="footer__bottom">
+      <span>© {{ currentYear }} Science DUCA — {{ $t('footer.rights') }}</span>
+      <div class="footer__legal-links">
+        <nuxt-link :to="localePath('/mentions-legales')" class="footer__legal">{{ $t('footer.legal') }}</nuxt-link>
+        <span class="footer__legal-sep" aria-hidden="true">·</span>
+        <nuxt-link :to="localePath('/politique-confidentialite')" class="footer__legal">{{ $t('footer.privacy') }}</nuxt-link>
+      </div>
+    </div>
   </footer>
 </template>
-<script lang="ts" setup>
 
-const prismic = usePrismic();
-const route = useRoute();
-const locale = route.params.locale;
+<script setup lang="ts">
+import { navItems } from '~/data/navigation'
 
-const {data: footer} = await useAsyncData("footer", () => prismic.client.getSingle('footer'))
-
+const localePath = useLocalePath()
+const currentYear = new Date().getFullYear()
+const regularItems = computed(() => navItems.filter(i => !i.highlight))
 </script>
 
 <style scoped lang="sass">
-
 .footer
-  position: relative
-  height: 85vw
-  width: 100%
-  background-color: $black
+  background-color: $black-mid
+  border-top: 1px solid rgba($white, 0.06)
+
+// ─── Top ─────────────────────────────────────────────────────
+.footer__top
   display: flex
-  align-items: center
-  justify-content: space-between
   flex-direction: column
-  padding: 0 4rem
-  overflow: hidden
-  @include md
-    height: 20vw
+  gap: $spacing-lg
+  padding: $spacing-xl $spacing-md
+
+  @include lg
     flex-direction: row
+    justify-content: space-between
+    align-items: flex-start
+    padding: $spacing-xl 90px
 
-  &__left, &__right
-    display: flex
-    flex-direction: column
-    justify-content: center
-    text-align: center
-    @include md
-      text-align: left
+// ─── Brand ───────────────────────────────────────────────────
+.footer__logo
+  @include title(2rem)
+  color: $white
+  display: block
+  margin-bottom: 0.5rem
 
-  &__left
-    margin-bottom: 4rem
-    @include md
-      margin-bottom: 0
+.footer__tagline
+  @include text(0.85rem)
+  color: rgba($white, 0.4)
+  margin: 0
 
-  &__right
-    margin-bottom: 2rem
-    @include md
-      margin-bottom: 0
+// ─── Links ───────────────────────────────────────────────────
+.footer__links-title
+  @include stamp(0.7rem)
+  display: block
+  margin-bottom: $spacing-sm
 
-  &__title
-    @include h3()
-    font-weight: 900
-    letter-spacing: 0.1rem
-    color: $white
+.footer__links nav
+  display: flex
+  flex-direction: column
+  gap: 0.5rem
 
-  &__subtitle
-    @include text()
-    font-weight: 900
-    letter-spacing: 0.1rem
+.footer__link
+  @include text(0.85rem)
+  color: rgba($white, 0.5)
+  text-decoration: none
+  transition: color 0.2s ease
+
+  &:hover
     color: $red
 
-  &__address
-    @include text()
+// ─── Contact ─────────────────────────────────────────────────
+.footer__contact-line
+  @include text(0.85rem)
+  color: rgba($white, 0.5)
+  margin: 0 0 0.3rem
+
+  &--accent
+    color: rgba($white, 0.7)
+
+// ─── Bottom ──────────────────────────────────────────────────
+.footer__bottom
+  display: flex
+  flex-direction: column
+  align-items: center
+  gap: 0.5rem
+  padding: $spacing-sm $spacing-md
+  border-top: 1px solid rgba($white, 0.06)
+  text-align: center
+
+  @include lg
+    flex-direction: row
+    justify-content: space-between
+    padding: $spacing-sm 90px
+
+  span
+    @include text(0.75rem)
+    color: rgba($white, 0.3)
+
+.footer__legal-links
+  display: flex
+  align-items: center
+  gap: 0.75rem
+
+.footer__legal-sep
+  @include text(0.75rem)
+  color: rgba($white, 0.15)
+
+.footer__legal
+  @include text(0.75rem)
+  color: rgba($white, 0.3)
+  text-decoration: none
+  transition: color 0.2s ease
+
+  &:hover
     color: $white
-    text-align: center
-    @include md
-      text-align: right
-
-  &__socials
-    display: flex
-    align-items: center
-    justify-content: center
-    gap: 0.5rem
-    margin-top: 0.5rem
-    @include md
-      justify-content: flex-end
-
-  &__icon
-    width: 1.5rem
-    height: 1.5rem
-    fill: $white
-    cursor: pointer
-
-
-  &__text
-    color: $white
-    font-size: 14px
-    font-weight: bold
-
-  &__background
-    @include h1(32vw)
-    font-weight: 800
-    width: 200vw
-
-    text-align: center
-    word-break: keep-all
-    user-select: none
-    pointer-events: none
-    color: rgba(255, 255, 255, 0.01)
-    @include md
-      position: absolute
-      left: 50%
-      bottom: -50%
-      transform: translateX(-50%)
-
-  &__credit
-    @include text(0.6rem)
-    position: absolute
-    bottom: 0.6rem
-    left: 50%
-    transform: translateX(-50%)
-    text-align: center
-    text-transform: uppercase
-    text-decoration: underline
-    color: $white
-    opacity: 0.8
 </style>

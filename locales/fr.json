@@ -1,0 +1,314 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "schedule": "Horaires",
+    "programs": "Programmes",
+    "locationCage": "Location cage",
+    "contact": "Contact",
+    "join": "Rejoindre le club"
+  },
+  "cta": {
+    "join": "Rejoindre le club",
+    "discover": "Découvrir",
+    "seePrograms": "Voir les programmes",
+    "register": "S'inscrire",
+    "contact": "Nous contacter",
+    "learnMore": "En savoir plus"
+  },
+  "hero": {
+    "eyebrow": "Club MMA — Marseille",
+    "subtitle": "Un club. Une famille. Une façon de se battre.",
+    "ctaPrimary": "Rejoindre le club",
+    "ctaSecondary": "Voir les programmes"
+  },
+  "presentation": {
+    "label": "Le club",
+    "title": "Science DUCA",
+    "text": "La Team Science DUCA vous accueille dans une salle professionnelle au cœur de Marseille. Fondée il y a plus de 10 ans, notre équipe forme des athlètes de tous niveaux aux disciplines du MMA : boxe anglaise, kick-boxing, grappling et lutte. Que vous souhaitiez apprendre à vous défendre, préparer une compétition ou simplement améliorer votre condition physique — vous êtes à la bonne adresse."
+  },
+  "keyfacts": {
+    "years": "ans d'existence",
+    "disciplines": "disciplines",
+    "athletes": "athlètes formés"
+  },
+  "disciplines": {
+    "label": "Ce qu'on enseigne",
+    "title": "Les disciplines",
+    "items": {
+      "mma": {
+        "title": "MMA",
+        "description": "Mixed Martial Arts — la discipline complète qui combine toutes les techniques de combat debout et au sol."
+      },
+      "boxe": {
+        "title": "Boxe anglaise",
+        "description": "Technique de frappe poing, mobilité et défense. Tous niveaux, dès 16 ans."
+      },
+      "kickboxing": {
+        "title": "Kick-boxing",
+        "description": "Combinaisons pieds-poings, cardio intense. La base du MMA debout."
+      },
+      "grappling": {
+        "title": "Grappling",
+        "description": "Combat au sol sans frappe. Soumissions, positions de contrôle, transitions."
+      },
+      "lutte": {
+        "title": "Lutte",
+        "description": "Projections et travail de clinch. Indispensable pour contrôler l'espace de combat."
+      }
+    }
+  },
+  "coaches": {
+    "label": "L'équipe",
+    "title": "Nos coaches",
+    "badge": {
+      "head": "Head Coach",
+      "coach": "Coach"
+    },
+    "duca": {
+      "name": "Duca",
+      "role": "Fondateur · MMA · Boxe Anglaise"
+    },
+    "coach2": {
+      "name": "Prénom Nom",
+      "role": "Kick-Boxing · Grappling"
+    },
+    "coach3": {
+      "name": "Prénom Nom",
+      "role": "Lutte · Préparation physique"
+    }
+  },
+  "subscriptions": {
+    "label": "Tarifs",
+    "title": "Rejoins la team",
+    "decouverte": {
+      "title": "Découverte",
+      "description": "Pour commencer à ton rythme."
+    },
+    "standard": {
+      "title": "Standard",
+      "description": "La formule la plus populaire du club."
+    },
+    "illimite": {
+      "title": "Illimité",
+      "description": "Pour ceux qui veulent tout donner."
+    },
+    "features": {
+      "oneClass": "1 cours par semaine",
+      "twoClasses": "2 cours par semaine",
+      "unlimited": "Cours illimités",
+      "equipment": "Accès aux équipements",
+      "community": "Intégration à la team",
+      "sparring": "Sessions sparring",
+      "competition": "Préparation compétition",
+      "privateAccess": "Accès prioritaire aux créneaux"
+    }
+  },
+  "schedule": {
+    "label": "Programme",
+    "title": "Les cours",
+    "mma": "MMA",
+    "mmaAdvanced": "MMA Avancé",
+    "fitnessMma": "Fitness MMA",
+    "sparring": "Sparring",
+    "mmaCompetition": "MMA Compétition",
+    "openSession": "Séance Découverte",
+    "levels": {
+      "all": "Tous niveaux",
+      "advanced": "Avancé",
+      "competition": "Compétition"
+    },
+    "days": {
+      "lundi": "Lundi",
+      "mardi": "Mardi",
+      "mercredi": "Mercredi",
+      "jeudi": "Jeudi",
+      "vendredi": "Vendredi",
+      "samedi": "Samedi"
+    },
+    "download": "Télécharger le planning"
+  },
+  "programs": {
+    "fondations": {
+      "title": "Fondations",
+      "profile": "Débutant · Remise en forme"
+    },
+    "combatReady": {
+      "title": "Combat Ready",
+      "profile": "Pratiquant MMA · Intermédiaire"
+    },
+    "elite": {
+      "title": "Elite",
+      "profile": "Compétiteur · Haut niveau"
+    },
+    "features": {
+      "pdfProgram": "Programme PDF semaine par semaine",
+      "nutritionGuide": "Guide nutrition",
+      "weeklyVideos": "Vidéos explicatives",
+      "supportGroup": "Groupe de suivi privé",
+      "weeklyCoachFeedback": "Retour coach hebdomadaire",
+      "sparringProtocol": "Protocole sparring intégré",
+      "competitionPrep": "Préparation combat",
+      "privateSession": "1 séance privée avec Duca"
+    }
+  },
+  "prepa": {
+    "label": "Préparation physique",
+    "title": "Dépasse tes limites",
+    "subtitle": "Des programmes structurés pour tous les profils.",
+    "weeks": "{n} semaines",
+    "from": "À partir de",
+    "method": {
+      "label": "La méthode",
+      "text1": "Nos programmes de préparation physique sont conçus pour les pratiquants de MMA — débutants comme compétiteurs. Chaque plan est structuré semaine par semaine, avec un suivi coach, des vidéos explicatives et un protocole nutrition adapté.",
+      "text2": "Pas de programme générique copié-collé. Chaque formule correspond à un profil précis et à des objectifs concrets."
+    },
+    "highlights": {
+      "programs": "Programmes",
+      "weeks": "Semaines",
+      "online": "En ligne"
+    },
+    "programsLabel": "Les programmes",
+    "cta": {
+      "title": "Commencer maintenant",
+      "button": "Choisir mon programme",
+      "anchor": "Voir les programmes ↓"
+    },
+    "faq": {
+      "label": "FAQ",
+      "q1": "Est-ce que je dois déjà pratiquer le MMA ?",
+      "a1": "Non. Le programme Fondations est spécialement conçu pour les débutants ou les personnes qui reviennent après une pause. Il n'y a pas de prérequis techniques.",
+      "q2": "Comment se déroule le suivi coach ?",
+      "a2": "Selon le programme choisi, le suivi se fait via un groupe privé (message et questions) ou avec des retours hebdomadaires personnalisés. Tout se fait à distance, en ligne.",
+      "q3": "Quelle est la durée d'un programme ?",
+      "a3": "Les programmes durent entre 8 et 16 semaines selon le niveau. Chaque semaine est planifiée avec des séances détaillées, des vidéos explicatives et des objectifs clairs.",
+      "q4": "Est-ce que je peux combiner avec mon abonnement MMA ?",
+      "a4": "Oui, c'est même recommandé. Les programmes de prépa sont conçus pour être compatibles avec 2 à 4 entraînements MMA par semaine."
+    }
+  },
+  "testimonials": {
+    "label": "Ils témoignent",
+    "title": "Résultats réels",
+    "karim": {
+      "quote": "J'ai commencé sans aucune expérience de combat. En 6 mois, j'ai participé à mon premier tournoi. L'encadrement de Duca et de son équipe, c'est du sérieux."
+    },
+    "sofia": {
+      "quote": "La seule salle où je me suis sentie vraiment à ma place dès le premier jour. Le niveau est élevé mais tout le monde t'aide à progresser."
+    },
+    "thomas": {
+      "quote": "Programme Fondations : 8 semaines pour comprendre ce que je faisais mal depuis des années. Résultat visible, méthode claire."
+    },
+    "mehdi": {
+      "quote": "Combat Ready m'a remis dans le niveau que j'avais avant ma blessure. La progression est calculée, rien n'est laissé au hasard."
+    }
+  },
+  "locationCage": {
+    "label": "Services",
+    "description": "Vous cherchez un espace professionnel pour votre entraînement, un tournage ou un événement ? La cage Science DUCA est disponible à la location. Surface homologuée, équipements inclus, accompagnement possible.",
+    "features": [
+      "Cage homologuée compétition",
+      "Tatamis et ring de boxe",
+      "Vestiaires et douches",
+      "Possibilité d'encadrement technique"
+    ],
+    "cta": "Demander un devis"
+  },
+  "athletes": {
+    "label": "Compétition",
+    "title": "Nos athlètes",
+    "proLabel": "Pro",
+    "amateurLabel": "Amateur",
+    "sports": {
+      "mma": "MMA",
+      "bjj": "Jiu-Jitsu Brésilien"
+    },
+    "record": "Bilan MMA",
+    "wins": "V",
+    "losses": "D",
+    "draws": "N",
+    "belt": "Ceinture BJJ",
+    "belts": {
+      "white": "Blanche",
+      "blue": "Bleue",
+      "purple": "Violette",
+      "brown": "Marron",
+      "black": "Noire"
+    },
+    "palmares": "Palmarès"
+  },
+  "joinus": {
+    "cta": "Rejoindre le club"
+  },
+  "sponsors": {
+    "label": "Partenaires"
+  },
+  "inscription": {
+    "step1": { "title": "Quel service t'intéresse ?" },
+    "step2": { "title": "Choisis ta formule" },
+    "step3": { "title": "Tes informations" },
+    "services": {
+      "mma": {
+        "title": "Abonnement MMA",
+        "description": "Accès aux cours de boxe, kick-boxing, grappling et lutte."
+      },
+      "prepa": {
+        "title": "Programme Prépa physique",
+        "description": "Programme structuré avec suivi coach, livré en ligne."
+      },
+      "coaching": {
+        "title": "Cours particuliers",
+        "description": "Séances individuelles ou en petit groupe avec un coach."
+      },
+      "cage": {
+        "title": "Location cage",
+        "description": "Location de la cage à l'heure pour entraînements ou événements."
+      }
+    },
+    "form": {
+      "firstname": "Prénom",
+      "lastname": "Nom",
+      "email": "Email",
+      "phone": "Téléphone",
+      "message": "Message (optionnel)",
+      "submit": "Envoyer ma demande",
+      "sending": "Envoi en cours…",
+      "successTitle": "Demande envoyée !",
+      "successText": "On te recontacte sous 48h."
+    }
+  },
+  "contact": {
+    "label": "Nous trouver",
+    "labelAddress": "Adresse",
+    "labelHours": "Horaires",
+    "address": "268 Avenue de la Capelette",
+    "addressDetail": "Bâtiment G, 1er étage",
+    "city": "13010 Marseille",
+    "phone": "À renseigner",
+    "email": "contact{'@'}science-duca.fr",
+    "hours": "Lundi – Samedi : selon le planning des cours",
+    "form": {
+      "name": "Nom",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Envoyer"
+    }
+  },
+  "merci": {
+    "text": "On a bien reçu ta demande. On te recontacte sous 48h.",
+    "cta": "Retour à l'accueil"
+  },
+  "mentionsLegales": {
+    "label": "Légal",
+    "title": "Mentions légales"
+  },
+  "politiqueConfidentialite": {
+    "label": "RGPD",
+    "title": "Politique de confidentialité"
+  },
+  "footer": {
+    "tagline": "Club de MMA à Marseille depuis 2010.",
+    "links": "Liens rapides",
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "rights": "Tous droits réservés."
+  }
+}

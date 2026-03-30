@@ -1,108 +1,66 @@
 <template>
-  <div class="sponsors" ref="root">
-    <h2 class="sponsors__title">
-      <span class="sponsors__title--letter" v-for="l in block.primary.title">{{ l }}</span>
-    </h2>
-    <div class="sponsors__list">
-      <div class="sponsors__item" v-for="item in block.items">
-        <img :src="item.logo.url" :alt="item.logo.alt"/>
-      </div>
+  <section class="sponsors">
+    <GraphicDivider ornament="diamond" color="white" class="sponsors__divider" />
+    <span class="section__label sponsors__label">{{ $t('sponsors.label') }}</span>
+    <div class="sponsors__logos">
+      <a
+        v-for="sponsor in sponsors"
+        :key="sponsor.id"
+        :href="sponsor.url || '#'"
+        class="sponsors__logo-wrap"
+        :aria-label="sponsor.name"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img :src="sponsor.logo" :alt="sponsor.logoAlt" class="sponsors__logo" />
+      </a>
     </div>
-    <CTA class="sponsors__cta" :url="block.primary.cta_link" :text="block.primary.cta_text" :is-nuxt-link="true"/>
-  </div>
+  </section>
 </template>
-<script lang="ts" setup>
-import {defineProps} from 'vue'
-import gsap from "gsap";
-import A from "assets/animations";
-import Timeline = gsap.core.Timeline;
 
-const props = defineProps<{
-  block: any
-}>()
-
-const root = ref<HTMLElement | null>(null)
-const intersect = useIntersect(root, {
-  threshold: 0.4,
-  rootMargin: '100px 0px 0px 0px',
-  onReveal: () => {
-    draw()
-  },
-})
-let tl = <Timeline | null>null
-
-const draw = () => {
-  tl?.play()
-}
-
-onMounted(() => {
-  tl = gsap.timeline({paused: true})
-  tl.from(root.value?.querySelectorAll('.sponsors__title--letter') as NodeListOf<HTMLElement>, A.title, 0)
-
-  let elements = root.value?.querySelectorAll('.sponsors__item,.sponsors__cta') as NodeListOf<HTMLElement>
-  tl.from(elements, {
-    opacity: 0,
-    duration: 0.6,
-    stagger: 0.1,
-    ease: 'power3.out',
-  }, 0.4)
-
-})
-
+<script setup lang="ts">
+import { sponsors } from '~/data/sponsors'
 </script>
+
 <style scoped lang="sass">
 .sponsors
-  position: relative
-  width: 100%
-  padding-top: 10rem
+  background-color: $black-mid
+  border-top: 1px solid rgba($white, 0.06)
+  padding: $spacing-lg $spacing-md
 
-  &__title
-    @include h1(14vw)
-    font-weight: 900
-    letter-spacing: 0.1rem
-    width: 100%
-    text-align: center
-    color: $white
-    margin-bottom: 6rem
-    overflow: hidden
+  @include lg
+    padding: $spacing-xl 90px
 
-    & span
-      display: inline-block
-      white-space: pre
-      will-change: transform
+.sponsors__divider
+  margin-bottom: $spacing-lg
 
-    @include lg
-      @include h1()
-      margin-bottom: 10rem
+.sponsors__label
+  display: block
+  text-align: center
+  margin-bottom: $spacing-md
 
-  &__list
-    width: 100%
-    display: flex
-    align-items: center
-    justify-content: center
-    flex-direction: column
-    gap: 100px
-    @include md
-      flex-direction: row
-      gap: 40px
+.sponsors__logos
+  display: flex
+  flex-wrap: wrap
+  justify-content: center
+  align-items: center
+  gap: $spacing-lg
 
-  &__item
-    height: 60px
-    max-width: 300px
-    margin: 0 1rem
+.sponsors__logo-wrap
+  display: flex
+  align-items: center
+  justify-content: center
+  opacity: 0.45
+  filter: grayscale(100%)
+  transition: opacity 0.2s ease, filter 0.2s ease
 
-    @include lg
-      height: 80px
+  &:hover
+    opacity: 1
+    filter: grayscale(0%)
 
-    img
-      height: 100%
-      object-fit: contain
-      object-position: center
-
-  &__cta
-    position: relative
-    left: 50%
-    transform: translateX(-50%)
-    margin: 8rem 0
-
+.sponsors__logo
+  max-height: 60px
+  max-width: 180px
+  width: auto
+  object-fit: contain
 </style>

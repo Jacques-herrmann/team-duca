@@ -5,6 +5,7 @@ body
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
 
+
 html
   height: 100%
   overflow-y: scroll
@@ -15,9 +16,13 @@ html
 body, html
   width: 100vw
   margin: 0
+  padding: 0
 
-  -ms-overflow-style: none  /* IE and Edge */
-  scrollbar-width: none  /* Firefox */
+  -ms-overflow-style: none
+  /* IE and Edge */
+  scrollbar-width: none
+  /* Firefox */
+
 
   & ::-webkit-scrollbar
     display: none
@@ -30,6 +35,96 @@ img
 a
   color: inherit
   text-decoration: none
+
+// ─── Utilitaires typographiques globaux ─────────────────────
+// Utilisé dans toutes les sections comme eyebrow label
+.section__label
+  @include stamp(0.7rem)
+  display: block
+  margin-bottom: 1.2rem
+
+// Titre de section h2 display
+.section__title
+  @include title(clamp(2.5rem, 6vw, 6rem))
+  color: $white
+  margin: 0 0 $spacing-md
+  line-height: 0.9
+
+// ─── Système de boutons global ───────────────────────────────
+// 4 variants canoniques — ne pas redéfinir dans les composants
+//
+//  .btn-primary   — red bg, white text       (CTA principal)
+//  .btn-outline   — transparent, white border (CTA secondaire)
+//  .btn-ghost-red — transparent, red border   (plan non mis en avant)
+//  .btn-inverse   — white bg, black text      (sur fond $red)
+//
+//  Modificateur de taille :
+//  .btn--lg       — hero / CTA section pleine largeur
+
+.btn-primary,
+.btn-outline,
+.btn-ghost-red,
+.btn-inverse
+  @include stamp(0.7rem)
+  display: inline-block
+  padding: 0.85rem 2rem
+  text-decoration: none
+  text-align: center
+  cursor: pointer
+  border: 1px solid transparent
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease
+
+  &.btn--lg
+    @include stamp(0.75rem)
+    padding: 0.95rem 2.5rem
+
+.btn-primary
+  background-color: $red
+  color: $white
+
+  &:hover
+    background-color: darken($red, 8%)
+
+.btn-outline
+  background-color: transparent
+  color: rgba($white, 0.7)
+  border-color: rgba($white, 0.35)
+
+  &:hover
+    color: $white
+    border-color: $white
+
+.btn-ghost-red
+  background-color: transparent
+  color: $red
+  border-color: rgba($red, 0.4)
+
+  &:hover
+    background-color: $red
+    color: $white
+    border-color: $red
+
+.btn-inverse
+  background-color: $white
+  color: $black
+  border-color: $white
+
+  &:hover
+    background-color: $black
+    color: $white
+
+// ─── Utilitaires couleurs ────────────────────────────────────
+.text-red
+  color: $red
+
+.text-white
+  color: $white
+
+.text-black
+  color: $black
+
+.text-gold
+  color: $gold
 
 //#nuxt-devtools-container
 //  display: none

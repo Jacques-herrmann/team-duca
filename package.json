@@ -1,46 +1,29 @@
 {
-  "name": "nuxt-app",
+  "name": "science-duca",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --host",
+    "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "slicemachine": "start-slicemachine"
-  },
-  "devDependencies": {
-    "@nuxt/devtools": "latest",
-    "@nuxt/image": "^1.6.0",
-    "@nuxtjs/google-fonts": "^3.0.2",
-    "@nuxtjs/prismic": "^3.0.3",
-    "@nuxtjs/seo": "^2.0.0-rc.8",
-    "@slicemachine/adapter-nuxt": "^0.3.18",
-    "nuxt": "^3.7.4",
-    "slice-machine-ui": "^1.15.0",
-    "vue": "^3.3.4",
-    "vue-router": "^4.2.5"
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@pinia/nuxt": "^0.5.1",
-    "@splidejs/splide": "^4.1.4",
-    "@splidejs/vue-splide": "^0.6.12",
-    "@vueuse/core": "^10.4.1",
-    "@vueuse/nuxt": "^10.4.1",
-    "eventemitter2": "^6.4.9",
-    "gsap": "^3.12.2",
-    "jspdf": "^2.5.1",
-    "nuxt-booster": "^3.0.15",
-    "ogl": "^1.0.1",
-    "pinia": "^2.1.7",
-    "sass": "^1.68.0",
-    "sass-loader": "^13.3.2",
-    "slicemachine": "^0.0.1",
-    "stats.js": "^0.17.0",
-    "three": "^0.163.0",
-    "tweakpane": "^4.0.3",
-    "virtual-scroll": "^2.2.1",
-    "vue-recaptcha-v3": "^2.0.1"
+    "@nuxt/image": "latest",
+    "@nuxtjs/google-fonts": "latest",
+    "@nuxtjs/i18n": "latest",
+    "@pinia/nuxt": "latest",
+    "@vueuse/nuxt": "latest",
+    "gsap": "latest",
+    "lenis": "latest",
+    "nuxt": "latest",
+    "pinia": "latest",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "devDependencies": {
+    "sass": "latest",
+    "typescript": "latest"
   }
 }

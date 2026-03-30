@@ -1,7 +1,102 @@
+// ─── Couleurs ───────────────────────────────────────────────
 $black: #171717
+$black-mid: #242424
+$black-light: #2e2e2e
 $white: #f9f9f9
 $red: #E72640
+$gold: #C9A84C
 
+// ─── Opacités texte (4 niveaux sémantiques) ─────────────────
+$text-primary:   rgba($white, 1)     // titres, labels actifs
+$text-secondary: rgba($white, 0.7)   // corps de texte courant
+$text-muted:     rgba($white, 0.45)  // métadata, sous-labels
+$text-disabled:  rgba($white, 0.2)   // placeholders, désactivé
+
+// ─── Opacités borders (2 niveaux) ───────────────────────────
+$border-subtle:  rgba($white, 0.07)  // séparateurs, grilles
+$border-visible: rgba($white, 0.14)  // inputs, filtres, cards
+
+// ─── Gradients ──────────────────────────────────────────────
 $gradient: linear-gradient(180deg, rgba(23, 23, 23, 1) 0%, rgba(23, 23, 23, 0.7) 45%, rgba(23, 23, 23, 0) 100%)
+$gradient-full: linear-gradient(180deg, rgba(23, 23, 23, 0.95) 0%, rgba(23, 23, 23, 0.6) 100%)
+$gradient-hero: linear-gradient(180deg, rgba(23, 23, 23, 0.3) 0%, rgba(23, 23, 23, 0.95) 80%)
+$gradient-divider: linear-gradient(to right, transparent, rgba(249, 249, 249, 0.2), transparent)
 
-$header-height: 60px
+// ─── Familles de polices ─────────────────────────────────────
+$font-display: "Dharma Gothic E", "Bebas Neue", Impact, sans-serif
+$font-sub:     "Barlow Condensed", sans-serif
+$font-body:    "Barlow", sans-serif
+
+// ─── Échelle typographique ───────────────────────────────────
+$font-size-hero: clamp(5rem, 20vw, 20rem)
+$font-size-h1:   clamp(2.5rem, 7vw, 7rem)
+$font-size-h2:   clamp(2rem, 5vw, 4rem)
+$font-size-h3:   clamp(1.8rem, 2.5vw, 3rem)
+$font-size-sub:  2.4rem
+$font-size-cta:  1.8rem
+$font-size-body: 1rem
+$font-size-caption: 1rem
+$font-size-stamp:   0.85rem
+$font-size-label:   0.7rem   // .section__label / boutons
+
+// ─── Line-heights ────────────────────────────────────────────
+$lh-hero:    0.88
+$lh-display: 1
+$lh-sub:     1
+$lh-body:    1.75
+$lh-caption: 1.3
+
+// ─── Letter-spacings ────────────────────────────────────────
+$ls-display:  0.04em
+$ls-sub:      0.08em
+$ls-caption:  0.1em
+$ls-stamp:    0.35em
+$ls-badge:    0.2em
+$ls-cta:      0.1em
+
+// ─── Fluid font-size de base ─────────────────────────────────
+$font-size-desktop: calc(18 / 1440 * 100vw)
+$font-size-mobile:  calc(18 / 1440 * 100vw)
+$font-size-min:     14px
+$font-size-max:     20px
+
+// ─── Layout ─────────────────────────────────────────────────
+$header-height:    60px
+$container-width:  1200px
+$container-pad-x:  3rem
+$container-pad-x-mobile: 1.5rem
+
+// ─── Espacement ─────────────────────────────────────────────
+$spacing-xs:  0.5rem
+$spacing-sm:  1rem
+$spacing-md:  2rem
+$spacing-lg:  4rem
+$spacing-xl:  8rem
+$spacing-xxl: 12rem
+$section-padding: 8rem 0
+
+// ─── Border-radius ──────────────────────────────────────────
+$radius-badge:  2px    // badge/tampon rectangle
+$radius-btn:    0px    // boutons — pas de radius (esthétique affiche)
+$radius-card:   0px    // cards — idem
+$radius-circle: 999px  // badge round / pill
+
+// ─── Transitions ────────────────────────────────────────────
+$transition-fast:   0.15s ease
+$transition-base:   0.2s ease
+$transition-medium: 0.35s ease
+$transition-slow:   0.6s ease
+
+// ─── Z-index ────────────────────────────────────────────────
+$z-base:    1
+$z-raised:  10
+$z-noise:   100
+$z-overlay: 150
+$z-header:  200
+$z-modal:   300
+$z-tooltip: 400
+
+// ─── Effets ─────────────────────────────────────────────────
+$grain-opacity:     0.04
+$grain-size:        200px
+$text-stroke-width: 1px  // outline text-stroke — ne pas dépasser 1px

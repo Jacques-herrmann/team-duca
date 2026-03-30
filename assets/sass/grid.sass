@@ -1,2 +1,20 @@
-$grid-margin: 90px
-$grid-columns: 6
+$grid-margin:        90px        // padding horizontal desktop
+$grid-margin-mobile: $spacing-md  // padding horizontal mobile (2rem)
+$grid-columns:       6
+
+// ─── Padding horizontal de section ──────────────────────────
+// Usage : @include px — remplace les 90px hardcodés partout
+@mixin px
+  padding-left:  $grid-margin-mobile
+  padding-right: $grid-margin-mobile
+  @include lg
+    padding-left:  $grid-margin
+    padding-right: $grid-margin
+
+// ─── Padding de section complet ─────────────────────────────
+// section-pad($top-mob, $bot-mob, $top-desk, $bot-desk)
+// Valeurs par défaut : xl/xl mobile → xxl/xxl desktop
+@mixin section-pad($top-mob: $spacing-xl, $bot-mob: $spacing-xl, $top-desk: $spacing-xxl, $bot-desk: $spacing-xxl)
+  padding: $top-mob $grid-margin-mobile $bot-mob
+  @include lg
+    padding: $top-desk $grid-margin $bot-desk
