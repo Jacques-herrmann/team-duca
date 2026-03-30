@@ -1,52 +1,51 @@
 <template>
   <header class="header">
     <nuxt-link :to="localePath('/')" class="header__logo">
-      <span>SCIENCE</span>
-      <span>DUCA</span>
+      <span>SCIENCE DUCA</span>
     </nuxt-link>
 
     <nav class="header__nav" :class="{ 'header__nav--open': menuOpen }">
       <nuxt-link
-        v-for="item in regularItems"
-        :key="item.path"
-        class="header__nav-link"
-        :to="localePath(item.path)"
-        @click="menuOpen = false"
+          v-for="item in regularItems"
+          :key="item.path"
+          class="header__nav-link"
+          :to="localePath(item.path)"
+          @click="menuOpen = false"
       >
         {{ $t(item.labelKey) }}
       </nuxt-link>
-      <LanguageSwitcher class="header__lang-mobile" />
+      <LanguageSwitcher class="header__lang-mobile"/>
     </nav>
 
     <div class="header__right">
-      <LanguageSwitcher class="header__lang-desktop" />
+      <LanguageSwitcher class="header__lang-desktop"/>
       <nuxt-link
-        v-if="ctaItem"
-        :to="localePath(ctaItem.path)"
-        class="header__cta"
+          v-if="ctaItem"
+          :to="localePath(ctaItem.path)"
+          class="header__cta"
       >
         {{ $t(ctaItem.labelKey) }}
       </nuxt-link>
       <button
-        class="header__burger"
-        :class="{ 'header__burger--open': menuOpen }"
-        :aria-label="menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'"
-        @click="menuOpen = !menuOpen"
+          class="header__burger"
+          :class="{ 'header__burger--open': menuOpen }"
+          :aria-label="menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'"
+          @click="menuOpen = !menuOpen"
       >
-        <span /><span /><span />
+        <span/><span/><span/>
       </button>
     </div>
 
     <div
-      v-if="menuOpen"
-      class="header__overlay"
-      @click="menuOpen = false"
+        v-if="menuOpen"
+        class="header__overlay"
+        @click="menuOpen = false"
     />
   </header>
 </template>
 
 <script setup lang="ts">
-import { navItems } from '~/data/navigation'
+import {navItems} from '~/data/navigation'
 
 const localePath = useLocalePath()
 const menuOpen = ref(false)
@@ -184,8 +183,10 @@ const ctaItem = computed(() => navItems.find(i => i.highlight))
   &--open
     span:nth-child(1)
       transform: translateY(6.5px) rotate(45deg)
+
     span:nth-child(2)
       opacity: 0
+
     span:nth-child(3)
       transform: translateY(-6.5px) rotate(-45deg)
 

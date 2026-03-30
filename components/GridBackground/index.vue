@@ -7,8 +7,7 @@
 </template>
 <script lang="ts" setup>
 
-import {useIndexStore} from "~/stores";
-import {computed} from "vue";
+import {useAppStore} from "~/stores/app";
 
 const props = defineProps({
   columns: {
@@ -21,7 +20,7 @@ const props = defineProps({
   }
 })
 
-const store = useIndexStore()
+const store = useAppStore()
 const isMobile = computed(() => store.isMobile)
 
 const m = computed(() => {
@@ -32,11 +31,11 @@ const m = computed(() => {
 <style scoped lang="sass">
 
 .grid-background
-  position: absolute
+  position: fixed
   top: 0
   left: 0
   z-index: -1
-  height: 100%
+  height: 100vh
   width: 100%
   background-color: $black
   padding: 0 v-bind(m)
@@ -60,7 +59,7 @@ const m = computed(() => {
     height: 160px
     width: 100%
     z-index: 1
-    background: linear-gradient(180deg, rgba(23, 23, 23, 1) 50%, rgba(0,0,0,0) 100%)
+    background: linear-gradient(180deg, rgba(23, 23, 23, 1) 50%, rgba(0, 0, 0, 0) 100%)
 
   &__f
     position: absolute
@@ -69,6 +68,6 @@ const m = computed(() => {
     height: 140px
     width: 100%
     z-index: 1
-    background: linear-gradient(0deg, rgba(23, 23, 23, 1) 50%, rgba(0,0,0,0) 100%)
+    background: linear-gradient(0deg, rgba(23, 23, 23, 1) 50%, rgba(0, 0, 0, 0) 100%)
 
 </style>

@@ -2,14 +2,15 @@
   <section class="section presentation">
     <div class="presentation__inner">
       <div class="presentation__text-col">
-        <AppSectionHeader :label="$t('presentation.label')" :title="$t('presentation.title')" />
+        <AppSectionHeader :label="$t('presentation.label')" :title="$t('presentation.title')"/>
         <p class="presentation__text">{{ $t('presentation.text') }}</p>
       </div>
       <div class="presentation__facts">
         <div
-          v-for="fact in keyfacts"
-          :key="fact.labelKey"
-          class="keyfact"
+            v-for="fact in keyfacts"
+            :key="fact.labelKey"
+            class="keyfact"
+            :data-value="fact.value"
         >
           <span class="keyfact__value">{{ fact.value }}</span>
           <span class="keyfact__label">{{ $t(fact.labelKey) }}</span>
@@ -20,12 +21,12 @@
 </template>
 
 <script setup lang="ts">
-import { keyfacts } from '~/data/keyfacts'
+import {keyfacts} from '~/data/keyfacts'
 </script>
 
 <style scoped lang="sass">
 .presentation
-  background-color: $black
+  background-color: transparent
 
 .presentation__inner
   @include section-pad
@@ -61,11 +62,13 @@ import { keyfacts } from '~/data/keyfacts'
     justify-content: center
 
 .keyfact
+  position: relative
   display: flex
   flex-direction: column
   gap: 0.3rem
   padding-bottom: $spacing-md
   border-bottom: 1px solid rgba($white, 0.08)
+  overflow: hidden
 
   &:last-child
     border-bottom: none
@@ -75,8 +78,12 @@ import { keyfacts } from '~/data/keyfacts'
   @include h2(clamp(2.5rem, 5vw, 5rem))
   color: $red
   line-height: 1
+  position: relative
+  z-index: 1
 
 .keyfact__label
   @include caption(0.8rem)
   color: rgba($white, 0.5)
+  position: relative
+  z-index: 1
 </style>

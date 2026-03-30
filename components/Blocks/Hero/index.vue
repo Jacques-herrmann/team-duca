@@ -2,15 +2,14 @@
   <section class="hero">
     <div class="hero__bg">
       <AppImage
-        src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?w=1600&h=900&fit=crop&q=80"
-        alt="Salle d'entraînement Science DUCA — cage MMA, sacs de frappe, éclairage dramatique sombre, ambiance club professionnel Marseille"
+          src="/images/hero/index.png"
+          alt="Salle d'entraînement Science DUCA — cage MMA, sacs de frappe, éclairage dramatique sombre, ambiance club professionnel Marseille"
       />
     </div>
     <div class="hero__content">
       <span class="hero__eyebrow">{{ $t('hero.eyebrow') }}</span>
       <h1 class="hero__title">
         SCIENCE<br>DUCA<br>
-        <span class="hero__title-outline">MMA</span>
       </h1>
       <p class="hero__subtitle">{{ $t('hero.subtitle') }}</p>
       <div class="hero__ctas">
@@ -32,7 +31,7 @@ const localePath = useLocalePath()
 <style scoped lang="sass">
 .hero
   position: relative
-  min-height: calc(100svh - $header-height)
+  min-height: 100svh
   display: flex
   align-items: flex-end
   overflow: hidden
@@ -67,11 +66,12 @@ const localePath = useLocalePath()
 .hero__title
   @include title(clamp(4rem, 12vw, 8rem))
   line-height: 0.88
+  font-weight: 900
   color: $white
   margin: 0 0 $spacing-md
 
   @include lg
-    font-size: clamp(5rem, 20vw, 20rem)
+    font-size: clamp(5rem, 20vw, 10rem)
 
 .hero__title-outline
   -webkit-text-stroke: 1px $white

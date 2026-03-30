@@ -36,7 +36,9 @@
       "Bash(for file:*)",
       "Bash(do grep:*)",
       "Read(//c/Users/jhn12/Desktop/Perso/team-duca/**)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(node -e \"require\\(''C:/Users/jhn12/Desktop/Perso/team-duca/node_modules/@rolldown/binding-win32-x64-msvc/rolldown-binding.win32-x64-msvc.node''\\)\")",
+      "Bash(node:*)"
     ]
   }
 }

@@ -1,17 +1,17 @@
 <template>
   <section class="section schedule" id="schedule">
     <div class="schedule__header">
-      <AppSectionHeader :label="$t('schedule.label')" :title="$t('schedule.title')" />
+      <AppSectionHeader :label="$t('schedule.label')" :title="$t('schedule.title')"/>
     </div>
 
     <!-- Mobile: day tabs -->
     <div class="schedule__tabs">
       <button
-        v-for="day in days"
-        :key="day"
-        class="schedule__tab"
-        :class="{ 'schedule__tab--active': activeDay === day }"
-        @click="activeDay = day"
+          v-for="day in days"
+          :key="day"
+          class="schedule__tab"
+          :class="{ 'schedule__tab--active': activeDay === day }"
+          @click="activeDay = day"
       >
         {{ $t(`schedule.days.${day}`) }}
       </button>
@@ -20,18 +20,18 @@
     <!-- Desktop: all columns / Mobile: active day only -->
     <div class="schedule__grid">
       <div
-        v-for="day in days"
-        :key="day"
-        class="schedule__day"
-        :class="{ 'schedule__day--hidden': activeDay !== day }"
+          v-for="day in days"
+          :key="day"
+          class="schedule__day"
+          :class="{ 'schedule__day--hidden': activeDay !== day }"
       >
         <span class="schedule__day-label">{{ $t(`schedule.days.${day}`) }}</span>
         <div class="schedule__slots">
           <div
-            v-for="slot in scheduleByDay[day] || []"
-            :key="slot.id"
-            class="schedule-slot"
-            :class="`schedule-slot--${slot.level}`"
+              v-for="slot in scheduleByDay[day] || []"
+              :key="slot.id"
+              class="schedule-slot"
+              :class="`schedule-slot--${slot.level}`"
           >
             <span class="schedule-slot__time">{{ slot.time }}</span>
             <span class="schedule-slot__title">{{ $t(slot.titleKey) }}</span>
@@ -54,7 +54,7 @@
 </template>
 
 <script setup lang="ts">
-import { schedule, type Day } from '~/data/schedule'
+import {type Day, schedule} from '~/data/schedule'
 
 const days: Day[] = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
 const activeDay = ref<Day>('lundi')
@@ -115,7 +115,7 @@ const scheduleByDay = computed(() => {
     display: grid
     grid-template-columns: repeat(6, 1fr)
     gap: 1px
-    background-color: rgba($white, 0.06)
+    //background-color: rgba($white, 0.06)
 
 // ─── Day column ──────────────────────────────────────────────
 // Mobile : seul le jour actif est visible (pas de classe --hidden)
@@ -124,13 +124,16 @@ const scheduleByDay = computed(() => {
 .schedule__day
   background-color: $black
   flex-direction: column
-  display: none   // caché par défaut (jours inactifs mobile)
+  display: none
+  // caché par défaut (jours inactifs mobile)
 
   &:not(.schedule__day--hidden)
-    display: flex  // jour actif sur mobile
+    display: flex
+  // jour actif sur mobile
 
   @include lg
-    display: flex  // tous les jours sur desktop
+    display: flex
+// tous les jours sur desktop
 
 .schedule__day-label
   @include caption(0.7rem)

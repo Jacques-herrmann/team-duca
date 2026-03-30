@@ -1,0 +1,36 @@
+Hero
+-> Effet webgl a remettre, remplacer la photo pour pas avoir les grid dessus
+
+Presentation + Disciplines + Abonnement + Prepa physique
+-> Rien de spécial à faire mais la DA est pas folle
+
+Nos coachs
+-> remplacer les assets + mettre "Head coach" en rouge
+
+Nos Atheltes
+-> prend trop d'importance dans la page, réduire en supprimant le palmares, mettre un carousel si plus
+de profils, idem amateurs
+
+Calendrier
+-> Mettre tout les horaire + un systeme de couleur par discipline
+
+
+General
+-> Utilise les badge et decoration de la DA
+
+// Page prepa physique
+
+-> Découpe et/ou réutilmisation des composants
+-> titre FAQ et Méthode
+-> animations
+
+// Page locaiton cage
+-> fix des features list
+
+Footer
+-> ajouter les réseaux sociaux
+-> améliorer la DA
+
+// Inscription
+-> manque un titre
+-> gestion des formulaires

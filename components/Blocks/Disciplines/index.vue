@@ -1,13 +1,13 @@
 <template>
   <section class="section disciplines">
     <div class="disciplines__header">
-      <AppSectionHeader :label="$t('disciplines.label')" :title="$t('disciplines.title')" />
+      <AppSectionHeader :label="$t('disciplines.label')" :title="$t('disciplines.title')"/>
     </div>
     <div class="disciplines__grid">
       <div
-        v-for="slug in disciplineSlugs"
-        :key="slug"
-        class="discipline-card"
+          v-for="slug in disciplineSlugs"
+          :key="slug"
+          class="discipline-card"
       >
         <h3 class="discipline-card__title">{{ $t(`disciplines.items.${slug}.title`) }}</h3>
         <p class="discipline-card__desc">{{ $t(`disciplines.items.${slug}.description`) }}</p>
@@ -22,7 +22,7 @@ const disciplineSlugs = ['mma', 'boxe', 'kickboxing', 'grappling', 'lutte'] as c
 
 <style scoped lang="sass">
 .disciplines
-  background-color: $black-mid
+  background-color: $black
 
 .disciplines__header
   @include section-pad($spacing-xl, $spacing-md, $spacing-xxl, $spacing-lg)

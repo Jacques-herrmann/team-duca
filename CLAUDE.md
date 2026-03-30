@@ -13,16 +13,19 @@ Branche active : `refonte/design-pro-2026`
 
 ### Concept
 
-**"Boxe old school + modernité"**
-Garder l'image de dureté du MMA tout en ajoutant accessibilité et lisibilité moderne.
-Référence : affiche de combat vintage avec exécution web soignée.
+**"Emblème de club underground + photographie documentaire combat"**
+Identité artisanale brute (badge gravure, mascotte gorille) combinée à une typographie éditoriale massive et des photos de combat authentiques.
+Deux pôles en tension : **emblème de club de boxe underground années 90** (organique, gravure, noir & blanc pur) et **exécution web contemporaine** (typographie display, mise en page cinématique).
+
+> Ce n'est pas l'esthétique "corporate UFC / ESPN" — c'est plus viscéral, plus artisanal, plus brut.
 
 ### Esthétique
 
-- **Grain / texture papier** — superposition subtile de `grain.png` sur les sections
-- **Typographie display massive** — titres très grands, style imprimerie/affiche
-- **Éléments graphiques** — tampons, traits, badges, ornements (SVG ou CSS)
-- **Photos noir & blanc** — traitement monochrome ou désaturé sur les images du club
+- **Grain-texture** — superposition subtile de `grain.png` sur les sections (overlay CSS, pas les photos)
+- **Grain-film** — les photos elles-mêmes doivent avoir un grain photographique organique (pas un simple filtre désaturation) — visible dans `Hero.png`
+- **Typographie display massive** — titres ultra-condensés, carré/brutal, superposés sur les photos
+- **Éléments graphiques gravure/woodcut** — style linogravure : contraste fort, noir pur, pas de dégradés, rendu organique comme une gravure sur bois
+- **Photos noir & blanc grain-film** — traitement documentaire authentique, pas juste désaturé
 
 ### Palette de couleurs
 
@@ -32,8 +35,8 @@ Référence : affiche de combat vintage avec exécution web soignée.
 | `$black-mid` | `#242424` | Fond sections secondaires |
 | `$black-light` | `#2e2e2e` | Cards, surfaces élevées |
 | `$white` | `#f9f9f9` | Texte principal, fond light |
-| `$red` | `#E72640` | Accent principal, hover, CTA |
-| `$gold` | `#C9A84C` | Accent vintage optionnel (badges, tampons) |
+| `$red` | `#E72640` | Accent ultra-ponctuel : CTA primaires, états hover, item actif nav — jamais décoratif ou structurant |
+| `$gold` | `#C9A84C` | Accent vintage rare (badges spéciaux, tampons emblème) |
 
 ### Typographie
 
@@ -43,7 +46,8 @@ Référence : affiche de combat vintage avec exécution web soignée.
 **Police corps** : Barlow — weight 400, sobre et direct
 
 > ⚠️ Playfair Display et Overpass sont supprimés de la DA. Ne pas les réintroduire.
-> L'esthétique est dure et éditoriale (UFC / ESPN), pas vintage-élégante.
+> L'esthétique est dure et brute (fight club underground), pas vintage-élégante ni corporate-sportive.
+> La typo doit sembler écrasée, carrée — rendu Impact/condensed brutal, pas display-sport arrondi.
 
 **Hiérarchie :**
 - Hero : `clamp(5rem, 20vw, 20rem)` — Dharma Gothic E, `font-weight: bold`, `line-height: 0.88`
@@ -54,6 +58,33 @@ Référence : affiche de combat vintage avec exécution web soignée.
 - Corps de texte : Barlow weight 400, `line-height: 1.75` (mixin `text`)
 
 **Outline text-stroke** : `1px` (pas plus — effet graphique, pas dominant)
+
+### Identité visuelle — Emblème & Mascotte
+
+**Logo** (`assets/images/logo.svg`) — Badge circulaire emblème :
+- Illustration gorille face-split en style gravure/woodcut (linogravure)
+- Bordure pointillée circulaire + banderole "SAMBO•JJB•MMA"
+- Typographie condensed petites caps autour du cercle
+- 100% N&B — ne jamais coloriser le logo
+- Usage : header nav, certains fonds de section, éléments de marque
+
+**Mascotte gorille** — L'animal rugissant est l'icône centrale du club.
+- Style woodcut/gravure — contraste fort, noir pur
+- Peut être réutilisé en overlay semi-transparent, watermark de fond, élément de section
+- Ne jamais le traiter en couleur ou avec des effets "modernes" (dégradés, ombres portées)
+
+**Style gravure/woodcut** — Règle pour tous les éléments graphiques custom :
+- Contraste binaire fort (noir pur / blanc pur)
+- Pas de dégradés, pas d'effets vectoriels lisses
+- Rendu organique, traits irréguliers, texture artisanale
+
+### Hero — Technique de mise en page
+
+Le titre du Hero doit s'étaler EN SURIMPRESSION directe sur la photo :
+- Texte split sur deux lignes (ex: "SCIENCES" / "DUCA"), ultra-massif
+- Le texte déborde visuellement sur la photo — pas un bloc texte en dessous ou au-dessus
+- `line-height: 0.88` ou moins — effet écrasé, carré, dense
+- La photo et le texte occupent le même espace visuel (z-index, pas de séparation)
 
 ### Éléments graphiques réutilisables
 
@@ -144,7 +175,7 @@ Référence : affiche de combat vintage avec exécution web soignée.
 
 ## Sections prévues (home)
 
-1. **Hero** — titre massif + CTA
+1. **Hero** — titre split superposé sur photo + CTA
 2. **PresentationClub** — texte club + chiffres clés
 3. **Disciplines** — les 5 disciplines enseignées
 4. **Coaches** — équipe (Duca + 2 coaches)
