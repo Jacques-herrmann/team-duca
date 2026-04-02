@@ -31,7 +31,7 @@
               v-for="slot in scheduleByDay[day] || []"
               :key="slot.id"
               class="schedule-slot"
-              :class="`schedule-slot--${slot.level}`"
+              :class="[`schedule-slot--${slot.level}`, `schedule-slot--disc-${slot.discipline}`]"
           >
             <span class="schedule-slot__time">{{ slot.time }}</span>
             <span class="schedule-slot__title">{{ $t(slot.titleKey) }}</span>
@@ -166,12 +166,10 @@ const scheduleByDay = computed(() => {
   border: 1px solid rgba($white, 0.07)
 
   &--advanced
-    background-color: rgba($red, 0.06)
-    border-color: rgba($red, 0.25)
+    opacity: 0.85
 
   &--competition
-    background-color: rgba($red, 0.14)
-    border-color: rgba($red, 0.5)
+    box-shadow: inset 0 0 0 1px rgba($red, 0.4)
 
 .schedule-slot__time
   @include caption(0.65rem)
@@ -197,6 +195,43 @@ const scheduleByDay = computed(() => {
 
   .schedule-slot--competition &
     color: $red
+
+// ─── Discipline colors ───────────────────────────────────────
+// Variables locales au composant
+$c-mma:        #E72640
+$c-boxe:       #C9A84C
+$c-kickboxing: #4A90E2
+$c-grappling:  #27AE60
+$c-lutte:      #9B59B6
+$c-fitness:    #E67E22
+
+.schedule-slot--disc-mma
+  border-left: 3px solid $c-mma
+  background-color: rgba($c-mma, 0.08)
+
+.schedule-slot--disc-boxe
+  border-left: 3px solid $c-boxe
+  background-color: rgba($c-boxe, 0.08)
+
+.schedule-slot--disc-kickboxing
+  border-left: 3px solid $c-kickboxing
+  background-color: rgba($c-kickboxing, 0.07)
+
+.schedule-slot--disc-grappling
+  border-left: 3px solid $c-grappling
+  background-color: rgba($c-grappling, 0.07)
+
+.schedule-slot--disc-lutte
+  border-left: 3px solid $c-lutte
+  background-color: rgba($c-lutte, 0.07)
+
+.schedule-slot--disc-fitness
+  border-left: 3px solid $c-fitness
+  background-color: rgba($c-fitness, 0.07)
+
+.schedule-slot--disc-open
+  border-left: 3px solid rgba($white, 0.2)
+  background-color: rgba($white, 0.03)
 
 // ─── Download ────────────────────────────────────────────────
 .schedule__download

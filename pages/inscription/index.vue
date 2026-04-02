@@ -1,5 +1,10 @@
 <template>
   <main class="inscription-page">
+    <div class="inscription-page__hero">
+      <span class="section__label">{{ $t('inscription.label') }}</span>
+      <h1 class="inscription-page__title">{{ $t('inscription.pageTitle') }}</h1>
+    </div>
+
     <!-- Step indicator -->
     <div class="step-bar">
       <div
@@ -193,6 +198,18 @@ useHead({ title: 'Inscription — Science DUCA MMA Marseille' })
 
   @include lg
     padding: $spacing-xxl 90px
+
+// ─── Hero ────────────────────────────────────────────────────
+.inscription-page__hero
+  margin-bottom: $spacing-xl
+  padding-bottom: $spacing-xl
+  border-bottom: 1px solid rgba($white, 0.06)
+
+.inscription-page__title
+  @include title(clamp(4rem, 12vw, 12rem))
+  color: $white
+  margin: $spacing-sm 0 0
+  line-height: 0.88
 
 // ─── Step bar ────────────────────────────────────────────────
 .step-bar

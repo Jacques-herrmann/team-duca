@@ -26,9 +26,14 @@
 
 <script setup lang="ts">
 const localePath = useLocalePath()
-const { tm } = useI18n()
+const { t } = useI18n()
 
-const features = computed(() => tm('locationCage.features') as string[])
+const features = computed(() => [
+  t('locationCage.featureItems.cage'),
+  t('locationCage.featureItems.tatamis'),
+  t('locationCage.featureItems.vestiaires'),
+  t('locationCage.featureItems.encadrement'),
+])
 
 useHead({ title: 'Location Cage MMA Marseille — Science DUCA' })
 </script>

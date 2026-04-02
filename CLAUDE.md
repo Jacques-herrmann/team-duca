@@ -166,25 +166,30 @@ Le titre du Hero doit s'étaler EN SURIMPRESSION directe sur la photo :
 | Route | Fichier | Contenu |
 |---|---|---|
 | `/` | `pages/index.vue` | Home — toutes les sections |
+| `/athletes` | `pages/athletes/index.vue` | Roster complet — pros + amateurs, palmarès, records |
 | `/contact` | `pages/contact/index.vue` | Formulaire de contact |
-| `/inscription` | `pages/inscription/index.vue` | Formulaire d'inscription |
+| `/inscription` | `pages/inscription/index.vue` | Formulaire d'inscription (multi-step) |
 | `/location-cage` | `pages/location-cage/index.vue` | Service location cage |
+| `/prepa-physique` | `pages/prepa-physique/index.vue` | Programmes de préparation physique |
 | `/merci` | `pages/merci/index.vue` | Page de confirmation |
 
 ---
 
-## Sections prévues (home)
+## Sections home (ordre réel dans `pages/index.vue`)
 
 1. **Hero** — titre split superposé sur photo + CTA
-2. **PresentationClub** — texte club + chiffres clés
+2. **Presentation** — texte club + chiffres clés
 3. **Disciplines** — les 5 disciplines enseignées
 4. **Coaches** — équipe (Duca + 2 coaches)
-5. **Abonnements** — 3 formules tarifaires
-6. **Schedule** — programme des cours (grille par jour)
-7. **PrepaPhysique** — 3 programmes de préparation physique
-8. **Testimonials** — témoignages athlètes (filtrables MMA / Prépa)
-9. **JoinUs** — CTA rejoindre le club
-10. **Sponsors** — partenaires
+5. **AthletesTeaser** — teaser 2 athlètes pro (record W/L/N + CTA → `/athletes`)
+6. **Abonnements** — 3 formules tarifaires
+7. **Schedule** — programme des cours (grille par jour, couleurs par discipline)
+8. **PrepaPhysique** — 3 programmes de préparation physique
+9. **Testimonials** — témoignages athlètes (filtrables MMA / Prépa)
+10. **JoinUs** — CTA rejoindre le club
+11. **Sponsors** — partenaires
+
+> **AthletesTeaser vs BlocksAthletes** : La home utilise `BlocksAthletesTeaser` (2 pros, record W/L/N, pas de palmarès détaillé). La page `/athletes` utilise `BlocksAthletes` (roster complet avec palmarès).
 
 ---
 
@@ -192,11 +197,15 @@ Le titre du Hero doit s'étaler EN SURIMPRESSION directe sur la photo :
 
 ```
 data/
+  athletes.ts       — Athlete[] (id, name, nickname?, sports[], level, record?, bjjBelt?, palmare[])
+                      + exports : proAthletes, amateurAthletes
+                      + types : Discipline, AthleteSport, AthleteLevel, BjjBelt, PalmareResult
   coaches.ts        — Coach[] (id, nameKey, roleKey, image, imageAlt, badgeKey)
   keyfacts.ts       — KeyFact[] (value, labelKey)
   navigation.ts     — NavItem[] (labelKey, path, highlight?)
   programs.ts       — Program[] (id, titleKey, duration, price, features[], image)
-  schedule.ts       — ScheduleItem[] (day, time, duration, titleKey, coachId, level)
+  schedule.ts       — ScheduleItem[] (day, time, duration, titleKey, coachId, level, discipline)
+                      + types : Day, Discipline
   sponsors.ts       — Sponsor[] (id, name, logo, url?)
   subscriptions.ts  — Subscription[] (id, price, features[], highlighted, ctaUrl)
   testimonials.ts   — Testimonial[] (id, name, quoteKey, tag: mma|prepa, image)
@@ -205,6 +214,12 @@ locales/
   fr.json           — toutes les clés i18n (FR, défaut)
   en.json           — miroir EN
 ```
+
+### Convention features i18n
+
+Les arrays `features` dans les data files stockent des **clés i18n**, pas des strings traduits.
+Les features directement dans les locales (ex: `locationCage.featureItems.*`) utilisent le pattern `tm() + map(k => t(k))`.
+Dans tous les cas, `<AppFeatureList>` reçoit toujours des strings résolus : `features.map(k => $t(k))`.
 
 ---
 
@@ -217,3 +232,18 @@ locales/
 | Phase 3 | ⏳ À venir | Animations GSAP · Lenis · transitions |
 | Phase 4 | ⏳ À venir | Perf · SEO · OpenGraph |
 | Phase 5 | ⏳ À venir | Review + rapport hors-site (tunnel de vente, analytics) |
+
+### Décisions d'architecture (Phase 2)
+
+- **Page `/athletes` dédiée** — Les athlètes ont leur propre page (roster complet + palmarès). La home expose uniquement un teaser (`BlocksAthletesTeaser`) avec les 2 pros, le record W/L/N et un lien "Voir tous les athlètes".
+- **Schedule discipline colors** — Chaque créneau a un champ `discipline` (`data/schedule.ts`). Le composant Schedule applique une `border-left` colorée : rouge = MMA, or = boxe/kickboxing, blanc léger = grappling/lutte/fitness/open.
+- **Hero WebGL** — À implémenter en Phase 3 (effet actuel : photo statique).
+
+### Éléments en attente (bloqués côté client)
+
+| Élément | Ce qu'il faut |
+|---|---|
+| Hero — remplacement photo | Nouvel asset sans grille |
+| Footer réseaux sociaux | URLs Instagram, Facebook, etc. |
+| Schedule — horaires complets | Vrais créneaux du club |
+| DA Présentation / Disciplines / Abonnements | Session de review design |

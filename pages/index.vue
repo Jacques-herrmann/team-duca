@@ -4,7 +4,7 @@
     <BlocksPresentation />
     <BlocksDisciplines />
     <BlocksCoaches />
-    <BlocksAthletes />
+    <BlocksAthletesTeaser />
     <BlocksAbonnements />
     <BlocksSchedule />
     <BlocksPrepaPhysique />

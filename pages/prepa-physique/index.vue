@@ -14,6 +14,7 @@
     <div class="prepa-page__intro">
       <div class="prepa-intro__text">
         <span class="section__label">{{ $t('prepa.method.label') }}</span>
+        <h2 class="prepa-section__title">{{ $t('prepa.method.title') }}</h2>
         <p>{{ $t('prepa.method.text1') }}</p>
         <p>{{ $t('prepa.method.text2') }}</p>
       </div>
@@ -68,6 +69,7 @@
     <!-- FAQ -->
     <div class="prepa-page__faq">
       <span class="section__label">{{ $t('prepa.faq.label') }}</span>
+      <h2 class="prepa-section__title">{{ $t('prepa.faq.title') }}</h2>
       <div class="faq-list">
         <div
           v-for="i in 4"
@@ -169,6 +171,13 @@ useHead({
   @include sub(1rem)
   color: rgba($white, 0.5)
   margin: 0
+
+// ─── Section titles ──────────────────────────────────────────
+.prepa-section__title
+  @include title(clamp(2.5rem, 5vw, 5rem))
+  color: $white
+  margin: 0
+  line-height: 0.9
 
 // ─── Intro ───────────────────────────────────────────────────
 .prepa-page__intro

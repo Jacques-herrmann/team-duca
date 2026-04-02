@@ -3,6 +3,7 @@
     "home": "Home",
     "schedule": "Schedule",
     "programs": "Programs",
+    "athletes": "Athletes",
     "locationCage": "Cage rental",
     "contact": "Contact",
     "join": "Join the club"
@@ -159,6 +160,7 @@
     "from": "Starting from",
     "method": {
       "label": "The method",
+      "title": "Our method",
       "text1": "Our strength & conditioning programs are designed for MMA practitioners — beginners and competitors alike. Every plan is structured week by week, with coach follow-up, explainer videos and an adapted nutrition protocol.",
       "text2": "No generic copy-paste programs. Each plan matches a specific profile and concrete goals."
     },
@@ -175,6 +177,7 @@
     },
     "faq": {
       "label": "FAQ",
+      "title": "Frequently asked questions",
       "q1": "Do I need to already practice MMA?",
       "a1": "No. The Foundations program is specifically designed for beginners or people returning after a break. There are no technical prerequisites.",
       "q2": "How does the coach follow-up work?",
@@ -204,12 +207,12 @@
   "locationCage": {
     "label": "Services",
     "description": "Looking for a professional space for training, filming or an event? The Science DUCA cage is available for rental. Competition-approved surface, equipment included, coaching available.",
-    "features": [
-      "Competition-approved cage",
-      "Mats and boxing ring",
-      "Locker rooms and showers",
-      "Technical supervision available"
-    ],
+    "featureItems": {
+      "cage": "Competition-approved cage",
+      "tatamis": "Mats and boxing ring",
+      "vestiaires": "Locker rooms and showers",
+      "encadrement": "Technical supervision available"
+    },
     "cta": "Request a quote"
   },
   "athletes": {
@@ -233,7 +236,9 @@
       "brown": "Brown",
       "black": "Black"
     },
-    "palmares": "Achievements"
+    "palmares": "Achievements",
+    "seeAll": "See all athletes",
+    "pageSubtitle": "Trained at Science DUCA — from amateur to professional."
   },
   "joinus": {
     "cta": "Join the club"
@@ -242,6 +247,8 @@
     "label": "Partners"
   },
   "inscription": {
+    "label": "Join",
+    "pageTitle": "Join the club",
     "step1": { "title": "What are you interested in?" },
     "step2": { "title": "Choose your plan" },
     "step3": { "title": "Your information" },

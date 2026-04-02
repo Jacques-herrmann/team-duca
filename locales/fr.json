@@ -3,6 +3,7 @@
     "home": "Accueil",
     "schedule": "Horaires",
     "programs": "Programmes",
+    "athletes": "Athlètes",
     "locationCage": "Location cage",
     "contact": "Contact",
     "join": "Rejoindre le club"
@@ -159,6 +160,7 @@
     "from": "À partir de",
     "method": {
       "label": "La méthode",
+      "title": "Notre méthode",
       "text1": "Nos programmes de préparation physique sont conçus pour les pratiquants de MMA — débutants comme compétiteurs. Chaque plan est structuré semaine par semaine, avec un suivi coach, des vidéos explicatives et un protocole nutrition adapté.",
       "text2": "Pas de programme générique copié-collé. Chaque formule correspond à un profil précis et à des objectifs concrets."
     },
@@ -175,6 +177,7 @@
     },
     "faq": {
       "label": "FAQ",
+      "title": "Questions fréquentes",
       "q1": "Est-ce que je dois déjà pratiquer le MMA ?",
       "a1": "Non. Le programme Fondations est spécialement conçu pour les débutants ou les personnes qui reviennent après une pause. Il n'y a pas de prérequis techniques.",
       "q2": "Comment se déroule le suivi coach ?",
@@ -204,12 +207,12 @@
   "locationCage": {
     "label": "Services",
     "description": "Vous cherchez un espace professionnel pour votre entraînement, un tournage ou un événement ? La cage Science DUCA est disponible à la location. Surface homologuée, équipements inclus, accompagnement possible.",
-    "features": [
-      "Cage homologuée compétition",
-      "Tatamis et ring de boxe",
-      "Vestiaires et douches",
-      "Possibilité d'encadrement technique"
-    ],
+    "featureItems": {
+      "cage": "Cage homologuée compétition",
+      "tatamis": "Tatamis et ring de boxe",
+      "vestiaires": "Vestiaires et douches",
+      "encadrement": "Possibilité d'encadrement technique"
+    },
     "cta": "Demander un devis"
   },
   "athletes": {
@@ -233,7 +236,9 @@
       "brown": "Marron",
       "black": "Noire"
     },
-    "palmares": "Palmarès"
+    "palmares": "Palmarès",
+    "seeAll": "Voir tous les athlètes",
+    "pageSubtitle": "Formés à Science DUCA — de l'amateur au professionnel."
   },
   "joinus": {
     "cta": "Rejoindre le club"
@@ -242,6 +247,8 @@
     "label": "Partenaires"
   },
   "inscription": {
+    "label": "S'inscrire",
+    "pageTitle": "Rejoindre le club",
     "step1": { "title": "Quel service t'intéresse ?" },
     "step2": { "title": "Choisis ta formule" },
     "step3": { "title": "Tes informations" },
