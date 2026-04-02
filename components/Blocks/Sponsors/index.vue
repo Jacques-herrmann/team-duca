@@ -1,25 +1,25 @@
 <template>
   <section class="sponsors">
-    <GraphicDivider ornament="diamond" color="white" class="sponsors__divider" />
+    <GraphicDivider ornament="diamond" color="white" class="sponsors__divider"/>
     <span class="section__label sponsors__label">{{ $t('sponsors.label') }}</span>
     <div class="sponsors__logos">
       <a
-        v-for="sponsor in sponsors"
-        :key="sponsor.id"
-        :href="sponsor.url || '#'"
-        class="sponsors__logo-wrap"
-        :aria-label="sponsor.name"
-        target="_blank"
-        rel="noopener noreferrer"
+          v-for="sponsor in sponsors"
+          :key="sponsor.id"
+          :href="sponsor.url || '#'"
+          class="sponsors__logo-wrap"
+          :aria-label="sponsor.name"
+          target="_blank"
+          rel="noopener noreferrer"
       >
-        <img :src="sponsor.logo" :alt="sponsor.logoAlt" class="sponsors__logo" />
+        <img :src="sponsor.logo" :alt="sponsor.logoAlt" class="sponsors__logo"/>
       </a>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { sponsors } from '~/data/sponsors'
+import {sponsors} from '~/data/sponsors'
 </script>
 
 <style scoped lang="sass">
@@ -51,12 +51,10 @@ import { sponsors } from '~/data/sponsors'
   align-items: center
   justify-content: center
   opacity: 0.45
-  filter: grayscale(100%)
   transition: opacity 0.2s ease, filter 0.2s ease
 
   &:hover
     opacity: 1
-    filter: grayscale(0%)
 
 .sponsors__logo
   max-height: 60px

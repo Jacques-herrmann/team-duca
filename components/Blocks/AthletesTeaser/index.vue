@@ -2,17 +2,17 @@
   <section class="section athletes-teaser">
 
     <div class="athletes-teaser__header">
-      <AppSectionHeader :label="$t('athletes.label')" :title="$t('athletes.title')" />
+      <AppSectionHeader :label="$t('athletes.label')" :title="$t('athletes.title')"/>
     </div>
 
     <div class="athletes-teaser__grid">
       <article
-        v-for="athlete in proAthletes"
-        :key="athlete.id"
-        class="teaser-card"
+          v-for="athlete in proAthletes"
+          :key="athlete.id"
+          class="teaser-card"
       >
         <div class="teaser-card__photo">
-          <AppImage :src="athlete.image" :alt="athlete.imageAlt" />
+          <AppImage :src="athlete.image" :alt="athlete.imageAlt"/>
         </div>
         <div class="teaser-card__body">
           <div class="teaser-card__identity">
@@ -20,10 +20,11 @@
             <span v-if="athlete.nickname" class="teaser-card__nickname">"{{ athlete.nickname }}"</span>
             <div class="teaser-card__sports">
               <AppBadge
-                v-for="sport in athlete.sports"
-                :key="sport"
-                variant="dark"
-              >{{ $t(`athletes.sports.${sport}`) }}</AppBadge>
+                  v-for="sport in athlete.sports"
+                  :key="sport"
+                  variant="dark"
+              >{{ $t(`athletes.sports.${sport}`) }}
+              </AppBadge>
             </div>
           </div>
 
@@ -61,7 +62,7 @@
 </template>
 
 <script setup lang="ts">
-import { proAthletes } from '~/data/athletes'
+import {proAthletes} from '~/data/athletes'
 
 const localePath = useLocalePath()
 </script>
@@ -102,7 +103,6 @@ const localePath = useLocalePath()
   aspect-ratio: 3 / 2
   overflow: hidden
   background-color: $black-mid
-  filter: grayscale(100%)
   flex-shrink: 0
 
   @include lg

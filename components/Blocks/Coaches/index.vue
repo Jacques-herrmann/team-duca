@@ -1,17 +1,17 @@
 <template>
   <section class="section coaches">
     <div class="coaches__header">
-      <AppSectionHeader :label="$t('coaches.label')" :title="$t('coaches.title')" />
+      <AppSectionHeader :label="$t('coaches.label')" :title="$t('coaches.title')"/>
     </div>
     <div class="coaches__grid">
       <div
-        v-for="coach in coaches"
-        :key="coach.id"
-        class="coach-card"
+          v-for="coach in coaches"
+          :key="coach.id"
+          class="coach-card"
       >
         <div class="coach-card__image-wrap">
-          <AppImage :src="coach.image" :alt="coach.imageAlt" />
-          <AppBadge v-if="coach.badgeKey" variant="red" class="coach-card__badge">
+          <AppImage :src="coach.image" :alt="coach.imageAlt"/>
+          <AppBadge v-if="coach.badgeKey" :variant="coach.id === 'head' ? 'red': 'dark'" class="coach-card__badge">
             {{ $t(coach.badgeKey) }}
           </AppBadge>
         </div>
@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { coaches } from '~/data/coaches'
+import {coaches} from '~/data/coaches'
 </script>
 
 <style scoped lang="sass">
@@ -50,7 +50,6 @@ import { coaches } from '~/data/coaches'
   position: relative
   aspect-ratio: 4 / 5
   overflow: hidden
-  filter: grayscale(100%)
   background-color: $black-mid
 
 .coach-card__badge

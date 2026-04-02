@@ -2,23 +2,23 @@
   <section class="section athletes">
 
     <div class="athletes__header">
-      <AppSectionHeader :label="$t('athletes.label')" :title="$t('athletes.title')" />
+      <AppSectionHeader :label="$t('athletes.label')" :title="$t('athletes.title')"/>
     </div>
 
     <!-- ─── PRO ─────────────────────────────────────────────── -->
     <div class="athletes__group">
       <div class="athletes__group-header">
         <AppBadge variant="red" size="md">{{ $t('athletes.proLabel') }}</AppBadge>
-        <span class="athletes__group-line" aria-hidden="true" />
+        <span class="athletes__group-line" aria-hidden="true"/>
       </div>
       <div class="athletes__grid athletes__grid--pro">
         <article
-          v-for="athlete in proAthletes"
-          :key="athlete.id"
-          class="athlete-card athlete-card--pro"
+            v-for="athlete in proAthletes"
+            :key="athlete.id"
+            class="athlete-card athlete-card--pro"
         >
           <div class="athlete-card__photo">
-            <AppImage :src="athlete.image" :alt="athlete.imageAlt" />
+            <AppImage :src="athlete.image" :alt="athlete.imageAlt"/>
           </div>
           <div class="athlete-card__body">
             <div class="athlete-card__identity">
@@ -26,10 +26,11 @@
               <span v-if="athlete.nickname" class="athlete-card__nickname">"{{ athlete.nickname }}"</span>
               <div class="athlete-card__sports">
                 <AppBadge
-                  v-for="sport in athlete.sports"
-                  :key="sport"
-                  variant="dark"
-                >{{ $t(`athletes.sports.${sport}`) }}</AppBadge>
+                    v-for="sport in athlete.sports"
+                    :key="sport"
+                    variant="dark"
+                >{{ $t(`athletes.sports.${sport}`) }}
+                </AppBadge>
               </div>
             </div>
 
@@ -57,9 +58,9 @@
             <!-- BJJ Belt -->
             <div v-if="athlete.bjjBelt" class="athlete-card__belt">
               <span
-                class="belt-dot"
-                :class="`belt-dot--${athlete.bjjBelt}`"
-                :aria-label="$t(`athletes.belts.${athlete.bjjBelt}`)"
+                  class="belt-dot"
+                  :class="`belt-dot--${athlete.bjjBelt}`"
+                  :aria-label="$t(`athletes.belts.${athlete.bjjBelt}`)"
               />
               <span class="athlete-card__belt-label">
                 {{ $t('athletes.belt') }} · {{ $t(`athletes.belts.${athlete.bjjBelt}`) }}
@@ -71,10 +72,10 @@
               <span class="athlete-card__palmares-title">{{ $t('athletes.palmares') }}</span>
               <ul class="palmares-list">
                 <li
-                  v-for="(entry, i) in athlete.palmare"
-                  :key="i"
-                  class="palmares-entry"
-                  :class="`palmares-entry--${entry.result}`"
+                    v-for="(entry, i) in athlete.palmare"
+                    :key="i"
+                    class="palmares-entry"
+                    :class="`palmares-entry--${entry.result}`"
                 >
                   <span class="palmares-entry__medal" aria-hidden="true">{{ medalIcon(entry.result) }}</span>
                   <div class="palmares-entry__info">
@@ -92,32 +93,33 @@
       </div>
     </div>
 
-    <GraphicDivider ornament="diamond" color="white" class="athletes__divider" />
+    <GraphicDivider ornament="diamond" color="white" class="athletes__divider"/>
 
     <!-- ─── AMATEUR ──────────────────────────────────────────── -->
     <div class="athletes__group">
       <div class="athletes__group-header">
         <AppBadge variant="dark" size="md">{{ $t('athletes.amateurLabel') }}</AppBadge>
-        <span class="athletes__group-line" aria-hidden="true" />
+        <span class="athletes__group-line" aria-hidden="true"/>
       </div>
       <div class="athletes__grid athletes__grid--amateur">
         <article
-          v-for="athlete in amateurAthletes"
-          :key="athlete.id"
-          class="athlete-card athlete-card--amateur"
+            v-for="athlete in amateurAthletes"
+            :key="athlete.id"
+            class="athlete-card athlete-card--amateur"
         >
           <div class="athlete-card__photo">
-            <AppImage :src="athlete.image" :alt="athlete.imageAlt" />
+            <AppImage :src="athlete.image" :alt="athlete.imageAlt"/>
           </div>
           <div class="athlete-card__body">
             <div class="athlete-card__identity">
               <h3 class="athlete-card__name">{{ athlete.name }}</h3>
               <div class="athlete-card__sports">
                 <AppBadge
-                  v-for="sport in athlete.sports"
-                  :key="sport"
-                  variant="dark"
-                >{{ $t(`athletes.sports.${sport}`) }}</AppBadge>
+                    v-for="sport in athlete.sports"
+                    :key="sport"
+                    variant="dark"
+                >{{ $t(`athletes.sports.${sport}`) }}
+                </AppBadge>
               </div>
             </div>
 
@@ -144,8 +146,8 @@
             <!-- BJJ Belt -->
             <div v-if="athlete.bjjBelt" class="athlete-card__belt">
               <span
-                class="belt-dot"
-                :class="`belt-dot--${athlete.bjjBelt}`"
+                  class="belt-dot"
+                  :class="`belt-dot--${athlete.bjjBelt}`"
               />
               <span class="athlete-card__belt-label">
                 {{ $t(`athletes.belts.${athlete.bjjBelt}`) }}
@@ -155,10 +157,10 @@
             <!-- Palmarès (condensé) -->
             <ul class="palmares-list palmares-list--compact">
               <li
-                v-for="(entry, i) in athlete.palmare"
-                :key="i"
-                class="palmares-entry palmares-entry--compact"
-                :class="`palmares-entry--${entry.result}`"
+                  v-for="(entry, i) in athlete.palmare"
+                  :key="i"
+                  class="palmares-entry palmares-entry--compact"
+                  :class="`palmares-entry--${entry.result}`"
               >
                 <span class="palmares-entry__medal" aria-hidden="true">{{ medalIcon(entry.result) }}</span>
                 <span class="palmares-entry__label">{{ entry.label }}</span>
@@ -174,17 +176,24 @@
 </template>
 
 <script setup lang="ts">
-import { proAthletes, amateurAthletes, type PalmareResult } from '~/data/athletes'
+import {amateurAthletes, type PalmareResult, proAthletes} from '~/data/athletes'
 
 function medalIcon(result: PalmareResult): string {
   switch (result) {
-    case 'gold': return '🥇'
-    case 'silver': return '🥈'
-    case 'bronze': return '🥉'
-    case 'win': return '✓'
-    case 'loss': return '✗'
-    case 'nc': return '—'
-    default: return '·'
+    case 'gold':
+      return '🥇'
+    case 'silver':
+      return '🥈'
+    case 'bronze':
+      return '🥉'
+    case 'win':
+      return '✓'
+    case 'loss':
+      return '✗'
+    case 'nc':
+      return '—'
+    default:
+      return '·'
   }
 }
 </script>
@@ -245,7 +254,6 @@ function medalIcon(result: PalmareResult): string {
   aspect-ratio: 3 / 2
   overflow: hidden
   background-color: $black-mid
-  filter: grayscale(100%)
 
   @include lg
     aspect-ratio: 16 / 9
@@ -254,7 +262,6 @@ function medalIcon(result: PalmareResult): string {
   aspect-ratio: 3 / 4
   overflow: hidden
   background-color: $black-mid
-  filter: grayscale(100%)
 
 // ─── Body ────────────────────────────────────────────────────
 .athlete-card--pro .athlete-card__body
