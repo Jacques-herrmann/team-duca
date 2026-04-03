@@ -6,7 +6,7 @@
 	s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"/>
 </svg>
 </template>
-<script setup lang="ts">
+<script setup>
 </script>
 
 <style scoped lang="sass">

@@ -3,5 +3,5 @@
     <path d="M26 0.999996L2 36.5L26 72" stroke="white" stroke-width="3"/>
   </svg>
 </template>
-<script setup lang="ts">
+<script setup>
 </script>

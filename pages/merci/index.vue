@@ -11,7 +11,7 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 const localePath = useLocalePath()
 useHead({ title: 'Merci — Science DUCA' })
 </script>

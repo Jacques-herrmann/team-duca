@@ -1,9 +1,9 @@
-<script setup lang="ts">
-defineProps<{
-  amount: string | number
-  unit?: string
-  size?: 'md' | 'lg'
-}>()
+<script setup>
+defineProps({
+  amount: { type: [String, Number], required: true },
+  unit:   { type: String, default: null },
+  size:   { type: String, default: 'md' },
+})
 </script>
 
 <template>

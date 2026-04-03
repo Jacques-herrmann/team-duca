@@ -4,7 +4,7 @@
     <Logo class="logo"/>
   </div>
 </template>
-<script lang="ts" setup>
+<script setup>
 import gsap from "gsap";
 
 const emit = defineEmits(['end'])
@@ -12,7 +12,7 @@ const emit = defineEmits(['end'])
 const props = defineProps({})
 const store = useIndexStore()
 const isMobile = computed(() => store.isMobile)
-const root = ref<HTMLElement | null>(null)
+const root = ref(null)
 
 const columns = computed(() => {
   return isMobile.value ? 6 : 8
@@ -29,8 +29,8 @@ const onClose = (cb = () => {
     }
   })
   tl.set(root.value, {background: 'transparent'})
-  tl.to(root.value?.querySelector('.logo') as HTMLElement, {opacity: 0, duration: 0.4, ease: 'linear'}, 0)
-  tl.to(root.value?.querySelectorAll('.column') as NodeList, {
+  tl.to(root.value?.querySelector('.logo'), {opacity: 0, duration: 0.4, ease: 'linear'}, 0)
+  tl.to(root.value?.querySelectorAll('.column'), {
     height: '0',
     duration: 0.3,
     ease: 'power2.inOut',
@@ -47,11 +47,11 @@ const onEnter = (cb = () => {
     }
   })
 
-  tl.set(root.value?.querySelectorAll('.column') as NodeList, {height: '0'})
+  tl.set(root.value?.querySelectorAll('.column'), {height: '0'})
   tl.set(root.value, {autoAlpha: 1})
 
-  tl.to(root.value?.querySelector('.logo') as HTMLElement, {opacity: 1, duration: 0.4, ease: 'linear'}, 0.6)
-  tl.to(root.value?.querySelectorAll('.column') as NodeList, {
+  tl.to(root.value?.querySelector('.logo'), {opacity: 1, duration: 0.4, ease: 'linear'}, 0.6)
+  tl.to(root.value?.querySelectorAll('.column'), {
     height: '100%',
     duration: 0.6,
     ease: 'power2.inOut',

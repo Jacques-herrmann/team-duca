@@ -108,15 +108,15 @@
     "label": "Programme",
     "title": "Les cours",
     "mma": "MMA",
-    "mmaAdvanced": "MMA Avancé",
-    "fitnessMma": "Fitness MMA",
-    "sparring": "Sparring",
-    "mmaCompetition": "MMA Compétition",
-    "openSession": "Séance Découverte",
+    "nogi": "No-Gi",
+    "boxe": "Boxe anglaise",
+    "jjb": "JJB",
+    "openMat": "Open Mat",
     "levels": {
-      "all": "Tous niveaux",
-      "advanced": "Avancé",
-      "competition": "Compétition"
+      "all": "Tous publics",
+      "competition": "Compétiteurs",
+      "women": "Femme",
+      "kids": "Enfant"
     },
     "days": {
       "lundi": "Lundi",
@@ -246,9 +246,28 @@
   "sponsors": {
     "label": "Partenaires"
   },
+  "meta": {
+    "athletes": {
+      "title": "Nos athlètes MMA Marseille — Science DUCA",
+      "description": "Découvrez les athlètes de Science DUCA — combattants MMA professionnels et amateurs formés à Marseille. Palmarès, records et disciplines.",
+      "ogTitle": "Nos athlètes MMA Marseille — Science DUCA",
+      "ogDescription": "Les athlètes de Science DUCA — MMA, BJJ, de l'amateur au professionnel. Marseille."
+    },
+    "prepa": {
+      "title": "Préparation physique MMA Marseille — Science DUCA",
+      "description": "Programmes de préparation physique MMA à Marseille. Fondations, Combat Ready, Elite — plans structurés semaine par semaine avec suivi coach. Science DUCA.",
+      "ogTitle": "Préparation physique MMA Marseille — Science DUCA",
+      "ogDescription": "Programmes de préparation physique MMA à Marseille. Science DUCA."
+    },
+    "inscription": {
+      "title": "Inscription — Science DUCA MMA Marseille"
+    }
+  },
   "inscription": {
     "label": "S'inscrire",
     "pageTitle": "Rejoindre le club",
+    "continue": "Continuer →",
+    "back": "← Retour",
     "step1": { "title": "Quel service t'intéresse ?" },
     "step2": { "title": "Choisis ta formule" },
     "step3": { "title": "Tes informations" },

@@ -24,7 +24,7 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 const localePath = useLocalePath()
 const { t } = useI18n()
 

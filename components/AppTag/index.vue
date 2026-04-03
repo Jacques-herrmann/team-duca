@@ -1,12 +1,10 @@
-<script setup lang="ts">
-defineProps<{
-  active?: boolean
-  tag?: string
-}>()
+<script setup>
+defineProps({
+  active: { type: Boolean, default: false },
+  tag:    { type: String, default: null },
+})
 
-defineEmits<{
-  click: [event: MouseEvent]
-}>()
+defineEmits(['click'])
 </script>
 
 <template>

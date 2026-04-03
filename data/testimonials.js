@@ -1,14 +1,11 @@
-export interface Testimonial {
-  id: string
-  name: string
-  disciplineKey: string
-  quoteKey: string
-  tag: 'mma' | 'prepa'
-  image: string
-  imageAlt: string
-}
+/**
+ * Témoignages — Science DUCA
+ *
+ * disciplineKey, quoteKey : clés i18n (voir locales/fr.json → testimonials, disciplines)
+ * tag : 'mma' | 'prepa' (filtre d'affichage)
+ */
 
-export const testimonials: Testimonial[] = [
+export const testimonials = [
   {
     id: 'testimonial-1',
     name: 'Karim B.',
@@ -21,11 +18,11 @@ export const testimonials: Testimonial[] = [
   {
     id: 'testimonial-2',
     name: 'Sofia M.',
-    disciplineKey: 'disciplines.items.kickboxing.title',
+    disciplineKey: 'disciplines.items.boxe.title',
     quoteKey: 'testimonials.sofia.quote',
     tag: 'mma',
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=112&h=112&fit=crop&q=80',
-    imageAlt: 'Portrait carré de Sofia, pratiquante kick-boxing Science DUCA, bandages aux mains, regard confiant — photo authentique, lumière directionnelle sombre',
+    imageAlt: 'Portrait carré de Sofia, pratiquante boxe Science DUCA, bandages aux mains, regard confiant — photo authentique, lumière directionnelle sombre',
   },
   {
     id: 'testimonial-3',

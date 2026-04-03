@@ -1,16 +1,11 @@
-export interface Subscription {
-  id: string
-  titleKey: string
-  descriptionKey: string
-  price: number
-  priceUnit: string
-  features: string[]
-  highlighted: boolean
-  ctaKey: string
-  ctaUrl: string
-}
+/**
+ * Abonnements — Science DUCA
+ *
+ * titleKey, descriptionKey, ctaKey : clés i18n (voir locales/fr.json → subscriptions)
+ * features : tableau de clés i18n (voir locales/fr.json → subscriptions.features)
+ */
 
-export const subscriptions: Subscription[] = [
+export const subscriptions = [
   {
     id: 'decouverte',
     titleKey: 'subscriptions.decouverte.title',

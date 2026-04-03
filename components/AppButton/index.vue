@@ -1,14 +1,14 @@
-<script setup lang="ts">
-const props = defineProps<{
-  variant?: 'primary' | 'outline' | 'ghost-red' | 'inverse'
-  size?: 'md' | 'lg'
-  to?: string
-  href?: string
-  type?: 'button' | 'submit' | 'reset'
-  disabled?: boolean
-}>()
+<script setup>
+const props = defineProps({
+  variant:  { type: String, default: 'primary' },
+  size:     { type: String, default: 'md' },
+  to:       { type: String, default: null },
+  href:     { type: String, default: null },
+  type:     { type: String, default: 'button' },
+  disabled: { type: Boolean, default: false },
+})
 
-const variantClass = computed(() => `btn-${props.variant ?? 'primary'}`)
+const variantClass = computed(() => `btn-${props.variant}`)
 const sizeClass = computed(() => props.size === 'lg' ? 'btn--lg' : '')
 const disabledClass = computed(() => props.disabled ? 'btn--disabled' : '')
 

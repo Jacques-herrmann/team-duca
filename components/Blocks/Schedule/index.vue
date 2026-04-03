@@ -53,18 +53,18 @@
   </section>
 </template>
 
-<script setup lang="ts">
-import {type Day, schedule} from '~/data/schedule'
+<script setup>
+import { schedule } from '~/data/schedule'
 
-const days: Day[] = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
-const activeDay = ref<Day>('lundi')
+const days = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
+const activeDay = ref('lundi')
 
 const scheduleByDay = computed(() => {
   return schedule.reduce((acc, item) => {
     if (!acc[item.day]) acc[item.day] = []
     acc[item.day].push(item)
     return acc
-  }, {} as Record<Day, typeof schedule>)
+  }, {})
 })
 </script>
 
@@ -115,25 +115,18 @@ const scheduleByDay = computed(() => {
     display: grid
     grid-template-columns: repeat(6, 1fr)
     gap: 1px
-    //background-color: rgba($white, 0.06)
 
 // ─── Day column ──────────────────────────────────────────────
-// Mobile : seul le jour actif est visible (pas de classe --hidden)
-// Desktop : tous les jours sont visibles
-
 .schedule__day
   background-color: $black
   flex-direction: column
   display: none
-  // caché par défaut (jours inactifs mobile)
 
   &:not(.schedule__day--hidden)
     display: flex
-  // jour actif sur mobile
 
   @include lg
     display: flex
-// tous les jours sur desktop
 
 .schedule__day-label
   @include caption(0.7rem)
@@ -165,9 +158,6 @@ const scheduleByDay = computed(() => {
   gap: 0.3rem
   border: 1px solid rgba($white, 0.07)
 
-  &--advanced
-    opacity: 0.85
-
   &--competition
     box-shadow: inset 0 0 0 1px rgba($red, 0.4)
 
@@ -190,48 +180,41 @@ const scheduleByDay = computed(() => {
   color: rgba($white, 0.35)
   align-self: flex-start
 
-  .schedule-slot--advanced &
-    color: rgba($red, 0.8)
-
   .schedule-slot--competition &
     color: $red
 
+  .schedule-slot--women &
+    color: rgba($gold, 0.8)
+
+  .schedule-slot--kids &
+    color: rgba($white, 0.6)
+
 // ─── Discipline colors ───────────────────────────────────────
-// Variables locales au composant
-$c-mma:        #E72640
-$c-boxe:       #C9A84C
-$c-kickboxing: #4A90E2
-$c-grappling:  #27AE60
-$c-lutte:      #9B59B6
-$c-fitness:    #E67E22
+$c-mma:  #E72640
+$c-nogi: #4A90E2
+$c-boxe: #C9A84C
+$c-jjb:  #7C3AED
+$c-open: rgba(#f9f9f9, 0.2)
 
 .schedule-slot--disc-mma
   border-left: 3px solid $c-mma
   background-color: rgba($c-mma, 0.08)
 
+.schedule-slot--disc-nogi
+  border-left: 3px solid $c-nogi
+  background-color: rgba($c-nogi, 0.07)
+
 .schedule-slot--disc-boxe
   border-left: 3px solid $c-boxe
   background-color: rgba($c-boxe, 0.08)
 
-.schedule-slot--disc-kickboxing
-  border-left: 3px solid $c-kickboxing
-  background-color: rgba($c-kickboxing, 0.07)
-
-.schedule-slot--disc-grappling
-  border-left: 3px solid $c-grappling
-  background-color: rgba($c-grappling, 0.07)
-
-.schedule-slot--disc-lutte
-  border-left: 3px solid $c-lutte
-  background-color: rgba($c-lutte, 0.07)
-
-.schedule-slot--disc-fitness
-  border-left: 3px solid $c-fitness
-  background-color: rgba($c-fitness, 0.07)
+.schedule-slot--disc-jjb
+  border-left: 3px solid $c-jjb
+  background-color: rgba($c-jjb, 0.07)
 
 .schedule-slot--disc-open
-  border-left: 3px solid rgba($white, 0.2)
-  background-color: rgba($white, 0.03)
+  border-left: 3px solid $c-open
+  background-color: rgba(#f9f9f9, 0.03)
 
 // ─── Download ────────────────────────────────────────────────
 .schedule__download

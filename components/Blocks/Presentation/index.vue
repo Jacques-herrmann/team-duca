@@ -20,7 +20,7 @@
   </section>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import {keyfacts} from '~/data/keyfacts'
 </script>
 

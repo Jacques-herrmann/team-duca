@@ -44,7 +44,7 @@
   </header>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import {navItems} from '~/data/navigation'
 
 const localePath = useLocalePath()

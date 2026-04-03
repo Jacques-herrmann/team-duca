@@ -1,8 +1,8 @@
-<script setup lang="ts">
-defineProps<{
-  ornament?: 'diamond' | 'cross' | 'duca'
-  color?: 'red' | 'gold' | 'white'
-}>()
+<script setup>
+defineProps({
+  ornament: { type: String, default: 'diamond' },
+  color:    { type: String, default: 'red' },
+})
 </script>
 
 <template>

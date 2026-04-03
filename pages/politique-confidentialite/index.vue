@@ -93,7 +93,7 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 const lastUpdate = new Date(2026, 2, 1).toLocaleDateString('fr-FR', {
   day: 'numeric',
   month: 'long',

@@ -10,19 +10,15 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
+const { t } = useI18n()
+
 useHead({
-  title: 'Nos athlètes MMA Marseille — Science DUCA',
+  title: computed(() => t('meta.athletes.title')),
   meta: [
-    {
-      name: 'description',
-      content: 'Découvrez les athlètes de Science DUCA — combattants MMA professionnels et amateurs formés à Marseille. Palmarès, records et disciplines.',
-    },
-    { property: 'og:title', content: 'Nos athlètes MMA Marseille — Science DUCA' },
-    {
-      property: 'og:description',
-      content: 'Les athlètes de Science DUCA — MMA, BJJ, de l\'amateur au professionnel. Marseille.',
-    },
+    { name: 'description',        content: computed(() => t('meta.athletes.description')) },
+    { property: 'og:title',       content: computed(() => t('meta.athletes.ogTitle')) },
+    { property: 'og:description', content: computed(() => t('meta.athletes.ogDescription')) },
   ],
 })
 </script>
@@ -31,7 +27,6 @@ useHead({
 .athletes-page
   min-height: 100vh
 
-// ─── Hero ────────────────────────────────────────────────────
 .athletes-page__hero
   padding: $spacing-xl $spacing-md
   border-bottom: 1px solid rgba($white, 0.06)

@@ -1,7 +1,7 @@
-<script setup lang="ts">
-defineProps<{
-  features: string[]
-}>()
+<script setup>
+defineProps({
+  features: { type: Array, required: true },
+})
 </script>
 
 <template>

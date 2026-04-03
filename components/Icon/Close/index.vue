@@ -6,5 +6,5 @@
 </svg>
 
 
-</template><script setup lang="ts">
+</template><script setup>
 </script>

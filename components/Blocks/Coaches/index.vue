@@ -24,8 +24,8 @@
   </section>
 </template>
 
-<script setup lang="ts">
-import {coaches} from '~/data/coaches'
+<script setup>
+import { coaches } from '~/data/coaches'
 </script>
 
 <style scoped lang="sass">

@@ -38,7 +38,16 @@
       "Read(//c/Users/jhn12/Desktop/Perso/team-duca/**)",
       "Bash(done)",
       "Bash(node -e \"require\\(''C:/Users/jhn12/Desktop/Perso/team-duca/node_modules/@rolldown/binding-win32-x64-msvc/rolldown-binding.win32-x64-msvc.node''\\)\")",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Read(//mnt/c/Users/jhn12/Desktop/Perso/**)",
+      "Bash(rm data/athletes.ts data/programs.ts data/schedule.ts data/subscriptions.ts data/coaches.ts data/keyfacts.ts data/navigation.ts data/sponsors.ts data/testimonials.ts)",
+      "Bash(rm:*)",
+      "Bash(sed -i 's/<script lang=\"ts\" setup>/<script setup>/g' components/PageTransition/index.vue)",
+      "Bash(sed -i 's/const root = ref<HTMLElement | null>\\(null\\)/const root = ref\\(null\\)/g' components/PageTransition/index.vue)",
+      "Bash(sed -i 's/ as HTMLElement//g' components/PageTransition/index.vue)",
+      "Bash(sed -i 's/ as NodeList//g' components/PageTransition/index.vue)",
+      "Bash(sed:*)",
+      "Bash(wc:*)"
     ]
   }
 }

@@ -1,21 +1,18 @@
-<script setup lang="ts">
+<script setup>
 defineOptions({ inheritAttrs: false })
 
-const props = defineProps<{
-  modelValue?: string
-  label?: string
-  name: string
-  placeholder?: string
-  rows?: number
-  required?: boolean
-  disabled?: boolean
-  error?: string
-}>()
+const props = defineProps({
+  modelValue:  { type: String, default: '' },
+  label:       { type: String, default: null },
+  name:        { type: String, required: true },
+  placeholder: { type: String, default: null },
+  rows:        { type: Number, default: 4 },
+  required:    { type: Boolean, default: false },
+  disabled:    { type: Boolean, default: false },
+  error:       { type: String, default: null },
+})
 
-defineEmits<{
-  'update:modelValue': [value: string]
-  blur: [event: FocusEvent]
-}>()
+defineEmits(['update:modelValue', 'blur'])
 </script>
 
 <template>
@@ -35,7 +32,7 @@ defineEmits<{
       :aria-required="required || undefined"
       :aria-invalid="!!error || undefined"
       :aria-describedby="error ? `${name}-error` : undefined"
-      @input="$emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
+      @input="$emit('update:modelValue', $event.target.value)"
       @blur="$emit('blur', $event)"
     >{{ modelValue }}</textarea>
     <span v-if="error" :id="`${name}-error`" class="form-error" role="alert">{{ error }}</span>

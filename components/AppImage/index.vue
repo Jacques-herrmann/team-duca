@@ -17,11 +17,11 @@
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-const props = defineProps<{
-  src: string
-  alt: string
-}>()
+<script setup>
+const props = defineProps({
+  src: { type: String, required: true },
+  alt: { type: String, required: true },
+})
 
 defineOptions({inheritAttrs: false})
 

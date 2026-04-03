@@ -41,7 +41,7 @@
   </section>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { programs } from '~/data/programs'
 
 const localePath = useLocalePath()

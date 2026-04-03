@@ -108,15 +108,15 @@
     "label": "Schedule",
     "title": "Classes",
     "mma": "MMA",
-    "mmaAdvanced": "Advanced MMA",
-    "fitnessMma": "MMA Fitness",
-    "sparring": "Sparring",
-    "mmaCompetition": "MMA Competition",
-    "openSession": "Discovery Session",
+    "nogi": "No-Gi",
+    "boxe": "Boxing",
+    "jjb": "BJJ",
+    "openMat": "Open Mat",
     "levels": {
       "all": "All levels",
-      "advanced": "Advanced",
-      "competition": "Competition"
+      "competition": "Competitors",
+      "women": "Women",
+      "kids": "Kids"
     },
     "days": {
       "lundi": "Monday",
@@ -246,9 +246,28 @@
   "sponsors": {
     "label": "Partners"
   },
+  "meta": {
+    "athletes": {
+      "title": "Our MMA athletes Marseille — Science DUCA",
+      "description": "Discover Science DUCA athletes — professional and amateur MMA fighters trained in Marseille. Records, achievements and disciplines.",
+      "ogTitle": "Our MMA athletes Marseille — Science DUCA",
+      "ogDescription": "Science DUCA athletes — MMA, BJJ, from amateur to professional. Marseille."
+    },
+    "prepa": {
+      "title": "MMA Strength & Conditioning Marseille — Science DUCA",
+      "description": "MMA conditioning programs in Marseille. Foundations, Combat Ready, Elite — week-by-week structured plans with coach support. Science DUCA.",
+      "ogTitle": "MMA Strength & Conditioning Marseille — Science DUCA",
+      "ogDescription": "MMA conditioning programs in Marseille. Science DUCA."
+    },
+    "inscription": {
+      "title": "Sign up — Science DUCA MMA Marseille"
+    }
+  },
   "inscription": {
     "label": "Join",
     "pageTitle": "Join the club",
+    "continue": "Continue →",
+    "back": "← Back",
     "step1": { "title": "What are you interested in?" },
     "step2": { "title": "Choose your plan" },
     "step3": { "title": "Your information" },

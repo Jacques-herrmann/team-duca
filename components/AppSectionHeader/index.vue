@@ -1,9 +1,9 @@
-<script setup lang="ts">
-defineProps<{
-  label?: string
-  title: string
-  align?: 'left' | 'center'
-}>()
+<script setup>
+defineProps({
+  label: { type: String, default: null },
+  title: { type: String, required: true },
+  align: { type: String, default: 'left' },
+})
 </script>
 
 <template>

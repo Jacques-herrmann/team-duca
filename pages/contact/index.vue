@@ -53,7 +53,7 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 useHead({ title: 'Contact — Science DUCA MMA Marseille' })
 </script>
 

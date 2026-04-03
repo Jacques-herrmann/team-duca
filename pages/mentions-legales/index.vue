@@ -66,7 +66,7 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup>
 const localePath = useLocalePath()
 
 const lastUpdate = new Date(2026, 2, 1).toLocaleDateString('fr-FR', {

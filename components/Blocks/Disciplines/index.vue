@@ -16,8 +16,8 @@
   </section>
 </template>
 
-<script setup lang="ts">
-const disciplineSlugs = ['mma', 'boxe', 'kickboxing', 'grappling', 'lutte'] as const
+<script setup>
+const disciplineSlugs = ['mma', 'boxe', 'kickboxing', 'grappling', 'lutte']
 </script>
 
 <style scoped lang="sass">

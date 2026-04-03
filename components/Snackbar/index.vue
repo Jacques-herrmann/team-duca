@@ -3,14 +3,14 @@
     <span class="snackbar__message">{{ text }}</span>
   </div>
 </template>
-<script lang="ts" setup>
+<script setup>
 import gsap from 'gsap'
 
 const text = ref('')
 const color = ref('success')
 
 
-const show = (message: string, type: 'success' | 'error' = 'success') => {
+const show = (message, type = 'success') => {
   text.value = message
   color.value = type
 

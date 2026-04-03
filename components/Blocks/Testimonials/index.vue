@@ -35,16 +35,15 @@
   </section>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { testimonials } from '~/data/testimonials'
 
-type Filter = 'all' | 'mma' | 'prepa'
-const activeFilter = ref<Filter>('all')
+const activeFilter = ref('all')
 
 const filters = [
-  { value: 'all' as Filter, label: 'Tous' },
-  { value: 'mma' as Filter, label: 'MMA' },
-  { value: 'prepa' as Filter, label: 'Prépa' },
+  { value: 'all', label: 'Tous' },
+  { value: 'mma', label: 'MMA' },
+  { value: 'prepa', label: 'Prépa' },
 ]
 
 const filtered = computed(() =>

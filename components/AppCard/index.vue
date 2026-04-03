@@ -1,8 +1,8 @@
-<script setup lang="ts">
-defineProps<{
-  highlighted?: boolean
-  tag?: string
-}>()
+<script setup>
+defineProps({
+  highlighted: { type: Boolean, default: false },
+  tag:         { type: String, default: null },
+})
 </script>
 
 <template>

@@ -61,8 +61,8 @@
   </section>
 </template>
 
-<script setup lang="ts">
-import {proAthletes} from '~/data/athletes'
+<script setup>
+import { proAthletes } from '~/data/athletes'
 
 const localePath = useLocalePath()
 </script>

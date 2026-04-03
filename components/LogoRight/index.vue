@@ -186,7 +186,7 @@
     </defs>
   </svg>
 </template>
-<script lang="ts" setup>
+<script setup>
 import gsap from 'gsap'
 import Timeline = gsap.core.Timeline;
 
@@ -199,7 +199,7 @@ const draw = () => {
 
 onMounted(() => {
   tl = gsap.timeline({paused: true})
-  const paths = Array.from(root.value?.querySelectorAll('path') as NodeList)
+  const paths = Array.from(root.value?.querySelectorAll('path'))
   gsap.set(paths, {
     fillOpacity: 0,
     // stroke: '#f9f9f9',

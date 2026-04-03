@@ -2,7 +2,7 @@
   <div class="cursor" :style="`transform: translate(calc(-50% + ${position.x}px), calc(-50% + ${position.y}px))`">
   </div>
 </template>
-<script lang="ts" setup>
+<script setup>
 import {Vec2} from "ogl";
 
 const props = defineProps({

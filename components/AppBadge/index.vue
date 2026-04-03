@@ -1,8 +1,8 @@
-<script setup lang="ts">
-defineProps<{
-  variant?: 'red' | 'dark' | 'outline-red'
-  size?: 'sm' | 'md'
-}>()
+<script setup>
+defineProps({
+  variant: { type: String, default: 'red' },
+  size:    { type: String, default: 'sm' },
+})
 </script>
 
 <template>

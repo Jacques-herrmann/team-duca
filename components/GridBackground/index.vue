@@ -5,7 +5,7 @@
     <div class="grid-background__f"/>
   </div>
 </template>
-<script lang="ts" setup>
+<script setup>
 
 import {useAppStore} from "~/stores/app";
 

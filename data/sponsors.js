@@ -1,12 +1,8 @@
-export interface Sponsor {
-  id: string
-  name: string
-  logo: string
-  logoAlt: string
-  url?: string
-}
+/**
+ * Sponsors — Science DUCA
+ */
 
-export const sponsors: Sponsor[] = [
+export const sponsors = [
   {
     id: 'sponsor-1',
     name: 'Sponsor 1',

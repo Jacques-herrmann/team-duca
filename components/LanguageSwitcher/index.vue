@@ -15,7 +15,7 @@
     </nuxt-link>
   </div>
 </template>
-<script lang="ts" setup>
+<script setup>
 const {locale} = useI18n()
 const switchLocalePath = useSwitchLocalePath()
 </script>

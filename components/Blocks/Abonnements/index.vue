@@ -29,7 +29,7 @@
   </section>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { subscriptions } from '~/data/subscriptions'
 
 const localePath = useLocalePath()

@@ -1,21 +1,18 @@
-<script setup lang="ts">
+<script setup>
 defineOptions({ inheritAttrs: false })
 
-defineProps<{
-  modelValue?: string
-  label?: string
-  name: string
-  options: { value: string; label: string }[]
-  placeholder?: string
-  required?: boolean
-  disabled?: boolean
-  error?: string
-}>()
+defineProps({
+  modelValue:  { type: String, default: '' },
+  label:       { type: String, default: null },
+  name:        { type: String, required: true },
+  options:     { type: Array, required: true },
+  placeholder: { type: String, default: null },
+  required:    { type: Boolean, default: false },
+  disabled:    { type: Boolean, default: false },
+  error:       { type: String, default: null },
+})
 
-defineEmits<{
-  'update:modelValue': [value: string]
-  blur: [event: FocusEvent]
-}>()
+defineEmits(['update:modelValue', 'blur'])
 </script>
 
 <template>
@@ -35,7 +32,7 @@ defineEmits<{
         :aria-required="required || undefined"
         :aria-invalid="!!error || undefined"
         :aria-describedby="error ? `${name}-error` : undefined"
-        @change="$emit('update:modelValue', ($event.target as HTMLSelectElement).value)"
+        @change="$emit('update:modelValue', $event.target.value)"
         @blur="$emit('blur', $event)"
       >
         <option v-if="placeholder" value="" disabled :selected="!modelValue">{{ placeholder }}</option>

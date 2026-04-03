@@ -1,17 +1,11 @@
-export interface Program {
-  id: string
-  titleKey: string
-  profileKey: string
-  duration: number
-  price: number
-  features: string[]
-  testimonialIds: string[]
-  image: string
-  imageAlt: string
-  ctaUrl: string
-}
+/**
+ * Programmes de préparation physique — Science DUCA
+ *
+ * titleKey, profileKey : clés i18n (voir locales/fr.json → programs)
+ * features             : tableau de clés i18n (voir locales/fr.json → programs.features)
+ */
 
-export const programs: Program[] = [
+export const programs = [
   {
     id: 'fondations',
     titleKey: 'programs.fondations.title',
